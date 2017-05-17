@@ -2,8 +2,11 @@
   "name": "ww1",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://miller.inmagik.com",
   "dependencies": {
     "bootstrap": "4.0.0-alpha.6",
+    "lodash": "^4.17.4",
+    "query-string": "^4.3.4",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.4",
