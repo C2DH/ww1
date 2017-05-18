@@ -37,14 +37,14 @@ class Collection extends Component {
       <Container fluid>
 
         <Row>
-          <Col sm={10}>
+          <Col md={10} sm={12} xs={12}>
             {loading && isNull(documents) && <div>Loading...</div>}
 
             {(!isNull(documents) && documents.length > 0) && (
               <Container fluid>
                 <Row>
                   {documents.map(doc => (
-                    <Col key={doc.id} sm={4} xs={12}>
+                    <Col key={doc.id} md={3} sm={12} xs={12}>
                       <CollectionDoc doc={doc} />
                     </Col>
                   ))}
@@ -60,7 +60,7 @@ class Collection extends Component {
               canLoadMore &&
               <Button onClick={this.loadMore}>Load More</Button>}
           </Col>
-          <Col sm={2}>
+          <Col sm={2} className='hidden-md-down'>
             <div className="Collection__SideBarRight">
               Ciao
             </div>
