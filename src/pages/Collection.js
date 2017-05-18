@@ -9,7 +9,7 @@ import {
   unloadDocuments,
 } from '../state/actions'
 import {
-  getDocumentsGrid,
+  getDocuments,
   canLoadMoreDocuments,
   getDocumentsCount,
   getDocumentsLoading,
@@ -42,15 +42,13 @@ class Collection extends Component {
 
             {(!isNull(documents) && documents.length > 0) && (
               <Container fluid>
-                {documents.map(row => (
-                  <Row key={row.key}>
-                    {row.docs.map(doc => (
-                      <Col key={doc.id}>
-                        <CollectionDoc doc={doc} />
-                      </Col>
-                    ))}
-                  </Row>
-                ))}
+                <Row>
+                  {documents.map(doc => (
+                    <Col key={doc.id} sm={4} xs={12}>
+                      <CollectionDoc doc={doc} />
+                    </Col>
+                  ))}
+                </Row>
               </Container>
             )}
 
@@ -75,7 +73,7 @@ class Collection extends Component {
 }
 
 const mapStateToProps = state => ({
-  documents: getDocumentsGrid(state),
+  documents: getDocuments(state),
   canLoadMore: canLoadMoreDocuments(state),
   count: getDocumentsCount(state),
   loading: getDocumentsLoading(state),
