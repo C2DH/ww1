@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect'
-import { isNull, get, mapValues, includes } from 'lodash'
+import { isNull, get, mapValues, includes, chunk, map } from 'lodash'
 
 // fp <3
 const maybeNull = a => fn => isNull(a) ? null : fn(a)
@@ -57,8 +57,7 @@ const translateObject = (data, lang, transKeys = '*', fallbackLang = 'en') =>
 
 const translateDocument = lang => doc => ({
   ...doc,
-  // TODO: Find coolest name
-  transData: translateObject(doc.data, lang, [
+  translated: translateObject(doc.data, lang, [
     'description',
     'repository',
     'date',
@@ -71,8 +70,17 @@ const getDocuments = createSelector(
   (docs, lang) => maybeNull(docs)(docs => docs.map(translateDocument(lang)))
 )
 
+const getDocumentsGrid = createSelector(
+  getDocuments,
+  documents => chunk(documents, 4).map(grid => ({
+    docs: grid,
+    key: map(grid, 'id').join('-')
+  }))
+)
+
 export {
   getDocuments,
+  getDocumentsGrid,
   canLoadMoreDocuments,
   getDocumentsCount,
   getDocumentsLoading,
