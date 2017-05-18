@@ -17,7 +17,7 @@ export const loadMoreDocuments = (params = {}) => ({
   type: GET_DOCUMENTS,
   payload: {
     params,
-    reset: true,
+    reset: false,
   }
 })
 
