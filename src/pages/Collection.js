@@ -15,6 +15,26 @@ import {
   getDocumentsLoading,
 } from '../state/selectors'
 
+import {
+  CellMeasurer,
+  CellMeasurerCache,
+  createMasonryCellPositioner,
+  Masonry
+} from 'react-virtualized'
+
+const cache = new CellMeasurerCache({
+  defaultHeight: 250,
+  defaultWidth: 200,
+  fixedWidth: true
+})
+
+const cellPositioner = createMasonryCellPositioner({
+  cellMeasurerCache: cache,
+  columnCount: 3,
+  columnWidth: 200,
+  spacer: 10
+})
+
 class Collection extends Component {
   componentDidMount() {
     this.props.loadDocuments()
@@ -36,7 +56,18 @@ class Collection extends Component {
     return (
       <Container fluid>
 
-        <Row>
+        {(!isNull(documents) && documents.length > 0) && (
+          <Masonry
+            cellCount={documents.length}
+            cellMeasurerCache={cache}
+            cellPositioner={cellPositioner}
+            cellRenderer={cellRenderer}
+            height={600}
+            width={800}
+          />
+        )}
+
+        {/* <Row>
           <Col md={10} sm={12} xs={12}>
             {loading && isNull(documents) && <div>Loading...</div>}
 
@@ -65,7 +96,7 @@ class Collection extends Component {
               Ciao
             </div>
           </Col>
-        </Row>
+        </Row> */}
 
       </Container>
     )
