@@ -19,23 +19,39 @@ import {
   CellMeasurer,
   CellMeasurerCache,
   createMasonryCellPositioner,
-  Masonry
+  Masonry,
+  AutoSizer,
 } from 'react-virtualized'
 
-const cache = new CellMeasurerCache({
-  defaultHeight: 250,
-  defaultWidth: 200,
-  fixedWidth: true
-})
 
-const cellPositioner = createMasonryCellPositioner({
-  cellMeasurerCache: cache,
-  columnCount: 3,
-  columnWidth: 200,
-  spacer: 10
-})
+console.log(1)
 
 class Collection extends Component {
+
+  constructor(props){
+    console.log("jy")
+    super(props)
+    this.cache = new CellMeasurerCache({
+      defaultHeight: 250,
+      defaultWidth: 200,
+      fixedWidth: true,
+      fixedHeight: false,
+    })
+
+
+
+    this._onResize = this._onResize.bind(this)
+    this._columnCount = 5
+    this._columnWidh = 0
+    this._gutterSize = 10
+
+
+
+    this._setMasonryRef = this._setMasonryRef.bind(this)
+    this._renderMasonry = this._renderMasonry.bind(this)
+
+  }
+
   componentDidMount() {
     this.props.loadDocuments()
   }
@@ -44,7 +60,88 @@ class Collection extends Component {
     this.props.loadMoreDocuments()
   }
 
+  _resetCellPositioner () {
+
+    this.cellPositioner.reset({
+      columnCount: this._columnCount,
+      columnWidth: this._columnWidh,
+      spacer: this._gutterSize
+    })
+  }
+
+  _calculateColumnCount (width) {
+    this._columnCount = width > 1000 ? 5 : 3
+    this._columnWidh = (width - ((this._columnCount - 1) * this._gutterSize)) / this._columnCount
+  }
+
+  _onResize ({ height, width }) {
+    console.log(1, width)
+    this._width = width
+    this._columnHeights = {}
+    this._calculateColumnCount(width)
+    this._resetCellPositioner()
+    this._masonry.recomputeCellPositions()
+  }
+
+  cellRenderer = ({ index, key, parent, style }) => {
+    const datum = this.props.documents[index]
+    console.log(style)
+    return (
+      <CellMeasurer
+        cache={this.cache}
+        index={index}
+        key={key}
+        parent={parent}
+      >
+      {({measure}) => (
+        <div style={style}>
+          <CollectionDoc doc={datum} measure={measure}/>
+        </div>
+      ) }
+      </CellMeasurer>
+    )
+
+  }
+
+  _setMasonryRef (ref) {
+    this._masonry = ref
+  }
+
+  _initCellPositioner () {
+    if (typeof this.cellPositioner === 'undefined') {
+      this.cellPositioner = createMasonryCellPositioner({
+        cellMeasurerCache: this.cache,
+        columnCount: 4,
+        columnWidth: 200,
+        spacer: 10
+      })
+    }
+  }
+
+  _renderMasonry ({ width, height }) {
+    this._width = width
+    console.log("_renderMasonry", width)
+    this._calculateColumnCount(width)
+    this._initCellPositioner()
+
+
+    return (
+      <Masonry
+        ref={this._setMasonryRef}
+        cellCount={this.props.documents.length}
+        cellMeasurerCache={this.cache}
+        cellPositioner={this.cellPositioner}
+        cellRenderer={this.cellRenderer}
+        height={height}
+        width={width}
+        ref={this._setMasonryRef}
+      />
+    )
+  }
+
   render() {
+    console.log(1, "render")
+
     const {
       documents,
       loading,
@@ -54,17 +151,14 @@ class Collection extends Component {
     } = this.props
 
     return (
-      <Container fluid>
+      <Container fluid style={{height:'100vh'}}>
 
         {(!isNull(documents) && documents.length > 0) && (
-          <Masonry
-            cellCount={documents.length}
-            cellMeasurerCache={cache}
-            cellPositioner={cellPositioner}
-            cellRenderer={cellRenderer}
-            height={600}
-            width={800}
-          />
+          <AutoSizer
+            onResize={this._onResize}>
+            { this._renderMasonry }
+
+          </AutoSizer>
         )}
 
         {/* <Row>

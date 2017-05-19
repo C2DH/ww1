@@ -1,3 +1,5 @@
 .CollectionDoc__Image {
-  width: 50px;
+  width: auto;
+  max-width: 100%;
+  max-height: 500px;
 }
