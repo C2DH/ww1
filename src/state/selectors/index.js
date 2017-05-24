@@ -78,10 +78,20 @@ const getDocumentsGrid = createSelector(
   }))
 )
 
+const getDocument = createSelector(
+  (state) => state.document.data,
+  state => state.settings.language,
+  (doc, lang) => maybeNull(doc)(translateDocument(lang))
+)
+
+const getDocumentLoading = state => state.document.loading
+
 export {
   getDocuments,
   getDocumentsGrid,
   canLoadMoreDocuments,
   getDocumentsCount,
   getDocumentsLoading,
+  getDocument,
+  getDocumentLoading,
 }

@@ -10,3 +10,8 @@ export const getDocuments = (params = {}) =>
   request.get(`${API_URL}/document`)
     .query(params)
     .then(extractBody)
+
+
+export const getDocument = (id) =>
+  request.get(`${API_URL}/document/${id}`)
+    .then(extractBody)

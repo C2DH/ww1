@@ -3,6 +3,7 @@ import { isNull } from 'lodash'
 import { connect } from 'react-redux'
 import { Button, Container, Row, Col } from 'reactstrap'
 import CollectionDoc from '../components/CollectionDoc'
+import { Link } from 'react-router-dom'
 import {
   loadDocuments,
   loadMoreDocuments,
@@ -38,10 +39,7 @@ const randomImage = memoize((idx) => sample(images))
 class Collection extends Component {
 
   constructor(props){
-    console.log("jy")
     super(props)
-
-
     this._onResize = this._onResize.bind(this)
     this._columnCount = 0
     this.horizontalPadding = 0
@@ -82,15 +80,12 @@ class Collection extends Component {
   }
 
   _calculateColumnCount (width) {
-
     this._columnCount = Math.floor(( width + this._gutterSize ) / ( this._columnWidth + this._gutterSize ))
     this.horizontalPadding = (width - (this._columnCount * this._columnWidth + (this._columnCount-1) * + this._gutterSize)) / 2
-    console.log(width, this._columnCount)
 
   }
 
   _onResize ({ height, width }) {
-    console.log(1, width)
     this._width = width
     this._columnHeights = {}
     this._calculateColumnCount(width)
@@ -99,14 +94,13 @@ class Collection extends Component {
   }
 
   cellRenderer = ({ index, key, parent, style }) => {
-    const datum = this.props.documents[index]
+    const item = this.props.documents[index]
 
     const image = randomImage(index)
     const ratio = image.height / image.width
     const imageHeight = ratio * this._columnWidth
 
-    const divStyle = { ...style, width:this._columnWidth, left:style.left + this.horizontalPadding, height:imageHeight, backgroundColor:'crimson', border:'solid green 2px' }
-    console.log(divStyle)
+    const divStyle = { ...style, width:this._columnWidth, left:style.left + this.horizontalPadding, height:imageHeight, backgroundColor:'crimson', border:'solid white 10px' }
     return (
       <CellMeasurer
         cache={this.cache}
@@ -117,13 +111,15 @@ class Collection extends Component {
       {/*
       {({measure}) => (
         <div style={style}>
-          <CollectionDoc doc={datum} measure={measure}/>
+          <CollectionDoc doc={item} measure={measure}/>
         </div>
       ) }
       */}
       <div>
-        <div style={divStyle}>
+        <div  style={divStyle}>
+        <Link to={{ pathname:`/collection/item/${item.id}`, state:{modal:true} }} >
           <img src={image.src} style={{height:'100%', width:'100%'}}/>
+        </Link>
         </div>
       </div>
 
