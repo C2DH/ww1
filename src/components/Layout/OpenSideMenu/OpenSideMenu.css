@@ -1,0 +1,14 @@
+.OpenSideMenu {
+  position: absolute;
+  left: 60px;
+  background-color: #F7F7EB;
+  height: 100%;
+  width: 300px;
+  z-index: 99;
+}
+
+.OpenSideMenu__list {
+  list-style: none!important;
+  margin-top: 100px;
+  font-size: 22px;
+}

@@ -4,6 +4,25 @@
   top: 0;
   left: 0;
   bottom: 0;
-  width: 50px;
-  background-color: #000;
+  width: 60px;
+  background-color: #333;
+  text-align: center;
+}
+
+.SideMenu__menuBtn {
+  background-color: transparent!important;
+  padding: 0px!important;
+  font-size: 35px!important;
+  color: #fff!important;
+  width: 100%;
+  border: 0px!important;
+  margin-top: 20px;
+}
+
+.SideMenu__menuBtn-text {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: lighter!important;
+  margin-top: 0px;
 }
