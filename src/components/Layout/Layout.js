@@ -1,11 +1,6 @@
 import React from 'react'
+import SideMenu from './SideMenu'
 import './Layout.css'
-
-const SideMenu = () => (
-  <div className="Layout__SideMenu">
-
-  </div>
-)
 
 const Layout = ({ children }) => (
   <div className="Layout">
