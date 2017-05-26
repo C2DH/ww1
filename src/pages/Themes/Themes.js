@@ -9,7 +9,10 @@ const Themes = () => (
       <h1>Themes</h1>
     </Row>
     <Row>
-      <ThemesCard />
+      <ThemesCard title="the occupation" />
+      <ThemesCard title="grief and loss" />
+      <ThemesCard title="the food crisis" />
+      <ThemesCard title="migrations" />
     </Row>
   </Container>
 )

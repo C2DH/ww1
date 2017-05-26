@@ -1,0 +1,32 @@
+.ThemesCard__container {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  height: 400px;
+  padding: 20px!important;
+}
+
+.ThemesCard__titleCol {
+  height: 360px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  border-color: #F36455;
+  border-width:7px;
+  border-top-style: double;
+  border-bottom-style: double;
+}
+
+.ThemesCard__titleCol h1 {
+  word-break: keep-all;
+  font-size: 3.5em;
+  text-transform: uppercase;
+  position: absolute;
+  left: 12%;
+  top: 38%;
+}
+
+.ThemesCard__imgCol {
+  height: 360px;
+  overflow: hidden;
+}
