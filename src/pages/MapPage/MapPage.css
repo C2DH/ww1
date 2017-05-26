@@ -19,3 +19,9 @@
   position: relative;
   top: 40%;
 }
+
+.MapPage__SideMenu {
+  background-color: #fff;
+  border-top: 0.3px solid #DBDBD0;
+  padding-left: 0px!important;
+}

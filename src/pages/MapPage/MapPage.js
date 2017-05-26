@@ -1,24 +1,25 @@
 import React from 'react'
 import { Row, Col } from 'reactstrap';
+import MapSideMenu from '../../components/MapSideMenu'
 import './MapPage.css'
 
 const MapPage = () => (
   <div>
     <Row className="MapPage__TopRow">
-      <Col md="10" className="MapPage__TopInfo">
+      <Col md="9" className="MapPage__TopInfo">
         <h2>Map</h2>
         <p><span>123/123</span> items shown</p>
       </Col>
-      <Col md="2">
+      <Col md="3">
         search
       </Col>
     </Row>
-    <Row>
-      <Col md="10">
+    <Row className="MapPage__MainRow">
+      <Col md="9">
          map
       </Col>
-      <Col md="2">
-
+      <Col md="3" className="MapPage__SideMenu">
+        <MapSideMenu />
       </Col>
     </Row>
   </div>

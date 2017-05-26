@@ -1,0 +1,29 @@
+.MapSideMenu__titleContainer {
+  border-bottom: 0.3px solid #DBDBD0;
+  padding: 10px;
+  display: flex;
+}
+
+.MapSideMenu__titleContainer h5 {
+  margin-top: 0.5em;
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 16px;
+}
+
+.MapSideMenu__titleContainer p {
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+  margin-left: auto;
+}
+
+.MapSideMenu__sitesList {
+  margin-top: 20px;
+  margin-bottom: 0px;
+  padding-bottom: 20px;
+  border-bottom: 0.3px solid #DBDBD0;
+}
+
+.MapSideMenu__chartsContainer {
+  height: 150px;
+}
