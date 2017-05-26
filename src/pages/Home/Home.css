@@ -1,0 +1,21 @@
+.Home__MainRow {
+  margin-top: 300px;
+  margin-bottom: 300px;
+  text-align: center;
+}
+
+.Home__MainRow h1 {
+  font-size: 4.5em;
+}
+
+.Home__MainRow-yearsCol h3 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 0.5px solid;
+  border-bottom: 0.5px solid;
+}
+
+.Home__NavigationRow {
+  text-align: center;
+  padding-bottom: 70px;
+}
