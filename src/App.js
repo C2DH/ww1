@@ -5,6 +5,7 @@ import store from './state'
 
 import Layout from './components/Layout'
 import Home from './pages/Home'
+import Themes from './pages/Themes'
 import Collection from './pages/Collection'
 import CollectionItem from './pages/CollectionItem'
 import CollectionItemModal from './pages/CollectionItemModal'
@@ -36,7 +37,8 @@ class Routes extends React.Component {
     return (
       <div>
         <Switch location={isModal ? this.previousLocation : location}>
-          <Route path='/' exact component={Home} />
+          <Route path='/home' exact component={Home} />
+          <Route path='/themes' exact component={Themes} />
           <Route path='/collection' exact component={Collection} />
           <Route path='/collection/item/:id' exact component={CollectionItem} />
         </Switch>

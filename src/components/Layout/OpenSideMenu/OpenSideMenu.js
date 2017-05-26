@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import './OpenSideMenu.css'
+import { Link } from 'react-router-dom'
 
 
 class OpenSideMenu extends PureComponent {
@@ -18,12 +19,12 @@ class OpenSideMenu extends PureComponent {
     return (
      <div className="OpenSideMenu">
        <ul className="OpenSideMenu__list">
-         <li>Home</li>
-         <li>Themes</li>
-         <li>Collection</li>
-         <li>Map</li>
-         <li>Timeline</li>
-         <li>Education</li>
+         <li><Link to="/home" onClick={this.props.closeMenu}>Home</Link></li>
+         <li><Link to="/" onClick={this.props.closeMenu}>Themes</Link></li>
+         <li><Link to="/collection" onClick={this.props.closeMenu}>Collection</Link></li>
+         <li><Link to="/" onClick={this.props.closeMenu}>Map</Link></li>
+         <li><Link to="/" onClick={this.props.closeMenu}>Timeline</Link></li>
+         <li><Link to="/" onClick={this.props.closeMenu}>Education</Link></li>
        </ul>
      </div>
     )

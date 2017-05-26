@@ -25,7 +25,7 @@ class SideMenu extends PureComponent {
          transitionName="sidemenu"
          transitionEnterTimeout={500}
          transitionLeaveTimeout={300}>
-       {this.state.open ? <OpenSideMenu key="opensidemenu"/> : null}
+       {this.state.open ? <OpenSideMenu closeMenu={this.toggleMenu} key="opensidemenu"/> : null}
        <button className="SideMenu__menuBtn" onClick={this.toggleMenu} key="button">
          {this.state.open ? <div><i className="icon-close" /><p className="SideMenu__menuBtn-text">close</p></div> : <div><i className="icon-dehaze" /><p className="SideMenu__menuBtn-text">Menu</p></div>}
        </button>
