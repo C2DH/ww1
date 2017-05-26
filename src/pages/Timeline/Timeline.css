@@ -1,0 +1,10 @@
+.Timeline__TopRow {
+  height: 100px;
+  background-color: #fff;
+}
+
+.Timeline__TopRow h2 {
+  margin-left: 70px;
+  position: relative;
+  top: 30%;
+}

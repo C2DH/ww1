@@ -33,7 +33,7 @@ const Home = () => (
         </Link>
       </Col>
       <Col md="3" className="Home__NavigationCol-borderLeft">
-        <Link to="/">
+        <Link to="/timeline">
           <h6>FOLLOW THE</h6>
           <h2>Timeline</h2>
         </Link>
