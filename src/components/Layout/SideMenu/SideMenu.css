@@ -26,3 +26,21 @@
   font-weight: lighter!important;
   margin-top: 0px;
 }
+
+.sidemenu-enter {
+  opacity: 0;
+}
+
+.sidemenu-enter.sidemenu-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.sidemenu-leave {
+  opacity: 1;
+}
+
+.sidemenu-leave.sidemenu-leave-active {
+  opacity: 0;
+  transition: opacity 300ms ease-in;
+}

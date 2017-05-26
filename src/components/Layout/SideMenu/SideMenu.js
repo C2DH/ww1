@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import OpenSideMenu from '../OpenSideMenu'
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import './SideMenu.css'
 
 
@@ -17,12 +18,18 @@ class SideMenu extends PureComponent {
 
   render () {
     return (
-     <div className="SideMenu">
-       {this.state.open ? <OpenSideMenu /> : null}
-       <button className="SideMenu__menuBtn" onClick={this.toggleMenu}>
+
+       <CSSTransitionGroup
+         className="SideMenu"
+         component="div"
+         transitionName="sidemenu"
+         transitionEnterTimeout={500}
+         transitionLeaveTimeout={300}>
+       {this.state.open ? <OpenSideMenu key="opensidemenu"/> : null}
+       <button className="SideMenu__menuBtn" onClick={this.toggleMenu} key="button">
          {this.state.open ? <div><i className="icon-close" /><p className="SideMenu__menuBtn-text">close</p></div> : <div><i className="icon-dehaze" /><p className="SideMenu__menuBtn-text">Menu</p></div>}
        </button>
-     </div>
+     </CSSTransitionGroup>
     )
   }
 }
