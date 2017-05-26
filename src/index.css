@@ -6,6 +6,8 @@ body {
   font-family: sans-serif;
 }
 
+button:focus {outline:0;}
+
 .Collection__SideBarRight {
   position: fixed;
   background-color: white;
