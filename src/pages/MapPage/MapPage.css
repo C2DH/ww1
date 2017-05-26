@@ -20,6 +20,10 @@
   top: 40%;
 }
 
+.MapPage__Search {
+  padding-top: 35px;
+}
+
 .MapPage__SideMenu {
   background-color: #fff;
   border-top: 0.3px solid #DBDBD0;
