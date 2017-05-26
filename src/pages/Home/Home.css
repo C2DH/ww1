@@ -1,7 +1,8 @@
 .Home__MainRow {
   margin-top: 300px;
-  margin-bottom: 300px;
+  padding-bottom: 280px;
   text-align: center;
+  border-bottom: 1px solid;
 }
 
 .Home__MainRow h1 {
@@ -9,13 +10,29 @@
 }
 
 .Home__MainRow-yearsCol h3 {
+  color: #F36455;
   padding-top: 20px;
   padding-bottom: 20px;
-  border-top: 0.5px solid;
-  border-bottom: 0.5px solid;
+  border-top: 0.5px solid #333;
+  border-bottom: 0.5px solid #333;
 }
 
 .Home__NavigationRow {
   text-align: center;
+  padding-top: 70px;
   padding-bottom: 70px;
+}
+
+.Home__NavigationRow h6 {
+  text-transform: uppercase;
+  font-size: 15px;
+  color: #F36455;
+}
+
+.Home__NavigationCol-borderRight {
+  border-right: 1px solid;
+}
+
+.Home__NavigationCol-borderLeft {
+  border-left: 1px solid;
 }

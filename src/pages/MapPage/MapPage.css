@@ -1,0 +1,21 @@
+.MapPage__TopRow {
+  height: 100px;
+  background-color: #fff;
+}
+
+.MapPage__TopInfo {
+  display: flex;
+  border-right: 0.3px solid #DBDBD0;
+}
+
+.MapPage__TopInfo h2 {
+  margin-left: 70px;
+  position: relative;
+  top: 30%;
+}
+
+.MapPage__TopInfo p {
+  margin-left: auto;
+  position: relative;
+  top: 40%;
+}
