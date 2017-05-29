@@ -14,8 +14,13 @@ class TimelineExpandableYear extends PureComponent {
    }
    render() {
     return (
-      <div className="TimelineExpandableYear__container">
-        1914
+      <div onClick={this.toggleExpand} className="TimelineExpandableYear__container">
+        <span className={this.state.open ? "TimelineExpandableYear__year" : null}>1914</span>
+        {this.state.open ?
+          <div>
+            <i className="icon-fiber_manual_record" />
+          </div>
+         : null}
       </div>
     )
    }

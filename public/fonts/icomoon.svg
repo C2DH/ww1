@@ -7,6 +7,7 @@
 <font-face units-per-em="1024" ascent="960" descent="-64" />
 <missing-glyph horiz-adv-x="1024" />
 <glyph unicode="&#x20;" horiz-adv-x="512" d="" />
+<glyph unicode="&#xe061;" glyph-name="fiber_manual_record" d="M170 426.667c0 188 154 342 342 342s342-154 342-342-154-342-342-342-342 154-342 342z" />
 <glyph unicode="&#xe145;" glyph-name="add" d="M810 384.667h-256v-256h-84v256h-256v84h256v256h84v-256h256v-84z" />
 <glyph unicode="&#xe15b;" glyph-name="remove" d="M810 384.667h-596v84h596v-84z" />
 <glyph unicode="&#xe15d;" glyph-name="remove_circle_outline" d="M512 84.667c188 0 342 154 342 342s-154 342-342 342-342-154-342-342 154-342 342-342zM512 852.667c236 0 426-190 426-426s-190-426-426-426-426 190-426 426 190 426 426 426zM298 468.667h428v-84h-428v84z" />
