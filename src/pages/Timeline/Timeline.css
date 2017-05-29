@@ -1,6 +1,7 @@
 .Timeline__TopRow {
   height: 100px;
   background-color: #fff;
+  margin-bottom: 10px;
 }
 
 .Timeline__TopRow h2 {

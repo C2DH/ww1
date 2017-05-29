@@ -6,3 +6,9 @@
 .MapSearchInput__Input {
   border-color: transparent!important;
 }
+
+.MapSearchInput__icon-search {
+  font-weight: bold;
+  font-size: 24px;
+  color: #222;
+}

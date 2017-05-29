@@ -1,0 +1,24 @@
+.TimelineExpandableItem__container {
+  margin: 10px;
+  width: initial!important;
+  margin-right: 10px!important;
+  background-color: #fff;
+  height: 120px;
+  padding: 20px!important;
+  border: 1px solid #DBDBD0;
+}
+
+.TimelineExpandableItem__title h2 {
+  color:#F36455;
+  font-size: 2em;
+}
+
+.TimelineExpandableItem__btn {
+  border-radius: 100%;
+  border: 0.5px solid #DBDBD0;
+  padding: 4px;
+  width: 40px;
+  background-color: #fff;
+  font-size: 22px;
+  height: 40px;
+}
