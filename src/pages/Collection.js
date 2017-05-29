@@ -93,6 +93,13 @@ class Collection extends Component {
     this._masonry.recomputeCellPositions()
   }
 
+  onCellsRendered = ({ startIndex, stopIndex }) => {
+    const { canLoadMore, loading, documents } = this.props
+    if (canLoadMore && !loading && stopIndex >= documents.length - 10) {
+      this.props.loadMoreDocuments()
+    }
+  }
+
   cellRenderer = ({ index, key, parent, style }) => {
     const item = this.props.documents[index]
     let imageHeight;
@@ -166,6 +173,7 @@ class Collection extends Component {
         cellMeasurerCache={this.cache}
         cellPositioner={this.cellPositioner}
         cellRenderer={this.cellRenderer}
+        onCellsRendered={this.onCellsRendered}
         height={this.height}
         width={width}
         ref={this._setMasonryRef}
@@ -180,6 +188,7 @@ class Collection extends Component {
 
     return (
       <AutoSizer
+        cellCount={this.props.documents.length}
         disableHeight={true}
         scrollTop={this.scrollTop}
         onResize={this._onResize}>
@@ -203,7 +212,7 @@ class Collection extends Component {
       <div>
 
         {(!isNull(documents) && documents.length > 0) && (
-          <WindowScroller>
+          <WindowScroller cellCount={this.props.documents.length}>
           {this._renderAutoSizer}
           </WindowScroller>
         )}
