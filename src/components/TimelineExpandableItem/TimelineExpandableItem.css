@@ -1,4 +1,4 @@
-.TimelineExpandableItem__container {
+.TimelineExpandableItem__containerClose {
   margin: 10px;
   width: initial!important;
   margin-right: 10px!important;
@@ -8,9 +8,22 @@
   border: 1px solid #DBDBD0;
 }
 
-.TimelineExpandableItem__title h2 {
+.TimelineExpandableItem__containerOpen {
+  margin: 10px;
+  width: initial!important;
+  margin-right: 10px!important;
+  background-color: #fff;
+  padding: 20px!important;
+  border: 1px solid #DBDBD0;
+}
+
+.TimelineExpandableItem__title {
   color:#F36455;
   font-size: 2em;
+}
+
+.TimelineExpandableItem__titleContainerOpen {
+  margin-bottom: 20px;
 }
 
 .TimelineExpandableItem__btn {
@@ -21,4 +34,24 @@
   background-color: #fff;
   font-size: 22px;
   height: 40px;
+}
+
+.TimelineExpandableItem__btn:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+.TimelineExpandableItem__text {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid #DBDBD0;
+  border-bottom: 1px solid #DBDBD0;
+}
+
+.TimelineExpandableItem__imgTitle {
+  font-weight: 600;
+}
+
+.TimelineExpandableItem__img {
+  margin-left: 5px;
 }
