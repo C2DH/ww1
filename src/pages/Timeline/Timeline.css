@@ -1,11 +1,23 @@
 .Timeline__TopRow {
   height: 100px;
   background-color: #fff;
-  margin-bottom: 10px;
+  border-bottom: 1px solid #DBDBD0;
 }
 
 .Timeline__TopRow h2 {
   margin-left: 70px;
   position: relative;
   top: 30%;
+}
+
+.Timeline__TimelineNav {
+  text-align: center;
+}
+
+.Timeline__yearsContainer {
+  margin-left: 30%;
+  margin-right: 30%;
+  height: 100%;
+  border-left: 0.5px solid #DBDBD0;
+  border-right: 0.5px solid #DBDBD0;
 }

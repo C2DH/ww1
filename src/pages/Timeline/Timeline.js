@@ -1,6 +1,7 @@
 import React from 'react'
-import { Container, Row, Col } from 'reactstrap';
+import {  Row, Col } from 'reactstrap';
 import TimelineExpandableItem from '../../components/TimelineExpandableItem'
+import TimelineExpandableYear from '../../components/TimelineExpandableYear'
 import './Timeline.css'
 
 const items = [
@@ -8,6 +9,7 @@ const items = [
   { id:2,  date : "2 August 1914", title: "German Troops Invade Luxembourg", text: "Sed porttitor lectus nibh. Vivamus suscipit tortor eget felis porttitor volutpat. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Nulla quis lorem ut libero malesuada feugiat. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Pellentesque in ipsum id orci porta dapibus. Quisque velit nisi, pretium ut lacinia in, elementum id enim."},
   { id:3,  date : "3 August 1914", title: "Germany Declares War to France", text: "Sed porttitor lectus nibh. Vivamus suscipit tortor eget felis porttitor volutpat. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Nulla quis lorem ut libero malesuada feugiat. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Pellentesque in ipsum id orci porta dapibus. Quisque velit nisi, pretium ut lacinia in, elementum id enim."},
 ]
+
 
 const Timeline = () => (
   <div>
@@ -17,8 +19,10 @@ const Timeline = () => (
       </Col>
     </Row>
     <Row>
-      <Col md="2">
-        TimelineNav
+      <Col md="2" className="Timeline__TimelineNav">
+        <div className="Timeline__yearsContainer">
+          <TimelineExpandableYear />
+        </div>
       </Col>
       <Col md="10">
         {
