@@ -46,7 +46,7 @@ class Collection extends Component {
     this.height = 0;
     this.scrollTop = 0;
 
-    this._columnWidth = 300
+    this._columnWidth = 234
     this._gutterSize = 10
 
     this.cache = new CellMeasurerCache({
@@ -95,10 +95,18 @@ class Collection extends Component {
 
   cellRenderer = ({ index, key, parent, style }) => {
     const item = this.props.documents[index]
+    let imageHeight;
 
-    const image = randomImage(index)
-    const ratio = image.height / image.width
-    const imageHeight = ratio * this._columnWidth
+    if (item.snapshot && item.data.thumbnail_height) {
+      imageHeight = item.data.thumbnail_height
+    } else {
+
+    }
+
+
+    //const image = randomImage(index)
+    //const ratio = image.height / image.width
+    //const imageHeight = ratio * this._columnWidth
 
     const divStyle = { ...style, width:this._columnWidth, left:style.left + this.horizontalPadding, height:imageHeight, backgroundColor:'crimson', border:'solid white 10px' }
     return (
@@ -118,7 +126,8 @@ class Collection extends Component {
       <div>
         <div  style={divStyle}>
         <Link to={{ pathname:`/collection/item/${item.id}`, state:{modal:true} }} >
-          <img src={image.src} style={{height:'100%', width:'100%'}}/>
+          { imageHeight && ( <img src={item.snapshot} style={{height:'100%', width:'100%'}}/> )}
+          { !imageHeight && ( <div>No snapshot No snapshot No snapshot No snapshot No snapshot No snapshot No snapshot</div> )}
         </Link>
         </div>
       </div>
