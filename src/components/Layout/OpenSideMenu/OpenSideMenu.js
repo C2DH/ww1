@@ -19,7 +19,7 @@ class OpenSideMenu extends PureComponent {
     return (
      <div className="OpenSideMenu">
        <ul className="OpenSideMenu__list">
-         <li><Link to="/home" onClick={this.props.closeMenu}>Home</Link></li>
+         <li><Link to="/" onClick={this.props.closeMenu}>Home</Link></li>
          <li><Link to="/themes" onClick={this.props.closeMenu}>Themes</Link></li>
          <li><Link to="/collection" onClick={this.props.closeMenu}>Collection</Link></li>
          <li><Link to="/map" onClick={this.props.closeMenu}>Map</Link></li>

@@ -39,7 +39,7 @@ class Routes extends React.Component {
     return (
       <div>
         <Switch location={isModal ? this.previousLocation : location}>
-          <Route path='/home' exact component={Home} />
+          <Route path='/' exact component={Home} />
           <Route path='/themes' exact component={Themes} />
           <Route path='/map' exact component={MapPage} />
           <Route path='/timeline' exact component={Timeline} />
