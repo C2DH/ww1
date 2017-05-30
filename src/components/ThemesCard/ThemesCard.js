@@ -9,7 +9,7 @@ const ThemesCard = (props) => (
         <h1>{props.title}</h1>
       </Col>
       <Col md="7" className="ThemesCard__imgCol">
-        <img className="img-responsives" src="http://placehold.it/630x370" />
+        <img className="img-responsives" alt={'placeholder'} src="http://placehold.it/630x370" />
       </Col>
     </Row>
   </Container>

@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { isNull } from 'lodash'
 import { connect } from 'react-redux'
-import { Button, Container, Row, Col } from 'reactstrap'
-import CollectionDoc from '../components/CollectionDoc'
 import { Link } from 'react-router-dom'
 import {
   loadDocuments,
@@ -24,17 +22,6 @@ import {
   AutoSizer,
   WindowScroller,
 } from 'react-virtualized'
-
-import { memoize, random, sample } from 'lodash'
-
-const images = [
-  { src:"1.jpg", width:330, height:207},
-  { src:"2.jpg", width:554, height:700},
-  { src:"3.jpg", width:1180, height:1180},
-]
-
-const randomHeight = memoize((idx) => random(100, 500))
-const randomImage = memoize((idx) => sample(images))
 
 class Collection extends Component {
 
@@ -133,7 +120,7 @@ class Collection extends Component {
       <div>
         <div  style={divStyle}>
         <Link to={{ pathname:`/collection/item/${item.id}`, state:{modal:true} }} >
-          { imageHeight && ( <img src={item.snapshot} style={{height:'100%', width:'100%'}}/> )}
+          { imageHeight && ( <img src={item.snapshot} alt={item.title} style={{height:'100%', width:'100%'}}/> )}
           { !imageHeight && ( <div>No snapshot No snapshot No snapshot No snapshot No snapshot No snapshot No snapshot</div> )}
         </Link>
         </div>
@@ -176,7 +163,6 @@ class Collection extends Component {
         onCellsRendered={this.onCellsRendered}
         height={this.height}
         width={width}
-        ref={this._setMasonryRef}
         scrollTop={this.scrollTop}
       />
     )

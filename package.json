@@ -21,7 +21,7 @@
     "superagent": "^3.5.2"
   },
   "devDependencies": {
-    "react-scripts": "0.9.5"
+    "react-scripts": "1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
