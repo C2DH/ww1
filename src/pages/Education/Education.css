@@ -8,7 +8,7 @@
   margin-top: 40px;
   margin-bottom: 40px;
   padding-bottom: 40px;
-  border-bottom: 1px solid #E7E7DF;
+  border-bottom: 1px solid #DBDBD0;
 }
 
 .Education__TitleRow h1 {
@@ -23,6 +23,7 @@
 .Education__TwoColRow h6 {
   color: #F36455;
   text-transform: uppercase;
+  padding-bottom: 15px;
 }
 
 .Education__leftCol,
@@ -32,9 +33,16 @@
 
 .Education__rightCol {
   padding-left: 40px;
-  border-left: 1px solid #E7E7DF;
+  border-left: 1px solid #DBDBD0;
 }
 
 .Education__ManualsRow {
   margin-top: 80px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #DBDBD0;
+  margin-bottom: 20px;
+}
+
+.Education__ManualCard-container {
+  display: inline-flex;
 }

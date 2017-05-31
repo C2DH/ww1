@@ -1,0 +1,11 @@
+.ManualCard__Card {
+  width: 250px;
+  height: 400px;
+  padding: 10px;
+  text-align: center;
+  margin-right: 25px;
+}
+
+.ManualCard__CardImg {
+  height: 250px;
+}

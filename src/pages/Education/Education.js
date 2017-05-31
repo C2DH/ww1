@@ -1,5 +1,6 @@
 import React from 'react'
 import {  Container, Row, Col } from 'reactstrap';
+import ManualCard from '../../components/ManualCard'
 import './Education.css'
 
 const Education = () => (
@@ -22,6 +23,12 @@ const Education = () => (
     <Row className="Education__ManualsRow">
       <Col md="12">
         <h6>Pedagogical manuals</h6>
+        <div className="Education__ManualCard-container">
+          <ManualCard />
+          <ManualCard />
+          <ManualCard />
+          <ManualCard />
+        </div>
       </Col>
     </Row>
   </Container>
