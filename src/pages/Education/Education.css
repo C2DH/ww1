@@ -1,7 +1,7 @@
 .Education_whiteBackground {
   background-color: #fff;
-  margin: -50px;
-  padding: 50px;
+  margin: -55px;
+  padding: 55px;
 }
 
 .Education__TitleRow {
@@ -50,4 +50,29 @@
 
 .Education__OtherTeachersRow {
   padding-bottom: 40px;
+}
+
+.Education__footerRow {
+  background-color: #F36455;
+  color: #fff;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-left: -55px;
+  margin-right: -55px;
+}
+
+.Education__footerRow h5 {
+  font-weight: normal;
+  padding-left: 50px;
+  padding-top: 10px;
+}
+
+.Education__footerBtn {
+  padding: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 30px;
+  border-color: transparent;
+  text-transform: uppercase;
+  background-color: #fff;
 }

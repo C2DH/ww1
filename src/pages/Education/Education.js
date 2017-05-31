@@ -41,6 +41,14 @@ const Education = () => (
         </div>
       </Col>
     </Row>
+    <Row className="Education__footerRow">
+      <Col md="10">
+        <h5>Did you use our manuals? Tell us more!</h5>
+      </Col>
+      <Col md="2">
+        <button className="Education__footerBtn">submit</button>
+      </Col>
+    </Row>
   </Container>
 
 )
