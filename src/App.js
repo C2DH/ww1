@@ -8,6 +8,7 @@ import Home from './pages/Home'
 import Themes from './pages/Themes'
 import MapPage from './pages/MapPage'
 import Timeline from './pages/Timeline'
+import Education from './pages/Education'
 import Collection from './pages/Collection'
 import CollectionItem from './pages/CollectionItem'
 import CollectionItemModal from './pages/CollectionItemModal'
@@ -43,6 +44,7 @@ class Routes extends React.Component {
           <Route path='/themes' exact component={Themes} />
           <Route path='/map' exact component={MapPage} />
           <Route path='/timeline' exact component={Timeline} />
+          <Route path='/education' exact component={Education} />
           <Route path='/collection' exact component={Collection} />
           <Route path='/collection/item/:id' exact component={CollectionItem} />
         </Switch>

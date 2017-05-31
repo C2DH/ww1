@@ -24,7 +24,7 @@ class OpenSideMenu extends PureComponent {
          <li><Link to="/collection" onClick={this.props.closeMenu}>Collection</Link></li>
          <li><Link to="/map" onClick={this.props.closeMenu}>Map</Link></li>
          <li><Link to="/timeline" onClick={this.props.closeMenu}>Timeline</Link></li>
-         <li><Link to="/" onClick={this.props.closeMenu}>Education</Link></li>
+         <li><Link to="/education" onClick={this.props.closeMenu}>Education</Link></li>
        </ul>
      </div>
     )

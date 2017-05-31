@@ -1,0 +1,40 @@
+.Education_whiteBackground {
+  background-color: #fff;
+  margin: -50px;
+  padding: 50px;
+}
+
+.Education__TitleRow {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #E7E7DF;
+}
+
+.Education__TitleRow h1 {
+  font-size: 4.5em;
+}
+
+.Education__TwoColRow {
+  padding-top: 20px;
+}
+
+.Education__ManualsRow h6,
+.Education__TwoColRow h6 {
+  color: #F36455;
+  text-transform: uppercase;
+}
+
+.Education__leftCol,
+.Education__rightCol {
+  padding-right: 80px;
+}
+
+.Education__rightCol {
+  padding-left: 40px;
+  border-left: 1px solid #E7E7DF;
+}
+
+.Education__ManualsRow {
+  margin-top: 80px;
+}
