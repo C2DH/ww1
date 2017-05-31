@@ -1,6 +1,7 @@
 import React from 'react'
 import {  Container, Row, Col } from 'reactstrap';
 import ManualCard from '../../components/ManualCard'
+import OtherTeachersCard from '../../components/OtherTeachersCard'
 import './Education.css'
 
 const Education = () => (
@@ -23,11 +24,20 @@ const Education = () => (
     <Row className="Education__ManualsRow">
       <Col md="12">
         <h6>Pedagogical manuals</h6>
-        <div className="Education__ManualCard-container">
+        <div className="Education__Card-container">
           <ManualCard />
           <ManualCard />
           <ManualCard />
           <ManualCard />
+        </div>
+      </Col>
+    </Row>
+    <Row className="Education__OtherTeachersRow">
+      <Col md="12">
+        <h6>See how other teacher used our materials</h6>
+        <div className="Education__Card-container">
+          <OtherTeachersCard />
+          <OtherTeachersCard />
         </div>
       </Col>
     </Row>

@@ -1,0 +1,33 @@
+.OtherTeachersCard__Card {
+  width: 350px;
+  height: 140px;
+  background-color: #fff;
+  display: flex;
+  border: 1px solid #DBDBD0;
+  padding: 10px;
+  margin-right: 25px;
+}
+
+.OtherTeachersCard__img {
+  max-width: 120px;
+  max-height: 120px;
+}
+
+.OtherTeachersCard__text-container {
+  padding-left: 15px;
+  font-size: 14px;
+}
+
+.OtherTeachersCard__title {
+  margin-bottom: 3px;
+  font-weight: bold;
+}
+
+.OtherTeachersCard__table {
+  display: grid;
+  line-height: 1.3em;
+}
+
+.OtherTeachersCard__link {
+  margin-top: 5px;
+}

@@ -19,6 +19,7 @@
   padding-top: 20px;
 }
 
+.Education__OtherTeachersRow h6,
 .Education__ManualsRow h6,
 .Education__TwoColRow h6 {
   color: #F36455;
@@ -40,9 +41,13 @@
   margin-top: 80px;
   padding-bottom: 40px;
   border-bottom: 1px solid #DBDBD0;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
-.Education__ManualCard-container {
+.Education__Card-container {
   display: inline-flex;
+}
+
+.Education__OtherTeachersRow {
+  padding-bottom: 40px;
 }
