@@ -2,7 +2,15 @@ import { fork, put, call } from 'redux-saga/effects'
 import { takeLatestAndCancel } from './effects/take'
 import * as api from '../../api'
 import makePaginateCollection from './hoc/paginateCollection'
-import { GET_DOCUMENTS, GET_DOCUMENT, GET_DOCUMENT_LOADING, GET_DOCUMENT_SUCCESS, GET_DOCUMENT_FAILURE, GET_DOCUMENT_UNLOAD } from '../actions'
+import {
+  GET_DOCUMENTS,
+  GET_DOCUMENT,
+  GET_DOCUMENT_LOADING,
+  GET_DOCUMENT_SUCCESS,
+  GET_DOCUMENT_FAILURE,
+  GET_DOCUMENT_UNLOAD,
+  GET_MAP_DOCUMENTS,
+} from '../actions'
 
 function *handleGetDocument({payload}) {
   yield put({ type: GET_DOCUMENT_LOADING })
@@ -19,6 +27,11 @@ export default function* rootSaga() {
     GET_DOCUMENTS,
     api.getDocuments,
     state => state.documents
+  ))
+  yield fork(makePaginateCollection(
+    GET_MAP_DOCUMENTS,
+    api.getMapDocuments,
+    state => state.mapDocuments
   ))
   yield fork(
     takeLatestAndCancel,

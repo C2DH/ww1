@@ -28,6 +28,13 @@ const [
   getDocumentsLoading,
 ] = makePaginateCollectionSelectors(state => state.documents)
 
+const [
+  getMapDocumentsUntranslated,
+  canLoadMoreMapDocuments,
+  getMapDocumentsCount,
+  getMapDocumentsLoading,
+] = makePaginateCollectionSelectors(state => state.mapDocuments)
+
 // Generic translate object with this shape:
 // {
 //   ...
@@ -70,6 +77,12 @@ const getDocuments = createSelector(
   (docs, lang) => maybeNull(docs)(docs => docs.map(translateDocument(lang)))
 )
 
+const getMapDocuments = createSelector(
+  getMapDocumentsUntranslated,
+  state => state.settings.language,
+  (docs, lang) => maybeNull(docs)(docs => docs.map(translateDocument(lang)))
+)
+
 const getDocumentsGrid = createSelector(
   getDocuments,
   documents => chunk(documents, 4).map(grid => ({
@@ -94,4 +107,8 @@ export {
   getDocumentsLoading,
   getDocument,
   getDocumentLoading,
+  getMapDocuments,
+  canLoadMoreMapDocuments,
+  getMapDocumentsCount,
+  getMapDocumentsLoading,
 }

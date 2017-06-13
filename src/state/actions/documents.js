@@ -25,6 +25,24 @@ export const unloadDocuments = () => ({
   type: GET_DOCUMENTS_UNLOAD,
 })
 
+export const GET_MAP_DOCUMENTS = 'GET_MAP_DOCUMENTS'
+export const GET_MAP_DOCUMENTS_LOADING = 'GET_MAP_DOCUMENTS_LOADING'
+export const GET_MAP_DOCUMENTS_SUCCESS = 'GET_MAP_DOCUMENTS_SUCCESS'
+export const GET_MAP_DOCUMENTS_FAILURE = 'GET_MAP_DOCUMENTS_FAILURE'
+export const GET_MAP_DOCUMENTS_UNLOAD = 'GET_MAP_DOCUMENTS_UNLOAD'
+
+export const loadMapDocuments = (params = {}) => ({
+  type: GET_MAP_DOCUMENTS,
+  payload: {
+    params,
+    reset: true,
+  }
+})
+
+export const unloadMapDocuments = () => ({
+  type: GET_MAP_DOCUMENTS_UNLOAD,
+})
+
 
 export const GET_DOCUMENT = 'GET_DOCUMENT'
 export const GET_DOCUMENT_LOADING = 'GET_DOCUMENT_LOADING'

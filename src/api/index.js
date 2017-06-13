@@ -11,6 +11,15 @@ export const getDocuments = (params = {}) =>
     .query(params)
     .then(extractBody)
 
+export const getMapDocuments = (params = {}) =>
+  getDocuments({
+    filters: JSON.stringify({
+      'data__coordinates__isnull': false,
+      ...params.filters
+    }),
+    ...params,
+  })
+
 
 export const getDocument = (id) =>
   request.get(`${API_URL}/document/${id}`)
