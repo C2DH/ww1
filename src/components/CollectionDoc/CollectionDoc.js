@@ -1,15 +1,15 @@
 import React from 'react'
+import { pure } from 'recompose'
+import { Link } from 'react-router-dom'
 import './CollectionDoc.css'
 
-const CollectionDoc = ({ doc, measure }) => (
+const CollectionDoc = ({ doc, hasImage }) => (
   <div className="CollectionDoc">
-    <h2>{doc.title}</h2>
-    <p>{doc.translated.description}</p>
-    {/**/}
-    {(doc.type === 'image' && doc.attachment) && (
-      <img  onload={measure} src={doc.attachment} alt={doc.title} className="CollectionDoc__Image" />
-    )}
+    <Link to={{ pathname:`/collection/item/${doc.id}`, state:{modal:true} }} >
+      { hasImage && ( <img src={doc.snapshot} alt={doc.title} style={{height:'100%', width:'100%'}}/> )}
+      { !hasImage && ( <div style={{height:200}}></div> )}
+    </Link>
   </div>
 )
 
-export default CollectionDoc
+export default pure(CollectionDoc)

@@ -23,6 +23,8 @@ import {
   WindowScroller,
 } from 'react-virtualized'
 
+import CollectionDoc from '../components/CollectionDoc'
+
 class Collection extends Component {
 
   constructor(props){
@@ -101,8 +103,8 @@ class Collection extends Component {
     //const image = randomImage(index)
     //const ratio = image.height / image.width
     //const imageHeight = ratio * this._columnWidth
-
-    const divStyle = { ...style, width:this._columnWidth, left:style.left + this.horizontalPadding, height:imageHeight, backgroundColor:'crimson', border:'solid white 10px' }
+    console.log(style.left)
+    const divStyle = { ...style, width:this._columnWidth, left:style.left + this.horizontalPadding, height:imageHeight,  border:'solid white 10px' }
     return (
       <CellMeasurer
         cache={this.cache}
@@ -113,16 +115,13 @@ class Collection extends Component {
       {/*
       {({measure}) => (
         <div style={style}>
-          <CollectionDoc doc={item} measure={measure}/>
+
         </div>
       ) }
       */}
       <div>
         <div  style={divStyle}>
-        <Link to={{ pathname:`/collection/item/${item.id}`, state:{modal:true} }} >
-          { imageHeight && ( <img src={item.snapshot} alt={item.title} style={{height:'100%', width:'100%'}}/> )}
-          { !imageHeight && ( <div>No snapshot No snapshot No snapshot No snapshot No snapshot No snapshot No snapshot</div> )}
-        </Link>
+          <CollectionDoc doc={item} hasImage={!!imageHeight}/>
         </div>
       </div>
 
@@ -164,6 +163,7 @@ class Collection extends Component {
         height={this.height}
         width={width}
         scrollTop={this.scrollTop}
+        overscanByPixels={500}
       />
     )
   }
