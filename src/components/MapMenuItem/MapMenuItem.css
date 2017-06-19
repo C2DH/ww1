@@ -1,0 +1,22 @@
+.MapMenuItem__container {
+  display: flex;
+  height: 30px;
+}
+
+.MapMenuItem__icon {
+  padding-right: 10px;
+  position: relative;
+  top: 2px;
+}
+
+.MapMenuItem__text {
+}
+
+.MapMenuItem__badge_container {
+  margin-left: auto;
+}
+
+.MapMenuItem__badge {
+  background-color: #F36455;
+  font-weight: normal;
+}
