@@ -195,7 +195,7 @@ class Collection extends Component {
     } = this.props
 
     return (
-      <div>
+      <div style={{paddingTop:100}}>
 
         {(!isNull(documents) && documents.length > 0) && (
           <WindowScroller cellCount={this.props.documents.length}>
