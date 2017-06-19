@@ -28,6 +28,15 @@ button:focus {
   display: flex;
 }
 
+.padding-r-l-0 {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
 .padding-right-0 {
   padding-right: 0px;
+}
+
+.padding-left-30 {
+  padding-left: 30px;
 }

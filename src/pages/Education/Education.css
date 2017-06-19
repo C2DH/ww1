@@ -1,10 +1,11 @@
-.Education_whiteBackground {
+.Education__whiteBackground {
   background-color: #fff;
-  margin: -55px;
-  padding: 55px;
+  padding: 20px;
+  padding-left: 30px;
+  padding-top: 0px;
 }
 
-.Education__TitleRow {
+/*.Education__TitleRow {
   margin-top: 40px;
   margin-bottom: 40px;
   padding-bottom: 40px;
@@ -13,11 +14,7 @@
 
 .Education__TitleRow h1 {
   font-size: 4.5em;
-}
-
-.Education__TwoColRow {
-  padding-top: 20px;
-}
+}*/
 
 .Education__OtherTeachersRow h6,
 .Education__ManualsRow h6,
@@ -38,7 +35,7 @@
 }
 
 .Education__ManualsRow {
-  margin-top: 80px;
+  margin-top: 30px;
   padding-bottom: 40px;
   border-bottom: 1px solid #DBDBD0;
   margin-bottom: 30px;
