@@ -22,3 +22,8 @@ button:focus {
   top: 0;
   bottom: 0;
 }
+
+/* General utilities */
+.padding-right-0 {
+  padding-right: 0px;
+}

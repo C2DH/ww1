@@ -2,7 +2,7 @@ import React from 'react'
 import './MapSideMenu.css'
 
 const MapSideMenu = () => (
-  <div>
+  <div className="MapSideMenu__container">
     <div className="MapSideMenu__titleContainer">
       <h5>TYPE</h5>
       <p>Reset</p>
