@@ -6,7 +6,7 @@ import './MapMenuItem.css'
 const MapMenuItem = (props) => (
   <div className="MapMenuItem__container">
     <i className={`fa ${props.iconClass} MapMenuItem__icon`} />
-    <p className="MapMenuItem__text">{props.label}</p>
+    <p>{props.label}</p>
     <h5 className="MapMenuItem__badge_container">
       <Badge className="MapMenuItem__badge">1</Badge>
     </h5>

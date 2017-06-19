@@ -12,6 +12,7 @@ import Education from './pages/Education'
 import Collection from './pages/Collection'
 import CollectionItem from './pages/CollectionItem'
 import CollectionItemModal from './pages/CollectionItemModal'
+import Resources from './pages/Resources'
 
 class Routes extends React.Component {
   //https://reacttraining.com/react-router/web/example/modal-gallery
@@ -47,6 +48,7 @@ class Routes extends React.Component {
           <Route path='/education' exact component={Education} />
           <Route path='/collection' exact component={Collection} />
           <Route path='/collection/item/:id' exact component={CollectionItem} />
+          <Route path='/resources' exact component={Resources} />
         </Switch>
         {isModal ? <Route path='/collection/item/:id' component={CollectionItemModal} /> : null}
       </div>

@@ -1,0 +1,11 @@
+.Resources__cards_container {
+  padding-left: 30px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.Resources__whiteBackground {
+  background-color: #fff;
+  padding: 20px;
+  padding-top: 0px;
+}
