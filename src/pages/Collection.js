@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { isNull } from 'lodash'
+import { isNull, get } from 'lodash'
+import qs from 'query-string'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {
@@ -24,6 +25,7 @@ import {
 } from 'react-virtualized'
 
 import CollectionDoc from '../components/CollectionDoc'
+import "./Collection.css"
 
 class Collection extends Component {
 
@@ -45,6 +47,10 @@ class Collection extends Component {
       fixedHeight: false,
     })
 
+    this.state = {
+      sidebarOpen: true
+    }
+
     this._setMasonryRef = this._setMasonryRef.bind(this)
     this._renderMasonry = this._renderMasonry.bind(this)
     this._renderAutoSizer = this._renderAutoSizer.bind(this)
@@ -52,14 +58,25 @@ class Collection extends Component {
   }
 
   componentDidMount() {
-    this.props.loadDocuments()
+    this.props.loadDocuments({q:this.props.searchString})
+  }
+
+  componentWillUnmount() {
+    this.props.unloadDocuments()
+  }
+
+  componentWillReceiveProps(nextProps){
+    if (nextProps.searchString !== this.props.searchString) {
+      this.props.unloadDocuments()
+      this.props.loadDocuments({q:nextProps.searchString})
+    }
   }
 
   loadMore = () => {
-    this.props.loadMoreDocuments()
+    this.props.loadMoreDocuments({q:this.props.searchString})
   }
 
-  _resetCellPositioner () {
+  _resetCellPositioner = () => {
 
     this.cellPositioner.reset({
       columnCount: this._columnCount,
@@ -69,6 +86,7 @@ class Collection extends Component {
   }
 
   _calculateColumnCount (width) {
+
     this._columnCount = Math.floor(( width + this._gutterSize ) / ( this._columnWidth + this._gutterSize ))
     this.horizontalPadding = (width - (this._columnCount * this._columnWidth + (this._columnCount-1) * + this._gutterSize)) / 2
 
@@ -90,7 +108,13 @@ class Collection extends Component {
   }
 
   cellRenderer = ({ index, key, parent, style }) => {
+    if(!this.props.documents){
+      return null
+    }
     const item = this.props.documents[index]
+    if( typeof(item) == 'undefined'){
+      return null
+    }
     let imageHeight;
 
     if (item.snapshot && item.data.thumbnail_height) {
@@ -103,8 +127,8 @@ class Collection extends Component {
     //const image = randomImage(index)
     //const ratio = image.height / image.width
     //const imageHeight = ratio * this._columnWidth
-    console.log(style.left)
-    const divStyle = { ...style, width:this._columnWidth, left:style.left + this.horizontalPadding, height:imageHeight,  border:'solid white 10px' }
+
+    const divStyle = { ...style, width:this._columnWidth, left:(style.left||0) + this.horizontalPadding, height:imageHeight,  border:'solid white 10px' }
     return (
       <CellMeasurer
         cache={this.cache}
@@ -112,20 +136,11 @@ class Collection extends Component {
         key={key}
         parent={parent}
       >
-      {/*
-      {({measure}) => (
-        <div style={style}>
-
-        </div>
-      ) }
-      */}
       <div>
         <div  style={divStyle}>
           <CollectionDoc doc={item} hasImage={!!imageHeight}/>
         </div>
       </div>
-
-
 
       </CellMeasurer>
     )
@@ -148,14 +163,16 @@ class Collection extends Component {
   }
 
   _renderMasonry ({ width }) {
-    this._width = width
+
+    //this._width = width
     this._calculateColumnCount(width)
     this._initCellPositioner()
 
     return (
       <Masonry
+        style={{paddingTop:120, paddingBottom: 20}}
         ref={this._setMasonryRef}
-        cellCount={this.props.documents.length}
+        cellCount={this.props.documents ? this.props.documents.length : 0}
         cellMeasurerCache={this.cache}
         cellPositioner={this.cellPositioner}
         cellRenderer={this.cellRenderer}
@@ -169,12 +186,13 @@ class Collection extends Component {
   }
 
   _renderAutoSizer({ scrollTop, height }) {
+
     this.height = height
     this.scrollTop = scrollTop
 
     return (
       <AutoSizer
-        cellCount={this.props.documents.length}
+        documents={this.props.documents}
         disableHeight={true}
         scrollTop={this.scrollTop}
         onResize={this._onResize}>
@@ -182,6 +200,17 @@ class Collection extends Component {
       </AutoSizer>
     )
 
+  }
+
+  toggleOpen = () => {
+    this.setState({
+      sidebarOpen : !this.state.sidebarOpen
+    })
+  }
+
+  handleSearchStringChange = (e) => {
+    const searchString = e.target.value
+    this.props.history.replace(`/collection?q=${searchString}` )
   }
 
   render() {
@@ -195,25 +224,48 @@ class Collection extends Component {
     } = this.props
 
     return (
-      <div style={{paddingTop:100}}>
+    <div>
+    <div className={this.state.sidebarOpen ? "Collection__List--sidebar-open" : ''}>
+      <div className={`list-heading ${this.state.sidebarOpen ? 'list-heading-closed' : '' }`}>
+        <h1>Collection</h1>
+        <button onClick={this.toggleOpen}>o</button>
+      </div>
 
-        {(!isNull(documents) && documents.length > 0) && (
-          <WindowScroller cellCount={this.props.documents.length}>
+      {this.state.sidebarOpen && (
+        <div style={{position:"fixed", width:"20%", top:0, bottom:0, left:"80%", backgroundColor:"red"}}>
+          <div>
+            <input onChange={this.handleSearchStringChange} value={this.props.searchString}/>
+          </div>
+        </div>
+      )}
+
+
+      <div>
+          <WindowScroller documents={this.props.documents}>
           {this._renderAutoSizer}
           </WindowScroller>
-        )}
-
 
       </div>
+    </div>
+
+
+
+    </div>
     )
   }
 }
 
-const mapStateToProps = state => ({
+const parseSearchString = location => {
+  const params = qs.parse(qs.extract(location.search))
+  return get(params, "q")
+}
+
+const mapStateToProps = (state, ownProps) => ({
   documents: getDocuments(state),
   canLoadMore: canLoadMoreDocuments(state),
   count: getDocumentsCount(state),
   loading: getDocumentsLoading(state),
+  searchString : parseSearchString(ownProps.location),
 })
 
 export default connect(mapStateToProps, {

@@ -8,8 +8,9 @@ const modalStyle = {
   left: 50,
   bottom: 0,
   right: 0,
-  
+  zIndex: 10000
 }
+
 class CollectionItemModal extends Component {
 
   render(){
