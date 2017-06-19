@@ -1,3 +1,7 @@
+.MapSideMenu__container {
+  padding-top: 100px;
+}
+
 .MapSideMenu__titleContainer {
   border-bottom: 0.3px solid #DBDBD0;
   padding: 10px;

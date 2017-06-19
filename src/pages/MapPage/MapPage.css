@@ -1,3 +1,10 @@
+.MapPage__TopRow_container {
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  padding-right: 60px;
+}
+
 .MapPage__TopRow {
   height: 100px;
   background-color: #fff;
@@ -22,6 +29,7 @@
 
 .MapPage__Search {
   padding-top: 35px;
+  border-bottom: 0.3px solid #DBDBD0;
 }
 
 .MapPage__SideMenu {
