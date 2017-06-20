@@ -19,12 +19,12 @@ const Timeline = () => (
       </Col>
     </Row>
     <Row>
-      <Col md="2" className="Timeline__TimelineNav">
+      <Col md="2" sm="12" className="Timeline__TimelineNav">
         <div className="Timeline__yearsContainer">
           <TimelineExpandableYear />
         </div>
       </Col>
-      <Col md="10">
+      <Col md="10" sm="12">
         {
           items.map(item => (
               <TimelineExpandableItem item={item} key={item.id}/>

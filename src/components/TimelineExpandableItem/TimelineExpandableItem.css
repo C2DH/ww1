@@ -26,7 +26,23 @@
   margin-bottom: 20px;
 }
 
+.TimelineExpandableItem__flex_container {
+  display: inline-flex;
+  width: 100%;
+}
+
+.TimelineExpandableItem__btn_container,
+.TimelineExpandableItem__date_container {
+  min-width: 130px;
+}
+
+.TimelineExpandableItem__btn_container {
+  margin-left: auto;
+  display: flex;
+}
+
 .TimelineExpandableItem__btn {
+  margin-left: auto;
   border-radius: 100%;
   border: 0.5px solid #DBDBD0;
   padding: 4px;
