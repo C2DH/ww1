@@ -9,3 +9,9 @@
   overflow: hidden;
   min-height: 100vh;
 }
+
+@media (max-width: 767px) {
+  .Layout__Container {
+    padding-left: 0px;
+  }
+}
