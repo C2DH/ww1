@@ -1,4 +1,5 @@
-.SideMenu {
+.SideMenu,
+.SideMenu-close {
   position: fixed;
   z-index: 99999;
   top: 0;
@@ -14,7 +15,7 @@
   padding: 0px!important;
   font-size: 35px!important;
   color: #fff!important;
-  width: 100%;
+  width: 60px;
   border: 0px!important;
   margin-top: 20px;
 }
@@ -47,6 +48,20 @@
 
 @media (max-width: 767px) {
   .SideMenu {
+    bottom: auto;
+    width: 100%;
+    text-align: left;
+  }
+  .SideMenu-close {
+    bottom: auto;
+    width: 100%;
+    text-align: left;
     background-color: transparent;
+  }
+  .SideMenu__menuBtn {
+    margin-top: 10px;
+  }
+  .SideMenu__menuBtn-text {
+    display: none;
   }
 }

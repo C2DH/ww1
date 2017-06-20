@@ -20,7 +20,7 @@ class SideMenu extends PureComponent {
     return (
 
        <CSSTransitionGroup
-         className="SideMenu"
+         className={this.state.open ? `SideMenu` : `SideMenu-close`}
          component="div"
          transitionName="sidemenu"
          transitionEnterTimeout={500}
