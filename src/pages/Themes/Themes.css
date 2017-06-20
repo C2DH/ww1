@@ -1,8 +1,35 @@
+.Themes__container {
+  background-color: #333332;
+  margin-top: -60px;
+  padding-top: 60px;
+  min-height: calc(100vh + 60px);
+  text-align: center;
+}
+
 .Themes__TitleRow {
   margin-top: 40px;
   margin-bottom: 40px;
+  width: 100%;
 }
 
 .Themes__TitleRow h1 {
   font-size: 4.5em;
+  margin: auto;
+  color: #F36455;
+}
+
+.Themes__theme_title_container {
+  width: 100%;
+}
+
+.Themes__theme_title_container hr {
+  border: 1px solid #fff;
+  width: 20%;
+}
+
+.Themes__theme_title {
+  color: #fff;
+  margin: auto;
+  padding: 25px;
+  text-transform: uppercase;
 }
