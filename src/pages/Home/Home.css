@@ -10,16 +10,21 @@
   background-size: cover;
 }
 .Home__background--slide1{
-  background-image: url(https://images.pexels.com/photos/104858/pexels-photo-104858.jpeg?h=350&auto=compress&cs=tinysrgb);
+  background-image: url(https://images.pexels.com/photos/199106/pexels-photo-199106.jpeg?w=940&h=650&auto=compress&cs=tinysrgb);
 }
 
 .Home__background--slide2{
-  background-image: url(https://images.pexels.com/photos/197049/pexels-photo-197049.jpeg?h=350&auto=compress&cs=tinysrgb);
+  background-image: url(https://images.pexels.com/photos/28452/pexels-photo-28452.jpg?w=940&h=650&auto=compress&cs=tinysrgb);
+}
+
+.Home__background--slide3{
+  background-image: url(https://images.pexels.com/photos/230659/pexels-photo-230659.jpeg?h=350&auto=compress&cs=tinysrgb);
 }
 
 .Home__MainRow {
   text-align: center;
-  border-bottom: 1px solid;
+  border-bottom: 1px solid #fff;
+  color: #fff;
   flex: 4;
   display: flex;
   flex-direction: column;
@@ -32,14 +37,15 @@
 
 .Home__MainRow-yearsCol {
   text-align: center;
+  color: #fff;
 }
 
 .Home__MainRow-yearsCol h3 {
   color: #F36455;
   padding-top: 20px;
   padding-bottom: 20px;
-  border-top: 0.5px solid #333;
-  border-bottom: 0.5px solid #333;
+  border-top: 0.5px solid #fff;
+  border-bottom: 0.5px solid #fff;
 }
 
 .Home__NavigationRow {
@@ -57,12 +63,13 @@
 .Home__NavigationCol {
   padding-bottom: 20px;
   padding-top: 10px;
+  color: #fff;
 }
 
 .Home__NavigationCol_themes,
 .Home__NavigationCol_collection,
 .Home__NavigationCol_map {
-  border-right: 1px solid;
+  border-right: 1px solid #fff;
 }
 
 /* media queries */
@@ -103,7 +110,7 @@
   }
   .Home__NavigationCol_collection {
     border-right: 0px;
-    border-bottom: 1px solid;
+    border-bottom: 1px solid #fff;
     position: relative;
     bottom: -1px;
   }
@@ -111,13 +118,13 @@
     margin-bottom: 10px;
   }
   .Home__NavigationCol_map {
-    border-top: 1px solid;
+    border-top: 1px solid #fff;
     border-right: 0px;
     padding-top: 20px;
   }
   .Home__NavigationCol_timeline {
     margin-top: 10px;
-    border-left: 1px solid;
+    border-left: 1px solid #fff;
   }
   .Home__MainRow-yearsCol {
     padding-left: 0px;

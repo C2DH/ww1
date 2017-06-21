@@ -5,7 +5,7 @@ import './Home.css'
 
 
 const BACKGROUND_CLASSES = [
-  'Home__background--slide1', 'Home__background--slide2'
+  'Home__background--slide1', 'Home__background--slide2', 'Home__background--slide3'
 ]
 
 const BACKGROUND_INTERVAL = 5000;

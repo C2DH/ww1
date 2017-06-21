@@ -5,7 +5,7 @@
   top: 0;
   left: 0;
   bottom: 0;
-  width: 60px;
+  width: 58px;
   background-color: #333;
   text-align: center;
 
@@ -24,7 +24,7 @@
 .SideMenu__menuBtn-text {
   color: #fff;
   text-transform: uppercase;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: lighter!important;
   margin-top: 0px;
 }
@@ -76,5 +76,8 @@
   }
   .SideMenu__menuBtn-text {
     display: none;
+  }
+  .SideMenu__icon {
+    color: #F36455;
   }
 }

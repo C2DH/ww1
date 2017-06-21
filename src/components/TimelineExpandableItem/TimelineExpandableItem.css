@@ -4,7 +4,7 @@
   margin-right: 10px!important;
   background-color: #fff;
   height: 120px;
-  padding: 20px!important;
+  padding: 20px;
   border: 1px solid #DBDBD0;
 }
 
@@ -13,7 +13,7 @@
   width: initial!important;
   margin-right: 10px!important;
   background-color: #fff;
-  padding: 20px!important;
+  padding: 20px;
   border: 1px solid #DBDBD0;
 }
 
@@ -70,4 +70,27 @@
 
 .TimelineExpandableItem__img {
   margin-left: 5px;
+}
+
+@media (max-width: 991px) {
+  .TimelineExpandableItem__title {
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width: 576px) {
+  .TimelineExpandableItem__title {
+    font-size: 1em;
+  }
+  .TimelineExpandableItem__btn_container,
+  .TimelineExpandableItem__date_container {
+    min-width: 70px;
+  }
+  .TimelineExpandableItem__date_container p {
+    font-size: 12px;
+  }
+  .TimelineExpandableItem__containerClose,
+  .TimelineExpandableItem__containerOpen {
+    padding: 10px;
+  }
 }
