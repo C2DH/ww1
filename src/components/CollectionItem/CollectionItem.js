@@ -5,22 +5,28 @@ import moment from 'moment'
 import { get } from 'lodash'
 import './CollectionItem.css'
 
-const RelatedObjects = ({relatedObjects}) => (
-  <div className="CollectionItem__Relatedobjects">
+
+//id: 193 has related!
+const RelatedObjects = ({items}) => {
+console.log(items)
+  return (<div className="CollectionItem__Relatedobjects">
     <Label className="CollectionItem__label">RELATED OBJECTS</Label>
     <hr className="CollectionItem__Relatedobjects_divider" />
     <div>
-
+      { items.map(item => (
+        <div key={item.id}>{item.title}</div>
+      ))}
     </div>
     <hr className="CollectionItem__Relatedobjects_divider" />
-  </div>
-)
+  </div>)
+}
 
-const SeeAlso = ({relatedObjects}) => (
+const SeeAlso = ({doc}) => (
   <div className="CollectionItem__Relatedobjects">
     <Label className="CollectionItem__label">SEE ALSO</Label>
     <div>
-      <button className="CollectionItem__btn">1918</button>
+      <button className="CollectionItem__btn">{get(doc, "data.year")}</button>
+      <button className="CollectionItem__btn">{get(doc, "data.type")}</button>
     </div>
     <hr className="CollectionItem__Relatedobjects_divider" />
   </div>
@@ -67,9 +73,16 @@ export default ({doc}) => {
         <Row>
           <div className="CollectionItem__container">
             <Col className="CollectionItem__doc_container">
+              <div className="CollectionItem__doc_preview">
               <img src={doc.attachment} alt={doc.title} className="img-fluid"/>
-              <JSONTree data={doc} />
+              {/* <JSONTree data={doc} /> */}
+              </div>
+              <div className="CollectionItem__doc_controls">
+                Controls
+              </div>
+
             </Col>
+
             <Col md={3} lg={3} className="CollectionItem__info_container">
                 <DateDisplay
                   date={get(doc, 'translated.date')}
@@ -85,8 +98,11 @@ export default ({doc}) => {
               { coords && (
                 <MiniMap coords={coords}/>
               )}
-              <RelatedObjects />
-              <SeeAlso />
+              { get(doc, "documents.length") && (
+                <RelatedObjects items={get(doc, "documents")}/>
+              )}
+
+              <SeeAlso doc={doc}/>
             </Col>
           </div>
         </Row>
