@@ -8,6 +8,7 @@
   width: 60px;
   background-color: #333;
   text-align: center;
+
 }
 
 .SideMenu__menuBtn {
@@ -29,21 +30,33 @@
 }
 
 .sidemenu-enter {
-  opacity: 0;
+  /*opacity: 0;*/
+  transition: margin-left 500ms ease-out;
+  margin-left: -350px;
 }
 
 .sidemenu-enter.sidemenu-enter-active {
+  /*
   opacity: 1;
   transition: opacity 500ms ease-in;
+  */
+  margin-left: 0;
 }
 
 .sidemenu-leave {
+  transition: margin-left 300ms ease-out;
+  margin-left: 0;
+  /*
   opacity: 1;
+  */
 }
 
 .sidemenu-leave.sidemenu-leave-active {
+  margin-left: -350px;
+  /*
   opacity: 0;
   transition: opacity 300ms ease-in;
+  */
 }
 
 @media (max-width: 767px) {

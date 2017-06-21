@@ -18,18 +18,20 @@ class SideMenu extends PureComponent {
 
   render () {
     return (
-
-       <CSSTransitionGroup
+      <CSSTransitionGroup component="div"
+      transitionName="sidemenu"
+      transitionEnterTimeout={500}
+      transitionLeaveTimeout={300}>
+       <div
+         key="open"
          className={this.state.open ? `SideMenu` : `SideMenu-close`}
-         component="div"
-         transitionName="sidemenu"
-         transitionEnterTimeout={500}
-         transitionLeaveTimeout={300}>
-       {this.state.open ? <OpenSideMenu closeMenu={this.toggleMenu} key="opensidemenu"/> : null}
+         >
        <button className="SideMenu__menuBtn" onClick={this.toggleMenu} key="button">
          {this.state.open ? <div><i className="icon-close" /><p className="SideMenu__menuBtn-text">close</p></div> : <div><i className="icon-dehaze" /><p className="SideMenu__menuBtn-text">Menu</p></div>}
        </button>
-     </CSSTransitionGroup>
+     </div>
+     {this.state.open ? <OpenSideMenu key="close" closeMenu={this.toggleMenu} key="opensidemenu"/> : null}
+    </CSSTransitionGroup>
     )
   }
 }
