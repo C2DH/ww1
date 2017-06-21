@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Item from '../components/Item'
+import CollectionItem from '../../components/CollectionItem'
 
 import {
   loadDocument,
   unloadDocument,
-} from '../state/actions'
+} from '../../state/actions'
 import {
   getDocument,
   getDocumentLoading,
-} from '../state/selectors'
+} from '../../state/selectors'
 
 
-class CollectionItem extends Component {
+class CollectionDetail extends Component {
 
   componentDidMount(){
     this.props.loadDocument(this.props.match.params.id)
@@ -22,7 +22,7 @@ class CollectionItem extends Component {
     const { doc } = this.props
     return(
       <div>
-        {doc && <Item doc={doc}/>}
+        {doc && <CollectionItem doc={doc}/>}
       </div>
     )
   }
@@ -39,4 +39,4 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
   loadDocument,
   unloadDocument,
-})(CollectionItem)
+})(CollectionDetail)

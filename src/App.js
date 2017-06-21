@@ -10,8 +10,8 @@ import MapPage from './pages/MapPage'
 import Timeline from './pages/Timeline'
 import Education from './pages/Education'
 import Collection from './pages/Collection'
-import CollectionItem from './pages/CollectionItem'
-import CollectionItemModal from './pages/CollectionItemModal'
+import CollectionDetail from './pages/CollectionDetail'
+import CollectionDetailModal from './pages/CollectionDetailModal'
 import Resources from './pages/Resources'
 
 class Routes extends React.Component {
@@ -47,10 +47,10 @@ class Routes extends React.Component {
           <Route path='/timeline' exact component={Timeline} />
           <Route path='/education' exact component={Education} />
           <Route path='/collection' exact component={Collection} />
-          <Route path='/collection/item/:id' exact component={CollectionItem} />
+          <Route path='/collection/item/:id' exact component={CollectionDetail} />
           <Route path='/resources' exact component={Resources} />
         </Switch>
-        {isModal ? <Route path='/collection/item/:id' component={CollectionItemModal} /> : null}
+        {isModal ? <Route path='/collection/item/:id' component={CollectionDetailModal} /> : null}
       </div>
     )
   }

@@ -7,13 +7,13 @@ import {
   loadDocuments,
   loadMoreDocuments,
   unloadDocuments,
-} from '../state/actions'
+} from '../../state/actions'
 import {
   getDocuments,
   canLoadMoreDocuments,
   getDocumentsCount,
   getDocumentsLoading,
-} from '../state/selectors'
+} from '../../state/selectors'
 
 import {
   CellMeasurer,
@@ -24,7 +24,7 @@ import {
   WindowScroller,
 } from 'react-virtualized'
 
-import CollectionDoc from '../components/CollectionDoc'
+import CollectionDoc from '../../components/CollectionDoc'
 import "./Collection.css"
 
 class Collection extends Component {
