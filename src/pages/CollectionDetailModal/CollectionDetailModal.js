@@ -1,16 +1,7 @@
 import React, { Component } from 'react'
 import CollectionItem from '../../components/CollectionItem'
 import { connect } from 'react-redux'
-
-const modalStyle = {
-  position: 'absolute',
-  top: 0,
-  left: 50,
-  bottom: 0,
-  right: 0,
-  zIndex: 10000
-}
-
+import './CollectionDetailModal.css'
 
 
 class CollectionDetailModal extends Component {
@@ -20,11 +11,18 @@ class CollectionDetailModal extends Component {
   render(){
     const { doc } = this.props
     return(
-      <div style={modalStyle}>
+      <div className="CollectionDetailModal__container">
         <div
-          onClick={()=>this.props.history.goBack()}
-          style={{position:'fixed', zIndex:"10000000", width:50, height:'100vh', right:0, backgroundColor:'red'}}>
-          ciao
+          className="CollectionDetailModal__close_btn_container"
+          >
+            <button
+              type="button"
+              className="CollectionDetailModal__close_btn"
+              aria-label="Close"
+              onClick={()=>this.props.history.goBack()}
+              >
+              <span aria-hidden="true">&times;</span>
+            </button>
         </div>
         <CollectionItem doc={doc}/>
       </div>

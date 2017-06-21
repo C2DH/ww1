@@ -1,0 +1,35 @@
+.CollectionDetailModal__container {
+  position: absolute;;
+  top: 0;
+  left: 58px;
+  bottom: 0;
+  right: 0;
+  z-index: 10000;
+}
+
+.CollectionDetailModal__close_btn_container {
+  position: fixed;
+  z-index: 100000;
+  width: 57px;
+  min-height: 100vh;
+  right: 0;
+  background-color: #2F2F2F;
+  border-left: 1px solid #DBDBD0;
+  display: flex;
+  justify-content: center;
+}
+
+.CollectionDetailModal__close_btn {
+  align-self: flex-start;
+	border: 1px solid #DBDBD0;
+  height: 45px;
+  width: 45px;
+  color: #fff;
+  background-color: #2F2F2F;
+  margin-top: 20px;
+  border-radius: 100%;
+}
+
+.CollectionDetailModal__close_btn span {
+  font-size: 20px;
+}
