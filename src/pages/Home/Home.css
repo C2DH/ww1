@@ -1,8 +1,29 @@
+.Home__container{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+}
+
+.Home__background{
+  transition: background-image 1s ease-in-out;
+  background-size: cover;
+}
+.Home__background--slide1{
+  background-image: url(https://images.pexels.com/photos/104858/pexels-photo-104858.jpeg?h=350&auto=compress&cs=tinysrgb);
+}
+
+.Home__background--slide2{
+  background-image: url(https://images.pexels.com/photos/197049/pexels-photo-197049.jpeg?h=350&auto=compress&cs=tinysrgb);
+}
+
 .Home__MainRow {
-  margin-top: 300px;
-  padding-bottom: 280px;
   text-align: center;
   border-bottom: 1px solid;
+  flex: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .Home__title {
@@ -22,9 +43,9 @@
 }
 
 .Home__NavigationRow {
+  flex: 1;
   text-align: center;
-  padding-top: 70px;
-  padding-bottom: 70px;
+  padding-top: 30px;
 }
 
 .Home__NavigationCol_h6 {
