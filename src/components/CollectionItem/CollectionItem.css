@@ -15,14 +15,12 @@
 }
 
 .CollectionItem__doc_container {
-
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-
 }
 
 .CollectionItem__doc_controls{
@@ -30,6 +28,8 @@
   width: 100%;
   background-color: red;
   align-self: flex-end;
+  display: inline-flex;
+  justify-content: center;
 }
 
 .CollectionItem__doc_preview{
@@ -43,6 +43,7 @@
 
 .CollectionItem__info_container {
   padding: 10px;
+  padding-right: 25px;
   height: 100%;
   overflow: scroll;
 }

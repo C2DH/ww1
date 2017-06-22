@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Label } from 'reactstrap'
+import ZoomControl from '../../components/ZoomControl'
 import JSONTree from 'react-json-tree'
 import moment from 'moment'
 import { get } from 'lodash'
@@ -25,8 +26,8 @@ const SeeAlso = ({doc}) => (
   <div className="CollectionItem__Relatedobjects">
     <Label className="CollectionItem__label">SEE ALSO</Label>
     <div>
-      <button className="CollectionItem__btn">{get(doc, "data.year")}</button>
-      <button className="CollectionItem__btn">{get(doc, "data.type")}</button>
+      {doc.data.year && <button className="CollectionItem__btn">{get(doc, "data.year")}</button>}
+      {doc.data.type && <button className="CollectionItem__btn">{get(doc, "data.type")}</button>}
     </div>
     <hr className="CollectionItem__Relatedobjects_divider" />
   </div>
@@ -35,7 +36,7 @@ const SeeAlso = ({doc}) => (
 const DateDisplay = ({date, startDate, endDate}) => {
   console.log("da", date)
   if(!startDate && !endDate){
-    if(date){ return (<div style={{color:'white'}}>{date}</div>)}
+    if(date){ return (<div style={{color:'white'}}>{startDate}</div>)}
     return null
   }
 
@@ -78,7 +79,7 @@ export default ({doc}) => {
               {/* <JSONTree data={doc} /> */}
               </div>
               <div className="CollectionItem__doc_controls">
-                Controls
+                <ZoomControl />
               </div>
 
             </Col>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Row } from 'reactstrap';
-import ThemesCard from '../../components/ThemesCard'
+// import ThemesCard from '../../components/ThemesCard'
 import './Themes.css'
 
 const Themes = () => (
