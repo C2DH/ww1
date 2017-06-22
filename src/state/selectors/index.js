@@ -72,7 +72,8 @@ const translateDocument = lang => doc => ({
     'repository',
     'date',
     'copyright',
-  ])
+  ]),
+  documents: (doc.documents || []).map(doc => translateDocument(lang)(doc))
 })
 
 const getDocuments = createSelector(
