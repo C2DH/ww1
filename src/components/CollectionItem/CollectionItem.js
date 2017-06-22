@@ -10,15 +10,19 @@ import './CollectionItem.css'
 
 //id: 193 has related!
 const RelatedObjects = ({items}) => {
-console.log(items)
+
   return (<div className="CollectionItem__Relatedobjects">
     <Label className="CollectionItem__label">RELATED OBJECTS</Label>
-    <hr className="CollectionItem__Relatedobjects_divider" />
-    <div>
-      { items.map(item => (
-        <div key={item.id}>{item.title}</div>
+    <hr className="CollectionItem__Relatedobjects_divider mt-0" />
+    { items.map(item => (
+        <div key={item.id} className="d-inline-flex">
+          <img src="http://placehold.it/70x70" alt="related object image" className="CollectionItem__Relatedobjects__img"/>
+          <div className="CollectionItem__Relatedobjects__text_container">
+            <h6>{item.title}</h6>
+            <p>{item.type}</p>
+          </div>
+        </div>
       ))}
-    </div>
     <hr className="CollectionItem__Relatedobjects_divider" />
   </div>)
 }
@@ -30,7 +34,7 @@ const SeeAlso = ({doc}) => (
       {doc.data.year && <button className="CollectionItem__btn">{get(doc, "data.year")}</button>}
       {doc.data.type && <button className="CollectionItem__btn">{get(doc, "data.type")}</button>}
     </div>
-    <hr className="CollectionItem__Relatedobjects_divider" />
+    <hr className="CollectionItem__Relatedobjects_divider mb-0" />
   </div>
 )
 
@@ -73,24 +77,26 @@ export default ({doc}) => {
                 <p className="CollectionItem__date">
                   <EventDate
                     date={get(doc, 'translated.date')}
-                    startDate={doc.data.start_date}
-                    endDate={doc.data.end_date}
+                    startDate={doc.translated.start_date}
+                    endDate={doc.translated.end_date}
                   />
                 </p>
               <h3 className="CollectionItem__title">{doc.title}</h3>
               <hr className="CollectionItem__title_divider" />
               <p className="CollectionItem__description">
-                {get(doc, 'translated.description')}
+                  { get(doc, 'translated.description') }
               </p>
-              <JSONTree data={doc} />
+
+              {/* <JSONTree data={doc} /> */}
               { coords && (
                 <MiniMap coords={coords}/>
               )}
               { get(doc, "documents.length") && (
                 <RelatedObjects items={get(doc, "documents")}/>
               )}
-
               <SeeAlso doc={doc}/>
+              <Label className="CollectionItem__label CollectionItem__additional_info">ADDITIONAL INFORMATION <button><i className="fa fa-angle-down" /></button></Label>
+              <hr className="CollectionItem__Relatedobjects_divider mt-0" />
             </Col>
           </div>
         </Row>
