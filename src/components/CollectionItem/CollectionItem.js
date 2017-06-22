@@ -80,6 +80,7 @@ export default ({doc}) => {
               </div>
               <div className="CollectionItem__doc_controls">
                 <ZoomControl />
+                <button className="CollectionItem__btn_download"><i className="fa fa-download" /></button>
               </div>
 
             </Col>
