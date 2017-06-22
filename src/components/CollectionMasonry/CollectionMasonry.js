@@ -88,7 +88,8 @@ class CollectionMasonry extends PureComponent {
       width: this.columnWidth,
       left: (style.left || 0) + this.horizontalPadding,
       height: imageHeight,
-      border:'solid white 10px'
+      border:'solid white 10px',
+      boxSizing: 'border-box',
     }
 
     return (
