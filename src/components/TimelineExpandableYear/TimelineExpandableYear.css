@@ -10,3 +10,30 @@
   font-weight: 600;
   color: #F36455;
 }
+
+.TimelineExpandableYear__expandable {
+  color: #F2AA9F;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 767px) {
+  .TimelineExpandableYear__container {
+    border-left: 0.5px solid #DBDBD0;
+    border-right: 0.5px solid #DBDBD0;
+    display: inline-flex;
+    justify-content: center;
+  }
+  .TimelineExpandableYear__year {
+    align-self: center;
+  }
+  .TimelineExpandableYear__month_marker {
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+  .TimelineExpandableYear__expandable {
+    flex-direction: row;
+    padding-top: 2.5px;
+    padding-left: 3px;
+  }
+}

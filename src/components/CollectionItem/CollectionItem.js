@@ -4,8 +4,32 @@ import EventDate from '../../components/EventDate'
 import ZoomControl from '../../components/ZoomControl'
 import JSONTree from 'react-json-tree'
 import moment from 'moment'
-import { get } from 'lodash'
+import { get, keys, capitalize } from 'lodash'
 import './CollectionItem.css'
+
+
+const EXAMPLE_METADATA = {
+  author : "Mimmo",
+  publication_date: "1880"
+}
+
+
+const AdditionalInformation = ({metadata}) => {
+
+  const metadataKeys = keys(metadata);
+
+  return (
+    <div>
+    { metadataKeys.map(k => (
+      <p key={k}>
+        <b>{capitalize(k.split("_").join(" "))}:</b> {metadata[k]}
+      </p>
+
+    ))}
+    </div>
+
+  )
+}
 
 
 //id: 193 has related!
@@ -97,6 +121,8 @@ export default ({doc}) => {
               <SeeAlso doc={doc}/>
               <Label className="CollectionItem__label CollectionItem__additional_info">ADDITIONAL INFORMATION <button><i className="fa fa-angle-down" /></button></Label>
               <hr className="CollectionItem__Relatedobjects_divider mt-0" />
+              <AdditionalInformation metadata={EXAMPLE_METADATA}/>
+
             </Col>
           </div>
         </Row>

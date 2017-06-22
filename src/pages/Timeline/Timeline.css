@@ -22,3 +22,12 @@
   border-left: 0.5px solid #DBDBD0;
   border-right: 0.5px solid #DBDBD0;
 }
+
+@media (max-width: 767px) {
+  .Timeline__yearsContainer {
+    display: inline-flex;
+    width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+}
