@@ -32,7 +32,7 @@ function *handleGetDocumentsMeta() {
   try {
     const docs = yield call(api.getDocuments, {
       facets: ['data__type', 'data__year'],
-      exclude: JSON.stringify({ data__type__in: ['image', 'event', 'glossary', 'place'] })
+      exclude: JSON.stringify({ data__type__in: ['person', 'event', 'glossary', 'place'] })
     })
     yield put({ type: GET_DOCUMENTS_META_SUCCESS, payload: docs })
   } catch (error) {

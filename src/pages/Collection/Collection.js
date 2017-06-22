@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { isNull, get } from 'lodash'
+import React, { PureComponent } from 'react'
+import { isNull, get, zipObject, memoize, filter, keys, omit } from 'lodash'
 import qs from 'query-string'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -22,19 +22,50 @@ import {
 import CollectionMasonry from '../../components/CollectionMasonry'
 import "./Collection.css"
 
-class Collection extends Component {
+class CollectionFilters extends PureComponent {
+  render() {
+    const {
+      onSearchChange,
+      searchString,
+      dataTypes,
+      selectedDataTypes,
+      onToggleDataType,
+    } = this.props
+    return (
+      <div style={{position:"fixed", width:"20%", top:0, bottom:0, left:"80%", backgroundColor:"red"}}>
+        <div>
+          <input onChange={onSearchChange} value={searchString} />
+        </div>
+        {dataTypes && dataTypes.map(({ count, data__type }) => (
+          <div key={data__type} onClick={() => onToggleDataType(data__type)}
+            style={{ backgroundColor: typeof selectedDataTypes[data__type] !== 'undefined' ? 'white' : 'transparent'  }}>
+            {data__type}
+            {' - '}
+            {count}
+          </div>
+        ))}
+      </div>
+    )
+  }
+}
 
-  constructor(props){
+class Collection extends PureComponent {
+  constructor(props) {
     super(props)
     this.state = {
       sidebarOpen: true
     }
-
   }
 
   componentDidMount() {
     this.props.loadDocumentsMeta()
-    this.props.loadDocuments({q:this.props.searchString})
+    this.props.loadDocuments({
+      q: this.props.searchString,
+      exclude: this.getExclude(),
+      filters: this.getFilters({
+        filterDataTypes: this.props.filterDataTypes
+      })
+    })
   }
 
   componentWillUnmount() {
@@ -45,12 +76,56 @@ class Collection extends Component {
   componentWillReceiveProps(nextProps){
     if (nextProps.searchString !== this.props.searchString) {
       this.props.unloadDocuments()
-      this.props.loadDocuments({q:nextProps.searchString})
+      this.props.loadDocuments({
+        q: nextProps.searchString,
+        exclude: this.getExclude(),
+        filters: this.getFilters({
+          filterDataTypes: this.props.filterDataTypes
+        })
+      })
+    }
+    if (nextProps.filterDataTypes !== this.props.filterDataTypes) {
+      this.props.unloadDocuments()
+      this.props.loadDocuments({
+        q: this.props.searchString,
+        exclude: this.getExclude(),
+        filters: this.getFilters({
+          filterDataTypes: nextProps.filterDataTypes
+        })
+      })
     }
   }
 
+  getExclude = () => JSON.stringify({ data__type__in: ['person', 'event', 'glossary', 'place'] })
+
+  getFilters = ({ filterDataTypes, filterYear }) => {
+    const types = keys(filterDataTypes)
+
+    let filtersObject = {}
+
+    if (types.length) {
+      filtersObject['data__type__in'] = types
+    }
+
+    if (filterYear) {
+      filtersObject['year'] = filterYear
+    }
+
+    return JSON.stringify(filtersObject)
+  }
+
+  getQueryString = ({ searchString, filterDataTypes, year }) => {
+    return `q=${searchString}&types=${objToCommaStr(filterDataTypes)}`
+  }
+
   loadMore = () => {
-    this.props.loadMoreDocuments({q:this.props.searchString})
+    this.props.loadMoreDocuments({
+      q: this.props.searchString,
+      exclude: this.getExclude(),
+      filters: this.getFilters({
+        filterDataTypes: this.props.filterDataTypes
+      })
+    })
   }
 
   toggleOpen = () => {
@@ -60,12 +135,28 @@ class Collection extends Component {
   }
 
   handleSearchStringChange = (e) => {
-    const searchString = e.target.value
-    this.props.history.replace(`/collection?q=${searchString}` )
+    const nextSearchString = e.target.value
+    const { filterDataTypes } = this.props
+    const queryStirng = this.getQueryString({
+      filterDataTypes,
+      searchString: nextSearchString,
+    })
+    this.props.history.replace(`/collection?${queryStirng}`)
+  }
+
+  toggleFilterDataType = (dataType) => {
+    const { searchString, filterDataTypes } = this.props
+    const nextFilterDataTypes = typeof filterDataTypes[dataType] === 'undefined'
+      ? { ...filterDataTypes, [dataType]: true }
+      : omit(filterDataTypes, dataType)
+    const queryStirng = this.getQueryString({
+      searchString,
+      filterDataTypes: nextFilterDataTypes,
+    })
+    this.props.history.replace(`/collection?${queryStirng}`)
   }
 
   render() {
-
     const {
       documents,
       loading,
@@ -73,6 +164,9 @@ class Collection extends Component {
       totalCount,
       canLoadMore,
       loadMoreDocuments,
+      searchString,
+      facets,
+      filterDataTypes,
     } = this.props
 
     return (
@@ -84,13 +178,14 @@ class Collection extends Component {
       </div>
 
       {this.state.sidebarOpen && (
-        <div style={{position:"fixed", width:"20%", top:0, bottom:0, left:"80%", backgroundColor:"red"}}>
-          <div>
-            <input onChange={this.handleSearchStringChange} value={this.props.searchString}/>
-          </div>
-        </div>
+        <CollectionFilters
+          searchString={searchString}
+          onSearchChange={this.handleSearchStringChange}
+          dataTypes={facets.data__type}
+          selectedDataTypes={filterDataTypes}
+          onToggleDataType={this.toggleFilterDataType}
+        />
       )}
-
 
       <div>
         {documents && <CollectionMasonry
@@ -109,10 +204,23 @@ class Collection extends Component {
   }
 }
 
+// TODO: Move in file such utils...
 const parseSearchString = location => {
   const params = qs.parse(qs.extract(location.search))
-  return get(params, "q")
+  return get(params, 'q', '')
 }
+
+const objToCommaStr = obj => keys(obj).join(',')
+
+const commaStrToObj = memoize(typesStr => {
+  const types = filter(typesStr.split(','))
+  return zipObject(types, types.map(_ => true))
+})
+
+const parseFilterDataTypes = memoize(location => {
+  const params = qs.parse(qs.extract(location.search))
+  return commaStrToObj(get(params, 'types', ''))
+})
 
 const mapStateToProps = (state, ownProps) => ({
   documents: getDocuments(state),
@@ -121,7 +229,8 @@ const mapStateToProps = (state, ownProps) => ({
   totalCount: getDocumentsTotalCount(state),
   facets: getDocumentsFacets(state),
   loading: getDocumentsLoading(state),
-  searchString : parseSearchString(ownProps.location),
+  searchString: parseSearchString(ownProps.location),
+  filterDataTypes: parseFilterDataTypes(ownProps.location),
 })
 
 export default connect(mapStateToProps, {
