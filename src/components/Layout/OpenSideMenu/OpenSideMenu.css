@@ -1,5 +1,5 @@
 .OpenSideMenu {
-  position: absolute;
+  position: fixed;
   left: 60px;
   background-color: #F7F7EB;
   height: 100%;
