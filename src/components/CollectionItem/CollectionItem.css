@@ -26,15 +26,15 @@
 .CollectionItem__doc_controls{
   height: 80px;
   width: 100%;
-  background-color: red;
   align-self: flex-end;
   display: inline-flex;
   justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 .CollectionItem__doc_preview{
   flex-grow: 1;
-  background-color: green;
   padding: 50px 10px;
   display: flex;
   flex-direction: column;
@@ -94,4 +94,16 @@
   border-radius: 16px;
   font-size: 12px;
   font-weight: 200;
+}
+
+.CollectionItem__btn_download {
+  color: #fff;
+  background-color: #1C1C1C;
+  height: 45px;
+  width: 45px;
+  position: absolute;
+  right: 0;
+  margin-right: 10px;
+  border: 0px;
+  border-radius: 100%;
 }

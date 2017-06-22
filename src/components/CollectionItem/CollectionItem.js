@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Label } from 'reactstrap'
+import EventDate from '../../components/EventDate'
 import ZoomControl from '../../components/ZoomControl'
 import JSONTree from 'react-json-tree'
 import moment from 'moment'
@@ -33,23 +34,6 @@ const SeeAlso = ({doc}) => (
   </div>
 )
 
-const DateDisplay = ({date, startDate, endDate}) => {
-  console.log("da", date)
-  if(!startDate && !endDate){
-    if(date){ return (<div style={{color:'white'}}>{startDate}</div>)}
-    return null
-  }
-
-  const startDateFormatted = moment(startDate).format('MMMM DD, YYYY')
-
-  return (
-    <div>
-      <p className="CollectionItem__date">{startDateFormatted}</p>
-    </div>
-
-  )
-
-}
 
 //TODO: MOVE AWAY. ADD GLOBAL MAPBOX ACCESS TOKEN
 const MiniMap = ({coords, width=230, height=140}) => {
@@ -80,22 +64,25 @@ export default ({doc}) => {
               </div>
               <div className="CollectionItem__doc_controls">
                 <ZoomControl />
+                <button className="CollectionItem__btn_download"><i className="fa fa-download" /></button>
               </div>
 
             </Col>
 
             <Col md={3} lg={3} className="CollectionItem__info_container">
-                <DateDisplay
-                  date={get(doc, 'translated.date')}
-                  startDate={doc.data.start_date}
-                  endDate={doc.data.end_date}
-                />
+                <p className="CollectionItem__date">
+                  <EventDate
+                    date={get(doc, 'translated.date')}
+                    startDate={doc.data.start_date}
+                    endDate={doc.data.end_date}
+                  />
+                </p>
               <h3 className="CollectionItem__title">{doc.title}</h3>
               <hr className="CollectionItem__title_divider" />
               <p className="CollectionItem__description">
                 {get(doc, 'translated.description')}
               </p>
-              {/* <JSONTree data={doc} /> */}
+              <JSONTree data={doc} />
               { coords && (
                 <MiniMap coords={coords}/>
               )}
