@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react'
 import { isNull, get, zipObject, memoize, filter, keys, omit } from 'lodash'
+import Slider from 'rc-slider'
+import 'rc-slider/assets/index.css'
 import qs from 'query-string'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -22,6 +24,8 @@ import {
 import CollectionMasonry from '../../components/CollectionMasonry'
 import "./Collection.css"
 
+const Range = Slider.Range
+
 class CollectionFilters extends PureComponent {
   render() {
     const {
@@ -30,6 +34,8 @@ class CollectionFilters extends PureComponent {
       dataTypes,
       selectedDataTypes,
       onToggleDataType,
+      onYearChange,
+      selectedYears,
     } = this.props
     return (
       <div style={{position:"fixed", width:"20%", top:0, bottom:0, left:"80%", backgroundColor:"red"}}>
@@ -44,6 +50,9 @@ class CollectionFilters extends PureComponent {
             {count}
           </div>
         ))}
+        <div style={{ padding: '10px' }}>
+          <Range min={1914} max={1920} defaultValue={[1914, 1920]} onChange={onYearChange} value={selectedYears} />
+        </div>
       </div>
     )
   }
@@ -63,7 +72,8 @@ class Collection extends PureComponent {
       q: this.props.searchString,
       exclude: this.getExclude(),
       filters: this.getFilters({
-        filterDataTypes: this.props.filterDataTypes
+        filterDataTypes: this.props.filterDataTypes,
+        filterYears: this.props.filterYears,
       })
     })
   }
@@ -80,7 +90,8 @@ class Collection extends PureComponent {
         q: nextProps.searchString,
         exclude: this.getExclude(),
         filters: this.getFilters({
-          filterDataTypes: this.props.filterDataTypes
+          filterDataTypes: this.props.filterDataTypes,
+          filterYears: this.props.filterYears,
         })
       })
     }
@@ -90,7 +101,19 @@ class Collection extends PureComponent {
         q: this.props.searchString,
         exclude: this.getExclude(),
         filters: this.getFilters({
-          filterDataTypes: nextProps.filterDataTypes
+          filterDataTypes: nextProps.filterDataTypes,
+          filterYears: this.props.filterYears,
+        })
+      })
+    }
+    if (nextProps.filterYears !== this.props.filterYears) {
+      this.props.unloadDocuments()
+      this.props.loadDocuments({
+        q: this.props.searchString,
+        exclude: this.getExclude(),
+        filters: this.getFilters({
+          filterDataTypes: this.props.filterDataTypes,
+          filterYears: nextProps.filterYears,
         })
       })
     }
@@ -98,7 +121,7 @@ class Collection extends PureComponent {
 
   getExclude = () => JSON.stringify({ data__type__in: ['person', 'event', 'glossary', 'place'] })
 
-  getFilters = ({ filterDataTypes, filterYear }) => {
+  getFilters = ({ filterDataTypes, filterYears }) => {
     const types = keys(filterDataTypes)
 
     let filtersObject = {}
@@ -107,15 +130,15 @@ class Collection extends PureComponent {
       filtersObject['data__type__in'] = types
     }
 
-    if (filterYear) {
-      filtersObject['year'] = filterYear
+    if (filterYears) {
+      filtersObject['data__year__in'] = filterYears
     }
 
     return JSON.stringify(filtersObject)
   }
 
-  getQueryString = ({ searchString, filterDataTypes, year }) => {
-    return `q=${searchString}&types=${objToCommaStr(filterDataTypes)}`
+  getQueryString = ({ searchString, filterDataTypes, filterYears }) => {
+    return `q=${searchString}&types=${objToCommaStr(filterDataTypes)}&years=${filterYears.join(',')}`
   }
 
   loadMore = () => {
@@ -123,7 +146,8 @@ class Collection extends PureComponent {
       q: this.props.searchString,
       exclude: this.getExclude(),
       filters: this.getFilters({
-        filterDataTypes: this.props.filterDataTypes
+        filterDataTypes: this.props.filterDataTypes,
+        filterYears: this.props.filterYears,
       })
     })
   }
@@ -134,23 +158,35 @@ class Collection extends PureComponent {
     })
   }
 
+  handleOnYearChange = (filterYears) => {
+    const { searchString, filterDataTypes } = this.props
+    const queryStirng = this.getQueryString({
+      searchString,
+      filterYears,
+      filterDataTypes,
+    })
+    this.props.history.replace(`/collection?${queryStirng}`)
+  }
+
   handleSearchStringChange = (e) => {
     const nextSearchString = e.target.value
-    const { filterDataTypes } = this.props
+    const { filterDataTypes, filterYears } = this.props
     const queryStirng = this.getQueryString({
       filterDataTypes,
+      filterYears,
       searchString: nextSearchString,
     })
     this.props.history.replace(`/collection?${queryStirng}`)
   }
 
   toggleFilterDataType = (dataType) => {
-    const { searchString, filterDataTypes } = this.props
+    const { searchString, filterDataTypes, filterYears } = this.props
     const nextFilterDataTypes = typeof filterDataTypes[dataType] === 'undefined'
       ? { ...filterDataTypes, [dataType]: true }
       : omit(filterDataTypes, dataType)
     const queryStirng = this.getQueryString({
       searchString,
+      filterYears,
       filterDataTypes: nextFilterDataTypes,
     })
     this.props.history.replace(`/collection?${queryStirng}`)
@@ -167,6 +203,7 @@ class Collection extends PureComponent {
       searchString,
       facets,
       filterDataTypes,
+      filterYears,
     } = this.props
 
     return (
@@ -184,6 +221,8 @@ class Collection extends PureComponent {
           dataTypes={facets.data__type}
           selectedDataTypes={filterDataTypes}
           onToggleDataType={this.toggleFilterDataType}
+          selectedYears={filterYears}
+          onYearChange={this.handleOnYearChange}
         />
       )}
 
@@ -192,7 +231,7 @@ class Collection extends PureComponent {
           documents={documents}
           canLoadMore={canLoadMore && !loading}
           loadMore={this.loadMore}
-          masonryStyle={{ paddingTop:120, paddingBottom: 20 }}
+          masonryStyle={{ paddingTop:120, paddingBottom: 20, outline: 'none' }}
         />}
       </div>
     </div>
@@ -217,10 +256,23 @@ const commaStrToObj = memoize(typesStr => {
   return zipObject(types, types.map(_ => true))
 })
 
-const parseFilterDataTypes = memoize(location => {
+const parseFilterDataTypes = location => {
   const params = qs.parse(qs.extract(location.search))
   return commaStrToObj(get(params, 'types', ''))
+}
+
+const commaStrToList = memoize(str => {
+  const l = filter(str.split(','))
+  if (l.length !== 2) {
+    return [1914, 1920]
+  }
+  return l.map(l => +l)
 })
+
+const parseFilterYears = location => {
+  const params = qs.parse(qs.extract(location.search))
+  return commaStrToList(get(params, 'years', ''))
+}
 
 const mapStateToProps = (state, ownProps) => ({
   documents: getDocuments(state),
@@ -231,6 +283,7 @@ const mapStateToProps = (state, ownProps) => ({
   loading: getDocumentsLoading(state),
   searchString: parseSearchString(ownProps.location),
   filterDataTypes: parseFilterDataTypes(ownProps.location),
+  filterYears: parseFilterYears(ownProps.location),
 })
 
 export default connect(mapStateToProps, {
