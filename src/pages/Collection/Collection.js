@@ -5,14 +5,18 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {
   loadDocuments,
+  loadDocumentsMeta,
   loadMoreDocuments,
   unloadDocuments,
+  unloadDocumentsMeta,
 } from '../../state/actions'
 import {
   getDocuments,
   canLoadMoreDocuments,
   getDocumentsCount,
   getDocumentsLoading,
+  getDocumentsFacets,
+  getDocumentsTotalCount,
 } from '../../state/selectors'
 
 import CollectionMasonry from '../../components/CollectionMasonry'
@@ -29,11 +33,13 @@ class Collection extends Component {
   }
 
   componentDidMount() {
+    this.props.loadDocumentsMeta()
     this.props.loadDocuments({q:this.props.searchString})
   }
 
   componentWillUnmount() {
     this.props.unloadDocuments()
+    this.props.unloadDocumentsMeta()
   }
 
   componentWillReceiveProps(nextProps){
@@ -64,6 +70,7 @@ class Collection extends Component {
       documents,
       loading,
       count,
+      totalCount,
       canLoadMore,
       loadMoreDocuments,
     } = this.props
@@ -111,12 +118,16 @@ const mapStateToProps = (state, ownProps) => ({
   documents: getDocuments(state),
   canLoadMore: canLoadMoreDocuments(state),
   count: getDocumentsCount(state),
+  totalCount: getDocumentsTotalCount(state),
+  facets: getDocumentsFacets(state),
   loading: getDocumentsLoading(state),
   searchString : parseSearchString(ownProps.location),
 })
 
 export default connect(mapStateToProps, {
   loadDocuments,
+  loadDocumentsMeta,
   loadMoreDocuments,
   unloadDocuments,
+  unloadDocumentsMeta,
 })(Collection)

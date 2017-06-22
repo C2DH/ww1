@@ -18,6 +18,17 @@ class CollectionDetail extends Component {
     this.props.loadDocument(this.props.match.params.id)
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.match.params.id !== nextProps.match.params.id) {
+      this.props.unloadDocument()
+      this.props.loadDocument(nextProps.match.params.id)
+    }
+  }
+
+  componentWillUnmount() {
+    this.props.unloadDocument()
+  }
+
   render(){
     const { doc } = this.props
     return(

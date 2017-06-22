@@ -9,6 +9,11 @@ import {
   GET_DOCUMENT_SUCCESS,
   GET_DOCUMENT_FAILURE,
   GET_DOCUMENT_UNLOAD,
+  GET_DOCUMENTS_META,
+  GET_DOCUMENTS_META_LOADING,
+  GET_DOCUMENTS_META_SUCCESS,
+  GET_DOCUMENTS_META_FAILURE,
+  GET_DOCUMENTS_META_UNLOAD,
   GET_MAP_DOCUMENTS,
 } from '../actions'
 
@@ -22,12 +27,31 @@ function *handleGetDocument({payload}) {
   }
 }
 
+function *handleGetDocumentsMeta() {
+  yield put({ type: GET_DOCUMENTS_META_LOADING })
+  try {
+    const docs = yield call(api.getDocuments, {
+      facets: ['data__type', 'data__year'],
+      exclude: JSON.stringify({ data__type__in: ['image', 'event', 'glossary', 'place'] })
+    })
+    yield put({ type: GET_DOCUMENTS_META_SUCCESS, payload: docs })
+  } catch (error) {
+    yield put({ type: GET_DOCUMENTS_META_FAILURE, error })
+  }
+}
+
 export default function* rootSaga() {
   yield fork(makePaginateCollection(
     GET_DOCUMENTS,
     api.getDocuments,
     state => state.documents
   ))
+  yield fork(
+    takeLatestAndCancel,
+    GET_DOCUMENTS_META,
+    GET_DOCUMENTS_META_UNLOAD,
+    handleGetDocumentsMeta,
+  )
   yield fork(makePaginateCollection(
     GET_MAP_DOCUMENTS,
     api.getMapDocuments,

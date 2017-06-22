@@ -26,7 +26,10 @@ const [
   canLoadMoreDocuments,
   getDocumentsCount,
   getDocumentsLoading,
-] = makePaginateCollectionSelectors(state => state.documents)
+] = makePaginateCollectionSelectors(state => state.documents.collection)
+
+export const getDocumentsFacets = state => state.documents.facets
+export const getDocumentsTotalCount = state => state.documents.totalCount
 
 const [
   getMapDocumentsUntranslated,
@@ -50,7 +53,7 @@ const [
 // }
 const translateObject = (data, lang, transKeys = '*', fallbackLang = 'en') =>
   mapValues(data, (value, key) => {
-    if (transKeys === '*' || !includes(transKeys, key)) {
+    if (!includes(transKeys, key)) {
       return value
     }
     const defaultTrans = isNull(fallbackLang)
@@ -68,6 +71,7 @@ const translateDocument = lang => doc => ({
     'description',
     'repository',
     'date',
+    'copyright',
   ])
 })
 
