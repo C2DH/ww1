@@ -31,6 +31,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  margin-bottom: 10px;
 }
 
 .CollectionItem__doc_preview{
@@ -75,6 +76,42 @@
 .CollectionItem__Relatedobjects {
   padding-top: 15px;
 }
+
+.CollectionItem__Relatedobjects__text_container {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  padding-right: 5px;
+  position: relative;
+}
+
+.CollectionItem__Relatedobjects__text_container p {
+  color: #C3C2C4;
+  font-weight: 100;
+  margin: 0px;
+  position: absolute;
+  bottom: 0;
+}
+
+.CollectionItem__Relatedobjects__img {
+
+}
+
+.CollectionItem__additional_info {
+  margin-top: .5rem;
+  display: inline-flex;
+  width: 100%;
+}
+
+.CollectionItem__additional_info button {
+  background-color: transparent;
+  color: #9B9B9B;
+  border: 0px;
+  margin-left: auto;
+  height: 21px;
+}
+
 
 .CollectionItem__label {
   color: #F56350;
