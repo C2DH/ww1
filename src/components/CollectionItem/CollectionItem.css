@@ -35,7 +35,6 @@
 
 .CollectionItem__doc_preview{
   flex-grow: 1;
-  background-color: green;
   padding: 50px 10px;
   display: flex;
   flex-direction: column;
