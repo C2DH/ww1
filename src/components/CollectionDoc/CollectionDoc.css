@@ -2,4 +2,24 @@
   width: auto;
   max-width: 100%;
   height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ccc;
+}
+
+.CollectionDoc__inner_container {
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #DBDBD0;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: center;
+}
+
+.CollectionDoc__inner_container_audio {
+  background-color: #000;
+  color: #fff;
 }
