@@ -15,7 +15,7 @@ class TimelineExpandableItem extends PureComponent {
     }
 
 render () {
-  const { item } = this.props
+
   return (
       <Container className={this.state.open ? "TimelineExpandableItem__containerOpen" : "TimelineExpandableItem__containerClose" }>
         <div className="TimelineExpandableItem__flex_container">
@@ -45,9 +45,9 @@ render () {
             <div>
               <h6 className="TimelineExpandableItem__imgTitle">RELATED OBJECTS</h6>
               <div>
-                <img className="img-responsives TimelineExpandableItem__img" src="http://placehold.it/200x120" />
-                <img className="img-responsives TimelineExpandableItem__img" src="http://placehold.it/200x120" />
-                <img className="img-responsives TimelineExpandableItem__img" src="http://placehold.it/200x120" />
+                <img className="img-responsives TimelineExpandableItem__img" src="http://placehold.it/200x120" alt="historical document"/>
+                <img className="img-responsives TimelineExpandableItem__img" src="http://placehold.it/200x120" alt="historical document" />
+                <img className="img-responsives TimelineExpandableItem__img" src="http://placehold.it/200x120" alt="historical document" />
               </div>
             </div>
           </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col } from 'reactstrap'
+import { Row } from 'reactstrap'
 import './BigTitle.css'
 
 const BigTitle = (props) => (

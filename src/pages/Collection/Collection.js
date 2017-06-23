@@ -210,8 +210,9 @@ class Collection extends PureComponent {
     <div>
     <div className={this.state.sidebarOpen ? "Collection__List--sidebar-open" : ''}>
       <div className={`list-heading ${this.state.sidebarOpen ? 'list-heading-closed' : '' }`}>
-        <h1>Collection</h1>
-        <button onClick={this.toggleOpen}>o</button>
+        <h2>Collection</h2>
+        <span className="Collection__items_shown"><strong>{count} / {totalCount}</strong> ITEMS SHOWN</span>
+        <button className="Collection__open_heading_btn" onClick={this.toggleOpen}>{this.state.sidebarOpen ? <i className="fa fa-angle-right" /> : <i className="fa fa-search" />}</button>
       </div>
 
       {this.state.sidebarOpen && (

@@ -1,3 +1,29 @@
 .Collection__List--sidebar-open {
   width: 80%;
+  height: 100px;
+  background-color: #fff;
+  border-bottom: 1px solid #DBDBD0;
+}
+
+.Collection__List--sidebar-open h2 {
+  margin-left: 70px;
+  position: relative;
+  top: 30%;
+}
+
+.Collection__items_shown {
+  align-self: center;
+  margin-left: auto;
+  font-size: 16px;
+}
+
+.Collection__open_heading_btn {
+  margin-left: 10px;
+  background-color: #fff;
+  border: 0px;
+}
+
+.Collection__open_heading_btn i {
+  font-size: 18px;
+  font-weight: bold;
 }

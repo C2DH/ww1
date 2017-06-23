@@ -41,7 +41,15 @@ button:focus {
   left: 60px;
   right: 0;
   z-index: 1000;
-  background-color: yellow;
+  background-color: #fff;
+  border-bottom: 1px solid #DBDBD0;
+  display: flex;
+}
+
+.list-heading h2 {
+  margin-left: 70px;
+  position: relative;
+  top: 30%;
 }
 
 .list-heading-closed {
