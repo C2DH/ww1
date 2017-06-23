@@ -1,0 +1,74 @@
+.CollectionFilters__container {
+  position: fixed;
+  width: 20%;
+  top: 0;
+  bottom: 0;
+  left: 80%;
+  background-color: #fff;
+}
+
+.CollectionFilters__input_container {
+  height: 100px;
+  display: inline-flex;
+  justify-content: center;
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: #fff;
+  width: 100%;
+  border-bottom: 1px solid #DBDBD0;
+}
+
+.CollectionFilters__input_container_icon {
+  align-self: center;
+  margin-right: 10px;
+  position: relative;
+  top: -2px;
+}
+
+.CollectionFilters__input {
+  border: 0px;
+  align-self: center;
+  font-size: 16px;
+  width: 100%;
+}
+
+.CollectionFilters__reset_container {
+  border-bottom: 0.3px solid #DBDBD0;
+  padding: 10px;
+  display: flex;
+}
+
+.CollectionFilters__reset_title {
+  margin-top: 0.5em;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.CollectionFilters__reset {
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+  margin-left: auto;
+  text-decoration: underline!important;
+}
+
+.CollectionFilters__filter_container {
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+}
+
+.CollectionFilters__filter {
+  margin-bottom: 5px;
+  width: 100%;
+  text-transform: capitalize;
+}
+
+.CollectionFilters__filter_badge {
+  background-color: #F36455;
+  font-weight: normal;
+  margin-left: auto;
+  align-self: center;
+  font-size: 13px;
+  width: 30px;
+  border-radius: 15px;
+}

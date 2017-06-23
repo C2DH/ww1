@@ -15,6 +15,9 @@ button:focus {
   outline:0;
 }
 
+textarea:focus, input:focus{
+    outline: none;
+}
 
 /* General utilities */
 .flex {

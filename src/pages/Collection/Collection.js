@@ -22,41 +22,42 @@ import {
 } from '../../state/selectors'
 
 import CollectionMasonry from '../../components/CollectionMasonry'
+import CollectionFilters from '../../components/CollectionFilters'
 import "./Collection.css"
 
 const Range = Slider.Range
 
-class CollectionFilters extends PureComponent {
-  render() {
-    const {
-      onSearchChange,
-      searchString,
-      dataTypes,
-      selectedDataTypes,
-      onToggleDataType,
-      onYearChange,
-      selectedYears,
-    } = this.props
-    return (
-      <div style={{position:"fixed", width:"20%", top:0, bottom:0, left:"80%", backgroundColor:"red"}}>
-        <div>
-          <input onChange={onSearchChange} value={searchString} />
-        </div>
-        {dataTypes && dataTypes.map(({ count, data__type }) => (
-          <div key={data__type} onClick={() => onToggleDataType(data__type)}
-            style={{ backgroundColor: typeof selectedDataTypes[data__type] !== 'undefined' ? 'white' : 'transparent'  }}>
-            {data__type}
-            {' - '}
-            {count}
-          </div>
-        ))}
-        <div style={{ padding: '10px' }}>
-          <Range min={1914} max={1920} defaultValue={[1914, 1920]} onChange={onYearChange} value={selectedYears} />
-        </div>
-      </div>
-    )
-  }
-}
+// class CollectionFilters extends PureComponent {
+//   render() {
+//     const {
+//       onSearchChange,
+//       searchString,
+//       dataTypes,
+//       selectedDataTypes,
+//       onToggleDataType,
+//       onYearChange,
+//       selectedYears,
+//     } = this.props
+//     return (
+//       <div style={{position:"fixed", width:"20%", top:0, bottom:0, left:"80%", backgroundColor:"red"}}>
+//         <div>
+//           <input onChange={onSearchChange} value={searchString} />
+//         </div>
+//         {dataTypes && dataTypes.map(({ count, data__type }) => (
+//           <div key={data__type} onClick={() => onToggleDataType(data__type)}
+//             style={{ backgroundColor: typeof selectedDataTypes[data__type] !== 'undefined' ? 'white' : 'transparent'  }}>
+//             {data__type}
+//             {' - '}
+//             {count}
+//           </div>
+//         ))}
+//         <div style={{ padding: '10px' }}>
+//           <Range min={1914} max={1920} defaultValue={[1914, 1920]} onChange={onYearChange} value={selectedYears} />
+//         </div>
+//       </div>
+//     )
+//   }
+// }
 
 class Collection extends PureComponent {
   constructor(props) {
