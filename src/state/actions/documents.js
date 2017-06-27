@@ -56,6 +56,21 @@ export const unloadMapDocuments = () => ({
   type: GET_MAP_DOCUMENTS_UNLOAD,
 })
 
+export const GET_TIMELINE_DOCUMENTS = 'GET_TIMELINE_DOCUMENTS'
+export const GET_TIMELINE_DOCUMENTS_LOADING = 'GET_TIMELINE_DOCUMENTS_LOADING'
+export const GET_TIMELINE_DOCUMENTS_SUCCESS = 'GET_TIMELINE_DOCUMENTS_SUCCESS'
+export const GET_TIMELINE_DOCUMENTS_FAILURE = 'GET_TIMELINE_DOCUMENTS_FAILURE'
+export const GET_TIMELINE_DOCUMENTS_UNLOAD = 'GET_TIMELINE_DOCUMENTS_UNLOAD'
+
+export const loadTimelineDocuments = () => ({
+  type: GET_TIMELINE_DOCUMENTS,
+  payload: { reset: true }
+})
+
+export const unloadTimelineDocuments = () => ({
+  type: GET_TIMELINE_DOCUMENTS_UNLOAD,
+})
+
 
 export const GET_DOCUMENT = 'GET_DOCUMENT'
 export const GET_DOCUMENT_LOADING = 'GET_DOCUMENT_LOADING'
