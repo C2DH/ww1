@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect'
-import { isNull, get, mapValues, includes, chunk, map } from 'lodash'
+import { isNull, get, mapValues, includes, chunk, map, range } from 'lodash'
 
 // fp <3
 const maybeNull = a => fn => isNull(a) ? null : fn(a)
@@ -37,6 +37,13 @@ const [
   getMapDocumentsCount,
   getMapDocumentsLoading,
 ] = makePaginateCollectionSelectors(state => state.mapDocuments)
+
+const [
+  getTimelineDocumentsUntranslated,
+  canLoadMoreTimelineDocuments,
+  getTimelineDocumentsCount,
+  getTimelineDocumentsLoading,
+] = makePaginateCollectionSelectors(state => state.timelineDocuments)
 
 // Generic translate object with this shape:
 // {
@@ -88,6 +95,24 @@ const getMapDocuments = createSelector(
   (docs, lang) => maybeNull(docs)(docs => docs.map(translateDocument(lang)))
 )
 
+const getTimelineDocuments = createSelector(
+  getTimelineDocumentsUntranslated,
+  state => state.settings.language,
+  (docs, lang) => {
+    const leDocs = maybeNull(docs)(docs => docs.map(translateDocument(lang)))
+    if (leDocs !== null) {
+      return leDocs.reduce((r, doc) => {
+        const fakeDocs = range(10).map(j => ({
+          ...doc,
+          id: doc.id * (j + 1),
+        }))
+        return [ ...r, ...fakeDocs ]
+      }, [])
+    }
+    return null
+  }
+)
+
 const getDocumentsGrid = createSelector(
   getDocuments,
   documents => chunk(documents, 4).map(grid => ({
@@ -116,4 +141,6 @@ export {
   canLoadMoreMapDocuments,
   getMapDocumentsCount,
   getMapDocumentsLoading,
+  getTimelineDocuments,
+  getTimelineDocumentsLoading,
 }

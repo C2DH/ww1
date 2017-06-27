@@ -20,6 +20,12 @@ export const getMapDocuments = (params = {}) =>
     ...params,
   })
 
+export const getTimelineDocuments = () =>
+  getDocuments({
+    filters: JSON.stringify({
+      'data__type': 'event',
+    }),
+  })
 
 export const getDocument = (id) =>
   request.get(`${API_URL}/document/${id}`)

@@ -15,6 +15,7 @@ import {
   GET_DOCUMENTS_META_FAILURE,
   GET_DOCUMENTS_META_UNLOAD,
   GET_MAP_DOCUMENTS,
+  GET_TIMELINE_DOCUMENTS,
 } from '../actions'
 
 function *handleGetDocument({payload}) {
@@ -63,4 +64,10 @@ export default function* rootSaga() {
     GET_DOCUMENT_UNLOAD,
     handleGetDocument,
   )
+  yield fork(makePaginateCollection(
+    GET_TIMELINE_DOCUMENTS,
+    api.getTimelineDocuments,
+    state => state.timelineDocuments,
+    1000
+  ))
 }

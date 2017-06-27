@@ -36,7 +36,7 @@ render () {
           <div className="TimelineExpandableItem__flex_container">
             <div style={{minWidth: 130}}></div>
             <div>
-              <p className="TimelineExpandableItem__text">{this.props.item.text}</p>
+              <p className="TimelineExpandableItem__text">{this.props.item.translated.description}</p>
             </div>
             <div style={{minWidth: 130}}></div>
           </div>

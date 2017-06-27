@@ -3,13 +3,15 @@ import { identity } from 'lodash'
 import qs from 'query-string'
 import { takeLatestAndCancel } from '../effects/take'
 
+export const DEFAULT_PAGE_SIZE = 50
+
 // Saga for a generic paginated collection
 const makePaginateCollection = (
   actionType,
   apiFn,
   selectState,
+  pageSize = DEFAULT_PAGE_SIZE,
   transform = identity,
-  pageSize = 50
 ) => {
   function* handleGetPaginatedList({ payload: { params, reset } }) {
     yield put({ type: `${actionType}_LOADING` })
