@@ -1,0 +1,15 @@
+.YearsBar__Bar--count {
+  fill: #F36455;
+  fill-opacity: 0.3;
+  stroke: #fff;
+  stroke-width: 2px;
+}
+
+.YearsBar__Bar--count-filtered {
+  fill: #F36455;
+  stroke: #fff;
+}
+
+.YearsBar__Label {
+  font-size: 12px;
+}

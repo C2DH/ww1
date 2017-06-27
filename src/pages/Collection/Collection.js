@@ -132,7 +132,8 @@ class Collection extends PureComponent {
     }
 
     if (filterYears) {
-      filtersObject['data__year__in'] = filterYears
+      filtersObject['data__year__gte'] = filterYears[0]
+      filtersObject['data__year__lt'] = filterYears[1]
     }
 
     return JSON.stringify(filtersObject)

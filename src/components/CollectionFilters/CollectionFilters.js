@@ -1,9 +1,7 @@
 import React, { PureComponent } from 'react'
-import Slider from 'rc-slider'
 import { Badge } from 'reactstrap'
+import YearsRange from '../YearsRange'
 import './CollectionFilters.css'
-
-const Range = Slider.Range
 
 class CollectionFilters extends PureComponent {
   render() {
@@ -40,7 +38,28 @@ class CollectionFilters extends PureComponent {
           ))}
         </div>
         <div style={{ padding: '10px' }}>
-          <Range min={1914} max={1920} defaultValue={[1914, 1920]} onChange={onYearChange} value={selectedYears} />
+          <YearsRange
+            min={1914}
+            max={1920}
+            defaultValue={[1914, 1920]}
+            onChange={onYearChange}
+            value={selectedYears}
+            counts={{
+              1914: 20,
+              1915: 10,
+              1917: 5,
+              1918: 29,
+              1919: 20,
+              1920: 5
+            }}
+            filteredCounts={{
+              1914: 10,
+              1915: 2,
+              1917: 5,
+              1919: 10,
+              1920: 3
+            }}
+          />
         </div>
       </div>
     )
