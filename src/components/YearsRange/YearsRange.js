@@ -67,6 +67,8 @@ class YearsRange extends PureComponent {
       value,
       counts,
       filteredCounts,
+      uncertainYears,
+      onUncertainYearsChange,
       barHeight = 100,
     } = this.props
 
@@ -77,6 +79,10 @@ class YearsRange extends PureComponent {
         </div>
         <div style={{ marginTop: '-37px' }}>
           <Range allowCross={false} min={min} max={max + 1} defaultValue={defaultValue} onChange={this.onChange} value={value} />
+        </div>
+        <div style={{ marginTop: '32px' }}>
+          <input type='checkbox' onChange={() => onUncertainYearsChange(!uncertainYears)} checked={uncertainYears} />
+          <span className="YearsRange__Uncertain">{`Include ${2} items with uncertain dates`}</span>
         </div>
       </div>
     )

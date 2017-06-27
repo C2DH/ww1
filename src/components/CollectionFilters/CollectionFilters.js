@@ -13,6 +13,8 @@ class CollectionFilters extends PureComponent {
       onToggleDataType,
       onYearChange,
       selectedYears,
+      uncertainYears,
+      onUncertainYearsChange,
     } = this.props
     return (
       <div className="CollectionFilters__container">
@@ -39,6 +41,8 @@ class CollectionFilters extends PureComponent {
         </div>
         <div style={{ padding: '10px' }}>
           <YearsRange
+            uncertainYears={uncertainYears}
+            onUncertainYearsChange={onUncertainYearsChange}
             min={1914}
             max={1920}
             defaultValue={[1914, 1920]}

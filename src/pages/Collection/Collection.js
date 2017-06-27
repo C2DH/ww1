@@ -139,8 +139,8 @@ class Collection extends PureComponent {
     return JSON.stringify(filtersObject)
   }
 
-  getQueryString = ({ searchString, filterDataTypes, filterYears }) => {
-    return `q=${searchString}&types=${objToCommaStr(filterDataTypes)}&years=${filterYears.join(',')}`
+  getQueryString = ({ searchString, filterDataTypes, filterYears, filterUncertainYears }) => {
+    return `q=${searchString}&types=${objToCommaStr(filterDataTypes)}&years=${filterYears.join(',')}&uncertainYears=${filterUncertainYears ? '1' : '0'}`
   }
 
   loadMore = () => {
@@ -161,10 +161,11 @@ class Collection extends PureComponent {
   }
 
   handleOnYearChange = (filterYears) => {
-    const { searchString, filterDataTypes } = this.props
+    const { searchString, filterDataTypes, filterUncertainYears } = this.props
     const queryStirng = this.getQueryString({
       searchString,
       filterYears,
+      filterUncertainYears,
       filterDataTypes,
     })
     this.props.history.replace(`/collection?${queryStirng}`)
@@ -172,11 +173,23 @@ class Collection extends PureComponent {
 
   handleSearchStringChange = (e) => {
     const nextSearchString = e.target.value
-    const { filterDataTypes, filterYears } = this.props
+    const { filterDataTypes, filterYears, filterUncertainYears } = this.props
     const queryStirng = this.getQueryString({
       filterDataTypes,
       filterYears,
+      filterUncertainYears,
       searchString: nextSearchString,
+    })
+    this.props.history.replace(`/collection?${queryStirng}`)
+  }
+
+  handleOnUncertainYearsChange = (showUncertain) => {
+    const { filterDataTypes, filterYears, searchString } = this.props
+    const queryStirng = this.getQueryString({
+      filterDataTypes,
+      filterYears,
+      searchString,
+      filterUncertainYears: showUncertain,
     })
     this.props.history.replace(`/collection?${queryStirng}`)
   }
@@ -206,6 +219,7 @@ class Collection extends PureComponent {
       facets,
       filterDataTypes,
       filterYears,
+      filterUncertainYears,
     } = this.props
 
     return (
@@ -226,6 +240,8 @@ class Collection extends PureComponent {
           onToggleDataType={this.toggleFilterDataType}
           selectedYears={filterYears}
           onYearChange={this.handleOnYearChange}
+          uncertainYears={filterUncertainYears}
+          onUncertainYearsChange={this.handleOnUncertainYearsChange}
         />
       )}
 
@@ -277,6 +293,11 @@ const parseFilterYears = location => {
   return commaStrToList(get(params, 'years', ''))
 }
 
+const parseFilterUncertain = location => {
+  const params = qs.parse(qs.extract(location.search))
+  return !!parseInt(get(params, 'uncertainYears', 0))
+}
+
 const mapStateToProps = (state, ownProps) => ({
   documents: getDocuments(state),
   canLoadMore: canLoadMoreDocuments(state),
@@ -287,6 +308,7 @@ const mapStateToProps = (state, ownProps) => ({
   searchString: parseSearchString(ownProps.location),
   filterDataTypes: parseFilterDataTypes(ownProps.location),
   filterYears: parseFilterYears(ownProps.location),
+  filterUncertainYears: parseFilterUncertain(ownProps.location),
 })
 
 export default connect(mapStateToProps, {
