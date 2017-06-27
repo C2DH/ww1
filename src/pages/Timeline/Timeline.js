@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+import WayPoint from 'react-waypoint'
+import moment from 'moment'
 import { Row, Col } from 'reactstrap'
 import TimelineExpandableItem from '../../components/TimelineExpandableItem'
 import TimelineExpandableYear from '../../components/TimelineExpandableYear'
@@ -22,6 +24,11 @@ const items = [
 const years = ["1914", "1915", "1916", "1917", "1918", "1919"]
 
 class Timeline extends PureComponent {
+  state = {
+    viewedYear: null,
+    viewedMonth: null,
+  }
+
   componentDidMount() {
     this.props.loadTimelineDocuments()
   }
@@ -30,10 +37,22 @@ class Timeline extends PureComponent {
     this.props.unloadTimelineDocuments()
   }
 
+  entering = (doc) => {
+    const m = moment(doc.data.start_date)
+    this.setState({
+      viewedYear: m.year(),
+      viewedMonth: m.month() + 1,
+    })
+  }
+
   render() {
     const { documents } = this.props
     return (
       <div>
+      <div style={{ position: 'fixed', top: 0 }}>
+        <div>Y{this.state.viewedYear}</div>
+        <div>M{this.state.viewedMonth}</div>
+      </div>
         <Row className="Timeline__TopRow">
           <Col md="12">
             <h2>Timeline</h2>
@@ -49,7 +68,10 @@ class Timeline extends PureComponent {
           </Col>
           {documents && <Col md="10" sm="12" xs="12">
             {documents.map(doc => (
-              <TimelineExpandableItem item={doc} key={doc.id} />
+              <div key={doc.id}>
+                <TimelineExpandableItem item={doc} key={doc.id} />
+                <WayPoint onEnter={() => this.entering(doc)} />
+              </div>
             ))}
           </Col>}
         </Row>
