@@ -18,7 +18,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   overflow: hidden;
 }
@@ -36,10 +36,10 @@
 
 .CollectionItem__doc_preview{
   flex-grow: 1;
-  padding: 50px 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .CollectionItem__info_container {

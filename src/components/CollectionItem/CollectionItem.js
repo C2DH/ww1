@@ -1,10 +1,9 @@
 import React from 'react';
 import { Container, Row, Col, Label } from 'reactstrap'
 import EventDate from '../../components/EventDate'
-import ZoomControl from '../../components/ZoomControl'
-import JSONTree from 'react-json-tree'
 import moment from 'moment'
 import { get, keys, capitalize } from 'lodash'
+import CollectionItemPreview from '../CollectionItemPreview'
 import './CollectionItem.css'
 
 
@@ -73,6 +72,7 @@ const MiniMap = ({coords, width=230, height=140}) => {
 
 
 
+
 export default ({doc}) => {
   console.log(doc)
   let coords = get(doc, 'data.coordinates.geometry.coordinates')
@@ -85,16 +85,8 @@ export default ({doc}) => {
       <Container>
         <Row>
           <div className="CollectionItem__container">
-            <Col className="CollectionItem__doc_container">
-              <div className="CollectionItem__doc_preview">
-              <img src={doc.attachment} alt={doc.title} className="img-fluid"/>
-              {/* <JSONTree data={doc} /> */}
-              </div>
-              <div className="CollectionItem__doc_controls">
-                <ZoomControl />
-                <button className="CollectionItem__btn_download"><i className="fa fa-download" /></button>
-              </div>
-
+            <Col>
+              <CollectionItemPreview doc={doc}/>
             </Col>
 
             <Col md={3} lg={3} className="CollectionItem__info_container">
