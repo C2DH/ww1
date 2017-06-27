@@ -29,15 +29,18 @@ class CollectionFilters extends PureComponent {
           </div>
         }
         <div className="CollectionFilters__filter_container">
-          {dataTypes && dataTypes.map(({ count, data__type }) => (
-            <div key={data__type} onClick={() => onToggleDataType(data__type)}
-              style={{ opacity: typeof selectedDataTypes[data__type] !== 'undefined' ? '1' : '0.5'  }}>
-              <div className="d-inline-flex w-100">
-                <p className="CollectionFilters__filter">{data__type}</p>
-                <Badge  className="CollectionFilters__filter_badge">{count}</Badge>
+          {dataTypes && dataTypes.map(({ count, data__type }) => {
+            const selected = typeof selectedDataTypes[data__type] !== 'undefined' || Object.keys(selectedDataTypes).length === 0
+            return (
+              <div key={data__type} onClick={() => onToggleDataType(data__type)}
+                style={{ opacity: selected ? '1' : '0.5'  }}>
+                <div className="d-inline-flex w-100">
+                  <p className="CollectionFilters__filter">{data__type}</p>
+                  <Badge  className="CollectionFilters__filter_badge">{count}</Badge>
+                </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
         <div style={{ padding: '10px' }}>
           <YearsRange

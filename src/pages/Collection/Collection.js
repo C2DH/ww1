@@ -131,10 +131,10 @@ class Collection extends PureComponent {
       filtersObject['data__type__in'] = types
     }
 
-    if (filterYears) {
-      filtersObject['data__year__gte'] = filterYears[0]
-      filtersObject['data__year__lt'] = filterYears[1]
-    }
+    // if (filterYears) {
+    //   filtersObject['data__year__gte'] = filterYears[0]
+    //   filtersObject['data__year__lt'] = filterYears[1]
+    // }
 
     return JSON.stringify(filtersObject)
   }
@@ -283,7 +283,7 @@ const parseFilterDataTypes = location => {
 const commaStrToList = memoize(str => {
   const l = filter(str.split(','))
   if (l.length !== 2) {
-    return [1914, 1920]
+    return [1914, 1921]
   }
   return l.map(l => +l)
 })
@@ -295,7 +295,7 @@ const parseFilterYears = location => {
 
 const parseFilterUncertain = location => {
   const params = qs.parse(qs.extract(location.search))
-  return !!parseInt(get(params, 'uncertainYears', 0))
+  return !!parseInt(get(params, 'uncertainYears', 1))
 }
 
 const mapStateToProps = (state, ownProps) => ({

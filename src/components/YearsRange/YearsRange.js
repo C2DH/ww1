@@ -82,6 +82,7 @@ class YearsRange extends PureComponent {
         </div>
         <div style={{ marginTop: '32px' }}>
           <input type='checkbox' onChange={() => onUncertainYearsChange(!uncertainYears)} checked={uncertainYears} />
+          {' '}
           <span className="YearsRange__Uncertain">{`Include ${2} items with uncertain dates`}</span>
         </div>
       </div>
