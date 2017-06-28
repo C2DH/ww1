@@ -42,6 +42,11 @@ class CollectionFilters extends PureComponent {
             )
           })}
         </div>
+        {/* <div className="CollectionFilters__reset_container">
+          <h5 className="CollectionFilters__reset_title">PERIOD</h5>
+          <a className="CollectionFilters__reset">Reset</a>
+        </div> */}
+
         <div style={{ padding: '10px' }}>
           <YearsRange
             uncertainYears={uncertainYears}

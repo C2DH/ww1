@@ -17,6 +17,22 @@
   flex-direction: column;
 }
 
+.TimelineExpandableYear__expandable i {
+  font-size: 14px;
+}
+
+.TimelineExpandableYear__month_marker_hand {
+  -ms-transform: rotate(90deg); /* IE 9 */
+  -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+  transform: rotate(90deg);
+  font-size: 18px!important;
+}
+
+.TimelineExpandableYear__month_marker_active {
+  font-size: 18px!important;
+  color:  #F36455;
+}
+
 @media (max-width: 767px) {
   .TimelineExpandableYear__container {
     border-left: 0.5px solid #DBDBD0;
@@ -24,16 +40,20 @@
     display: inline-flex;
     justify-content: center;
   }
+
   .TimelineExpandableYear__year {
     align-self: center;
   }
+
   .TimelineExpandableYear__month_marker {
     padding-left: 2px;
     padding-right: 2px;
   }
+
   .TimelineExpandableYear__expandable {
-    flex-direction: row;
+    /*flex-direction: row;
     padding-top: 2.5px;
-    padding-left: 3px;
+    padding-left: 3px;*/
+    display: none;
   }
 }

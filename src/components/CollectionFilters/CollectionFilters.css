@@ -55,6 +55,7 @@
   display: flex;
   padding: 10px;
   flex-direction: column;
+  border-bottom: 1px solid #DBDBD0;
 }
 
 .CollectionFilters__filter {
