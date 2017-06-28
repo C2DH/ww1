@@ -11,17 +11,31 @@ const Themes = () => (
     <Row>
       {/* <ThemesCard title="the occupation" /> */}
       <div className="Themes__theme_title_container">
-        <hr />
-        <h2 className="Themes__theme_title">The Occupation</h2>
-        <hr />
-        <h2 className="Themes__theme_title">Death on the home front</h2>
-        <hr />
-        <h2 className="Themes__theme_title">The food crisis</h2>
-        <hr />
-        <h2 className="Themes__theme_title">Death on the home front</h2>
-        <hr />
-        <h2 className="Themes__theme_title">The food crisis</h2>
-        <hr />
+        <div className="Themes__theme1_container">
+          <hr />
+          <h2 className="Themes__theme_title">The Occupation</h2>
+          <hr className="hidden-lg hidden-md hidden-sm" />
+        </div>
+        <div className="Themes__theme1_container">
+          <hr />
+          <h2 className="Themes__theme_title">Death on the home front</h2>
+          <hr className="hidden-lg hidden-md hidden-sm" />
+        </div>
+        <div className="Themes__theme1_container">
+          <hr />
+          <h2 className="Themes__theme_title">The food crisis</h2>
+          <hr className="hidden-lg hidden-md hidden-sm" />
+        </div>
+        <div className="Themes__theme1_container">
+          <hr />
+          <h2 className="Themes__theme_title">Death on the home front</h2>
+          <hr className="hidden-lg hidden-md hidden-sm" />
+        </div>
+        <div className="Themes__theme1_container">
+          <hr />
+          <h2 className="Themes__theme_title">The food crisis</h2>
+          <hr />
+        </div>
       </div>
     </Row>
   </Container>

@@ -23,11 +23,17 @@
   border-right: 0.5px solid #DBDBD0;
 }
 
+.Timeline__scrollingCol {
+  overflow-y: scroll;
+  height: calc(100vh - 100px);
+}
+
 @media (max-width: 767px) {
   .Timeline__yearsContainer {
     display: inline-flex;
     width: 100%;
     padding-left: 10%;
     padding-right: 10%;
+    padding-bottom: 10px;
   }
 }
