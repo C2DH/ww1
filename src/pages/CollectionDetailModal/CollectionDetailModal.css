@@ -33,3 +33,9 @@
 .CollectionDetailModal__close_btn span {
   font-size: 20px;
 }
+
+@media (max-width: 767px) {
+  .CollectionDetailModal__container {
+    left: 0px;
+  }
+}

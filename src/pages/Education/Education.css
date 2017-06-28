@@ -42,7 +42,7 @@
 }
 
 .Education__Card-container {
-  display: inline-flex;
+  overflow: auto;
 }
 
 .Education__OtherTeachersRow {
@@ -72,4 +72,19 @@
   border-color: transparent;
   text-transform: uppercase;
   background-color: #fff;
+}
+
+@media (max-width: 767px) {
+  .Education__leftCol,
+  .Education__rightCol {
+    padding-right: 20px;
+  }
+  .Education__rightCol {
+    padding-left: 20px;
+    border-left: 0px;
+  }
+  .Education__TwoColRow h6 {
+    min-height: 50px;
+    padding-top: 10px;
+  }
 }

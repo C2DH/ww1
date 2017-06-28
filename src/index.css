@@ -50,9 +50,8 @@ textarea:focus, input:focus{
 }
 
 .list-heading h2 {
-  margin-left: 70px;
-  position: relative;
-  top: 30%;
+  margin-left: 20px;
+  padding-top: 30px;
 }
 
 .list-heading-closed {
