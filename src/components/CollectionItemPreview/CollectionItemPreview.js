@@ -8,18 +8,15 @@ import CollectionItemPreviewAudio from './CollectionItemPreviewAudio'
 export default class CollectionItemPreview extends React.PureComponent {
   render() {
     const { doc } = this.props
-    switch (doc.type) {
-      case 'image':
-        return (<CollectionItemPreviewImage doc={doc}/>)
-        case 'pdf':
-          return (<CollectionItemPreviewPDF doc={doc}/>)
-        case 'video':
-          return (<CollectionItemPreviewVideo doc={doc}/>)
-        case 'audio':
-          return (<CollectionItemPreviewAudio doc={doc}/>)
-      default:
-        return (<CollectionItemPreviewDefault doc={doc}/>)
+    if (doc.type == 'image' || doc.data.type == 'image') {
+      return (<CollectionItemPreviewImage doc={doc}/>)
+    } else if (doc.data.type === 'pdf' || (typeof(doc.src)=='string' && doc.src.endsWith('.pdf'))){
+      return (<CollectionItemPreviewPDF doc={doc}/>)
+    } else if (doc.data.type === 'video'){
+      return (<CollectionItemPreviewVideo doc={doc}/>)
+    } else if (doc.data.type === 'audio'){
+      return (<CollectionItemPreviewAudio doc={doc}/>)
     }
-
+    return (<CollectionItemPreviewDefault doc={doc}/>)
   }
 }
