@@ -85,35 +85,17 @@ class Collection extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps){
-    if (nextProps.searchString !== this.props.searchString) {
+    if (
+      nextProps.searchString !== this.props.searchString ||
+      nextProps.filterDataTypes !== this.props.filterDataTypes ||
+      nextProps.filterYears !== this.props.filterYears
+    ) {
       this.props.unloadDocuments()
       this.props.loadDocuments({
         q: nextProps.searchString,
         exclude: this.getExclude(),
         filters: this.getFilters({
-          filterDataTypes: this.props.filterDataTypes,
-          filterYears: this.props.filterYears,
-        })
-      })
-    }
-    if (nextProps.filterDataTypes !== this.props.filterDataTypes) {
-      this.props.unloadDocuments()
-      this.props.loadDocuments({
-        q: this.props.searchString,
-        exclude: this.getExclude(),
-        filters: this.getFilters({
           filterDataTypes: nextProps.filterDataTypes,
-          filterYears: this.props.filterYears,
-        })
-      })
-    }
-    if (nextProps.filterYears !== this.props.filterYears) {
-      this.props.unloadDocuments()
-      this.props.loadDocuments({
-        q: this.props.searchString,
-        exclude: this.getExclude(),
-        filters: this.getFilters({
-          filterDataTypes: this.props.filterDataTypes,
           filterYears: nextProps.filterYears,
         })
       })
