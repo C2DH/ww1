@@ -1,0 +1,71 @@
+.Manual__title_container {
+  background-color: #fff;
+  padding: 30px;
+  padding-left: 20px;
+}
+
+.Manual__TitleRow {
+  margin-top: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #DBDBD0;
+  display: flex;
+  flex-direction: column;
+}
+
+.Manual__middleRow {
+  margin-top: 30px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #DBDBD0;
+  margin-bottom: 30px;
+}
+
+.Education__leftCol,
+.Education__rightCol {
+  padding-right: 80px;
+}
+
+.Education__rightCol {
+  padding-left: 40px;
+  border-left: 1px solid #DBDBD0;
+}
+
+.Education__footerRow {
+  background-color: #F36455;
+  color: #fff;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-left: -55px;
+  margin-right: -55px;
+}
+
+.Education__footerRow h5 {
+  font-weight: normal;
+  padding-left: 50px;
+  padding-top: 10px;
+}
+
+.Education__footerBtn {
+  padding: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 30px;
+  border-color: transparent;
+  text-transform: uppercase;
+  background-color: #fff;
+}
+
+
+@media (max-width: 767px) {
+  .Education__leftCol,
+  .Education__rightCol {
+    padding-right: 20px;
+  }
+  .Education__rightCol {
+    padding-left: 20px;
+    border-left: 0px;
+  }
+  .Education__TwoColRow h6 {
+    min-height: 50px;
+    padding-top: 10px;
+  }
+}

@@ -3,12 +3,13 @@ import {  Container, Row, Col } from 'reactstrap'
 import ManualCard from '../../components/ManualCard'
 import OtherTeachersCard from '../../components/OtherTeachersCard'
 import BigTitle from '../../components/BigTitle'
+import EducationFooter from '../../components/EducationFooter'
 import './Education.css'
 
 const Education = () => (
   <Container fluid className="padding-r-l-0">
     <BigTitle title="Education" />
-    <div className="Education__whiteBackground">
+    <div className="whitebackground-container">
       <Row className="Education__TwoColRow">
         <Col md="6" className="Education__leftCol">
           <h6>Introduction and pedagogical approach</h6>
@@ -22,15 +23,15 @@ const Education = () => (
     </div>
     <div className="padding-left-30">
       <Row className="Education__ManualsRow">
-        <Col md="12">
+        <Col md="12" sm="12" xs="12">
           <h6>Pedagogical manuals</h6>
+        </Col>
+        <Col md="12" sm="12" xs="12" className="overflow-y">
           <div className="Education__Card-container">
-            <div style={{overflow: 'auto'}}>
-              <ManualCard />
-              <ManualCard />
-              <ManualCard />
-              <ManualCard />
-            </div>
+            <ManualCard />
+            <ManualCard />
+            <ManualCard />
+            <ManualCard />
           </div>
         </Col>
       </Row>
@@ -43,14 +44,7 @@ const Education = () => (
           </div>
         </Col>
       </Row>
-      <Row className="Education__footerRow">
-        <Col md="10">
-          <h5>Did you use our manuals? Tell us more!</h5>
-        </Col>
-        <Col md="2">
-          <button className="Education__footerBtn">submit</button>
-        </Col>
-      </Row>
+      <EducationFooter />
     </div>
   </Container>
 

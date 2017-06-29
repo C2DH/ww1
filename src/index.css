@@ -37,6 +37,10 @@ textarea:focus, input:focus{
   padding-left: 30px;
 }
 
+.overflow-y {
+  overflow-y: auto!important;
+}
+
 /* common styles for theme */
 .list-heading {
   height: 100px;
@@ -56,4 +60,16 @@ textarea:focus, input:focus{
 
 .list-heading-closed {
   right: 20%;
+}
+
+.whitebackground-container {
+  background-color: #fff;
+  padding: 20px;
+  padding-left: 30px;
+  padding-top: 0px;
+}
+
+.red-subtitle {
+  color: #F36455;
+  text-transform: uppercase;
 }
