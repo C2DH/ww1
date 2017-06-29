@@ -21,7 +21,7 @@
     right: 0;
     height: 100vh;
     width: 100%;
-    z-index: 999;
+    z-index: 9999;
     margin: auto;
     margin-top: 60px;
   }
