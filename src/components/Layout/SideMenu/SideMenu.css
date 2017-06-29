@@ -113,7 +113,7 @@
   }
   .SideMenu__langBtn,
   .SideMenu__menuBtn-text {
-    display: none;
+    display: none!important;
   }
   .SideMenu__icon {
     color: #F36455;
