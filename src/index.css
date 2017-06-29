@@ -1,3 +1,95 @@
+/* fonts */
+@font-face {
+  font-family: 'Atlas Grotesk Web';
+  src: url('/fonts/AtlasGrotesk-MediumItalic-Web.eot');
+  src: url('/fonts/AtlasGrotesk-MediumItalic-Web.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/AtlasGrotesk-MediumItalic-Web.woff2') format('woff2'),
+       url('/fonts/AtlasGrotesk-MediumItalic-Web.woff') format('woff');
+  font-weight:  500;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.AtlasGrotesk-MediumItalic-Web {
+  font-family: 'Atlas Grotesk Web';
+  font-weight:  500;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Atlas Grotesk Web';
+  src: url('/fonts/AtlasGrotesk-Medium-Web.eot');
+  src: url('/fonts/AtlasGrotesk-Medium-Web.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/AtlasGrotesk-Medium-Web.woff2') format('woff2'),
+       url('/fonts/AtlasGrotesk-Medium-Web.woff') format('woff');
+  font-weight:  500;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.AtlasGrotesk-Medium-Web {
+  font-family: 'Atlas Grotesk Web';
+  font-weight:  500;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Atlas Grotesk Web';
+  src: url('/fonts/AtlasGrotesk-RegularItalic-Web.eot');
+  src: url('/fonts/AtlasGrotesk-RegularItalic-Web.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/AtlasGrotesk-RegularItalic-Web.woff2') format('woff2'),
+       url('/fonts/AtlasGrotesk-RegularItalic-Web.woff') format('woff');
+  font-weight:  400;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.AtlasGrotesk-RegularItalic-Web {
+  font-family: 'Atlas Grotesk Web';
+  font-weight:  400;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Atlas Grotesk Web';
+  src: url('/fonts/AtlasGrotesk-Regular-Web.eot');
+  src: url('/fonts/AtlasGrotesk-Regular-Web.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/AtlasGrotesk-Regular-Web.woff2') format('woff2'),
+       url('/fonts/AtlasGrotesk-Regular-Web.woff') format('woff');
+  font-weight:  400;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.AtlasGrotesk-Regular-Web {
+  font-family: 'Atlas Grotesk Web';
+  font-weight:  400;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+@font-face {
+    font-family: 'Behrens Antiqua';
+    src: url('/fonts/solotype_-_behrens_antiqua_normal-webfont.woff2') format('woff2'),
+         url('/fonts/solotype_-_behrens_antiqua_normal-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+.BehrensAntiqua {
+  font-family: 'Behrens antiqua';
+  font-weight:  normal;
+  font-style:   normal;
+}
+
+/* overall style */
 body {
   margin: 0;
   padding: 0;
