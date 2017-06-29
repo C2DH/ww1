@@ -26,7 +26,7 @@ render () {
             <h2 className="TimelineExpandableItem__title">{this.props.item.title}</h2>
           </div>
           <div className="TimelineExpandableItem__btn_container">
-            <button onClick={this.toggleExpand} className="TimelineExpandableItem__btn" key="button">
+            <button onClick={this.toggleExpand} className="expandableItem__btn" key="button">
               {this.state.open ? <i className="icon-remove" /> : <i className="icon-add" />}
             </button>
           </div>
