@@ -1,7 +1,16 @@
 import React from 'react'
 import { Container, Row } from 'reactstrap';
-// import ThemesCard from '../../components/ThemesCard'
 import './Themes.css'
+
+const ThemesTitles = ["The Occupation", "Death on the home front", "The food crisis", "Migrations", "The aftermath"]
+
+const ThemeContainer = (props) => (
+  <div className="Themes__theme_container">
+    <hr />
+    <h2 className="Themes__theme_title">{props.title}</h2>
+    <hr className="hidden-md-up" />
+  </div>
+)
 
 const Themes = () => (
   <Container fluid className="padding-r-l-0 Themes__container">
@@ -9,33 +18,12 @@ const Themes = () => (
       <h1>Themes</h1>
     </Row>
     <Row>
-      {/* <ThemesCard title="the occupation" /> */}
+
       <div className="Themes__theme_title_container">
-        <div className="Themes__theme1_container">
-          <hr />
-          <h2 className="Themes__theme_title">The Occupation</h2>
-          <hr className="hidden-lg hidden-md hidden-sm" />
-        </div>
-        <div className="Themes__theme1_container">
-          <hr />
-          <h2 className="Themes__theme_title">Death on the home front</h2>
-          <hr className="hidden-lg hidden-md hidden-sm" />
-        </div>
-        <div className="Themes__theme1_container">
-          <hr />
-          <h2 className="Themes__theme_title">The food crisis</h2>
-          <hr className="hidden-lg hidden-md hidden-sm" />
-        </div>
-        <div className="Themes__theme1_container">
-          <hr />
-          <h2 className="Themes__theme_title">Death on the home front</h2>
-          <hr className="hidden-lg hidden-md hidden-sm" />
-        </div>
-        <div className="Themes__theme1_container">
-          <hr />
-          <h2 className="Themes__theme_title">The food crisis</h2>
-          <hr />
-        </div>
+        {ThemesTitles.map(themetitle =>(
+          <ThemeContainer key={themetitle.id} title={themetitle} />
+        ))}
+        <hr className="hidden-md-down" />
       </div>
     </Row>
   </Container>

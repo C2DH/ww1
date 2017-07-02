@@ -29,6 +29,10 @@ class SideMenu extends PureComponent {
        <button className="SideMenu__menuBtn" onClick={this.toggleMenu} key="button">
          {this.state.open ? <div><i className="icon-close" /><p className="SideMenu__menuBtn-text">close</p></div> : <div><i className="icon-dehaze SideMenu__icon" /><p className="SideMenu__menuBtn-text">Menu</p></div>}
        </button>
+       <div className={this.state.open ? `SideMenu__vertical_title_container` : `SideMenu__vertical_title_container_close`}>
+         <p className="SideMenu__vertical_title">ÉISCHTE WELTKRICH</p>
+         <button className="SideMenu__langBtn">EN</button>
+       </div>
      </div>
      {this.state.open ? <OpenSideMenu key="close" closeMenu={this.toggleMenu} key="opensidemenu"/> : null}
     </CSSTransitionGroup>

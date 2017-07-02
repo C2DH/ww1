@@ -1,0 +1,24 @@
+.EducationFooter__row {
+  background-color: #F36455;
+  color: #fff;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-left: -55px;
+  margin-right: -55px;
+}
+
+.EducationFooter__row h5 {
+  font-weight: normal;
+  padding-left: 50px;
+  padding-top: 10px;
+}
+
+.EducationFooter__Btn {
+  padding: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 30px;
+  border-color: transparent;
+  text-transform: uppercase;
+  background-color: #fff;
+}

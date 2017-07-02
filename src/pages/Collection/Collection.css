@@ -7,8 +7,7 @@
 
 .Collection__List--sidebar-open h2 {
   margin-left: 70px;
-  position: relative;
-  top: 30%;
+  padding-top: 30px;
 }
 
 .Collection__items_shown {
@@ -26,4 +25,10 @@
 .Collection__open_heading_btn i {
   font-size: 18px;
   font-weight: bold;
+}
+
+@media (max-width: 767px) {
+  .Collection__List--sidebar-open h2 {
+    margin-left: 20px!important;
+  }
 }

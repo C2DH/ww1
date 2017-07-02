@@ -6,8 +6,7 @@
 
 .Timeline__TopRow h2 {
   margin-left: 70px;
-  position: relative;
-  top: 30%;
+  padding-top: 30px;
 }
 
 .Timeline__TimelineNav {
