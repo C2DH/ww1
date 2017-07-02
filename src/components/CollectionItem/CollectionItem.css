@@ -16,6 +16,7 @@
 
 .CollectionItem__doc_container {
   height: 100vh;
+
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -36,10 +37,13 @@
 
 .CollectionItem__doc_preview{
   flex-grow: 1;
+  max-height: 80%;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
 }
 
 .CollectionItem__info_container {
