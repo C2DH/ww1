@@ -34,12 +34,12 @@ class Home extends React.Component {
     const { backgroundClass } = this.state;
     return (
       <div className={`Home__background ${backgroundClass}`}>
-      <Container className="Home__container">
+      <Container className="Home__container d-flex flex-column">
         <div className="Home__MainRow">
         <Row>
           <Col md="1" sm="1" xs="1" className="Home__MainRow-yearsCol"><h3>1914</h3></Col>
           <Col md="10" sm="10"  xs="10">
-            <h1 className="Home__title BehrensAntiqua">ÉISCHTE WELTKRICH</h1>
+            <h1 className="Home__title BehrensAntiqua fadeInUp animated">ÉISCHTE WELTKRICH</h1>
             <h4 className="Home__subtitle">Remembering the Great War in Luxembourg</h4>
           </Col>
           <Col md="1" sm="1"  xs="1" className="Home__MainRow-yearsCol"><h3>1918</h3></Col>
