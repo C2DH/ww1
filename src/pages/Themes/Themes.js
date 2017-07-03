@@ -1,32 +1,99 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 import { Container, Row } from 'reactstrap';
 import './Themes.css'
 
-const ThemesTitles = ["The Occupation", "Death on the home front", "The food crisis", "Migrations", "The aftermath"]
+const THEMES = [
+  {
+    id: 1,
+    title: "The Occupation",
+    cover: 'https://upload.wikimedia.org/wikipedia/commons/9/96/Approaching_Omaha.jpg'
+  },
+  {
+    id: 2,
+    title: "Death on the home front",
+    cover: 'https://tesisecondaguerramondiale.files.wordpress.com/2013/06/russian-front-eastern-front-ww2-second-world-war-two-rare-pics-pictures-images-photos-005.jpg',
+  },
+  {
+    id: 3,
+    title: "The food crisis",
+    cover: 'http://www.xsjjys.com/data/out/282/WHDQ-514151224.jpg',
+  },
+  {
+    id: 4,
+    title: "Migrations",
+    cover: 'http://i2.cdn.cnn.com/cnnnext/dam/assets/140828132527-03-world-war-ii-horizontal-large-gallery.jpg',
+  },
+  {
+    id: 5,
+    title: "The aftermath",
+    cover: 'https://polishpress.files.wordpress.com/2008/01/old_town_warsaw_waf-2012-1501-311945.jpg',
+  }
+]
 
-const ThemeContainer = (props) => (
-  <div className="Themes__theme_container">
-    <hr />
-    <h2 className="Themes__theme_title">{props.title}</h2>
-    <hr className="hidden-md-up" />
-  </div>
-)
+class ThemeContainer extends PureComponent {
+  handleOnMouseEnter = () => {
+    this.props.onEnterTheme(this.props.theme)
+  }
+  handleOnMouseLeave = () => {
+    this.props.onLeaveTheme(this.props.theme)
+  }
 
-const Themes = () => (
-  <Container fluid className="padding-r-l-0 Themes__container">
-    <Row className="Themes__TitleRow">
-      <h1>Themes</h1>
-    </Row>
-    <Row>
-
-      <div className="Themes__theme_title_container">
-        {ThemesTitles.map(themetitle =>(
-          <ThemeContainer key={themetitle.id} title={themetitle} />
-        ))}
-        <hr className="hidden-md-down" />
+  render() {
+    const { theme, hover } = this.props
+    return (
+      <div className="Themes__theme_container">
+        <hr />
+        <h2 className="Themes__theme_title">
+          <span
+          onMouseEnter={this.handleOnMouseEnter}
+          onMouseLeave={this.handleOnMouseLeave}>
+            {hover ? '>' : ''}{theme.title}</span></h2>
+        <hr className="hidden-md-up" />
       </div>
-    </Row>
-  </Container>
-)
+    )
+
+  }
+}
+
+class Themes extends PureComponent {
+  state = {
+    hoverTheme: null,
+  }
+
+  handleOnEnterTheme = (theme) => {
+    this.setState({ hoverTheme: theme })
+  }
+
+  handleOnLeaveTheme = (theme) => {
+    this.setState({ hoverTheme: null })
+  }
+
+  render () {
+    const { hoverTheme } = this.state
+    return (
+      <Container fluid className="padding-r-l-0 Themes__container"
+        style={{ background: hoverTheme ? `url(${hoverTheme.cover})` : undefined }}>
+        <Row className="Themes__TitleRow">
+          <h1>Themes</h1>
+        </Row>
+        <Row>
+
+          <div className="Themes__theme_title_container">
+            {THEMES.map(theme =>(
+              <ThemeContainer
+                key={theme.id}
+                theme={theme}
+                hover={hoverTheme && theme.id === hoverTheme.id}
+                onEnterTheme={this.handleOnEnterTheme}
+                onLeaveTheme={this.handleOnLeaveTheme}
+              />
+            ))}
+            <hr className="hidden-md-down" />
+          </div>
+        </Row>
+      </Container>
+    )
+  }
+}
 
 export default Themes

@@ -96,7 +96,6 @@ class Collection extends PureComponent {
     if (!filterUncertainYears) {
       applyFilters.data__year__isnull = false
     }
-    console.info(applyFilters)
 
     return {
       q: searchString,
@@ -168,10 +167,6 @@ class Collection extends PureComponent {
       yearsFilteredFacets,
       uncertainYears,
     } = this.props
-
-    // console.info({
-    //   filterUncertainYears,
-    // })
 
     return (
       <div>
