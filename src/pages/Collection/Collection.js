@@ -87,14 +87,16 @@ class Collection extends PureComponent {
   getDocsParams = (filters = {}) => {
     const { searchString, filterDataTypes, filterYears, filterUncertainYears } = this.getFilters(filters)
     const makeOverlaps = y => y ? `${y[0]}-01-01,${y[1]}-12-31` : undefined
+    const filterDataTypesList = keys(filterDataTypes)
 
     const applyFilters = {}
-    if (filterDataTypes.length) {
-      applyFilters.data__type__in = filterDataTypes
+    if (filterDataTypesList.length) {
+      applyFilters.data__type__in = filterDataTypesList
     }
     if (!filterUncertainYears) {
       applyFilters.data__year__isnull = false
     }
+    console.info(applyFilters)
 
     return {
       q: searchString,
