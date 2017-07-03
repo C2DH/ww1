@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { Container, Row, Col, Label } from 'reactstrap'
 import EventDate from '../../components/EventDate'
 import moment from 'moment'
@@ -13,21 +13,41 @@ const EXAMPLE_METADATA = {
 }
 
 
-const AdditionalInformation = ({metadata}) => {
+class AdditionalInformation extends PureComponent {
 
+  state = {
+    open:false
+  }
+
+  toggleInfo = () => {
+    this.setState({
+      open: !this.state.open
+    })
+  }
+
+  render() {
+  const {metadata} = this.props
   const metadataKeys = keys(metadata);
 
   return (
     <div>
-    { metadataKeys.map(k => (
-      <p key={k}>
-        <b>{capitalize(k.split("_").join(" "))}:</b> {metadata[k]}
-      </p>
+      <Label className="CollectionItem__label CollectionItem__additional_info">
+        ADDITIONAL INFORMATION
+        <button onClick={this.toggleInfo}><i className={this.state.open ? `fa fa-angle-up` : `fa fa-angle-down`} /></button>
+      </Label>
+      <hr className="CollectionItem__Relatedobjects_divider mt-0" />
+      {this.state.open ? <div>
+      { metadataKeys.map(k => (
+        <p key={k} className="CollectionItem__AdditionalInformation_text">
+          <b>{capitalize(k.split("_").join(" "))}:</b> <i>{metadata[k]}</i>
+        </p>
 
-    ))}
+      ))}
+    </div> : null}
     </div>
 
   )
+ }
 }
 
 
@@ -111,8 +131,6 @@ export default ({doc}) => {
                 <RelatedObjects items={get(doc, "documents")}/>
               )}
               <SeeAlso doc={doc}/>
-              <Label className="CollectionItem__label CollectionItem__additional_info">ADDITIONAL INFORMATION <button><i className="fa fa-angle-down" /></button></Label>
-              <hr className="CollectionItem__Relatedobjects_divider mt-0" />
               <AdditionalInformation metadata={EXAMPLE_METADATA}/>
 
             </Col>

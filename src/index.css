@@ -37,6 +37,14 @@ textarea:focus, input:focus{
   padding-left: 30px;
 }
 
+.overflow-y {
+  overflow-y: auto!important;
+}
+
+.shadow {
+  box-shadow: 2px 2px 8px 0 rgba(0,0,0,0.5);
+}
+
 /* common styles for theme */
 .list-heading {
   height: 100px;
@@ -50,11 +58,39 @@ textarea:focus, input:focus{
 }
 
 .list-heading h2 {
-  margin-left: 70px;
-  position: relative;
-  top: 30%;
+  margin-left: 20px;
+  padding-top: 30px;
 }
 
 .list-heading-closed {
   right: 20%;
+}
+
+/* common styles for education & manual pages */
+.whitebackground-container {
+  background-color: #fff;
+  padding: 20px;
+  padding-left: 30px;
+  padding-top: 0px;
+}
+
+.red-subtitle {
+  color: #F36455;
+  text-transform: uppercase;
+}
+
+.expandableItem__btn {
+  margin-left: auto;
+  border-radius: 100%;
+  border: 0.5px solid #DBDBD0;
+  padding: 4px;
+  width: 40px;
+  background-color: #fff;
+  font-size: 22px;
+  height: 40px;
+}
+
+.expandableItem__btn:hover {
+  background-color: #333;
+  color: #fff;
 }

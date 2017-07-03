@@ -1,21 +1,3 @@
-.Education__whiteBackground {
-  background-color: #fff;
-  padding: 20px;
-  padding-left: 30px;
-  padding-top: 0px;
-}
-
-/*.Education__TitleRow {
-  margin-top: 40px;
-  margin-bottom: 40px;
-  padding-bottom: 40px;
-  border-bottom: 1px solid #DBDBD0;
-}
-
-.Education__TitleRow h1 {
-  font-size: 4.5em;
-}*/
-
 .Education__OtherTeachersRow h6,
 .Education__ManualsRow h6,
 .Education__TwoColRow h6 {
@@ -42,6 +24,7 @@
 }
 
 .Education__Card-container {
+  overflow: auto;
   display: inline-flex;
 }
 
@@ -49,27 +32,17 @@
   padding-bottom: 40px;
 }
 
-.Education__footerRow {
-  background-color: #F36455;
-  color: #fff;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  margin-left: -55px;
-  margin-right: -55px;
-}
-
-.Education__footerRow h5 {
-  font-weight: normal;
-  padding-left: 50px;
-  padding-top: 10px;
-}
-
-.Education__footerBtn {
-  padding: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  border-radius: 30px;
-  border-color: transparent;
-  text-transform: uppercase;
-  background-color: #fff;
+@media (max-width: 767px) {
+  .Education__leftCol,
+  .Education__rightCol {
+    padding-right: 20px;
+  }
+  .Education__rightCol {
+    padding-left: 20px;
+    border-left: 0px;
+  }
+  .Education__TwoColRow h6 {
+    min-height: 50px;
+    padding-top: 10px;
+  }
 }

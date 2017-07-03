@@ -1,5 +1,6 @@
-.TimelineExpandableItem__containerClose {
+.ManualExpandableItem__containerClose {
   margin: 10px;
+  margin-left: 0px;
   width: initial!important;
   margin-right: 10px!important;
   background-color: #fff;
@@ -8,8 +9,9 @@
   border: 1px solid #DBDBD0;
 }
 
-.TimelineExpandableItem__containerOpen {
+.ManualExpandableItem__containerOpen {
   margin: 10px;
+  margin-left: 0px;
   width: initial!important;
   margin-right: 10px!important;
   background-color: #fff;
@@ -17,26 +19,20 @@
   border: 1px solid #DBDBD0;
 }
 
-.TimelineExpandableItem__title {
-  color:#F36455;
-  font-size: 2em;
-}
-
-.TimelineExpandableItem__titleContainerOpen {
+.ManualExpandableItem__titleContainerOpen {
   margin-bottom: 20px;
 }
 
-.TimelineExpandableItem__flex_container {
-  display: inline-flex;
-  width: 100%;
+.ManualExpandableItem__btn_container,
+.ManualExpandableItem__num_container {
+  min-width: 100px;
 }
 
-.TimelineExpandableItem__btn_container,
-.TimelineExpandableItem__date_container {
-  min-width: 130px;
+.ManualExpandableItem__num_container h3 {
+  color:#F36455;
 }
 
-.TimelineExpandableItem__btn_container {
+.ManualExpandableItem__btn_container {
   margin-left: auto;
   display: flex;
 }

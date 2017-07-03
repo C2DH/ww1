@@ -13,3 +13,22 @@
 .BigTitle__title {
   font-size: 4.5em;
 }
+
+@media (max-width: 767px) {
+  .BigTitle__container {
+    padding: 10px;
+    padding-left: 50px;
+  }
+  .BigTitle__TitleRow {
+    margin-top: 0px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #DBDBD0;
+    margin-left: -58px;
+    padding-left: 58px;
+  }
+  .BigTitle__title {
+    font-size: 2rem;
+    padding-left: 30px;
+    padding-top: 20px;
+  }
+}

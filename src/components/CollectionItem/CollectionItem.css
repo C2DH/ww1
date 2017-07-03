@@ -16,6 +16,7 @@
 
 .CollectionItem__doc_container {
   height: 100vh;
+
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -36,10 +37,13 @@
 
 .CollectionItem__doc_preview{
   flex-grow: 1;
+  max-height: 80%;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
 }
 
 .CollectionItem__info_container {
@@ -110,6 +114,9 @@
   border: 0px;
   margin-left: auto;
   height: 21px;
+  font-size: 18px;
+  position: relative;
+  bottom: 5px;
 }
 
 
@@ -143,4 +150,11 @@
   margin-right: 10px;
   border: 0px;
   border-radius: 100%;
+}
+
+.CollectionItem__AdditionalInformation_text {
+  color: #C2C1C3;
+  font-size: 12px;
+  font-weight: 200;
+  margin-bottom: 2.5px;
 }
