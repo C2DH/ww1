@@ -17,15 +17,19 @@ const Month = ({ month, open }) => {
 
 class TimelineExpandableYear extends PureComponent {
 
+  onYearClick = () => {
+    this.props.onYearClick(this.props.year)
+  }
+
    render() {
-    const {year, openMonth, month} = this.props
+    const { year, openMonth } = this.props
     return (
-      <div onClick={this.toggleExpand} className="TimelineExpandableYear__container">
+      <div onClick={this.onYearClick} className="TimelineExpandableYear__container">
         <span className={this.props.open ? "TimelineExpandableYear__year" : null}>{year}</span>
         {this.props.open ?
           <div className="TimelineExpandableYear__expandable">
             {months.map(month =>(
-              <Month key={month.id} open={month === openMonth} />
+              <Month key={month} open={month === openMonth} />
             ))}
           </div>
          : null}

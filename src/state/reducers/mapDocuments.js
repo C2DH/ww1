@@ -1,5 +1,4 @@
-import paginateCollection from './hoc/paginateCollection'
+import makeDocuments from './hor/documents'
 import { GET_MAP_DOCUMENTS } from '../actions'
 
-
-export default paginateCollection(GET_MAP_DOCUMENTS)
+export default makeDocuments(GET_MAP_DOCUMENTS)

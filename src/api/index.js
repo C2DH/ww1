@@ -6,26 +6,46 @@ const API_URL = '/api'
 // headers and so on are useless
 const extractBody = ({ body }) => body
 
+const buildMillerParams = (params) => {
+  let newParams = params
+
+  if (newParams.filters && typeof newParams.filters !== 'string') {
+    newParams = { ...newParams, filters: JSON.stringify(newParams.filters) }
+  }
+
+  if (newParams.exclude && typeof newParams.exclude !== 'string') {
+    newParams = { ...newParams, exclude: JSON.stringify(newParams.exclude) }
+  }
+
+  return newParams
+}
+
 export const getDocuments = (params = {}) =>
-  request.get(`${API_URL}/document`)
-    .query(params)
+  request.get(`${API_URL}/document/`)
+    .query(buildMillerParams(params))
     .then(extractBody)
 
-export const getMapDocuments = (params = {}) =>
-  getDocuments({
-    filters: JSON.stringify({
-      'data__coordinates__isnull': false,
-      ...params.filters
-    }),
-    ...params,
-  })
+export const getCollectionDocuments = (params = {}) => getDocuments({
+  exclude: { data__type__in: ['person', 'event', 'glossary', 'place'] },
+  ...params,
+})
 
-export const getTimelineDocuments = () =>
-  getDocuments({
-    filters: JSON.stringify({
-      'data__type': 'event',
-    }),
-  })
+export const getMapDocuments = (params = {}) => getDocuments({
+  filters: {
+    data__coordinates__isnull: false,
+    ...params.filters,
+  },
+  ...params,
+})
+
+export const getTimelineDocuments = (params = {}) => getDocuments({
+  filters: {
+    data__type: 'event',
+    ...params.filters,
+  },
+  orderby: 'data__date',
+  ...params,
+})
 
 export const getDocument = (id) =>
   request.get(`${API_URL}/document/${id}`)

@@ -1,8 +1,13 @@
-import { GET_DOCUMENT_LOADING, GET_DOCUMENT_SUCCESS, GET_DOCUMENT_FAILURE, GET_DOCUMENT_UNLOAD } from '../actions'
+import {
+  GET_DOCUMENT_LOADING,
+  GET_DOCUMENT_SUCCESS,
+  GET_DOCUMENT_FAILURE,
+  GET_DOCUMENT_UNLOAD,
+} from '../actions'
 
 const defaultState = {
-  loading : false,
-  error : null,
+  loading: false,
+  error: null,
   data: null,
 }
 
@@ -22,6 +27,5 @@ export default (prevState=defaultState, { type, payload, error }) => {
 
     default:
       return prevState
-
   }
 }

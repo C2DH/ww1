@@ -1,3 +1,4 @@
+import ReactDOM from 'react-dom'
 import React, { PureComponent } from 'react'
 import { Container } from 'reactstrap';
 import './TimelineExpandableItem.css'
@@ -14,6 +15,14 @@ class TimelineExpandableItem extends PureComponent {
       })
     }
 
+    componentDidUpdate() {
+      if (this.props.scrollTo) {
+        const node = ReactDOM.findDOMNode(this)
+        node.scrollIntoView()
+        this.props.onScrollComplete()
+      }
+    }
+
 render () {
 
   return (
@@ -23,7 +32,10 @@ render () {
             <p>{this.props.item.date}</p>
           </div>
           <div className={this.state.open ? "TimelineExpandableItem__titleContainerOpen" : null}>
-            <h2 className="TimelineExpandableItem__title">{this.props.item.title}</h2>
+            <h2 className="TimelineExpandableItem__title">
+              {this.props.item.translated.date}{' '}
+              {this.props.item.title}
+            </h2>
           </div>
           <div className="TimelineExpandableItem__btn_container">
             <button onClick={this.toggleExpand} className="expandableItem__btn" key="button">
