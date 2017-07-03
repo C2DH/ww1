@@ -79,6 +79,8 @@
   align-self: center;
   position: relative;
   bottom: 70px;
+  font-family: 'Behrens antiqua', Georgia, serif;
+  letter-spacing: 3px;
 }
 
 .SideMenu__langBtn {
@@ -91,7 +93,9 @@
   position: absolute;
   bottom: 20px;
   color: #fff;
-  border-bottom: 1px solid #D96558;
+  border-bottom: 2px solid #F56350;
+  font-family: 'Atlas Grotesk Web', Arial, sans-serif;
+  font-weight: 500;
 }
 
 @media (max-width: 767px) {

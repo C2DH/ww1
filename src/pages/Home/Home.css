@@ -1,8 +1,5 @@
 .Home__container{
-  /*display: flex;
-  flex-direction: column;*/
   height: 100vh;
-
 }
 
 .Home__background{
@@ -10,46 +7,60 @@
   background-size: cover;
 }
 .Home__background--slide1{
-  background-image: url(https://images.pexels.com/photos/199106/pexels-photo-199106.jpeg?w=940&h=650&auto=compress&cs=tinysrgb);
+  background-image:
+    /*linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),*/
+    url(/home_bkg/background_1.jpg);
+
 }
 
 .Home__background--slide2{
-  background-image: url(https://images.pexels.com/photos/28452/pexels-photo-28452.jpg?w=940&h=650&auto=compress&cs=tinysrgb);
+  background-image:
+    /*linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),*/
+    url(/home_bkg/background_2.jpg);
 }
 
 .Home__background--slide3{
-  background-image: url(https://images.pexels.com/photos/230659/pexels-photo-230659.jpeg?h=350&auto=compress&cs=tinysrgb);
+  background-image:
+    /*linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),*/
+    url(/home_bkg/background_3.jpg);
 }
 
 .Home__MainRow {
   text-align: center;
   border-bottom: 1px solid #fff;
   color: #fff;
-  flex: 4;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-grow: 1;
 }
 
 .Home__title {
-  font-size: 4.5em;
+  font-size: 5.5rem;
+  font-family: 'Behrens antiqua', Georgia, serif;
+  letter-spacing: 5px;
+}
+
+.Home__subtitle {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 1.7rem;
 }
 
 .Home__MainRow-yearsCol {
   text-align: center;
-  color: #fff;
+  margin-top: 12px;
 }
 
 .Home__MainRow-yearsCol h3 {
-  color: #F36455;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  color: #F56350;
+  padding: 5px 0px 15px 0px;
   border-top: 0.5px solid #fff;
   border-bottom: 0.5px solid #fff;
+  font-family: 'Vinter Web',Georgia, serif;
+  font-style: italic;
+  font-size: 2.4rem;
 }
 
 .Home__NavigationRow {
-  flex: 1;
+  flex-grow: 0;
   text-align: center;
   padding-top: 30px;
   margin-bottom: 30px;
@@ -57,8 +68,13 @@
 
 .Home__NavigationCol_h6 {
   text-transform: uppercase;
-  font-size: 15px;
-  color: #F36455;
+  letter-spacing: 1px;
+  font-size: 0.875rem;
+  color: #F56350;
+}
+
+.Home__NavigationCol_h2{
+  font-size: 2.25rem;
 }
 
 .Home__NavigationCol {
