@@ -50,3 +50,13 @@ export const getTimelineDocuments = (params = {}) => getDocuments({
 export const getDocument = (id) =>
   request.get(`${API_URL}/document/${id}`)
     .then(extractBody)
+
+export const getThemes = () =>
+  request.get(`${API_URL}/story/`)
+    .query(buildMillerParams({
+      filters: {
+        tags__slug: 'theme',
+      },
+      orderby: 'priority',
+    }))
+    .then(extractBody)

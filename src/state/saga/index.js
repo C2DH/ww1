@@ -11,6 +11,11 @@ import {
   GET_DOCUMENT_SUCCESS,
   GET_DOCUMENT_FAILURE,
   GET_DOCUMENT_UNLOAD,
+  GET_THEMES,
+  GET_THEMES_LOADING,
+  GET_THEMES_SUCCESS,
+  GET_THEMES_FAILURE,
+  GET_THEMES_UNLOAD,
 } from '../actions'
 
 const BIG_PAGE_SIZE = 1000
@@ -25,12 +30,28 @@ function *handleGetDocument({ payload }) {
   }
 }
 
+function *handleGetThemes() {
+  yield put({ type: GET_THEMES_LOADING })
+  try {
+    const { results } = yield call(api.getThemes)
+    yield put({ type: GET_THEMES_SUCCESS, payload: { results } })
+  } catch (error) {
+    yield put({ type: GET_THEMES_FAILURE, error })
+  }
+}
+
 export default function* rootSaga() {
   yield fork(
     takeLatestAndCancel,
     GET_DOCUMENT,
     GET_DOCUMENT_UNLOAD,
     handleGetDocument,
+  )
+  yield fork(
+    takeLatestAndCancel,
+    GET_THEMES,
+    GET_THEMES_UNLOAD,
+    handleGetThemes,
   )
   yield fork(makeDocuments(
     GET_COLLECTION_DOCUMENTS,

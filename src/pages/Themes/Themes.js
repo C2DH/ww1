@@ -1,6 +1,16 @@
 import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
 import { Container, Row } from 'reactstrap';
 import './Themes.css'
+import {
+  loadThemes,
+  unloadThemes,
+} from '../../state/actions'
+import {
+  getThemes,
+  getThemesLoading,
+  getThemesError,
+} from '../../state/selectors'
 
 const THEMES = [
   {
@@ -60,6 +70,14 @@ class Themes extends PureComponent {
     hoverTheme: null,
   }
 
+  componentDidMount() {
+    this.props.loadThemes()
+  }
+
+  componentWillUnmount() {
+    this.props.unloadThemes()
+  }
+
   handleOnEnterTheme = (theme) => {
     this.setState({ hoverTheme: theme })
   }
@@ -96,4 +114,13 @@ class Themes extends PureComponent {
   }
 }
 
-export default Themes
+const mapStateToProps = state => ({
+  themes: getThemes(state),
+  loading: getThemesLoading(state),
+  error: getThemesError(state),
+})
+
+export default connect(mapStateToProps, {
+  loadThemes,
+  unloadThemes,
+})(Themes)

@@ -194,3 +194,9 @@ export const [
   getMapDocumentsUncertainYears,
   getMapDocumentsTotalCount,
 ] = makeDocumentsMetaSelectors(state => state.mapDocuments)
+
+// Themes
+
+export const getThemes = state => state.themes.list
+export const getThemesLoading = state => state.themes.loading
+export const getThemesError = state => state.themes.error
