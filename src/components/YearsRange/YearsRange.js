@@ -10,7 +10,7 @@ const Range = Slider.Range
 class YearsBarsUnwrap extends PureComponent {
   render() {
     const { barHeight, counts, filteredCounts, containerWidth, min, max } = this.props
-    const maxCount = lmax(values(counts))
+    const maxCount = lmax(values(counts)) || 0
     const scale = scaleLinear().domain([0, maxCount]).range([0, barHeight])
     const years = range(min, max + 1)
     const barWidth = containerWidth / years.length
@@ -69,6 +69,7 @@ class YearsRange extends PureComponent {
       filteredCounts,
       uncertainYears,
       onUncertainYearsChange,
+      uncertainYearsCount,
       barHeight = 100,
     } = this.props
 
@@ -83,7 +84,7 @@ class YearsRange extends PureComponent {
         <div style={{ marginTop: '32px' }}>
           <input type='checkbox' onChange={() => onUncertainYearsChange(!uncertainYears)} checked={uncertainYears} />
           {' '}
-          <span className="YearsRange__Uncertain">{`Include ${2} items with uncertain dates`}</span>
+          <span className="YearsRange__Uncertain">{`Include ${uncertainYearsCount || 0} items with uncertain dates`}</span>
         </div>
       </div>
     )

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './state'
@@ -14,7 +14,7 @@ import CollectionDetail from './pages/CollectionDetail'
 import CollectionDetailModal from './pages/CollectionDetailModal'
 import Resources from './pages/Resources'
 
-class Routes extends React.Component {
+class Routes extends PureComponent {
   //https://reacttraining.com/react-router/web/example/modal-gallery
   previousLocation = this.props.location
 
@@ -29,7 +29,6 @@ class Routes extends React.Component {
     }
   }
 
-
   render() {
     const { location } = this.props
     const isModal = !!(
@@ -37,7 +36,6 @@ class Routes extends React.Component {
       location.state.modal &&
       this.previousLocation !== location // not initial render
     )
-    console.log(isModal, location.state)
     return (
       <div>
         <Switch location={isModal ? this.previousLocation : location}>
@@ -54,11 +52,7 @@ class Routes extends React.Component {
       </div>
     )
   }
-
-
 }
-
-
 
 const App = () => (
   <Provider store={store}>

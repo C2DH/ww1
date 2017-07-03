@@ -1,49 +1,11 @@
 import { createSelector } from 'reselect'
-import { isNull, get, mapValues, includes, chunk, map, range } from 'lodash'
+import { isNull, get, mapValues, includes, chunk, map, range, find, omit } from 'lodash'
 
 // fp <3
 const maybeNull = a => fn => isNull(a) ? null : fn(a)
 
-const makePaginateCollectionSelectors = selectState => {
-  const getIds = state => selectState(state).ids
-  const getData = state => selectState(state).data
-  const getLoading = state => selectState(state).loading
-  const getPagination = state => selectState(state).pagination
-  const getCount = state => getPagination(state).count
-
-  const makeList = (ids, data) => maybeNull(ids)(ids => ids.map(id => data[id]))
-  const checkCanLoadMore = pagination => pagination.offset !== null
-
-  const getAllList = createSelector(getIds, getData, makeList)
-
-  const canLoadMore = createSelector(getPagination, checkCanLoadMore)
-
-  return [getAllList, canLoadMore, getCount, getLoading]
-}
-
-const [
-  getDocumentsUntranslated,
-  canLoadMoreDocuments,
-  getDocumentsCount,
-  getDocumentsLoading,
-] = makePaginateCollectionSelectors(state => state.documents.collection)
-
-export const getDocumentsFacets = state => state.documents.facets
-export const getDocumentsTotalCount = state => state.documents.totalCount
-
-const [
-  getMapDocumentsUntranslated,
-  canLoadMoreMapDocuments,
-  getMapDocumentsCount,
-  getMapDocumentsLoading,
-] = makePaginateCollectionSelectors(state => state.mapDocuments)
-
-const [
-  getTimelineDocumentsUntranslated,
-  canLoadMoreTimelineDocuments,
-  getTimelineDocumentsCount,
-  getTimelineDocumentsLoading,
-] = makePaginateCollectionSelectors(state => state.timelineDocuments)
+// Current language
+const getCurrentLanguage = state => state.settings.language
 
 // Generic translate object with this shape:
 // {
@@ -70,8 +32,7 @@ const translateObject = (data, lang, transKeys = '*', fallbackLang = 'en') =>
     return get(value, lang, defaultTrans)
   })
 
-
-
+// Translate a document using given language
 const translateDocument = lang => doc => ({
   ...doc,
   translated: translateObject(doc.data, lang, [
@@ -83,64 +44,153 @@ const translateDocument = lang => doc => ({
   documents: (doc.documents || []).map(doc => translateDocument(lang)(doc))
 })
 
-const getDocuments = createSelector(
-  getDocumentsUntranslated,
-  state => state.settings.language,
-  (docs, lang) => maybeNull(docs)(docs => docs.map(translateDocument(lang)))
-)
+// Make base paginate list state selectors
+const makePaginateListSelectors = selectState => {
+  const getIds = state => selectState(state).ids
+  const getData = state => selectState(state).data
+  const getLoading = state => selectState(state).loading
+  const getPagination = state => selectState(state).pagination
+  const getCount = state => getPagination(state).count
 
-const getMapDocuments = createSelector(
-  getMapDocumentsUntranslated,
-  state => state.settings.language,
-  (docs, lang) => maybeNull(docs)(docs => docs.map(translateDocument(lang)))
-)
+  const makeList = (ids, data) => maybeNull(ids)(ids => ids.map(id => data[id]))
+  const checkCanLoadMore = pagination => pagination.offset !== null
 
-const getTimelineDocuments = createSelector(
-  getTimelineDocumentsUntranslated,
-  state => state.settings.language,
-  (docs, lang) => {
-    const leDocs = maybeNull(docs)(docs => docs.map(translateDocument(lang)))
-    if (leDocs !== null) {
-      return leDocs.reduce((r, doc) => {
-        const fakeDocs = range(10).map(j => ({
-          ...doc,
-          id: doc.id * (j + 1),
-        }))
-        return [ ...r, ...fakeDocs ]
-      }, [])
-    }
-    return null
-  }
-)
+  const getAllList = createSelector(getIds, getData, makeList)
 
-const getDocumentsGrid = createSelector(
-  getDocuments,
-  documents => chunk(documents, 4).map(grid => ({
-    docs: grid,
-    key: map(grid, 'id').join('-')
-  }))
-)
+  const canLoadMore = createSelector(getPagination, checkCanLoadMore)
 
-const getDocument = createSelector(
-  (state) => state.document.data,
-  state => state.settings.language,
+  return [getAllList, canLoadMore, getCount, getLoading]
+}
+
+const makeDocumentsListSelectors = selectState => {
+  // Base list selectors
+  const [
+    getDocumentsUntranslated,
+    canLoadMoreDocuments,
+    getDocumentsCount,
+    getDocumentsLoading,
+  ] = makePaginateListSelectors(state => selectState(state).list)
+
+  // Translated list of documents
+  const getDocuments = createSelector(
+    getDocumentsUntranslated,
+    getCurrentLanguage,
+    (docs, lang) => maybeNull(docs)(docs => docs.map(translateDocument(lang)))
+  )
+
+  return [
+    getDocuments,
+    canLoadMoreDocuments,
+    getDocumentsCount,
+    getDocumentsLoading,
+  ]
+}
+
+const makeDocumentsMetaSelectors = selectState => {
+  // Generic facets
+  const getDocumentsTotalFacets = state => selectState(state).meta.facets
+  const getDocumentsFacets = state => selectState(state).list.facets
+
+  // Data types facets
+  const getDocumentsDataTypesFacets = createSelector(
+    getDocumentsTotalFacets,
+    getDocumentsFacets,
+    (totalFacets, currentFacets) => get(totalFacets, 'data__type', []).map(({ data__type }) => ({
+      data__type,
+      count: get(find(get(currentFacets, 'data__type', []), { data__type }), 'count', null)
+    }))
+  )
+
+  const makeYearsFacets = facets =>
+    get(facets, 'data__year', []).reduce((r, f) => ({
+      ...r,
+      [f.data__year]: f.count,
+    }), {})
+
+  const getDocumentsYearsFacets = createSelector(
+    getDocumentsTotalFacets,
+    facets => omit(makeYearsFacets(facets), null)
+  )
+
+  const getDocumentsFilteredYearsFacets = createSelector(
+    getDocumentsFacets,
+    facets => omit(makeYearsFacets(facets), null)
+  )
+
+  const getDocumentsUncertainYears = createSelector(
+    getDocumentsFacets,
+    facets => get(makeYearsFacets(facets), null)
+  )
+
+  // Count from meta info
+  const getDocumentsTotalCount = state => selectState(state).meta.count
+
+  return [
+    getDocumentsDataTypesFacets,
+    getDocumentsYearsFacets,
+    getDocumentsFilteredYearsFacets,
+    getDocumentsUncertainYears,
+    getDocumentsTotalCount,
+  ]
+}
+
+// const getDocumentsGrid = createSelector(
+//   getDocuments,
+//   documents => chunk(documents, 4).map(grid => ({
+//     docs: grid,
+//     key: map(grid, 'id').join('-')
+//   }))
+// )
+
+// Document detail
+
+export const getDocument = createSelector(
+  state => state.document.data,
+  state => getCurrentLanguage(state),
   (doc, lang) => maybeNull(doc)(translateDocument(lang))
 )
+export const getDocumentLoading = state => state.document.loading
 
-const getDocumentLoading = state => state.document.loading
+// Collection documents
 
-export {
-  getDocuments,
-  getDocumentsGrid,
-  canLoadMoreDocuments,
-  getDocumentsCount,
-  getDocumentsLoading,
-  getDocument,
-  getDocumentLoading,
+export const [
+  getCollectionDocuments,
+  canLoadMoreCollectionDocuments,
+  getCollectionDocumentsCount,
+  getCollectionDocumentsLoading,
+] = makeDocumentsListSelectors(state => state.collectionDocuments)
+
+
+export const [
+  getCollectionDocumentsDataTypesFacets,
+  getCollectionDocumentsYearsFacets,
+  getCollectionDocumentsFilteredYearsFacets,
+  getCollectionDocumentsUncertainYears,
+  getCollectionDocumentsTotalCount,
+] = makeDocumentsMetaSelectors(state => state.collectionDocuments)
+
+// Timeline documents
+
+export const [
+  getTimelineDocuments,
+  canLoadMoreTimelineDocuments,
+  getTimelineDocumentsCount,
+  getTimelineDocumentsLoading,
+] = makeDocumentsListSelectors(state => state.timelineDocuments)
+
+// Map documents
+
+export const [
   getMapDocuments,
   canLoadMoreMapDocuments,
   getMapDocumentsCount,
   getMapDocumentsLoading,
-  getTimelineDocuments,
-  getTimelineDocumentsLoading,
-}
+] = makeDocumentsListSelectors(state => state.collectionDocuments)
+
+export const [
+  getMapDocumentsDataTypesFacets,
+  getMapDocumentsYearsFacets,
+  getMapDocumentsFilteredYearsFacets,
+  getMapDocumentsUncertainYears,
+  getMapDocumentsTotalCount,
+] = makeDocumentsMetaSelectors(state => state.mapDocuments)
