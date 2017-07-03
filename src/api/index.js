@@ -43,6 +43,7 @@ export const getTimelineDocuments = (params = {}) => getDocuments({
     data__type: 'event',
     ...params.filters,
   },
+  orderby: 'data__date',
   ...params,
 })
 
