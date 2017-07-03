@@ -46,7 +46,7 @@ class Home extends React.Component {
         </Row>
         </div>
         <div className="Home__NavigationRow">
-        <Row >
+        <Row>
           <Col md="3" sm="6" xs="6" className="Home__NavigationCol Home__NavigationCol_themes">
             <Link to="/themes">
               <h6 className="Home__NavigationCol_h6">DISCOVER THE</h6>
