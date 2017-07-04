@@ -4,6 +4,11 @@
   padding-top: 60px;
   min-height: calc(100vh + 60px);
   text-align: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  background-image: url(/home_bkg/background_transparent.png);
+  transition: background-image 600ms ease-in-out 300ms;
 }
 
 .Themes__TitleRow {
@@ -33,6 +38,27 @@
   padding: 25px;
   text-transform: uppercase;
 }
+
+.Themes__hand_pointer_left {
+  -ms-transform: rotate(90deg); /* IE 9 */
+  -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+  transform: rotate(90deg);
+  font-size: 23px!important;
+  color: red!important;
+  position: relative;
+  left: -50px;
+}
+
+.Themes__hand_pointer_right {
+  -ms-transform: rotate(90deg); /* IE 9 */
+  -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+  transform: rotate(90deg);
+  font-size: 23px!important;
+  color: red!important;
+  position: relative;
+  right: -50px;
+}
+
 
 @media (max-width: 767px) {
   .Themes__theme_container {

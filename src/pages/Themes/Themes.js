@@ -49,15 +49,15 @@ class ThemeContainer extends PureComponent {
   }
 
   render() {
-    const { theme, hover } = this.props
+    const { theme, hover, responsiveBackground } = this.props
     return (
-      <div className="Themes__theme_container">
+      <div className="Themes__theme_container" style={{backgroundImage: `url(${responsiveBackground})`}}>
         <hr />
         <h2 className="Themes__theme_title">
           <span
           onMouseEnter={this.handleOnMouseEnter}
           onMouseLeave={this.handleOnMouseLeave}>
-            {hover ? '>' : ''}{theme.title}</span></h2>
+            {hover ? <i className="fa fa-hand-pointer-o Themes__hand_pointer_left" /> : null}{theme.title}{hover ? <i className="fa fa-hand-pointer-o Themes__hand_pointer_right" /> : null}</span></h2>
         <hr className="hidden-md-up" />
       </div>
     )
@@ -90,7 +90,7 @@ class Themes extends PureComponent {
     const { hoverTheme } = this.state
     return (
       <Container fluid className="padding-r-l-0 Themes__container"
-        style={{ background: hoverTheme ? `url(${hoverTheme.cover})` : undefined }}>
+        style={{ backgroundImage: hoverTheme ? `url(${hoverTheme.cover})` : undefined }}>
         <Row className="Themes__TitleRow">
           <h1>Themes</h1>
         </Row>
@@ -104,6 +104,7 @@ class Themes extends PureComponent {
                 hover={hoverTheme && theme.id === hoverTheme.id}
                 onEnterTheme={this.handleOnEnterTheme}
                 onLeaveTheme={this.handleOnLeaveTheme}
+                responsiveBackground={theme.cover}
               />
             ))}
             <hr className="hidden-md-down" />
