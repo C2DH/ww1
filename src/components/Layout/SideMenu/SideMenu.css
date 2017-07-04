@@ -8,7 +8,6 @@
   width: 58px;
   background-color: #333;
   text-align: center;
-  justify-content: center;
 }
 
 .SideMenu__menuBtn {
@@ -19,6 +18,7 @@
   width: 60px;
   border: 0px!important;
   margin-top: 20px;
+  flex-grow: 0;
 }
 
 .SideMenu__menuBtn-text {
@@ -62,12 +62,7 @@
 
 .SideMenu__vertical_title_container_close,
 .SideMenu__vertical_title_container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  flex-grow: 1;
 }
 
 .SideMenu__vertical_title {
@@ -75,27 +70,21 @@
   -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
   transform: rotate(-90deg);
   color: #fff;
-  white-space: nowrap;
+  margin: 0px;
   align-self: center;
-  position: relative;
-  bottom: 70px;
   font-family: 'Behrens antiqua', Georgia, serif;
   letter-spacing: 3px;
+  white-space: nowrap;
 }
 
 .SideMenu__langBtn {
   background-color: transparent;
-  width: 20px;
-  height: 30px;
   border: 0px;
-  display: flex!important;
-  justify-content: center;
-  position: absolute;
-  bottom: 20px;
   color: #fff;
   border-bottom: 2px solid #F56350;
   font-family: 'Atlas Grotesk Web', Arial, sans-serif;
   font-weight: 500;
+  flex-grow: 0;
 }
 
 @media (max-width: 767px) {

@@ -116,7 +116,10 @@ body {
   padding: 0;
   height: 100%;
   min-height: 100%;
-  font-family: sans-serif;
+  /*font-family: sans-serif;*/
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 h1,h2,h3{
