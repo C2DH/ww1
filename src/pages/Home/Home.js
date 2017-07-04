@@ -37,35 +37,35 @@ class Home extends React.Component {
       <Container className="Home__container d-flex flex-column">
         <div className="Home__MainRow d-flex flex-column justify-content-center">
         <Row>
-          <Col md="1" sm="1" xs="1" className="Home__MainRow-yearsCol"><h3>1914</h3></Col>
-          <Col md="10" sm="10"  xs="10">
+          <Col lg="1" md="1" xs="1" className="Home__MainRow-yearsCol"><h3>1914</h3></Col>
+          <Col lg="10" md="10"  xs="10">
             <h1 className="Home__title">ÉISCHTE WELTKRICH</h1>
             <h4 className="Home__subtitle">Remembering the Great War in Luxembourg</h4>
           </Col>
-          <Col md="1" sm="1"  xs="1" className="Home__MainRow-yearsCol"><h3>1918</h3></Col>
+          <Col lg="1" md="1"  xs="1" className="Home__MainRow-yearsCol"><h3>1918</h3></Col>
         </Row>
         </div>
         <div className="Home__NavigationRow">
         <Row>
-          <Col md="3" sm="6" xs="6" className="Home__NavigationCol Home__NavigationCol_themes">
+          <Col lg="3" md="6" xs="12" className="Home__NavigationCol Home__NavigationCol_themes">
             <Link to="/themes">
               <h6 className="Home__NavigationCol_h6">DISCOVER THE</h6>
               <h2 className="Home__NavigationCol_h2">Themes</h2>
             </Link>
           </Col>
-          <Col md="3" sm="6" xs="6" className="Home__NavigationCol Home__NavigationCol_collection">
+          <Col lg="3" md="6" xs="12" className="Home__NavigationCol Home__NavigationCol_collection">
             <Link to="/collection">
             <h6 className="Home__NavigationCol_h6">BROWSE THE</h6>
             <h2 className="Home__NavigationCol_h2">Collection</h2>
             </Link>
           </Col>
-          <Col md="3" sm="6" xs="6" className="Home__NavigationCol Home__NavigationCol_map">
+          <Col lg="3" md="6" xs="12" className="Home__NavigationCol Home__NavigationCol_map">
             <Link to="/map">
               <h6 className="Home__NavigationCol_h6">EXPLORE THE</h6>
               <h2 className="Home__NavigationCol_h2">Map</h2>
             </Link>
           </Col>
-          <Col md="3" sm="6" xs="6" className="Home__NavigationCol Home__NavigationCol_timeline">
+          <Col lg="3" md="6" xs="12" className="Home__NavigationCol Home__NavigationCol_timeline">
             <Link to="/timeline">
               <h6 className="Home__NavigationCol_h6">FOLLOW THE</h6>
               <h2 className="Home__NavigationCol_h2">Timeline</h2>

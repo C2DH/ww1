@@ -1,33 +1,51 @@
 .OpenSideMenu {
   position: fixed;
-  left: 60px;
+  left: 58px;
   background-color: #F7F7EB;
-  height: 100%;
-  width: 350px;
+  height: 100vh;
+  overflow-y: scroll;
   z-index: 99999;
+  box-shadow: 5px 2px 7px 0 rgba(0,0,0,0.5);
 }
 
 .OpenSideMenu__list {
   list-style: none;
-  margin-top: 80px;
-  font-size: 28px;
-  margin-left: 30px;
-  text-align: left;
+  font-size: 2rem;
+  margin: 50px;
+  padding-left: 0px;
+  font-family: 'Vinter Web',Georgia, serif;
 }
 
-.OpenSideMenu__bottom_list {
-  position: absolute;
-  bottom: 100px;
-  list-style: none;
-  margin-left: 30px;
+
+.OpenSideMenu__list li a,
+.OpenSideMenu__bottom_list li a{
+  color: rgba(0, 0, 0, 0.70);
+}
+
+.OpenSideMenu__list li a:hover,
+.OpenSideMenu__list li a:focus,
+.OpenSideMenu__bottom_list li a:hover,
+.OpenSideMenu__bottom_list li a:focus {
+  color: rgba(0, 0, 0, 1);
+  text-decoration: none;
 }
 
 .OpenSideMenu__bottom {
-  width: 100%;
+  margin-top: auto;
+}
+
+.OpenSideMenu__bottom_list {
+  list-style: none;
+  margin: 50px 50px 10px 50px;
+  padding-left: 0px;
+  font-family: 'Atlas Grotesk Wew',Arial, sans-serif;
+  font-size: 1.12rem;
+
+}
+
+.OpenSideMenu__bottom_logos {
   height: 100px;
   background-color: #fff;
-  position: absolute;
-  bottom: 0;
 }
 
 @media (max-width: 767px) {
