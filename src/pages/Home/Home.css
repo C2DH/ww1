@@ -5,6 +5,8 @@
 .Home__background{
   transition: background-image 1s ease-in-out;
   background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 .Home__background--slide1{
   background-image:
