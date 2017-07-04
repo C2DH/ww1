@@ -11,22 +11,41 @@
 }
 
 .SideMenu__menuBtn {
-  background-color: transparent!important;
-  padding: 0px!important;
-  font-size: 35px!important;
-  color: #fff!important;
-  width: 60px;
-  border: 0px!important;
-  margin-top: 20px;
+  background-color: transparent;
+  border: none;
+  padding: 0px;
+  flex-grow: 0;
+  margin-top: 10px;
+  cursor: pointer;
+  color: white;
+}
+
+.SideMenu__menuBtn:hover {
+  color: #F56350;
+  background-color: transparent;
+}
+
+.SideMenu__menuBtn:focus,
+.SideMenu__menuBtn.focus{
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.SideMenu__menuBtn:active,
+.SideMenu__menuBtn.active{
+  background-color: transparent;
+}
+
+
+.SideMenu__menuBtn-text {
   flex-grow: 0;
 }
 
-.SideMenu__menuBtn-text {
+.SideMenu__menuBtn-text h6{
   color: #fff;
   text-transform: uppercase;
-  font-size: 12px;
-  font-weight: lighter!important;
-  margin-top: 0px;
+  font-size: 0.7rem;
+  margin: 0px;
 }
 
 /* CSS transition styles */
@@ -79,12 +98,32 @@
 
 .SideMenu__langBtn {
   background-color: transparent;
-  border: 0px;
+  border: none;
   color: #fff;
   border-bottom: 2px solid #F56350;
+  border-radius: 0px;
   font-family: 'Atlas Grotesk Web', Arial, sans-serif;
   font-weight: 500;
   flex-grow: 0;
+  margin: 10px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.SideMenu__langBtn:hover {
+  color: #F56350;
+  background-color: transparent;
+}
+
+.SideMenu__langBtn:focus,
+.SideMenu__langBtn.focus{
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.SideMenu__langBtn:active,
+.SideMenu__langBtn.active{
+  background-color: transparent;
 }
 
 @media (max-width: 767px) {

@@ -26,13 +26,16 @@ class SideMenu extends PureComponent {
          key="open"
          className={this.state.open ? "SideMenu d-flex flex-column justify-content-center" : "SideMenu-close d-flex flex-column justify-content-center"}
          >
-       <button className="SideMenu__menuBtn" onClick={this.toggleMenu} key="button">
-         {this.state.open ? <div><i className="icon-close" /><p className="SideMenu__menuBtn-text">close</p></div> : <div><i className="icon-dehaze SideMenu__icon" /><p className="SideMenu__menuBtn-text">Menu</p></div>}
-       </button>
-       <div className={this.state.open ? "SideMenu__vertical_title_container d-flex justify-content-center" : "SideMenu__vertical_title_container_close d-flex justify-content-center"}>
+      <button type="button" onClick={this.toggleMenu} key="button" className="SideMenu__menuBtn btn btn-secondary">
+        <i className="material-icons md-36">{this.state.open ? "close" : "menu"}</i>
+      </button>
+      <div className="SideMenu__menuBtn-text">
+        <h6>{this.state.open ? "close" : "menu"}</h6>
+      </div>
+      <div className={this.state.open ? "SideMenu__vertical_title_container d-flex justify-content-center" : "SideMenu__vertical_title_container_close d-flex justify-content-center"}>
          <p className="SideMenu__vertical_title">ÉISCHTE WELTKRICH</p>
        </div>
-       <button className="SideMenu__langBtn">EN</button>
+       <button type="button" className="SideMenu__langBtn btn btn-secondary">EN</button>
      </div>
      {this.state.open ? <OpenSideMenu key="close" closeMenu={this.toggleMenu} key="opensidemenu"/> : null}
     </CSSTransitionGroup>
