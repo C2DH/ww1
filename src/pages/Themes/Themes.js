@@ -50,16 +50,29 @@ class ThemeContainer extends PureComponent {
 
   render() {
     const { theme, hover, responsiveBackground } = this.props
+    var MediaQuery = require('react-responsive')
     return (
-      <div className="Themes__theme_container" style={{backgroundImage: `url(${responsiveBackground})`}}>
-        <hr />
-        <h2 className="Themes__theme_title">
-          <span
-          onMouseEnter={this.handleOnMouseEnter}
-          onMouseLeave={this.handleOnMouseLeave}>
-            {hover ? <i className="fa fa-hand-pointer-o Themes__hand_pointer_left" /> : null}{theme.title}{hover ? <i className="fa fa-hand-pointer-o Themes__hand_pointer_right" /> : null}</span></h2>
-        <hr className="hidden-md-up" />
-      </div>
+       <div>
+         <MediaQuery minDeviceWidth={768} className="Themes__theme_container">
+           <hr />
+           <h2 className="Themes__theme_title">
+             <span
+             onMouseEnter={this.handleOnMouseEnter}
+             onMouseLeave={this.handleOnMouseLeave}>
+               {hover ? <i className="fa fa-hand-pointer-o Themes__hand_pointer_left" /> : null}{theme.title}{hover ? <i className="fa fa-hand-pointer-o Themes__hand_pointer_right" /> : null}</span></h2>
+           <hr className="hidden-md-up" />
+        </MediaQuery>
+        <MediaQuery maxWidth={767} className="Themes__theme_container" style={{backgroundImage: `url(${responsiveBackground})`}}>
+          <hr />
+          <h2 className="Themes__theme_title">
+            <span
+            onMouseEnter={this.handleOnMouseEnter}
+            onMouseLeave={this.handleOnMouseLeave}>
+              {hover ? <i className="fa fa-hand-pointer-o Themes__hand_pointer_left" /> : null}{theme.title}{hover ? <i className="fa fa-hand-pointer-o Themes__hand_pointer_right" /> : null}</span></h2>
+          <hr className="hidden-md-up" />
+       </MediaQuery>
+
+       </div>
     )
 
   }
