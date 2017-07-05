@@ -61,6 +61,9 @@
 
 
 @media (max-width: 767px) {
+  .Themes__container {
+    background-image: none!important;
+  }
   .Themes__theme_container {
     padding: 40px;
     margin: 20px;
