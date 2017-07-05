@@ -1,10 +1,11 @@
 .OpenSideMenu {
   position: fixed;
-  left: 58px;
+  left: 0px;
   background-color: #F7F7EB;
   height: 100vh;
   overflow-y: scroll;
   z-index: 99999;
+  width: 100%;
   box-shadow: 5px 2px 7px 0 rgba(0,0,0,0.5);
 }
 
@@ -13,6 +14,7 @@
   font-size: 2rem;
   margin: 50px;
   padding-left: 0px;
+  text-align: center;
   font-family: 'Vinter Web',Georgia, serif;
 }
 
@@ -40,7 +42,7 @@
   padding-left: 0px;
   font-family: 'Atlas Grotesk Wew',Arial, sans-serif;
   font-size: 1.12rem;
-
+  text-align: center;
 }
 
 .OpenSideMenu__bottom_logos {
@@ -48,25 +50,49 @@
   background-color: #fff;
 }
 
-@media (max-width: 767px) {
-  .OpenSideMenu {
-    left: 0;
-    right: 0;
-    height: calc(100vh - 72px);
-    width: 100%;
-    z-index: 9999;
-    margin: auto;
-    margin-top: 60px;
-  }
-  .OpenSideMenu__list {
-    margin-left: 0px;
-    padding-left: 0px;
-    text-align: center;
-  }
-  .OpenSideMenu__bottom_list {
-    text-align: center;
-    margin-left: 0px;
-    padding-left: 0px;
-    width: 100%;
-  }
+.OpenSideMenu__title-md{
+  height: 58px;
+  background-color: #333;
 }
+
+.OpenSideMenu__title-md p{
+  color: #fff;
+  text-align: center;
+  font-family: 'Behrens antiqua', Georgia, serif;
+  letter-spacing: 3px;
+  white-space: nowrap;
+  padding-top: 20px;
+}
+
+/*Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {
+
+ }
+
+/*Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+
+ }
+
+/*Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+
+  .OpenSideMenu {
+    width: auto;
+    left: 58px;
+  }
+
+  .OpenSideMenu__list {
+    text-align: left;
+  }
+
+  .OpenSideMenu__bottom_list {
+    text-align: left;
+  }
+
+ }
+
+/*Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+
+ }
