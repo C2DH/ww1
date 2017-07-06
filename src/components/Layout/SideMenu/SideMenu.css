@@ -2,11 +2,9 @@
 .SideMenu-close {
   position: fixed;
   z-index: 9999999;
-  top: 0;
-  left: 0;
-  bottom: 0;
+  height: 58px;
   width: 58px;
-  background-color: #333;
+  background-color: transparent;
   text-align: center;
 }
 
@@ -50,33 +48,21 @@
 
 /* CSS transition styles */
 .sidemenu-enter {
-  /*opacity: 0;*/
-  transition: margin-left 500ms ease-out;
-  margin-left: -350px;
+  transition: transform 500ms;
+  transform: translateX(-120%);
 }
 
 .sidemenu-enter.sidemenu-enter-active {
-  /*
-  opacity: 1;
-  transition: opacity 500ms ease-in;
-  */
-  margin-left: 0;
+  transform: translateX(0%);
 }
 
 .sidemenu-leave {
-  transition: margin-left 300ms ease-out;
-  margin-left: 0;
-  /*
-  opacity: 1;
-  */
+  transition: transform 500ms;
+  transform: translateX(0%);
 }
 
 .sidemenu-leave.sidemenu-leave-active {
-  margin-left: -350px;
-  /*
-  opacity: 0;
-  transition: opacity 300ms ease-in;
-  */
+  transform: translateX(-120%);
 }
 
 .SideMenu__vertical_title_container_close,
@@ -126,45 +112,33 @@
   background-color: transparent;
 }
 
-@media (max-width: 767px) {
-  .SideMenu {
-    bottom: auto;
-    width: 100%;
-    text-align: left;
-    display: inline-flex;
-    justify-content: initial;
-  }
+
+/*Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {
+
+ }
+
+/*Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+
+ }
+
+/*Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+  .SideMenu,
   .SideMenu-close {
-    bottom: auto;
-    width: 100%;
-    text-align: left;
-    background-color: transparent;
+    z-index: 9999999;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 58px;
+    height: auto;
+    background-color: #333;
   }
-  .SideMenu__menuBtn {
-   align-self: flex-start;
-  }
-  .SideMenu__langBtn,
-  .SideMenu__menuBtn-text {
-    display: none!important;
-  }
-  .SideMenu__icon {
-    color: #F36455;
-  }
- .SideMenu__vertical_title {
-   -ms-transform: rotate(0deg); /* IE 9 */
-   -webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
-   transform: rotate(0deg);
-   top: 25px;
-   margin-bottom: 0px;
  }
- .SideMenu__vertical_title_mobile {
-   color: #fff;
-   z-index: 10000;
+
+
+/*Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+
  }
- .SideMenu__vertical_title_container{
-   flex-direction: row;
- }
- .SideMenu__vertical_title_container_close {
-   display: none!important;
- }
-}

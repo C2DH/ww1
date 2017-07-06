@@ -37,12 +37,13 @@ class Home extends React.Component {
       <Container className="Home__container d-flex flex-column">
         <div className="Home__MainRow d-flex flex-column justify-content-center">
         <Row>
-          <Col lg="1" md="1" xs="1" className="Home__MainRow-yearsCol"><h3>1914</h3></Col>
-          <Col lg="10" md="10"  xs="10">
+          <Col lg="1" md="1" xs="1" className="Home__MainRow-yearsCol hidden-md-down"><h3>1914</h3></Col>
+          <Col lg="10" md="12">
+            <h3 className="hidden-lg-up Home__MainRow-yearsCol-xs">1914 – 1918</h3>
             <h1 className="Home__title">ÉISCHTE WELTKRICH</h1>
             <h4 className="Home__subtitle">Remembering the Great War in Luxembourg</h4>
           </Col>
-          <Col lg="1" md="1"  xs="1" className="Home__MainRow-yearsCol"><h3>1918</h3></Col>
+          <Col lg="1" md="1"  xs="1" className="Home__MainRow-yearsCol hidden-md-down"><h3>1918</h3></Col>
         </Row>
         </div>
         <div className="Home__NavigationRow">
