@@ -59,7 +59,7 @@
 }
 
 .CollectionFilters__filter {
-  margin-bottom: 5px;
+  margin-bottom: 0px;
   width: 100%;
   text-transform: capitalize;
 }

@@ -40,21 +40,13 @@
 }
 
 .Themes__hand_pointer_left {
-  -ms-transform: rotate(90deg); /* IE 9 */
-  -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
-  transform: rotate(90deg);
   font-size: 23px!important;
-  color: red!important;
   position: relative;
   left: -50px;
 }
 
 .Themes__hand_pointer_right {
-  -ms-transform: rotate(90deg); /* IE 9 */
-  -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
-  transform: rotate(90deg);
   font-size: 23px!important;
-  color: red!important;
   position: relative;
   right: -50px;
 }
@@ -69,12 +61,18 @@
     margin: 20px;
     margin-left: 30px;
     margin-right: 30px;
-    background-image: url('https://images.pexels.com/photos/69927/rain-floor-water-wet-69927.jpeg?h=350&auto=compress&cs=tinysrgb');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
   .Themes__theme_title_container hr {
     width: 60%;
   }
   .Themes__theme_title {
     padding: 5px;
+  }
+  .Themes__hand_pointer_right,
+  .Themes__hand_pointer_left {
+    display: none;
   }
 }

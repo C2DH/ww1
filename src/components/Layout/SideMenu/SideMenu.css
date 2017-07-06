@@ -157,10 +157,14 @@
    top: 25px;
    margin-bottom: 0px;
  }
+ .SideMenu__vertical_title_mobile {
+   color: #fff;
+   z-index: 10000;
+ }
  .SideMenu__vertical_title_container{
    flex-direction: row;
  }
  .SideMenu__vertical_title_container_close {
-   display: none;
+   display: none!important;
  }
 }

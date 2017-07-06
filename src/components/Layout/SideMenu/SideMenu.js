@@ -33,7 +33,7 @@ class SideMenu extends PureComponent {
         <h6>{this.state.open ? "close" : "menu"}</h6>
       </div>
       <div className={this.state.open ? "SideMenu__vertical_title_container d-flex justify-content-center" : "SideMenu__vertical_title_container_close d-flex justify-content-center"}>
-         <p className="SideMenu__vertical_title">ÉISCHTE WELTKRICH</p>
+         <p className="SideMenu__vertical_title" style={{color: '#fff'}}>ÉISCHTE WELTKRICH</p>
        </div>
        <button type="button" className="SideMenu__langBtn btn btn-secondary">EN</button>
      </div>

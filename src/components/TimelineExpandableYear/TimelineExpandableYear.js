@@ -7,7 +7,7 @@ const Month = ({ month, open }) => {
   if(open) {
     return (
       <div className="d-inline-block">
-        <i className="fa fa-hand-pointer-o TimelineExpandableYear__month_marker_hand" />
+        <i className="icon-hand TimelineExpandableYear__month_marker_hand" />
         <i className="icon-fiber_manual_record TimelineExpandableYear__month_marker_active" />
       </div>)
   } else {
