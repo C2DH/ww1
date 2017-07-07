@@ -23,7 +23,7 @@ class CollectionFilters extends PureComponent {
     return (
       <div className="CollectionFilters__container">
         <div className="CollectionFilters__input_container">
-          <i className="fa fa-search CollectionFilters__input_container_icon" />
+          <i className="icon-search CollectionFilters__input_container_icon" />
           <input className="CollectionFilters__input" onChange={onSearchChange} value={searchString} placeholder="Search here (e.g: postcard)" />
         </div>
         {dataTypes &&

@@ -11,7 +11,7 @@ const LinkedObjectCard = () => (
       <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" className="ManualCard__CardImg" />
       <CardBlock>
         <div className="d-inline-flex">
-          <i className="fa fa-hand-pointer-o Manual__LinkedObjectCard_icon"  />
+          <i className="icon-hand Manual__LinkedObjectCard_icon"  />
           <div>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           </div>

@@ -21,8 +21,8 @@
 .CollectionFilters__input_container_icon {
   align-self: center;
   margin-right: 10px;
-  position: relative;
-  top: -2px;
+  font-size: 22px;
+  font-weight: bold;
 }
 
 .CollectionFilters__input {

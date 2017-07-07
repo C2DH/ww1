@@ -33,7 +33,7 @@ class AdditionalInformation extends PureComponent {
     <div>
       <Label className="CollectionItem__label CollectionItem__additional_info">
         ADDITIONAL INFORMATION
-        <button onClick={this.toggleInfo}><i className={this.state.open ? `fa fa-angle-up` : `fa fa-angle-down`} /></button>
+        <button onClick={this.toggleInfo}><i className={this.state.open ? `icon-keyboard_arrow_up` : `icon-keyboard_arrow_down`} /></button>
       </Label>
       <hr className="CollectionItem__Relatedobjects_divider mt-0" />
       {this.state.open ? <div>

@@ -11,7 +11,7 @@ export default class CollectionItemPreviewVideo extends React.PureComponent {
         <JSONTree data={doc} />
       </div>
       <div className="CollectionItem__doc_controls">
-        <button className="CollectionItem__btn_download"><i className="fa fa-download" /></button>
+        <button className="CollectionItem__btn_download"><i className="icon-file_download" /></button>
       </div>
     </div>
   );

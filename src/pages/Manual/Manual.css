@@ -34,12 +34,8 @@
 }
 
 .Manual__LinkedObjectCard_icon {
-  padding-right: 20px;
-  font-size: 24px;
-  -ms-transform: rotate(90deg); /* IE 9 */
-  -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
-  transform: rotate(90deg);
-  color: #F36455;
+  padding-right: 10px;
+  font-size: 22px;
   height: 30px;
   position: relative;
   right: 8px;
