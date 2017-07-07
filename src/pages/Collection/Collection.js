@@ -175,7 +175,7 @@ class Collection extends PureComponent {
             <h2>Collection</h2>
             <span className="Collection__items_shown"><strong>{count} / {totalCount}</strong> ITEMS SHOWN</span>
             <button className="Collection__open_heading_btn" onClick={this.toggleOpen}>
-              {this.state.sidebarOpen ? <i className="fa fa-angle-right" /> : <i className="fa fa-search" />}
+              {this.state.sidebarOpen ? <i className="icon-keyboard_arrow_right" /> : <i className="icon-search" />}
             </button>
           </div>
 

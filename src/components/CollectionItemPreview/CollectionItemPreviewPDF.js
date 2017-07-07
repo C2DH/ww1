@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactPDF from 'react-pdf';
+import './CollectionItemPreview.css'
 
 export default class CollectionItemPreviewPDF extends React.PureComponent {
 
@@ -55,18 +56,18 @@ export default class CollectionItemPreviewPDF extends React.PureComponent {
           onPageLoad={this.onPageLoad}
           file={`https://cors-anywhere.herokuapp.com/${doc.src}`} />
       </div>
-      <div className="CollectionItem__doc_controls" style={{backgroundColor:'#222', color:'#fff'}}>
+      <div className="CollectionItem__doc_controls" style={{backgroundColor:'#000', color:'#fff'}}>
 
-        {/* <button className="CollectionItem__btn_download"><i className="fa fa-download" /></button> */}
-        <div style={{display:'flex'}}>
-          <div style={{padding:'8'}}>Page: {this.state.pageNumber} of {this.state.total}</div>
-          <div style={{padding:'8'}}><a href="#" onClick={(evt)=>{this.prevPage()}}>prev</a> | <a href="#" onClick={(evt)=>{this.nextPage()}}>next</a></div>
-          <div style={{padding:'8'}}><a href="#" onClick={(evt)=>{this.zoomIn()}}>zoomin</a> | <a href="#" onClick={(evt)=>{this.zoomOut()}}>zoomout</a></div>
-          <div style={{padding:'8'}}>
+        <div className="CollectionItemPreviewPDF__controls">
+          <div style={{padding:'8'}}>Page <span className="CollectionItemPreviewPDF__controls_current_page">{this.state.pageNumber}</span> of {this.state.total}</div>
+          <div className="CollectionItemPreviewPDF__controls_page_arrows"><a href="#" onClick={(evt)=>{this.prevPage()}}><i className="icon-arrow-down" /></a><span>{' | '}</span><a href="#" onClick={(evt)=>{this.nextPage()}}><i className="icon-arrow-up" /></a></div>
+          <div className="CollectionItemPreviewPDF__controls_zoom"><a href="#" onClick={(evt)=>{this.zoomIn()}}><i className="icon-zoom_in" /></a><span>{' | '}</span><a href="#" onClick={(evt)=>{this.zoomOut()}}><i className="icon-zoom_out" /></a></div>
+          <div className="CollectionItemPreviewPDF__controls_fit_to_page">
             <select>
               <option>Fit to page</option>
             </select>
           </div>
+          <button className="CollectionItemPreviewPDF__download_btn"><i className="icon-file_download" /></button>
         </div>
       </div>
     </div>

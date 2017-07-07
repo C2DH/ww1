@@ -7,7 +7,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
-  background-image: url(/home_bkg/background_transparent.png);
+  /*background-image: url(/home_bkg/background_transparent.png);*/
   transition: background-image 600ms ease-in-out 300ms;
 }
 
@@ -51,6 +51,30 @@
   right: -50px;
 }
 
+/*CSS transition */
+/* CSS transition styles */
+.backgroundTheme-enter {
+  transition: opacity 500ms;
+  opacity: 0;
+}
+
+.backgroundTheme-enter.backgroundTheme-enter-active {
+  opacity: 1;
+}
+
+.backgroundTheme-leave {
+  transition: opacity 500ms;
+  opacity: 1;
+}
+
+.backgroundTheme-leave.backgroundTheme-leave-active {
+  opacity: 0;
+}
+
+.Themes__backgroundTheme {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 @media (max-width: 767px) {
   .Themes__container {

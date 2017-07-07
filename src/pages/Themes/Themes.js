@@ -11,6 +11,7 @@ import {
   getThemesLoading,
   getThemesError,
 } from '../../state/selectors'
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 
 const THEMES = [
   {
@@ -98,14 +99,26 @@ class Themes extends PureComponent {
   render () {
     const { hoverTheme } = this.state
     return (
-      <Container fluid className="padding-r-l-0 Themes__container"
-        style={{ backgroundImage: hoverTheme ? `url(${hoverTheme.cover})` : undefined }}>
-        <Row className="Themes__TitleRow">
+      <Container fluid className="padding-r-l-0 Themes__container">
+        {/* style={{ backgroundImage: hoverTheme ? `url(${hoverTheme.cover})` : undefined }}> */}
+        <CSSTransitionGroup component="div"
+        transitionName="backgroundTheme"
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={500}>
+        {hoverTheme && (
+          <div key="background" style={{width: '100%', height: '100%', position:'absolute',
+            zIndex: 1000,
+            backgroundImage: `url(${hoverTheme.cover})` }}
+            className="Themes__backgroundTheme">
+          </div>
+        )}
+        </CSSTransitionGroup>
+        <Row className="Themes__TitleRow" style={{zIndex: 1001}}>
           <h1>Themes</h1>
         </Row>
         <Row>
 
-          <div className="Themes__theme_title_container">
+          <div className="Themes__theme_title_container" style={{zIndex: 1001}}>
             {THEMES.map(theme =>(
               <ThemeContainer
                 key={theme.id}
