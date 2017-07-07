@@ -1,0 +1,15 @@
+.WhiteTooltip__tooltip {
+  background-color: #fff;
+  color: #000;
+  z-index: 1000;
+  position: relative;
+  bottom: 10px;
+  border-radius: 0px;
+  padding: 8px;
+  text-align: left;
+}
+
+.tooltip.tooltip-top .tooltip-inner::before,
+.tooltip.bs-tether-element-attached-bottom .tooltip-inner::before {
+  display: none;
+}

@@ -40,7 +40,7 @@
   font-size: 20px;
   margin-left: 30px;
   position: relative;
-  bottom: 5px;
+  bottom: 4px;
 }
 
 .CollectionItemPreviewPDF__controls_fit_to_page select {
@@ -60,4 +60,5 @@
   right: 10px;
   border: 0px;
   font-size: 20px;
+  cursor: pointer;
 }
