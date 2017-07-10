@@ -22,38 +22,37 @@ class CollectionFilters extends PureComponent {
     } = this.props
     return (
       <div className="CollectionFilters__container">
-        <div className="CollectionFilters__input_container">
-          <i className="icon-search CollectionFilters__input_container_icon" />
-          <input className="CollectionFilters__input" onChange={onSearchChange} value={searchString} placeholder="Search here (e.g: postcard)" />
+        <div className="d-flex align-items-center CollectionFilters__input_container">
+          <i className="material-icons CollectionFilters__input_container_icon">search</i>
+          <input className="form-control CollectionFilters__input" onChange={onSearchChange} value={searchString} placeholder="Search here (e.g: postcard)" />
         </div>
         {dataTypes &&
-          <div className="CollectionFilters__reset_container">
+          <div className="CollectionFilters__reset_container d-flex align-items-center">
             <h5 className="CollectionFilters__reset_title">TYPE</h5>
             <a className="CollectionFilters__reset">Reset</a>
           </div>
         }
-        <div className="CollectionFilters__filter_container">
+        <div className="CollectionFilters__filter_container d-flex flex-column">
           {dataTypes && dataTypes.map(({ count, data__type }) => {
             const selected = typeof selectedDataTypes[data__type] !== 'undefined' || Object.keys(selectedDataTypes).length === 0
             return (
-              <div key={data__type} onClick={() => onToggleDataType(data__type)}
-                style={{ opacity: selected ? '1' : '0.5'  }}>
-                <div className="d-inline-flex w-100">
+                <div key={data__type} onClick={() => onToggleDataType(data__type)}
+                     className={ selected ? 'CollectionFilters__filter_wrapper d-flex w-100 justify-content-between opacity-100' : 'CollectionFilters__filter_wrapper d-flex w-100 justify-content-between opacity-50'  }>
+
                   <p className="CollectionFilters__filter">{data__type}</p>
                   <Badge className="CollectionFilters__filter_badge">
-                    {isNull(count) ? <span>&nbsp;</span> : count}
+                    {isNull(count) ? '0' : count}
                   </Badge>
                 </div>
-              </div>
             )
           })}
         </div>
-        <div className="CollectionFilters__reset_container">
+        <div className="CollectionFilters__reset_container d-flex align-items-center">
           <h5 className="CollectionFilters__reset_title">PERIOD</h5>
           <a className="CollectionFilters__reset">Reset</a>
         </div>
 
-        <div style={{ padding: '10px' }}>
+        <div className="CollectionFilters__time">
           <YearsRange
             uncertainYearsCount={uncertainYearsCount}
             uncertainYears={uncertainYears}

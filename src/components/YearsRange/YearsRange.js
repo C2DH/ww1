@@ -82,9 +82,11 @@ class YearsRange extends PureComponent {
           <Range allowCross={false} min={min} max={max + 1} defaultValue={defaultValue} onChange={this.onChange} value={value} />
         </div>
         <div style={{ marginTop: '32px' }}>
-          <input type='checkbox' onChange={() => onUncertainYearsChange(!uncertainYears)} checked={uncertainYears} />
-          {' '}
-          <span className="YearsRange__Uncertain">{`Include ${uncertainYearsCount || 0} items with uncertain dates`}</span>
+          <label className="custom-control custom-checkbox align-items-center">
+            <input type="checkbox" className="custom-control-input" onChange={() => onUncertainYearsChange(!uncertainYears)} checked={uncertainYears} />
+            <span className="custom-control-indicator"></span>
+            <span className="custom-control-description YearsRange__Uncertain">{`Include ${uncertainYearsCount || 0} items with uncertain dates`}</span>
+          </label>
         </div>
       </div>
     )

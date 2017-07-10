@@ -171,6 +171,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  font-family: Georgia, serif;
 }
 
 h1,h2,h3{
@@ -197,6 +198,15 @@ textarea:focus, input:focus{
 }
 
 /* General utilities */
+
+.opacity-50{
+  opacity: 0.5!important;
+}
+
+.opacity-100{
+  opacity: 1!important;
+}
+
 .flex {
   display: flex;
 }

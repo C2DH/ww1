@@ -170,31 +170,17 @@ class Collection extends PureComponent {
 
     return (
       <div>
-        <div className={this.state.sidebarOpen ? "Collection__List--sidebar-open" : ''}>
-          <div className={`list-heading ${this.state.sidebarOpen ? 'list-heading-closed' : '' }`}>
+        <div className={this.state.sidebarOpen ? "Collection__List--sidebar-open" : 'Collection__List--sidebar-close'}>
+          <div className={`Collection__List--list-heading d-flex align-items-center ${this.state.sidebarOpen ? 'Collection__List--list-heading-closed' : '' }`}>
             <h2>Collection</h2>
             <span className="Collection__items_shown"><strong>{count} / {totalCount}</strong> ITEMS SHOWN</span>
-            <button className="Collection__open_heading_btn" onClick={this.toggleOpen}>
-              {this.state.sidebarOpen ? <i className="icon-keyboard_arrow_right" /> : <i className="icon-search" />}
+
+            <button type="button" className="Collection__open_heading_btn btn btn-secondary" onClick={this.toggleOpen}>
+              <i className="material-icons">{this.state.sidebarOpen ? 'chevron_right' : 'search'}</i>
             </button>
           </div>
 
-          {this.state.sidebarOpen && (
-            <CollectionFilters
-              searchString={searchString}
-              onSearchChange={this.handleSearchStringChange}
-              dataTypes={dataTypesFacets}
-              selectedDataTypes={filterDataTypes}
-              onToggleDataType={this.toggleFilterDataType}
-              selectedYears={filterYears}
-              onYearChange={this.handleOnYearChange}
-              uncertainYears={filterUncertainYears}
-              onUncertainYearsChange={this.handleOnUncertainYearsChange}
-              yearsCounts={yearsFacets}
-              yearsFilteredCounts={yearsFilteredFacets}
-              uncertainYearsCount={uncertainYears}
-            />
-          )}
+
           <div>
             {documents && <CollectionMasonry
               documents={documents}
@@ -203,7 +189,24 @@ class Collection extends PureComponent {
               masonryStyle={{ paddingTop:120, paddingBottom: 20, outline: 'none' }}
             />}
           </div>
+
         </div>
+        {this.state.sidebarOpen && (
+          <CollectionFilters
+            searchString={searchString}
+            onSearchChange={this.handleSearchStringChange}
+            dataTypes={dataTypesFacets}
+            selectedDataTypes={filterDataTypes}
+            onToggleDataType={this.toggleFilterDataType}
+            selectedYears={filterYears}
+            onYearChange={this.handleOnYearChange}
+            uncertainYears={filterUncertainYears}
+            onUncertainYearsChange={this.handleOnUncertainYearsChange}
+            yearsCounts={yearsFacets}
+            yearsFilteredCounts={yearsFilteredFacets}
+            uncertainYearsCount={uncertainYears}
+          />
+        )}
       </div>
     )
   }
