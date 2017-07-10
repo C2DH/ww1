@@ -73,3 +73,10 @@
   width: 30px;
   border-radius: 15px;
 }
+
+@media (max-width: 991px) {
+  .CollectionFilters__container {
+    width: 25%;
+    left: 75%;
+  }
+}

@@ -3,6 +3,7 @@
   height: 100px;
   background-color: #fff;
   border-bottom: 1px solid #DBDBD0;
+  z-index: 10000;
 }
 
 .Collection__List--sidebar-open h2 {
@@ -27,6 +28,11 @@
   font-weight: bold;
   position: relative;
   top: 4px;
+}
+@media (max-width: 991px) {
+  .Collection__List--sidebar-open {
+    width: 75%;
+  }
 }
 
 @media (max-width: 767px) {

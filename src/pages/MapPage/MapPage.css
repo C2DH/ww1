@@ -1,39 +1,22 @@
-.MapPage__TopRow_container {
-  position: fixed;
-  z-index: 99;
-  width: 100%;
-  padding-right: 60px;
-}
-
 .MapPage__TopRow {
+  width: 80%;
   height: 100px;
   background-color: #fff;
+  border-bottom: 1px solid #DBDBD0;
+  z-index: 10000;
 }
 
-.MapPage__TopInfo {
-  display: flex;
-  border-right: 0.3px solid #DBDBD0;
-}
-
-.MapPage__TopInfo h2 {
-  margin-left: 70px;
-  position: relative;
-  top: 30%;
-}
-
-.MapPage__TopInfo p {
+.MapPage__items_shown {
+  align-self: center;
   margin-left: auto;
-  position: relative;
-  top: 40%;
+  font-size: 16px;
 }
 
-.MapPage__Search {
-  padding-top: 35px;
-  border-bottom: 0.3px solid #DBDBD0;
-}
-
-.MapPage__SideMenu {
-  background-color: #fff;
-  border-top: 0.3px solid #DBDBD0;
-  padding-left: 0px!important;
+.MapPage__Filters_container {
+  position: fixed;
+  width: 20%;
+  top: 0;
+  bottom: 0;
+  left: 80%;
+  background-color: red;
 }

@@ -63,22 +63,19 @@ class MapPage extends PureComponent {
         //     <pre key={doc.id}>{JSON.stringify(doc)}</pre>
         //   ))}
         // </div>}
-    <div>
-      <div className="MapPage__TopRow_container">
-        <Row className="MapPage__TopRow">
-          <Col md="9" className="MapPage__TopInfo">
-            <h2>Map</h2>
-            <p><span>123/123</span> items shown</p>
-          </Col>
-          <Col md="3" className="MapPage__Search">
-            <MapSearchInput />
-          </Col>
-        </Row>
-      </div>
 
-        <Row className="MapPage__MainRow">
-          <Col md="9" className="padding-right-0">
-            <div>
+      <div>
+        <div className="MapPage__TopRow">
+          <div className="list-heading list-heading-closed">
+            <h2>Map</h2>
+            <span className="MapPage__items_shown"><strong>1 / 100</strong> ITEMS SHOWN</span>
+            <button className="Collection__open_heading_btn" >
+              <i className="icon-keyboard_arrow_right" />
+            </button>
+          </div>
+        </div>
+        <div className="MapPage__MainRow">
+            <div style={{width: '80%'}}>
               <ReactMapboxGl
                 style="mapbox://styles/mapbox/streets-v8"
                 center={[6.087, 49.667]}
@@ -104,15 +101,18 @@ class MapPage extends PureComponent {
               </Cluster>}
                </ReactMapboxGl>
             </div>
-          </Col>
-          <Col md="3" className="MapPage__SideMenu">
+
+          <div className="MapPage__Filters_container">
             <MapSideMenu />
-          </Col>
-        </Row>
-    </div>
+          </div>
+        </div>
+     </div>
     )
   }
 }
+
+
+
 
 const mapStateToProps = state => ({
   documents: getMapDocuments(state),

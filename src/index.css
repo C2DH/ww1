@@ -226,7 +226,7 @@ textarea:focus, input:focus{
 .list-heading {
   height: 100px;
   position: fixed;
-  left: 60px;
+  left: 58px;
   right: 0;
   z-index: 1000;
   background-color: #fff;
@@ -270,4 +270,18 @@ textarea:focus, input:focus{
 .expandableItem__btn:hover {
   background-color: #333;
   color: #fff;
+}
+
+@media (max-width: 991px) {
+  .list-heading {
+    left: 0;
+    padding-left: 60px;
+  }
+  .list-heading-closed {
+    right: 25%;
+  }
+}
+
+
+@media (max-width: 767px) {
 }

@@ -3,7 +3,7 @@
   width: initial!important;
   margin-right: 10px!important;
   background-color: #fff;
-  height: 120px;
+  min-height: 120px;
   padding: 20px;
   border: 1px solid #DBDBD0;
 }
