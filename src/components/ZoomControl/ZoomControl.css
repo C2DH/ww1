@@ -31,3 +31,9 @@
   margin-right: 7px;
   font-size: 18px;
 }
+
+@media (max-width: 991px) {
+  .ZoomControl__container {
+    display: none;
+  }
+}
