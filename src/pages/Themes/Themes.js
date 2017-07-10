@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { get } from 'lodash'
 import MediaQuery from 'react-responsive'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Container, Row } from 'reactstrap'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
@@ -33,10 +34,12 @@ class ThemeContainer extends PureComponent {
          <MediaQuery minWidth={768} className="Themes__theme_container">
            <hr />
            <h2 className="Themes__theme_title">
-             <span
+             <Link
+               className="Themes__theme_title_link"
+               to={`/themes/${theme.slug}`}
              onMouseEnter={this.handleOnMouseEnter}
              onMouseLeave={this.handleOnMouseLeave}>
-               {hover ? <i className="icon-hand Themes__hand_pointer_left" /> : null}{theme.translated.title}{hover ? <i className="icon-hand-reverse Themes__hand_pointer_right" /> : null}</span></h2>
+               {hover ? <i className="icon-hand Themes__hand_pointer_left" /> : null}{theme.translated.title}{hover ? <i className="icon-hand-reverse Themes__hand_pointer_right" /> : null}</Link></h2>
            <hr className="hidden-md-up" />
         </MediaQuery>
         <MediaQuery maxWidth={767} className="Themes__theme_container" style={{backgroundImage: `url(${responsiveBackground})`}}>

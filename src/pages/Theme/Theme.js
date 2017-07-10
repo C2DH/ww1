@@ -65,4 +65,5 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, {
   loadTheme,
+  unloadTheme,
 })(Theme)

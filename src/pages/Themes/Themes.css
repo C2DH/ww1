@@ -100,3 +100,15 @@
     display: none;
   }
 }
+
+.Themes__theme_title_link {
+  text-decoration: none;
+  color: #fff;
+}
+.Themes__theme_title_link:hover,
+.Themes__theme_title_link:visited,
+.Themes__theme_title_link:focus,
+.Themes__theme_title_link:active {
+  text-decoration: none;
+  color: #fff;
+}
