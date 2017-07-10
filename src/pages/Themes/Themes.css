@@ -20,6 +20,7 @@
   font-size: 4.5em;
   margin: auto;
   color: #F36455;
+  z-index: 1000;
 }
 
 .Themes__theme_title_container {
