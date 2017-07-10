@@ -2,7 +2,8 @@ import React, { PureComponent } from 'react'
 import { get } from 'lodash'
 import MediaQuery from 'react-responsive'
 import { connect } from 'react-redux'
-import { Container, Row } from 'reactstrap';
+import { Container, Row } from 'reactstrap'
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import './Themes.css'
 import {
   loadThemes,
@@ -13,7 +14,9 @@ import {
   getThemesLoading,
   getThemesError,
 } from '../../state/selectors'
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
+import {
+  getThemeCover,
+} from '../../utils'
 
 class ThemeContainer extends PureComponent {
   handleOnMouseEnter = () => {
@@ -86,7 +89,7 @@ class Themes extends PureComponent {
             height: '100%',
             position:'absolute',
             zIndex: 1000,
-            backgroundImage: `url(${get(hoverTheme, 'covers[0].attachment')})`
+            backgroundImage: `url(${getThemeCover(hoverTheme)})`
           }}
           className="Themes__backgroundTheme">
           </div>
@@ -105,7 +108,7 @@ class Themes extends PureComponent {
                 hover={hoverTheme && theme.id === hoverTheme.id}
                 onEnterTheme={this.handleOnEnterTheme}
                 onLeaveTheme={this.handleOnLeaveTheme}
-                responsiveBackground={get(theme, 'covers[0].attachment')}
+                responsiveBackground={getThemeCover(theme)}
               />
             ))}
             <hr className="hidden-md-down" />

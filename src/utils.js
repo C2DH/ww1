@@ -44,3 +44,6 @@ export const parseQsCommaObjValue = (location, key, defaultValue = {}) => {
 }
 
 export const objToCommaStr = obj => keys(obj).join(',')
+
+export const getThemeCover = theme =>
+  get(theme, 'covers[0].attachment')

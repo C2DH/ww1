@@ -1,30 +1,68 @@
 import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
 import { Container } from 'reactstrap';
 import './Theme.css'
 
+import {
+  getTheme,
+} from '../../state/selectors'
+
+import {
+  loadTheme,
+  unloadTheme,
+} from '../../state/actions'
+
+import {
+  getThemeCover,
+} from '../../utils'
 
 class Theme extends PureComponent  {
+  componentDidMount() {
+    this.props.loadTheme(this.props.match.params.slug)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.match.params.slug !== this.props.match.params.slug) {
+      this.props.unloadTheme()
+      this.props.loadTheme(nextProps.match.params.slug)
+    }
+  }
+
+  componentWillUnmount() {
+    this.props.unloadTheme()
+  }
+
   render() {
-  const { cover="https://polishpress.files.wordpress.com/2008/01/old_town_warsaw_waf-2012-1501-311945.jpg",
-          title="Titolo",
-          text="Sometimes there are variables within a pathname that we want to capture. For example, with our player profile route, we want to capture the player’s number. We can do this by adding path params to our route’s path string." } = this.props
+    const { theme } = this.props
+
+    let containerStyle = {}
+    if (theme) {
+      containerStyle = { backgroundImage: `url(${getThemeCover(theme)})` }
+    }
+
     return (
-      <Container fluid className="padding-r-l-0 Theme__container" style={{backgroundImage: `url(${cover})`}}>
-        <div className="Theme__inner_container">
+      <Container fluid className="padding-r-l-0 Theme__container" style={containerStyle}>
+        {theme && <div className="Theme__inner_container">
           <div className="Theme__chapters_btn_container">
             <span>Chapters</span>
             <button className="Theme__chapters_btn"><i className="material-icons md-24">list</i></button>
           </div>
           <label>THEME</label>
-          <h1>{title}</h1>
+          <h1>{theme.translated.title}</h1>
           <div className="Theme__text_container">
-            <p>{text}</p>
+            <p>{theme.translated.abstract}</p>
           </div>
           <button className="Theme__start_btn">START</button>
-        </div>
+        </div>}
       </Container>
     )
   }
 }
 
-export default Theme
+const mapStateToProps = state => ({
+  theme: getTheme(state),
+})
+
+export default connect(mapStateToProps, {
+  loadTheme,
+})(Theme)

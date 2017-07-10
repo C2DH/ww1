@@ -213,3 +213,9 @@ export const getThemes = createSelector(
 // export const getThemes = state => state.themes.list
 export const getThemesLoading = state => state.themes.loading
 export const getThemesError = state => state.themes.error
+
+export const getTheme = createSelector(
+  state => state.themeDetail.data,
+  getCurrentLanguage,
+  (theme, lang) => maybeNull(theme)(translateStory(lang))
+)
