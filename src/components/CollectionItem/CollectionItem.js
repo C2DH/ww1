@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { Container, Row, Col, Label } from 'reactstrap'
 import EventDate from '../../components/EventDate'
 import moment from 'moment'
+import MediaQuery from 'react-responsive'
 import { get, keys, capitalize } from 'lodash'
 import CollectionItemPreview from '../CollectionItemPreview'
 import './CollectionItem.css'
@@ -100,7 +101,6 @@ export default ({doc}) => {
     coords = coords.map(item => parseFloat(item))
     coords = [coords[0], coords[1]]
   }
-  var MediaQuery = require('react-responsive')
   return (
     <div className="CollectionItem__wrapper_div">
       <Container>

@@ -11,7 +11,10 @@ class Theme extends PureComponent  {
     return (
       <Container fluid className="padding-r-l-0 Theme__container" style={{backgroundImage: `url(${cover})`}}>
         <div className="Theme__inner_container">
-          {/* <button className="Theme__chapters_btn"></button> */}
+          <div className="Theme__chapters_btn_container">
+            <span>Chapters</span>
+            <button className="Theme__chapters_btn"><i className="material-icons md-24">list</i></button>
+          </div>
           <label>THEME</label>
           <h1>{title}</h1>
           <div className="Theme__text_container">
