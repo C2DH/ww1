@@ -14,6 +14,8 @@ import CollectionDetail from './pages/CollectionDetail'
 import CollectionDetailModal from './pages/CollectionDetailModal'
 import Resources from './pages/Resources'
 import Manual from './pages/Manual'
+import Theme from './pages/Theme'
+
 
 
 class Routes extends PureComponent {
@@ -50,6 +52,7 @@ class Routes extends PureComponent {
           <Route path='/collection/item/:id' exact component={CollectionDetail} />
           <Route path='/resources' exact component={Resources} />
           <Route path='/manual' exact component={Manual} />
+          <Route path='/themes/:slug/theme' exact component={Theme} />
         </Switch>
         {isModal ? <Route path='/collection/item/:id' component={CollectionDetailModal} /> : null}
       </div>

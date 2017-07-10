@@ -100,15 +100,16 @@ export default ({doc}) => {
     coords = coords.map(item => parseFloat(item))
     coords = [coords[0], coords[1]]
   }
+  var MediaQuery = require('react-responsive')
   return (
     <div className="CollectionItem__wrapper_div">
       <Container>
+        <MediaQuery minWidth={0}>
         <Row>
           <div className="CollectionItem__container">
             <Col>
               <CollectionItemPreview doc={doc}/>
             </Col>
-
             <Col md={3} lg={3} className="CollectionItem__info_container">
                 <p className="CollectionItem__date">
                   <EventDate
@@ -136,6 +137,44 @@ export default ({doc}) => {
             </Col>
           </div>
         </Row>
+      </MediaQuery>
+      {/* <MediaQuery maxWidth={991}>
+        <Row>
+          <div className="CollectionItem__container">
+            <Row>
+                <CollectionItemPreview doc={doc}/>
+            </Row>
+            <Row>
+
+            </Row>
+            <div className="CollectionItem__info_container">
+                <p className="CollectionItem__date">
+                  <EventDate
+                    date={get(doc, 'translated.date')}
+                    startDate={doc.translated.start_date}
+                    endDate={doc.translated.end_date}
+                  />
+                </p>
+              <h3 className="CollectionItem__title">{doc.title}</h3>
+              <hr className="CollectionItem__title_divider" />
+              <p className="CollectionItem__description">
+                  { get(doc, 'translated.description') }
+              </p>
+
+              { coords && (
+                <MiniMap coords={coords}/>
+              )}
+              { get(doc, "documents.length") && (
+                <RelatedObjects items={get(doc, "documents")}/>
+              )}
+              <SeeAlso doc={doc}/>
+              <AdditionalInformation metadata={EXAMPLE_METADATA}/>
+
+            </div>
+          </div>
+        </Row>
+      </MediaQuery> */}
+
       </Container>
 
     </div>

@@ -34,8 +34,12 @@
   font-size: 20px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .CollectionDetailModal__container {
     left: 0px;
+  }
+  .CollectionDetailModal__close_btn_container {
+    height: 100px;
+    border-left: 0px;
   }
 }

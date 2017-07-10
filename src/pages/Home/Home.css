@@ -10,13 +10,12 @@
   background-attachment: fixed;
   height: 100vh;
   overflow-y: scroll;
-
 }
+
 .Home__background--slide1{
   background-image:
-    linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+   linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url(/home_bkg/background_1.jpg);
-
 }
 
 .Home__background--slide2{

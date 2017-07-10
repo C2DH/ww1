@@ -1,0 +1,46 @@
+.Theme__container {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Theme__inner_container {
+  padding-left: 40px;
+  color: #fff;
+}
+
+.Theme__inner_container label{
+  color: #F56350;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.Theme__inner_container h1 {
+  font-family: "Behrens Antiqua";
+  font-size: 90px;
+  text-transform: uppercase;
+}
+
+.Theme__text_container {
+  max-width: 500px;
+}
+
+.Theme__text_container p {
+  font-size: 24px;
+  font-style: italic;
+}
+
+.Theme__start_btn {
+  height: 45px;
+  width: 110px;
+  border: 1px solid #FFFFFF;
+  border-radius: 100px;
+  background-color: #FFFFFF;
+}
