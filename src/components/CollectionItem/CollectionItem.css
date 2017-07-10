@@ -138,6 +138,7 @@
   border-radius: 16px;
   font-size: 12px;
   font-weight: 200;
+  margin-right: 5px;
 }
 
 .CollectionItem__btn_download {
@@ -161,6 +162,17 @@
 
 @media (max-width: 991px) {
   .CollectionItem__container {
-    height: 100%;
+    height: auto;
+    flex-direction: column;
+  }
+  .CollectionItem__doc_controls {
+    display: none;
+  }
+  .CollectionItem__doc_container {
+    height: auto;
+    padding-top: 100px;
+  }
+  .CollectionItem__additional_info button {
+    padding-right: 15px;
   }
 }

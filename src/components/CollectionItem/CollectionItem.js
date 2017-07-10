@@ -104,7 +104,7 @@ export default ({doc}) => {
   return (
     <div className="CollectionItem__wrapper_div">
       <Container>
-        <MediaQuery minWidth={0}>
+        <MediaQuery minWidth={991}>
         <Row>
           <div className="CollectionItem__container">
             <Col>
@@ -138,15 +138,10 @@ export default ({doc}) => {
           </div>
         </Row>
       </MediaQuery>
-      {/* <MediaQuery maxWidth={991}>
-        <Row>
-          <div className="CollectionItem__container">
-            <Row>
-                <CollectionItemPreview doc={doc}/>
-            </Row>
-            <Row>
+      <MediaQuery maxWidth={991}>
 
-            </Row>
+          <div className="CollectionItem__container">
+            <CollectionItemPreview doc={doc}/>
             <div className="CollectionItem__info_container">
                 <p className="CollectionItem__date">
                   <EventDate
@@ -172,8 +167,7 @@ export default ({doc}) => {
 
             </div>
           </div>
-        </Row>
-      </MediaQuery> */}
+      </MediaQuery>
 
       </Container>
 

@@ -42,7 +42,14 @@
   width: 110px;
   border: 1px solid #FFFFFF;
   border-radius: 100px;
+  color: rgba(34, 34, 32, 0.9);
   background-color: #FFFFFF;
+}
+
+.Theme__start_btn:hover {
+  color: #fff;
+  background-color: rgba(34, 34, 32, 0.9);
+  border: 1px solid rgba(34, 34, 32, 0.9);
 }
 
 .Theme__chapters_btn_container {
@@ -66,4 +73,10 @@
   height: 45px;
   padding-top: 8px;
   cursor: pointer;
+}
+
+.Theme__chapters_btn:hover {
+  color: rgba(34, 34, 32, 0.9);
+  background-color: #fff;
+  border: 1px solid rgba(34, 34, 32, 0.9);
 }
