@@ -20,6 +20,7 @@
   font-size: 4.5em;
   margin: auto;
   color: #F36455;
+  z-index: 1000;
 }
 
 .Themes__theme_title_container {
@@ -99,4 +100,16 @@
   .Themes__hand_pointer_left {
     display: none;
   }
+}
+
+.Themes__theme_title_link {
+  text-decoration: none;
+  color: #fff;
+}
+.Themes__theme_title_link:hover,
+.Themes__theme_title_link:visited,
+.Themes__theme_title_link:focus,
+.Themes__theme_title_link:active {
+  text-decoration: none;
+  color: #fff;
 }

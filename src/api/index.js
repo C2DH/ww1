@@ -60,3 +60,7 @@ export const getThemes = () =>
       orderby: 'priority',
     }))
     .then(extractBody)
+
+export const getTheme = (idOrSlug) =>
+  request.get(`${API_URL}/story/${idOrSlug}`)
+    .then(extractBody)

@@ -1,6 +1,10 @@
 import React, { PureComponent } from 'react'
+import { get } from 'lodash'
+import MediaQuery from 'react-responsive'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Container, Row } from 'reactstrap';
+import { Container, Row } from 'reactstrap'
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import './Themes.css'
 import {
   loadThemes,
@@ -11,35 +15,9 @@ import {
   getThemesLoading,
   getThemesError,
 } from '../../state/selectors'
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
-
-const THEMES = [
-  {
-    id: 1,
-    title: "The Occupation",
-    cover: 'https://upload.wikimedia.org/wikipedia/commons/9/96/Approaching_Omaha.jpg'
-  },
-  {
-    id: 2,
-    title: "Death on the home front",
-    cover: 'https://tesisecondaguerramondiale.files.wordpress.com/2013/06/russian-front-eastern-front-ww2-second-world-war-two-rare-pics-pictures-images-photos-005.jpg',
-  },
-  {
-    id: 3,
-    title: "The food crisis",
-    cover: 'http://www.xsjjys.com/data/out/282/WHDQ-514151224.jpg',
-  },
-  {
-    id: 4,
-    title: "Migrations",
-    cover: 'http://i2.cdn.cnn.com/cnnnext/dam/assets/140828132527-03-world-war-ii-horizontal-large-gallery.jpg',
-  },
-  {
-    id: 5,
-    title: "The aftermath",
-    cover: 'https://polishpress.files.wordpress.com/2008/01/old_town_warsaw_waf-2012-1501-311945.jpg',
-  }
-]
+import {
+  getThemeCover,
+} from '../../utils'
 
 class ThemeContainer extends PureComponent {
   handleOnMouseEnter = () => {
@@ -51,21 +29,22 @@ class ThemeContainer extends PureComponent {
 
   render() {
     const { theme, hover, responsiveBackground } = this.props
-    var MediaQuery = require('react-responsive')
     return (
        <div>
          <MediaQuery minWidth={768} className="Themes__theme_container">
            <hr />
            <h2 className="Themes__theme_title">
-             <span
+             <Link
+               className="Themes__theme_title_link"
+               to={`/themes/${theme.slug}`}
              onMouseEnter={this.handleOnMouseEnter}
              onMouseLeave={this.handleOnMouseLeave}>
-               {hover ? <i className="icon-hand Themes__hand_pointer_left" /> : null}{theme.title}{hover ? <i className="icon-hand-reverse Themes__hand_pointer_right" /> : null}</span></h2>
+               {hover ? <i className="icon-hand Themes__hand_pointer_left" /> : null}{theme.translated.title}{hover ? <i className="icon-hand-reverse Themes__hand_pointer_right" /> : null}</Link></h2>
            <hr className="hidden-md-up" />
         </MediaQuery>
         <MediaQuery maxWidth={767} className="Themes__theme_container" style={{backgroundImage: `url(${responsiveBackground})`}}>
           <hr />
-          <h2 className="Themes__theme_title">{theme.title}</h2>
+          <h2 className="Themes__theme_title">{theme.translated.title}</h2>
           <hr className="hidden-md-up" />
        </MediaQuery>
 
@@ -98,6 +77,8 @@ class Themes extends PureComponent {
 
   render () {
     const { hoverTheme } = this.state
+    const { themes } = this.props
+
     return (
       <Container fluid className="padding-r-l-0 Themes__container">
         {/* style={{ backgroundImage: hoverTheme ? `url(${hoverTheme.cover})` : undefined }}> */}
@@ -106,10 +87,14 @@ class Themes extends PureComponent {
         transitionEnterTimeout={500}
         transitionLeaveTimeout={500}>
         {hoverTheme && (
-          <div key="background" style={{width: '100%', height: '100%', position:'absolute',
+          <div key="background" style={{
+            width: '100%',
+            height: '100%',
+            position:'absolute',
             zIndex: 1000,
-            backgroundImage: `url(${hoverTheme.cover})` }}
-            className="Themes__backgroundTheme">
+            backgroundImage: `url(${getThemeCover(hoverTheme)})`
+          }}
+          className="Themes__backgroundTheme">
           </div>
         )}
         </CSSTransitionGroup>
@@ -118,19 +103,19 @@ class Themes extends PureComponent {
         </Row>
         <Row>
 
-          <div className="Themes__theme_title_container" style={{zIndex: 1001}}>
-            {THEMES.map(theme =>(
+          {themes && <div className="Themes__theme_title_container" style={{zIndex: 1001}}>
+            {themes.map(theme =>(
               <ThemeContainer
                 key={theme.id}
                 theme={theme}
                 hover={hoverTheme && theme.id === hoverTheme.id}
                 onEnterTheme={this.handleOnEnterTheme}
                 onLeaveTheme={this.handleOnLeaveTheme}
-                responsiveBackground={theme.cover}
+                responsiveBackground={getThemeCover(theme)}
               />
             ))}
             <hr className="hidden-md-down" />
-          </div>
+          </div>}
         </Row>
       </Container>
     )
