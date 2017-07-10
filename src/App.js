@@ -52,7 +52,7 @@ class Routes extends PureComponent {
           <Route path='/collection/item/:id' exact component={CollectionDetail} />
           <Route path='/resources' exact component={Resources} />
           <Route path='/manual' exact component={Manual} />
-          <Route path='/themes/:slug/theme' exact component={Theme} />
+          <Route path='/themes/:slug' exact component={Theme} />
         </Switch>
         {isModal ? <Route path='/collection/item/:id' component={CollectionDetailModal} /> : null}
       </div>

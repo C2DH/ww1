@@ -16,6 +16,11 @@ import {
   GET_THEMES_SUCCESS,
   GET_THEMES_FAILURE,
   GET_THEMES_UNLOAD,
+  GET_THEME,
+  GET_THEME_SUCCESS,
+  GET_THEME_LOADING,
+  GET_THEME_FAILURE,
+  GET_THEME_UNLOAD,
 } from '../actions'
 
 const BIG_PAGE_SIZE = 1000
@@ -40,12 +45,29 @@ function *handleGetThemes() {
   }
 }
 
+function *handleGetTheme({ payload }) {
+  const themeIdOrSlug = payload
+  yield put({ type: GET_THEME_LOADING })
+  try {
+    const theme = yield call(api.getTheme, themeIdOrSlug)
+    yield put({ type: GET_THEME_SUCCESS, payload: theme })
+  } catch (error) {
+    yield put({ type: GET_THEME_FAILURE, error })
+  }
+}
+
 export default function* rootSaga() {
   yield fork(
     takeLatestAndCancel,
     GET_DOCUMENT,
     GET_DOCUMENT_UNLOAD,
     handleGetDocument,
+  )
+  yield fork(
+    takeLatestAndCancel,
+    GET_THEME,
+    GET_THEME_UNLOAD,
+    handleGetTheme,
   )
   yield fork(
     takeLatestAndCancel,
