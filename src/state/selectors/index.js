@@ -44,6 +44,14 @@ const translateDocument = lang => doc => ({
   documents: (doc.documents || []).map(doc => translateDocument(lang)(doc))
 })
 
+const translateStory = lang => story => ({
+  ...story,
+  translated: translateObject(story.metadata, lang, [
+    'title',
+    'abstract',
+  ])
+})
+
 // Make base paginate list state selectors
 const makePaginateListSelectors = selectState => {
   const getIds = state => selectState(state).ids
@@ -197,6 +205,11 @@ export const [
 
 // Themes
 
-export const getThemes = state => state.themes.list
+export const getThemes = createSelector(
+  state => state.themes.list,
+  getCurrentLanguage,
+  (themes, lang) => maybeNull(themes)(themes => themes.map(translateStory(lang)))
+)
+// export const getThemes = state => state.themes.list
 export const getThemesLoading = state => state.themes.loading
 export const getThemesError = state => state.themes.error
