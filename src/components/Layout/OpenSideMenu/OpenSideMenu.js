@@ -36,6 +36,9 @@ class OpenSideMenu extends PureComponent {
          <li><Link to="/" onClick={this.props.closeMenu}>About</Link></li>
          <li><Link to="/" onClick={this.props.closeMenu}>Terms of use</Link></li>
        </ul>
+       <div className="OpenSideMenu__lang_control">
+
+       </div>
        <div className="OpenSideMenu__bottom_logos">
        </div>
       </div>

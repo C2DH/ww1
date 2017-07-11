@@ -45,6 +45,11 @@
   text-align: center;
 }
 
+.OpenSideMenu__lang_control {
+  height: 40px;
+  background-color: red;
+}
+
 .OpenSideMenu__bottom_logos {
   height: 100px;
   background-color: #fff;
