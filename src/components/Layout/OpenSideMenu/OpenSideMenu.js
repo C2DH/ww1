@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import { Button, ButtonGroup } from 'reactstrap'
 import './OpenSideMenu.css'
 import { Link } from 'react-router-dom'
 
@@ -16,6 +17,7 @@ class OpenSideMenu extends PureComponent {
   }
 
   render () {
+    const { setLang } = this.props
     return (
      <div className="OpenSideMenu d-flex flex-column">
       <div className="OpenSideMenu__top">
@@ -37,7 +39,9 @@ class OpenSideMenu extends PureComponent {
          <li><Link to="/" onClick={this.props.closeMenu}>Terms of use</Link></li>
        </ul>
        <div className="OpenSideMenu__lang_control">
-
+          <button onClick={() => setLang('EN')} className="OpenSideMenu__lang_control_btn">EN</button>{' '}
+          <button onClick={() => setLang('FR')} className="OpenSideMenu__lang_control_btn">FR</button>{' '}
+          <button onClick={() => setLang('DE')} className="OpenSideMenu__lang_control_btn">DE</button>
        </div>
        <div className="OpenSideMenu__bottom_logos">
        </div>
