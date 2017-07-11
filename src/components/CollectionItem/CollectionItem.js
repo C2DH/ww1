@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Container, Row, Col, Label } from 'reactstrap'
+import { Container, Row, Col, Label, Collapse, Button } from 'reactstrap'
 import EventDate from '../../components/EventDate'
 import moment from 'moment'
 import MediaQuery from 'react-responsive'
@@ -16,14 +16,24 @@ const EXAMPLE_METADATA = {
 
 class AdditionalInformation extends PureComponent {
 
-  state = {
-    open:false
+  // state = {
+  //   open:false
+  // }
+  //
+  // toggleInfo = () => {
+  //   this.setState({
+  //     open: !this.state.open
+  //   })
+  // }
+
+  constructor(props) {
+    super(props);
+    this.toggle = this.toggle.bind(this);
+    this.state = { collapse: false };
   }
 
-  toggleInfo = () => {
-    this.setState({
-      open: !this.state.open
-    })
+  toggle() {
+    this.setState({ collapse: !this.state.collapse });
   }
 
   render() {
@@ -32,25 +42,24 @@ class AdditionalInformation extends PureComponent {
 
   return (
     <div>
-      <Label className="CollectionItem__label CollectionItem__additional_info">
-        ADDITIONAL INFORMATION
-        <button onClick={this.toggleInfo}><i className={this.state.open ? `icon-keyboard_arrow_up` : `icon-keyboard_arrow_down`} /></button>
-      </Label>
-      <hr className="CollectionItem__Relatedobjects_divider mt-0" />
-      {this.state.open ? <div>
-      { metadataKeys.map(k => (
-        <p key={k} className="CollectionItem__AdditionalInformation_text">
-          <b>{capitalize(k.split("_").join(" "))}:</b> <i>{metadata[k]}</i>
-        </p>
-
-      ))}
-    </div> : null}
+      <div className="CollectionItem__additional_info d-flex align-items-center">
+        <h6 onClick={this.toggle} className="CollectionItem__label">
+          additional information
+        </h6>
+        <i className="material-icons">{this.state.collapse? 'keyboard_arrow_up': 'keyboard_arrow_down'}</i>
+      </div>
+       <Collapse isOpen={this.state.collapse}>
+         { metadataKeys.map(k => (
+           <p key={k} className="CollectionItem__AdditionalInformation_text">
+             <b>{capitalize(k.split("_").join(" "))}:</b> <i>{metadata[k]}</i>
+           </p>
+         ))}
+       </Collapse>
     </div>
 
   )
  }
 }
-
 
 //id: 193 has related!
 const RelatedObjects = ({items}) => {
@@ -73,12 +82,9 @@ const RelatedObjects = ({items}) => {
 
 const SeeAlso = ({doc}) => (
   <div className="CollectionItem__Relatedobjects">
-    <Label className="CollectionItem__label">SEE ALSO</Label>
-    <div>
-      {doc.data.year && <button className="CollectionItem__btn">{get(doc, "data.year")}</button>}
-      {doc.data.type && <button className="CollectionItem__btn">{get(doc, "data.type")}</button>}
-    </div>
-    <hr className="CollectionItem__Relatedobjects_divider mb-0" />
+    <h6 className="CollectionItem__label">SEE ALSO</h6>
+      {doc.data.year && <button className="CollectionItem__btn btn btn-secondary">{get(doc, "data.year")}</button>}
+      {doc.data.type && <button className="CollectionItem__btn btn btn-secondary">{get(doc, "data.type")}</button>}
   </div>
 )
 
@@ -104,13 +110,11 @@ export default ({doc}) => {
   return (
     <div className="CollectionItem__wrapper_div">
       <Container>
-        <MediaQuery minWidth={991}>
         <Row>
-          <div className="CollectionItem__container">
-            <Col>
+            <Col lg="8">
               <CollectionItemPreview doc={doc}/>
             </Col>
-            <Col md={3} lg={3} className="CollectionItem__info_container">
+            <Col lg="4" className="CollectionItem__info_container">
                 <p className="CollectionItem__date">
                   <EventDate
                     date={get(doc, 'translated.date')}
@@ -135,39 +139,7 @@ export default ({doc}) => {
               <AdditionalInformation metadata={EXAMPLE_METADATA}/>
 
             </Col>
-          </div>
         </Row>
-      </MediaQuery>
-      <MediaQuery maxWidth={991}>
-
-          <div className="CollectionItem__container">
-            <CollectionItemPreview doc={doc}/>
-            <div className="CollectionItem__info_container">
-                <p className="CollectionItem__date">
-                  <EventDate
-                    date={get(doc, 'translated.date')}
-                    startDate={doc.translated.start_date}
-                    endDate={doc.translated.end_date}
-                  />
-                </p>
-              <h3 className="CollectionItem__title">{doc.title}</h3>
-              <hr className="CollectionItem__title_divider" />
-              <p className="CollectionItem__description">
-                  { get(doc, 'translated.description') }
-              </p>
-
-              { coords && (
-                <MiniMap coords={coords}/>
-              )}
-              { get(doc, "documents.length") && (
-                <RelatedObjects items={get(doc, "documents")}/>
-              )}
-              <SeeAlso doc={doc}/>
-              <AdditionalInformation metadata={EXAMPLE_METADATA}/>
-
-            </div>
-          </div>
-      </MediaQuery>
 
       </Container>
 

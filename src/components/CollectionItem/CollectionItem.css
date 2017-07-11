@@ -1,6 +1,6 @@
 .CollectionItem__wrapper_div {
-  min-height:100vh;
-  width: 100%;
+  height:100vh;
+  flex-grow: 1;
   background-color: #2F2F2F;
 }
 
@@ -47,22 +47,20 @@
 }
 
 .CollectionItem__info_container {
-  padding: 10px;
-  padding-right: 25px;
-  height: 100%;
-  overflow: scroll;
+  max-height: 100vh;
+  overflow-x: scroll;
+  padding-top: 58px;
+  border-left: 1px solid #DBDBD0;
 }
 
 .CollectionItem__date {
   color: #9B9B9B;
-  font-size: 14px;
-  margin-bottom: 4px;
-  padding-top: 15px;
-  font-weight: 200;
+  font-size: 0.875rem;
+  font-family: "Atlas Grotesk Web", Arial, sans-serif;
 }
 
 .CollectionItem__title {
-  font-size: 28px;
+  font-size: 1.75rem;
   color: #fff;
 }
 
@@ -73,8 +71,7 @@
 
 .CollectionItem__description {
   color: #C3C2C4;
-	font-size: 18px;
-  font-weight: 200;
+	font-size: 1.125rem;
 }
 
 .CollectionItem__Relatedobjects {
@@ -103,26 +100,24 @@
 }
 
 .CollectionItem__additional_info {
-  margin-top: .5rem;
-  display: inline-flex;
-  width: 100%;
+  margin-top: 30px;
+  border-top: 1px solid #979797;
+  border-bottom: 1px solid #979797;
+  padding: 15px 0px;
+  color: white;
+  cursor: pointer;
 }
 
-.CollectionItem__additional_info button {
-  background-color: transparent;
-  color: #9B9B9B;
-  border: 0px;
-  margin-left: auto;
-  height: 21px;
-  font-size: 18px;
-  position: relative;
-  bottom: 5px;
+.CollectionItem__additional_info h6 {
+  margin: 0px;
+  flex-grow: 1;
 }
 
 
 .CollectionItem__label {
   color: #F56350;
-	font-size: 14px;
+	margin-bottom: 15px;
+  text-transform: uppercase;
 }
 
 .CollectionItem__Relatedobjects_divider {
@@ -133,12 +128,10 @@
   color: #C2C1C3;
   background-color: transparent;
   border: 1px solid #C2C1C3;
-  padding-left: 12px;
-  padding-right: 12px;
   border-radius: 16px;
-  font-size: 12px;
-  font-weight: 200;
-  margin-right: 5px;
+  margin-right: 8px;
+  font-family: "Atlas Grotesk Web", Arial, sans-serif;
+  cursor: pointer;
 }
 
 .CollectionItem__btn_download {

@@ -30,7 +30,8 @@ class CollectionDetailModal extends PureComponent {
   render(){
     const { doc, loading } = this.props
     return (
-      <div className="CollectionDetailModal__container">
+      <div className="CollectionDetailModal__container d-flex">
+        {doc && <CollectionItem doc={doc}/>}
         <div
           className="CollectionDetailModal__close_btn_container"
           >
@@ -43,7 +44,6 @@ class CollectionDetailModal extends PureComponent {
               <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        {doc && <CollectionItem doc={doc}/>}
       </div>
     )
   }

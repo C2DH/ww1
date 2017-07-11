@@ -8,15 +8,12 @@
 }
 
 .CollectionDetailModal__close_btn_container {
-  position: fixed;
-  z-index: 100000;
-  width: 57px;
-  min-height: 100vh;
-  right: 0;
+  height: 100vh;
   background-color: #2F2F2F;
   border-left: 1px solid #DBDBD0;
-  display: flex;
-  justify-content: center;
+  /*display: flex;
+  justify-content: center;*/
+  flex-grow: 0
 }
 
 .CollectionDetailModal__close_btn {
