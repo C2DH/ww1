@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import { isNull, get, zipObject, memoize, filter, keys, omit, isUndefined } from 'lodash'
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import qs from 'query-string'
 import {
   parseQsValue,
