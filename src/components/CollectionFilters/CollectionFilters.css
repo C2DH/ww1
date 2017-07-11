@@ -1,16 +1,15 @@
 .CollectionFilters__container {
   position: fixed;
-  width: 20%;
+  width: 300px;
   top: 0;
   bottom: 0;
-  left: 80%;
+  right: 0px;
+  overflow: scroll;
   background-color: #fff;
 }
 
 .CollectionFilters__input_container {
   height: 100px;
-  display: inline-flex;
-  justify-content: center;
   padding-left: 5px;
   padding-right: 5px;
   background-color: #fff;
@@ -19,64 +18,94 @@
 }
 
 .CollectionFilters__input_container_icon {
-  align-self: center;
   margin-right: 10px;
-  font-size: 22px;
-  font-weight: bold;
 }
 
 .CollectionFilters__input {
   border: 0px;
-  align-self: center;
-  font-size: 16px;
   width: 100%;
-}
-
-.CollectionFilters__reset_container {
-  border-bottom: 0.3px solid #DBDBD0;
-  padding: 10px;
-  display: flex;
-}
-
-.CollectionFilters__reset_title {
-  margin-top: 0.5em;
-  font-size: 15px;
+  font-family: Georgia, serif;
+  font-style: normal;
   font-weight: bold;
 }
 
+.CollectionFilters__input::placeholder{
+      font-style: italic;
+      font-weight: normal;
+}
+
+.CollectionFilters__input::-webkit-input-placeholder{
+      font-style: italic;
+      font-weight: normal;
+}
+
+.CollectionFilters__input::placeholder{
+      font-style: italic;
+      font-weight: normal;
+}
+
+.CollectionFilters__input:-ms-input-placeholder{
+      font-style: italic;
+      font-weight: normal;
+}
+
+.CollectionFilters__input:-moz-placeholder{
+      font-style: italic;
+      font-weight: normal;
+}
+
+
+.CollectionFilters__reset_container {
+  border-bottom: 0.3px solid #DBDBD0;
+  padding: 15px;
+}
+
+.CollectionFilters__reset_title {
+  font-size: 15px;
+  letter-spacing: 1px;
+  margin: 0px;
+}
+
 .CollectionFilters__reset {
-  margin-top: 0.3em;
-  margin-bottom: 0.3em;
+  margin: 0px;
   margin-left: auto;
   text-decoration: underline!important;
+  font-family: 'Atlas Grotesk Web', Arial, sans-serif;
+  font-weight: 400;
+  cursor: pointer;
 }
 
 .CollectionFilters__filter_container {
-  display: flex;
-  padding: 10px;
-  flex-direction: column;
+  padding: 15px;
   border-bottom: 1px solid #DBDBD0;
+}
+
+.CollectionFilters__filter_wrapper{
+  margin: 5px 0px;
+  cursor: pointer;
 }
 
 .CollectionFilters__filter {
   margin-bottom: 0px;
-  width: 100%;
   text-transform: capitalize;
 }
 
 .CollectionFilters__filter_badge {
   background-color: #F36455;
   font-weight: normal;
-  margin-left: auto;
-  align-self: center;
-  font-size: 13px;
+  font-size: 0.875rem;
   width: 30px;
   border-radius: 15px;
+  font-family: "Atlas Grotesk", Arial, sans-serif;
 }
 
-@media (max-width: 991px) {
+.CollectionFilters__time{
+  padding: 15px;
+}
+
+/*@media (max-width: 991px) {
   .CollectionFilters__container {
     width: 25%;
     left: 75%;
   }
-}
+}*/
