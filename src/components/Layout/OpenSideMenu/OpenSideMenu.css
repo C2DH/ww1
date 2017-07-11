@@ -45,11 +45,6 @@
   text-align: center;
 }
 
-.OpenSideMenu__lang_control {
-  height: 40px;
-  background-color: red;
-}
-
 .OpenSideMenu__bottom_logos {
   height: 100px;
   background-color: #fff;
@@ -67,6 +62,34 @@
   letter-spacing: 3px;
   white-space: nowrap;
   padding-top: 20px;
+}
+
+.OpenSideMenu__lang_control {
+  height: 40px;
+  background-color: #fff;
+  border-bottom: 1px solid #DBDBD0;
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+}
+
+.OpenSideMenu__lang_control_btn {
+  background-color: transparent;
+  border: none;
+  color: rgba(0, 0, 0, 1);
+  border-radius: 0px;
+  font-weight: 500;
+  padding: 5px;
+  margin-right: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+  height: 32px;
+}
+
+.OpenSideMenu__lang_control_btn:active,
+.OpenSideMenu__lang_control_btn:focus {
+  border-bottom: 2px solid #F56350;
 }
 
 /*Small devices (landscape phones, 576px and up)*/
@@ -93,6 +116,15 @@
 
   .OpenSideMenu__bottom_list {
     text-align: left;
+  }
+
+  .OpenSideMenu__lang_control {
+    padding-left: 50px;
+    justify-content: flex-start;
+  }
+
+  .OpenSideMenu__lang_control_btn {
+    margin-left: 0px;
   }
 
  }

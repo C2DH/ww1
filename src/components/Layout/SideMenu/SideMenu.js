@@ -7,7 +7,8 @@ import './SideMenu.css'
 class SideMenu extends PureComponent {
 
   state = {
-    open:false
+    open:false,
+    lang: 'EN'
   }
 
   toggleMenu = () => {
@@ -15,6 +16,9 @@ class SideMenu extends PureComponent {
       open: !this.state.open
     })
   }
+
+  setLang = (lang) => this.setState({ lang })
+
 
   render () {
     return (
@@ -35,9 +39,9 @@ class SideMenu extends PureComponent {
       <div className={this.state.open ? "SideMenu__vertical_title_container d-flex justify-content-center hidden-md-down" : "SideMenu__vertical_title_container_close d-flex justify-content-center hidden-md-down"}>
          <p className="SideMenu__vertical_title">ÉISCHTE WELTKRICH</p>
        </div>
-       <button type="button" className="SideMenu__langBtn btn btn-secondary hidden-md-down">EN</button>
+       <span className="SideMenu__langBtn btn btn-secondary hidden-md-down">{this.state.lang}</span>
      </div>
-     {this.state.open ? <OpenSideMenu key="close" closeMenu={this.toggleMenu} key="opensidemenu"/> : null}
+     {this.state.open ? <OpenSideMenu setLang={this.setLang}  key="close" closeMenu={this.toggleMenu} key="opensidemenu"/> : null}
     </CSSTransitionGroup>
     )
   }
