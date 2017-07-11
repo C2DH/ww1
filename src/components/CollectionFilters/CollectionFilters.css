@@ -2,13 +2,16 @@
   position: fixed;
   width: 300px;
   top: 0;
-  bottom: 0;
-  right: 0px;
+  right: 0;
   overflow: scroll;
   background-color: #fff;
+  padding-top: 101px;
+  height: 100vh;
 }
 
 .CollectionFilters__input_container {
+  position: fixed;
+  top: 0;
   height: 100px;
   padding-left: 5px;
   padding-right: 5px;
@@ -58,6 +61,7 @@
 .CollectionFilters__reset_container {
   border-bottom: 0.3px solid #DBDBD0;
   padding: 15px;
+  background-color: white;
 }
 
 .CollectionFilters__reset_title {

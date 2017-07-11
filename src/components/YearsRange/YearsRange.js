@@ -70,7 +70,7 @@ class YearsRange extends PureComponent {
       uncertainYears,
       onUncertainYearsChange,
       uncertainYearsCount,
-      barHeight = 100,
+      barHeight = 80,
     } = this.props
 
     return (
