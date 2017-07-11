@@ -172,6 +172,7 @@
   .CollectionFilters__filter_wrapper{
     margin: 5px 0px;
     padding: 0px;
+    border-bottom: none;
   }
 
 }
