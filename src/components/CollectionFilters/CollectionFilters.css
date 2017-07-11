@@ -1,23 +1,49 @@
 .CollectionFilters__container {
   position: fixed;
-  width: 300px;
+  width: 100%;
   top: 0;
   right: 0;
   overflow: scroll;
   background-color: #fff;
-  padding-top: 101px;
+  padding-top: 58px;
   height: 100vh;
+  z-index: 9999;
 }
 
 .CollectionFilters__input_container {
-  position: fixed;
+  position: relative;
   top: 0;
-  height: 100px;
-  padding-left: 5px;
-  padding-right: 5px;
+  height: 60px;
+  padding-left: 0px;
+  padding-right: 15px;
   background-color: #fff;
   width: 100%;
   border-bottom: 1px solid #DBDBD0;
+}
+
+.CollectionFilters__filtermobile_title{
+  position: fixed;
+  top:0px;
+  height: 58px;
+  z-index: 9999;
+  width: 100%;
+  background-color: white;
+  border-bottom: 1px solid #DBDBD0;
+}
+
+.CollectionFilters__filtermobile_title__check{
+    background-color: #fff;
+    border: none;
+    padding-top: 14px;
+    cursor: pointer;
+    color: #F56350;
+}
+
+.CollectionFilters__filtermobile_title h2{
+  flex-grow: 1;
+  text-align: center;
+  margin-left: 58px;
+  font-size: 1.5rem;
 }
 
 .CollectionFilters__input_container_icon {
@@ -80,13 +106,20 @@
 }
 
 .CollectionFilters__filter_container {
-  padding: 15px;
+  padding: 0px;
   border-bottom: 1px solid #DBDBD0;
+  margin-bottom: 30px;
 }
 
 .CollectionFilters__filter_wrapper{
-  margin: 5px 0px;
+  margin: 0px;
+  padding: 10px 15px;
   cursor: pointer;
+  border-bottom: 1px solid #DBDBD0;
+}
+
+.CollectionFilters__filter_wrapper:last-of-type{
+  border-bottom: none;
 }
 
 .CollectionFilters__filter {
@@ -107,9 +140,41 @@
   padding: 15px;
 }
 
-/*@media (max-width: 991px) {
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {  }
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {  }
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
   .CollectionFilters__container {
-    width: 25%;
-    left: 75%;
+    width: 300px;
   }
-}*/
+
+  .CollectionFilters__input_container {
+    position: fixed;
+    top: 0;
+    height: 100px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .CollectionFilters__container {
+    padding-top: 101px;
+  }
+
+  .CollectionFilters__filter_container {
+    padding: 15px;
+    margin-bottom: 0px;
+  }
+
+  .CollectionFilters__filter_wrapper{
+    margin: 5px 0px;
+    padding: 0px;
+  }
+
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  }

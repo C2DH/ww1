@@ -174,7 +174,7 @@ class Collection extends PureComponent {
         <div className={this.state.sidebarOpen ? "Collection__List--sidebar-open" : 'Collection__List--sidebar-close'}>
           <div className={`Collection__List--list-heading d-flex align-items-center ${this.state.sidebarOpen ? 'Collection__List--list-heading-closed' : '' }`}>
             <h2>Collection</h2>
-            <span className="Collection__items_shown"><strong>{count} / {totalCount}</strong> ITEMS SHOWN</span>
+            <span className="Collection__items_shown hidden-md-down"><strong>{count} / {totalCount}</strong> ITEMS SHOWN</span>
 
             <button type="button" className="Collection__open_heading_btn btn btn-secondary" onClick={this.toggleOpen}>
               <i className="material-icons">{this.state.sidebarOpen ? 'chevron_right' : 'search'}</i>
@@ -195,6 +195,7 @@ class Collection extends PureComponent {
         {this.state.sidebarOpen && (
           <CollectionFilters
             searchString={searchString}
+            toggleOpen={this.toggleOpen}
             onSearchChange={this.handleSearchStringChange}
             dataTypes={dataTypesFacets}
             selectedDataTypes={filterDataTypes}

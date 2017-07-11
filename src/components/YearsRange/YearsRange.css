@@ -19,6 +19,14 @@
 
 .rc-slider-handle{
   border: solid 2px #F56350;
+  margin-left: -9px;
+  margin-top: -8px;
+  width: 20px;
+  height: 20px;
+}
+
+.rc-slider-handle:hover{
+  border-color: #F56350;
 }
 
 .rc-slider-track{
@@ -32,3 +40,30 @@
 .custom-control-input:focus ~ .custom-control-indicator{
   box-shadow: none;
 }
+
+
+/*margin-left: -7px;
+margin-top: -5px;
+width: 14px;
+height: 14px;*/
+
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {  }
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {  }
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+  .rc-slider-handle{
+    margin-left: -7px;
+    margin-top: -5px;
+    width: 14px;
+    height: 14px;
+  }
+
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  }

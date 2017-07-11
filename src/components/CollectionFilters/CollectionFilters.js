@@ -9,6 +9,7 @@ class CollectionFilters extends PureComponent {
     const {
       onSearchChange,
       searchString,
+      toggleOpen,
       dataTypes,
       selectedDataTypes,
       onToggleDataType,
@@ -22,8 +23,14 @@ class CollectionFilters extends PureComponent {
     } = this.props
     return (
       <div className="CollectionFilters__container">
+        <div className="CollectionFilters__filtermobile_title d-flex align-items-center hidden-lg-up">
+          <h2>Filters</h2>
+          <button type="button" className="CollectionFilters__filtermobile_title__check btn btn-secondary" onClick={toggleOpen}>
+            <i className="material-icons">check</i>
+          </button>
+        </div>
         <div className="d-flex align-items-center CollectionFilters__input_container">
-          <i className="material-icons CollectionFilters__input_container_icon">search</i>
+          <i className="material-icons CollectionFilters__input_container_icon hidden-md-down">search</i>
           <input className="form-control CollectionFilters__input" onChange={onSearchChange} value={searchString} placeholder="Search here (e.g: postcard)" />
         </div>
         {dataTypes &&
