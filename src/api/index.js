@@ -67,4 +67,7 @@ export const getTheme = (idOrSlug) =>
 
 export const getChapter = (idOrSlug) =>
   request.get(`${API_URL}/story/${idOrSlug}/`)
+    .query({
+      parser: 'yaml',
+    })
     .then(extractBody)

@@ -1,2 +1,2 @@
-import ChapterCover from './ChapterCover'
-export default ChapterCover
+import Module from './Module'
+export default Module

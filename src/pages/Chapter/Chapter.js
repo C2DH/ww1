@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { Switch, Route } from 'react-router-dom'
 import ChapterCover from '../ChapterCover'
-// import Chapter from '../Chapter'
+import Module from '../Module'
 
 import {
   getChapter,
@@ -38,7 +38,7 @@ class Chapter extends PureComponent  {
         {chapter && (
           <Switch>
             <Route path={`${match.path}`} exact component={ChapterCover} />
-            {/* <Route path={`${match.path}/modules/:moduleIndex`} exact component={Module} /> */}
+            <Route path={`${match.path}/modules/:moduleIndex`} exact component={Module} />
           </Switch>
         )}
       </div>

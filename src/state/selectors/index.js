@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect'
-import { isNull, get, mapValues, includes, chunk, map, range, find, omit } from 'lodash'
+import { memoize, isNull, get, mapValues, includes, chunk, map, range, find, omit } from 'lodash'
 
 // fp <3
 const maybeNull = a => fn => isNull(a) ? null : fn(a)
@@ -227,3 +227,18 @@ export const getChapter = createSelector(
   getCurrentLanguage,
   (theme, lang) => maybeNull(theme)(translateStory(lang))
 )
+
+// Modules
+
+// TODO: In a real world this should switch between module types...
+const translateModule = memoize((module, language) => maybeNull(module)(module => ({
+  ...module,
+  text: translateObject(module.text, language, ['content']),
+})))
+
+export const getModule = (state, moduleIndex) =>
+  maybeNull(getChapter(state))(chapter => {
+    const module = get(chapter, `contents.modules[${moduleIndex - 1}]`, null)
+    const language = getCurrentLanguage(state)
+    return translateModule(module, language)
+  })
