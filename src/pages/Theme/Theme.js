@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import { get } from 'lodash'
 import { connect } from 'react-redux'
 import { Container } from 'reactstrap';
 import './Theme.css'
@@ -8,41 +9,28 @@ import {
 } from '../../state/selectors'
 
 import {
-  loadTheme,
-  unloadTheme,
-} from '../../state/actions'
-
-import {
   getThemeCover,
 } from '../../utils'
 
-class Theme extends PureComponent  {
-  componentDidMount() {
-    this.props.loadTheme(this.props.match.params.slug)
-  }
+// TODO: Fkin theme has also metadata.chapters but not really synked ...now
+// so use stories check this behaviour...
+const getFirstChapterSlug = theme => get(theme, 'stories[0].slug')
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.match.params.slug !== this.props.match.params.slug) {
-      this.props.unloadTheme()
-      this.props.loadTheme(nextProps.match.params.slug)
-    }
-  }
-
-  componentWillUnmount() {
-    this.props.unloadTheme()
+class Theme extends PureComponent {
+  jumpToFirstChapter = () => {
+    const { theme } = this.props
+    const firstChapterSlug = getFirstChapterSlug(theme)
+    this.props.history.push(`/themes/${theme.slug}/chapters/${firstChapterSlug}`)
   }
 
   render() {
     const { theme } = this.props
-
-    let containerStyle = {}
-    if (theme) {
-      containerStyle = { backgroundImage: `url(${getThemeCover(theme)})` }
-    }
+    const firstChapterSlug = getFirstChapterSlug(theme)
+    const containerStyle = { backgroundImage: `url(${getThemeCover(theme)})` }
 
     return (
       <Container fluid className="padding-r-l-0 Theme__container" style={containerStyle}>
-        {theme && <div className="Theme__inner_container">
+        <div className="Theme__inner_container">
           <div className="Theme__chapters_btn_container">
             <span>Chapters</span>
             <button className="Theme__chapters_btn"><i className="material-icons md-24">list</i></button>
@@ -52,8 +40,8 @@ class Theme extends PureComponent  {
           <div className="Theme__text_container">
             <p>{theme.translated.abstract}</p>
           </div>
-          <button className="Theme__start_btn">START</button>
-        </div>}
+          {firstChapterSlug && <button onClick={this.jumpToFirstChapter} className="Theme__start_btn">START</button>}
+        </div>
       </Container>
     )
   }
@@ -63,7 +51,4 @@ const mapStateToProps = state => ({
   theme: getTheme(state),
 })
 
-export default connect(mapStateToProps, {
-  loadTheme,
-  unloadTheme,
-})(Theme)
+export default connect(mapStateToProps)(Theme)

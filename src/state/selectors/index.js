@@ -219,3 +219,11 @@ export const getTheme = createSelector(
   getCurrentLanguage,
   (theme, lang) => maybeNull(theme)(translateStory(lang))
 )
+
+// Chapters
+
+export const getChapter = createSelector(
+  state => state.chapterDetail.data,
+  getCurrentLanguage,
+  (theme, lang) => maybeNull(theme)(translateStory(lang))
+)

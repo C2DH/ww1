@@ -62,5 +62,9 @@ export const getThemes = () =>
     .then(extractBody)
 
 export const getTheme = (idOrSlug) =>
-  request.get(`${API_URL}/story/${idOrSlug}`)
+  request.get(`${API_URL}/story/${idOrSlug}/`)
+    .then(extractBody)
+
+export const getChapter = (idOrSlug) =>
+  request.get(`${API_URL}/story/${idOrSlug}/`)
     .then(extractBody)

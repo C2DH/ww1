@@ -6,6 +6,7 @@ import timelineDocuments from './timelineDocuments'
 import collectionDocuments from './collectionDocuments'
 import themes from './themes'
 import themeDetail from './themeDetail'
+import chapterDetail from './chapterDetail'
 
 export default combineReducers({
   collectionDocuments,
@@ -13,6 +14,7 @@ export default combineReducers({
   timelineDocuments,
   themes,
   themeDetail,
+  chapterDetail,
   document,
   settings,
 })

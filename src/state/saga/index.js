@@ -21,6 +21,11 @@ import {
   GET_THEME_LOADING,
   GET_THEME_FAILURE,
   GET_THEME_UNLOAD,
+  GET_CHAPTER,
+  GET_CHAPTER_SUCCESS,
+  GET_CHAPTER_LOADING,
+  GET_CHAPTER_FAILURE,
+  GET_CHAPTER_UNLOAD,
 } from '../actions'
 
 const BIG_PAGE_SIZE = 1000
@@ -56,6 +61,17 @@ function *handleGetTheme({ payload }) {
   }
 }
 
+function *handleGetChapter({ payload }) {
+  const chapterIdOrSlug = payload
+  yield put({ type: GET_CHAPTER_LOADING })
+  try {
+    const chapter = yield call(api.getChapter, chapterIdOrSlug)
+    yield put({ type: GET_CHAPTER_SUCCESS, payload: chapter })
+  } catch (error) {
+    yield put({ type: GET_CHAPTER_FAILURE, error })
+  }
+}
+
 export default function* rootSaga() {
   yield fork(
     takeLatestAndCancel,
@@ -68,6 +84,12 @@ export default function* rootSaga() {
     GET_THEME,
     GET_THEME_UNLOAD,
     handleGetTheme,
+  )
+  yield fork(
+    takeLatestAndCancel,
+    GET_CHAPTER,
+    GET_CHAPTER_UNLOAD,
+    handleGetChapter,
   )
   yield fork(
     takeLatestAndCancel,
