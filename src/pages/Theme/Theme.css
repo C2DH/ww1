@@ -1,13 +1,5 @@
 .Theme__container {
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
   height: 100vh;
-  overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .Theme__inner_container {
