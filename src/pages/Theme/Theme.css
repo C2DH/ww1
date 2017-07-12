@@ -3,8 +3,14 @@
 }
 
 .Theme__inner_container {
-  padding-left: 40px;
   color: #fff;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .Theme__inner_container label{

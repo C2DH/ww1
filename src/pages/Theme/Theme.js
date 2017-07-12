@@ -33,15 +33,6 @@ class Theme extends PureComponent {
     const firstChapterSlug = getFirstChapterSlug(theme)
     const containerStyle = { backgroundImage: `url(${getThemeCover(theme)})` }
 
-    const divStyle = {
-      width: "100%",
-      height: "100%",
-      position: 'absolute',
-      zIndex: 1,
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    }
 
     return (
       <Container fluid className="padding-r-l-0 Theme__container" style={containerStyle}>
@@ -50,8 +41,8 @@ class Theme extends PureComponent {
           overlay={get(theme, 'metadata.background.overlay')}
           color={get(theme, 'metadata.background.backgroundColor')}/>
 
-        <div style={divStyle}>
-          <div className="Theme__inner_container">
+        <div className="Theme__inner_container">
+          <div>
             <div className="Theme__chapters_btn_container">
               <span>Chapters</span>
               <button className="Theme__chapters_btn"><i className="material-icons md-24">list</i></button>
