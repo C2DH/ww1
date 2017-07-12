@@ -12,6 +12,8 @@ import {
   getThemeCover,
 } from '../../utils'
 
+import Background from '../../components/Background'
+
 // TODO: Fkin theme has also metadata.chapters but not really synked ...now
 // so use stories check this behaviour...
 const getFirstChapterSlug = theme => get(theme, 'stories[0].slug')
@@ -23,25 +25,46 @@ class Theme extends PureComponent {
     this.props.history.push(`/themes/${theme.slug}/chapters/${firstChapterSlug}`)
   }
 
+
+
   render() {
     const { theme } = this.props
+    console.log(theme)
     const firstChapterSlug = getFirstChapterSlug(theme)
     const containerStyle = { backgroundImage: `url(${getThemeCover(theme)})` }
 
+    const divStyle = {
+      width: "100%",
+      height: "100%",
+      position: 'absolute',
+      zIndex: 1,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }
+
     return (
       <Container fluid className="padding-r-l-0 Theme__container" style={containerStyle}>
-        <div className="Theme__inner_container">
-          <div className="Theme__chapters_btn_container">
-            <span>Chapters</span>
-            <button className="Theme__chapters_btn"><i className="material-icons md-24">list</i></button>
+        <Background
+          image={get(theme, 'covers[0].attachment')}
+          overlay={get(theme, 'metadata.background.overlay')}
+          color={get(theme, 'metadata.background.backgroundColor')}/>
+
+        <div style={divStyle}>
+          <div className="Theme__inner_container">
+            <div className="Theme__chapters_btn_container">
+              <span>Chapters</span>
+              <button className="Theme__chapters_btn"><i className="material-icons md-24">list</i></button>
+            </div>
+            <label>THEME</label>
+            <h1>{theme.translated.title}</h1>
+            <div className="Theme__text_container">
+              <p>{theme.translated.abstract}</p>
+            </div>
+            {firstChapterSlug && <button onClick={this.jumpToFirstChapter} className="Theme__start_btn">START</button>}
           </div>
-          <label>THEME</label>
-          <h1>{theme.translated.title}</h1>
-          <div className="Theme__text_container">
-            <p>{theme.translated.abstract}</p>
-          </div>
-          {firstChapterSlug && <button onClick={this.jumpToFirstChapter} className="Theme__start_btn">START</button>}
         </div>
+
       </Container>
     )
   }

@@ -1,6 +1,11 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { Container } from 'reactstrap';
+
+import {
+  getChapter,
+} from '../../state/selectors'
+
 import './ChapterCover.css'
 
 const cover = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Fordi-2.jpg/520px-Fordi-2.jpg"
@@ -8,7 +13,10 @@ const containerStyle = { backgroundImage: `url(${cover})` }
 
 class ChapterCover extends PureComponent  {
   render() {
-    const { cover ,  title="Titolo", abstract="bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla"} = this.props
+    const { chapter, cover ,  title="Titolo", abstract="bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla"} = this.props
+
+    console.log(chapter)
+
     return (
       <Container fluid className="padding-r-l-0 ChapterCover__container" style={containerStyle}>
          <div className="ChapterCover__inner_container">
@@ -37,4 +45,9 @@ class ChapterCover extends PureComponent  {
 }
 
 
-export default ChapterCover
+
+const mapStateToProps = state => ({
+  chapter: getChapter(state),
+})
+
+export default connect(mapStateToProps)(ChapterCover)
