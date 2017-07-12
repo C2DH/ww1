@@ -26,10 +26,6 @@ class ChapterCover extends PureComponent  {
          />
          <div  className="ChapterCover__inner_container">
            <div>
-            {/* <div className="ChapterCover__chapters_num_container">
-              <span>{get(chapter, 'title')}</span>
-              <button className="ChapterCover__chapters_btn">{get(chapter, 'id')}/6</button>
-            </div> */}
             <ChaptersControl
               title="Occupation"
               currentIndex="1"
@@ -42,10 +38,6 @@ class ChapterCover extends PureComponent  {
             <div className="ChapterCover__text_container">
               <p>{get(chapter, 'abstract')}</p>
             </div>
-            {/* <div className="ChapterCover__controls_container">
-              <button className="ChapterCover__chapters_btn ChapterCover__chapters_btn_control"><i className="material-icons md-26">keyboard_arrow_up</i></button>
-              <button className="ChapterCover__chapters_btn ChapterCover__chapters_btn_control"><i className="material-icons md-26">keyboard_arrow_down</i></button>
-            </div> */}
             <div className="ChapterCover__bottom_text_container">
               <p>Use your mouse, keyboard or the<br/>arrows to read the story</p>
             </div>
