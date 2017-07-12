@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { Container } from 'reactstrap'
+import ModuleText from './ModuleText'
 import './Module.css'
 
 import {
@@ -8,11 +9,15 @@ import {
   getModule,
 } from '../../state/selectors'
 
+const moduleContainerStyle = {
+  height: '100vh',
+}
+
 class Module extends PureComponent {
   render() {
     const { chapter, module } = this.props
     console.log(chapter, module)
-    return <div>Finally the module!</div>
+    return <div style={moduleContainerStyle}><ModuleText chapter={chapter} module={module}/></div>
   }
 }
 
