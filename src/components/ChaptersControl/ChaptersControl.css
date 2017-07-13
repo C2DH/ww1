@@ -1,5 +1,5 @@
 .ChaptersControl__chapters_num_container {
-  position: absolute;
+  position: fixed;
   top: 10px;
   right: 10px;
   display: inline-flex;
@@ -22,7 +22,7 @@
   color: #FFF;
   border-radius: 100%;
   margin-left: 10px;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.4);
   border: 1px solid #fff;
   width: 45px;
   height: 45px;
@@ -36,10 +36,15 @@
   padding-top: 10px;
   margin-bottom: 10px;
   min-height: 45px;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.ChaptersControl__chapters_btn_control:hover {
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .ChaptersControl__controls_container {
-  position: absolute;
+  position: fixed;
   right: 20px;
   top: 45%;
   height: 100px;
