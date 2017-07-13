@@ -16,24 +16,14 @@ const EXAMPLE_METADATA = {
 
 class AdditionalInformation extends PureComponent {
 
-  // state = {
-  //   open:false
-  // }
-  //
-  // toggleInfo = () => {
-  //   this.setState({
-  //     open: !this.state.open
-  //   })
-  // }
-
-  constructor(props) {
-    super(props);
-    this.toggle = this.toggle.bind(this);
-    this.state = { collapse: false };
+  state = {
+    open:false
   }
 
-  toggle() {
-    this.setState({ collapse: !this.state.collapse });
+  toggleInfo = () => {
+    this.setState({
+      open: !this.state.open
+    })
   }
 
   render() {
@@ -43,17 +33,22 @@ class AdditionalInformation extends PureComponent {
   return (
     <div>
       <div className="CollectionItem__additional_info d-flex align-items-center">
-        <h6 onClick={this.toggle} className="CollectionItem__label">
+        <h6 onClick={this.toggleInfo} className="CollectionItem__label">
           additional information
         </h6>
-        <i className="material-icons">{this.state.collapse? 'keyboard_arrow_up': 'keyboard_arrow_down'}</i>
+        <i className="material-icons">{this.state.open? 'keyboard_arrow_up': 'keyboard_arrow_down'}</i>
       </div>
-       <Collapse isOpen={this.state.collapse}>
+       <Collapse isOpen={this.state.open}>
+       <table className="table table-bordered CollectionItem__AdditionalInformation_table">
+           <tbody>
          { metadataKeys.map(k => (
-           <p key={k} className="CollectionItem__AdditionalInformation_text">
-             <b>{capitalize(k.split("_").join(" "))}:</b> <i>{metadata[k]}</i>
-           </p>
+           <tr key={k}>
+             <th scope="row">{capitalize(k.split("_").join(" "))}</th>
+             <td>{metadata[k]}</td>
+           </tr>
          ))}
+         </tbody>
+        </table>
        </Collapse>
     </div>
 
@@ -111,10 +106,10 @@ export default ({doc}) => {
     <div className="CollectionItem__wrapper_div">
       <Container>
         <Row>
-            <Col lg="8">
+            <Col xs="12" lg="8">
               <CollectionItemPreview doc={doc}/>
             </Col>
-            <Col lg="4" className="CollectionItem__info_container">
+            <Col xs="12" lg="4" className="CollectionItem__info_container">
                 <p className="CollectionItem__date">
                   <EventDate
                     date={get(doc, 'translated.date')}

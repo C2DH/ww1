@@ -1,5 +1,5 @@
 .CollectionItem__wrapper_div {
-  height:100vh;
+  /*height:100vh;*/
   flex-grow: 1;
   background-color: #2F2F2F;
 }
@@ -15,34 +15,33 @@
 }
 
 .CollectionItem__doc_container {
-  height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: center;
-  overflow: hidden;
+  height: auto;
+  /*display: flex;
+  flex-direction: column;*/
+  /*justify-content: center;*/
 }
 
 .CollectionItem__doc_controls{
-  height: 80px;
+  /*height: 80px;*/
   width: 100%;
-  align-self: flex-end;
+  /*align-self: flex-end;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  margin-bottom: 10px;
+  margin-bottom: 10px;*/
+  flex-grow: 0;
 }
 
 .CollectionItem__doc_preview{
   flex-grow: 1;
-  max-height: 80%;
+  width: 100%;
+  /*max-height: 80%;
   max-width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: center;*/
 
 }
 
@@ -50,7 +49,8 @@
   max-height: 100vh;
   overflow-x: scroll;
   padding-top: 58px;
-  border-left: 1px solid #DBDBD0;
+  border-left: none;
+  padding-bottom: 15px;
 }
 
 .CollectionItem__date {
@@ -153,19 +153,38 @@
   margin-bottom: 2.5px;
 }
 
-@media (max-width: 991px) {
-  .CollectionItem__container {
-    height: auto;
-    flex-direction: column;
-  }
-  .CollectionItem__doc_controls {
-    display: none;
-  }
-  .CollectionItem__doc_container {
-    height: auto;
-    padding-top: 100px;
-  }
-  .CollectionItem__additional_info button {
-    padding-right: 15px;
-  }
+.CollectionItem__AdditionalInformation_table{
+  color: #C3C2C4;
+  margin-top: -1px;
 }
+
+.CollectionItem__AdditionalInformation_table.table-bordered,
+.CollectionItem__AdditionalInformation_table.table td,
+.CollectionItem__AdditionalInformation_table.table th{
+  border: 1px solid #979797;
+}
+
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {  }
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {  }
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+  .CollectionItem__doc_container {
+    height: 100vh;
+    /*display: flex;
+    flex-direction: column;*/
+    /*justify-content: center;*/
+  }
+
+  .CollectionItem__info_container {
+    border-left: 1px solid #DBDBD0;
+  }
+
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  }

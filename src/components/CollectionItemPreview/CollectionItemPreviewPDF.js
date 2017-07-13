@@ -47,7 +47,7 @@ export default class CollectionItemPreviewPDF extends React.PureComponent {
   render() {
     const { doc } = this.props
     return (
-    <div className="CollectionItem__doc_container">
+    <div className="CollectionItem__doc_container d-flex flex-column">
       <div className="CollectionItem__doc_preview">
         <ReactPDF
           scale={this.state.scale}

@@ -7,7 +7,7 @@ export default class CollectionItemPreviewImage extends React.PureComponent {
   render() {
     const { doc } = this.props
     return (
-    <div className="CollectionItem__doc_container">
+    <div className="CollectionItem__doc_container d-flex flex-column">
       <div className="CollectionItem__doc_preview">
         <img src={doc.src} alt={doc.title} className="img-fluid" style={{maxHeight:'70vh'}}/>
       </div>
