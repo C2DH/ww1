@@ -4,6 +4,7 @@ import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import qs from 'query-string'
+import matchMedia from 'matchmedia'
 import {
   parseQsValue,
   parseQsBooleanValue,
@@ -11,6 +12,7 @@ import {
   parseQsCommaObjValue,
   objToCommaStr,
 } from '../../utils'
+import breakpoints from '../../breakpoints'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {
@@ -43,7 +45,7 @@ class Collection extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {
-      sidebarOpen: true
+      sidebarOpen: !matchMedia(`screen and (max-width: ${breakpoints.md}px)`).matches,
     }
   }
 
