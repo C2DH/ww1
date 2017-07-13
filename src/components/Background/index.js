@@ -13,7 +13,7 @@ export default class Background extends React.Component {
       backgroundColor: overlay ? 'transparent' : color,
       backgroundImage: `url(${image})`,
       backgroundSize: 'cover',
-      position: 'absolute',
+      position: 'fixed',
       zIndex: 0,
     }
 
