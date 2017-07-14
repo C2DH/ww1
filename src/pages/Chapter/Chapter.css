@@ -1,0 +1,22 @@
+.SwitchModule-enter {
+  position: absolute;
+  width: calc(100% - 58px);
+  left: 58px;
+  height: 100%;
+  transform: translateY(-100%);
+}
+
+.SwitchModule-enter.SwitchModule-enter-active {
+  /*opacity: 1;*/
+  transform: translateY(0);
+  transition: transform 500ms ease-in;
+}
+
+.SwitchModule-leave {
+  opacity: 1;
+}
+
+.SwitchModule-leave.SwitchModule-leave-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+}

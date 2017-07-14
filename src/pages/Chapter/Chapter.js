@@ -1,9 +1,11 @@
 import React, { PureComponent } from 'react'
+import { CSSTransitionGroup } from 'react-transition-group'
 import { connect } from 'react-redux'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, withRouter } from 'react-router-dom'
 import ChapterCover from '../ChapterCover'
 import Module from '../Module'
 import ChaptersControl from '../../components/ChaptersControl'
+import './Chapter.css'
 
 import {
   getTheme,
@@ -33,7 +35,7 @@ class Chapter extends PureComponent  {
   }
 
   render() {
-    const { theme, chapter, totalChapterModules, match, history } = this.props
+    const { theme, location, chapter, totalChapterModules, match, history } = this.props
 
     return (
       <div>
@@ -67,10 +69,17 @@ class Chapter extends PureComponent  {
         )}
 
         {chapter && (
-          <Switch>
-            <Route path={`${match.path}`} exact component={ChapterCover} />
-            <Route path={`${match.path}/modules/:moduleIndex`} exact component={Module} />
-          </Switch>
+         <CSSTransitionGroup
+            transitionName="SwitchModule"
+            component="div"
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={500}
+          >
+            <Switch key={location.key} location={location}>
+              <Route path={`${match.path}`} exact component={ChapterCover} />
+              <Route path={`${match.path}/modules/:moduleIndex`} exact component={Module} />
+            </Switch>
+          </CSSTransitionGroup>
         )}
       </div>
     )
@@ -83,7 +92,7 @@ const mapStateToProps = state => ({
   totalChapterModules: getTotalChapterModules(state),
 })
 
-export default connect(mapStateToProps, {
+export default withRouter(connect(mapStateToProps, {
   loadChapter,
   unloadChapter,
-})(Chapter)
+})(Chapter))
