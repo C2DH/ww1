@@ -27,7 +27,6 @@
   flex-grow: 1;
 }
 
-
 .Collection__items_shown {
   margin-left: auto;
   font-size: 0.875rem;
@@ -56,6 +55,27 @@
 .Collection__open_heading_btn.active{
   background-color: white;
 }
+
+
+/* CSS transition styles */
+.filters-enter {
+  transform: translateX(100%);
+}
+
+.filters-enter.filters-enter-active {
+  transform: translateX(0%);
+  transition: transform 500ms;
+}
+
+.filters-leave {
+  transition: transform 500ms;
+  transform: translateX(0%);
+}
+
+.filters-leave.filters-leave-active {
+  transform: translateX(100%);
+}
+/* end of CSS transition styles */
 
 
 /* Small devices (landscape phones, 576px and up)*/
