@@ -20,7 +20,7 @@ import {
   loadCollectionDocumentsMeta,
   loadMoreCollectionDocuments,
   unloadCollectionDocuments,
-  unloadCollectionDocumentsList,
+  unloadCollectionDocumentsMeta,
 } from '../../state/actions'
 import {
   getCollectionDocuments,
@@ -57,6 +57,7 @@ class Collection extends PureComponent {
 
   componentWillUnmount() {
     this.props.unloadCollectionDocuments()
+    this.props.unloadCollectionDocumentsMeta()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -66,7 +67,7 @@ class Collection extends PureComponent {
       nextProps.filterYears !== this.props.filterYears ||
       nextProps.filterUncertainYears !== this.props.filterUncertainYears
     ) {
-      this.props.unloadCollectionDocumentsList()
+      this.props.unloadCollectionDocuments()
       this.props.loadCollectionDocuments(this.getDocsParams({
         searchString: nextProps.searchString,
         filterDataTypes: nextProps.filterDataTypes,
@@ -211,25 +212,33 @@ class Collection extends PureComponent {
           </div>
 
         </div>
-        {this.state.sidebarOpen && (
-          <CollectionFilters
-            searchString={searchString}
-            toggleOpen={this.toggleOpen}
-            onSearchChange={this.handleSearchStringChange}
-            dataTypes={dataTypesFacets}
-            selectedDataTypes={filterDataTypes}
-            onToggleDataType={this.toggleFilterDataType}
-            onResetDataType={this.resetFilterDataType}
-            selectedYears={filterYears}
-            onYearChange={this.handleOnYearChange}
-            onResetYear={this.resetYearFilter}
-            uncertainYears={filterUncertainYears}
-            onUncertainYearsChange={this.handleOnUncertainYearsChange}
-            yearsCounts={yearsFacets}
-            yearsFilteredCounts={yearsFilteredFacets}
-            uncertainYearsCount={uncertainYears}
-          />
-        )}
+
+          <CSSTransitionGroup component="div"
+          transitionName="filters"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={500}
+          >
+          {this.state.sidebarOpen && (
+            <CollectionFilters
+              key="Collectionfilters"
+              searchString={searchString}
+              toggleOpen={this.toggleOpen}
+              onSearchChange={this.handleSearchStringChange}
+              dataTypes={dataTypesFacets}
+              selectedDataTypes={filterDataTypes}
+              onToggleDataType={this.toggleFilterDataType}
+              selectedYears={filterYears}
+              onYearChange={this.handleOnYearChange}
+              uncertainYears={filterUncertainYears}
+              onUncertainYearsChange={this.handleOnUncertainYearsChange}
+              yearsCounts={yearsFacets}
+              yearsFilteredCounts={yearsFilteredFacets}
+              uncertainYearsCount={uncertainYears}
+            />
+            )}
+          </CSSTransitionGroup>
+
+
       </div>
     )
   }
@@ -240,15 +249,15 @@ const DEFAULT_FILTER_YEARS = [1914, 1921]
 const mapStateToProps = (state, ownProps) => ({
   documents: getCollectionDocuments(state),
   canLoadMore: canLoadMoreCollectionDocuments(state),
-  loading: getCollectionDocumentsLoading(state),
+  count: getCollectionDocumentsCount(state),
   // Query string mapping
   searchString: parseQsValue(ownProps.location, 'q', ''),
   filterDataTypes: parseQsCommaObjValue(ownProps.location, 'types'),
   filterYears: parseQsCommaNumListValue(ownProps.location, 'years', DEFAULT_FILTER_YEARS),
   filterUncertainYears: parseQsBooleanValue(ownProps.location, 'uncertainYears'),
   // Counts stuff
-  count: getCollectionDocumentsCount(state),
   totalCount: getCollectionDocumentsTotalCount(state),
+  loading: getCollectionDocumentsLoading(state),
   dataTypesFacets: getCollectionDocumentsDataTypesFacets(state),
   yearsFacets: getCollectionDocumentsYearsFacets(state),
   yearsFilteredFacets: getCollectionDocumentsFilteredYearsFacets(state),
@@ -260,5 +269,5 @@ export default connect(mapStateToProps, {
   loadCollectionDocumentsMeta,
   loadMoreCollectionDocuments,
   unloadCollectionDocuments,
-  unloadCollectionDocumentsList,
+  unloadCollectionDocumentsMeta,
 })(Collection)
