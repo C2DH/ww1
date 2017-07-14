@@ -57,9 +57,9 @@ class Module extends PureComponent {
     const { chapter, module } = this.props
     console.log(chapter, module)
     return <div style={moduleContainerStyle}>
-      {/* <ModuleText chapter={chapter} module={fakeModule.text}/> */}
+      <ModuleText chapter={chapter} module={module}/>
       {/* <ModuleObject chapter={chapter} module={fakeModule.object}  /> */}
-      <ModuleTextObject chapter={chapter} module={fakeModule.text_object}  />
+      {/* <ModuleTextObject chapter={chapter} module={fakeModule.text_object}  /> */}
     </div>
   }
 }

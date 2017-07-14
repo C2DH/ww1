@@ -52,7 +52,7 @@ const translateDocument = lang => doc => ({
 
 const translateStory = lang => story => ({
   ...story,
-  translated: translateObject(story.metadata, lang.code, [
+  translated: translateObject(story.data, lang.code, [
     'title',
     'abstract',
   ])
@@ -242,14 +242,14 @@ export const getTotalChapterModules = createSelector(
 // Modules
 
 // TODO: In a real world this should switch between module types...
-const translateModule = memoize((module, language) => maybeNull(module)(module => ({
+const translateModule = memoize((module, langCode) => maybeNull(module)(module => ({
   ...module,
-  text: translateObject(module.text, language, ['content']),
+  text: translateObject(module.text, langCode, ['content']),
 })))
 
 export const getModule = (state, moduleIndex) =>
   maybeNull(getChapter(state))(chapter => {
     const module = get(chapter, `contents.modules[${moduleIndex - 1}]`, null)
     const language = getCurrentLanguage(state)
-    return translateModule(module, language)
+    return translateModule(module, language.code)
   })

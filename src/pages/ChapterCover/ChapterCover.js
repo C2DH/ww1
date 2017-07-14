@@ -20,8 +20,8 @@ class ChapterCover extends PureComponent  {
       <Container fluid className="padding-r-l-0 ChapterCover__container">
          <Background
            image={get(chapter, 'covers[0].attachment')}
-           overlay={get(chapter, 'metadata.background.overlay')}
-           color={get(chapter, 'metadata.background.backgroundColor')}
+           overlay={get(chapter, 'data.background.overlay')}
+           color={get(chapter, 'data.background.backgroundColor')}
          />
          <div  className="ChapterCover__inner_container">
            <div>

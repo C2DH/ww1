@@ -36,8 +36,8 @@ class Theme extends PureComponent {
       <Container fluid className="padding-r-l-0 Theme__container" style={containerStyle}>
         <Background
           image={get(theme, 'covers[0].attachment')}
-          overlay={get(theme, 'metadata.background.overlay')}
-          color={get(theme, 'metadata.background.backgroundColor')}/>
+          overlay={get(theme, 'data.background.overlay')}
+          color={get(theme, 'data.background.backgroundColor')}/>
 
         <div className="Theme__inner_container">
           <div>
