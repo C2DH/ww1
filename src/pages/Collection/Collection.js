@@ -127,6 +127,13 @@ class Collection extends PureComponent {
     this.props.history.replace(`/collection?${queryStirng}`)
   }
 
+  resetYearFilter = () => {
+    const queryStirng = this.getQueryString({
+      filterYears: DEFAULT_FILTER_YEARS,
+    })
+    this.props.history.replace(`/collection?${queryStirng}`)
+  }
+
   handleOnUncertainYearsChange = (filterUncertainYears) => {
     const queryStirng = this.getQueryString({ filterUncertainYears })
     this.props.history.replace(`/collection?${queryStirng}`)
@@ -139,6 +146,13 @@ class Collection extends PureComponent {
       : omit(filterDataTypes, dataType)
     const queryStirng = this.getQueryString({
       filterDataTypes: nextFilterDataTypes,
+    })
+    this.props.history.replace(`/collection?${queryStirng}`)
+  }
+
+  resetFilterDataType = () => {
+    const queryStirng = this.getQueryString({
+      filterDataTypes: {},
     })
     this.props.history.replace(`/collection?${queryStirng}`)
   }
@@ -201,8 +215,10 @@ class Collection extends PureComponent {
             dataTypes={dataTypesFacets}
             selectedDataTypes={filterDataTypes}
             onToggleDataType={this.toggleFilterDataType}
+            onResetDataType={this.resetFilterDataType}
             selectedYears={filterYears}
             onYearChange={this.handleOnYearChange}
+            onResetYear={this.resetYearFilter}
             uncertainYears={filterUncertainYears}
             onUncertainYearsChange={this.handleOnUncertainYearsChange}
             yearsCounts={yearsFacets}
