@@ -25,6 +25,13 @@
   height: 100%;
 }
 
+.CollectionDoc a:hover,
+.CollectionDoc a:focus
+{
+  text-decoration: none;
+  color: #292b2c;
+}
+
 .CollectionDoc a:hover img{
   transform: scale(1.1);
   -webkit-filter: brightness(75%);

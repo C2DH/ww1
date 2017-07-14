@@ -49,6 +49,16 @@ const makeDocumentsList = (actionType) => {
           loading: false,
           error,
         }
+      // Reset only the piece of state related to data
+      // keep count and other shitty to old value
+      case `${actionType}_LIST_UNLOAD`:
+        return {
+          ...prevState,
+          loading: false,
+          error: null,
+          ids: null,
+          data: {},
+        }
       default:
         return prevState
     }
@@ -96,8 +106,8 @@ const makeDocumentsMeta = (actionType) => {
 }
 
 export default (actionType) => {
-  return combineReducers({
-    list: resetOn(`${actionType}_UNLOAD`, makeDocumentsList(actionType)),
+  return resetOn(`${actionType}_UNLOAD` ,combineReducers({
+    list: makeDocumentsList(actionType),
     meta: resetOn(`${actionType}_META_UNLOAD`, makeDocumentsMeta(actionType)),
-  })
+  }))
 }

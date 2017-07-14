@@ -20,7 +20,7 @@ import {
   loadCollectionDocumentsMeta,
   loadMoreCollectionDocuments,
   unloadCollectionDocuments,
-  unloadCollectionDocumentsMeta,
+  unloadCollectionDocumentsList,
 } from '../../state/actions'
 import {
   getCollectionDocuments,
@@ -56,7 +56,6 @@ class Collection extends PureComponent {
 
   componentWillUnmount() {
     this.props.unloadCollectionDocuments()
-    this.props.unloadCollectionDocumentsMeta()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -66,7 +65,7 @@ class Collection extends PureComponent {
       nextProps.filterYears !== this.props.filterYears ||
       nextProps.filterUncertainYears !== this.props.filterUncertainYears
     ) {
-      this.props.unloadCollectionDocuments()
+      this.props.unloadCollectionDocumentsList()
       this.props.loadCollectionDocuments(this.getDocsParams({
         searchString: nextProps.searchString,
         filterDataTypes: nextProps.filterDataTypes,
@@ -221,15 +220,15 @@ const DEFAULT_FILTER_YEARS = [1914, 1921]
 const mapStateToProps = (state, ownProps) => ({
   documents: getCollectionDocuments(state),
   canLoadMore: canLoadMoreCollectionDocuments(state),
-  count: getCollectionDocumentsCount(state),
+  loading: getCollectionDocumentsLoading(state),
   // Query string mapping
   searchString: parseQsValue(ownProps.location, 'q', ''),
   filterDataTypes: parseQsCommaObjValue(ownProps.location, 'types'),
   filterYears: parseQsCommaNumListValue(ownProps.location, 'years', DEFAULT_FILTER_YEARS),
   filterUncertainYears: parseQsBooleanValue(ownProps.location, 'uncertainYears'),
   // Counts stuff
+  count: getCollectionDocumentsCount(state),
   totalCount: getCollectionDocumentsTotalCount(state),
-  loading: getCollectionDocumentsLoading(state),
   dataTypesFacets: getCollectionDocumentsDataTypesFacets(state),
   yearsFacets: getCollectionDocumentsYearsFacets(state),
   yearsFilteredFacets: getCollectionDocumentsFilteredYearsFacets(state),
@@ -241,5 +240,5 @@ export default connect(mapStateToProps, {
   loadCollectionDocumentsMeta,
   loadMoreCollectionDocuments,
   unloadCollectionDocuments,
-  unloadCollectionDocumentsMeta,
+  unloadCollectionDocumentsList,
 })(Collection)

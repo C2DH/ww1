@@ -89,7 +89,7 @@ const makeDocuments = (
     yield fork(
       takeLatestAndCancel,
       actionType,
-      `${actionType}_UNLOAD`,
+      `${actionType}_LIST_UNLOAD`,
       handleGetDocumentsList
     )
     yield fork(
