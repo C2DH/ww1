@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { Container } from 'reactstrap'
-import ChaptersControl from '../../components/ChaptersControl'
 import ModuleText from './ModuleText'
 import ModuleObject from './ModuleObject'
 import ModuleTextObject from './ModuleTextObject'
@@ -58,12 +57,6 @@ class Module extends PureComponent {
     const { chapter, module } = this.props
     console.log(chapter, module)
     return <div style={moduleContainerStyle}>
-      <ChaptersControl
-        title="Occupation"
-        currentIndex="1"
-        count="6"
-      />
-
       {/* <ModuleText chapter={chapter} module={fakeModule.text}/> */}
       {/* <ModuleObject chapter={chapter} module={fakeModule.object}  /> */}
       <ModuleTextObject chapter={chapter} module={fakeModule.text_object}  />

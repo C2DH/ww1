@@ -12,8 +12,8 @@ class ChaptersControl extends PureComponent {
           <button className="ChaptersControl__chapters_btn">{currentIndex}/{count}</button>
         </div>
         <div className="ChaptersControl__controls_container">
-          <button onClick={onClickNext} className="ChaptersControl__chapters_btn ChaptersControl__chapters_btn_control"><i className="material-icons md-26">keyboard_arrow_up</i></button>
-          <button onClick={onClickPrev} className="ChaptersControl__chapters_btn ChaptersControl__chapters_btn_control"><i className="material-icons md-26">keyboard_arrow_down</i></button>
+          {hasPrev && <button onClick={onClickPrev} className="ChaptersControl__chapters_btn ChaptersControl__chapters_btn_control"><i className="material-icons md-26">keyboard_arrow_up</i></button>}
+          {hasNext && <button onClick={onClickNext} className="ChaptersControl__chapters_btn ChaptersControl__chapters_btn_control"><i className="material-icons md-26">keyboard_arrow_down</i></button>}
         </div>
       </div>
     )

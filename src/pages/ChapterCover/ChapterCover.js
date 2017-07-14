@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { get } from 'lodash'
 import Background from '../../components/Background'
-import ChaptersControl from '../../components/ChaptersControl'
 import { Container } from 'reactstrap';
 
 import {
@@ -26,11 +25,6 @@ class ChapterCover extends PureComponent  {
          />
          <div  className="ChapterCover__inner_container">
            <div>
-            <ChaptersControl
-              title="Occupation"
-              currentIndex="1"
-              count="6"
-            />
             <div className="ChapterCover__label_container">
               <label>CHAPTER {get(chapter, 'id')}</label>
             </div>

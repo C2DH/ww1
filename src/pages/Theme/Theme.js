@@ -25,8 +25,6 @@ class Theme extends PureComponent {
     this.props.history.push(`/themes/${theme.slug}/chapters/${firstChapterSlug}`)
   }
 
-
-
   render() {
     const { theme } = this.props
     console.log(theme)

@@ -234,6 +234,11 @@ export const getChapter = createSelector(
   (theme, lang) => maybeNull(theme)(translateStory(lang))
 )
 
+export const getTotalChapterModules = createSelector(
+  getChapter,
+  chapter => maybeNull(chapter)(chapter => get(chapter, `contents.modules`, []).length)
+)
+
 // Modules
 
 // TODO: In a real world this should switch between module types...
