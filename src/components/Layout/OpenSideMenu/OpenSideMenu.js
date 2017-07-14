@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { Button, ButtonGroup } from 'reactstrap'
 import './OpenSideMenu.css'
-import { Link } from 'react-router-dom'
+import { NavLink, withRouter } from 'react-router-dom'
 
 import {
   getLanguages,
@@ -32,22 +32,23 @@ class OpenSideMenu extends PureComponent {
           <p>ÉISCHTE WELTKRICH</p>
         </div>
         <ul className="OpenSideMenu__list">
-          <li><Link to="/" onClick={this.props.closeMenu}>Home</Link></li>
-          <li><Link to="/themes" onClick={this.props.closeMenu}>Themes</Link></li>
-          <li><Link to="/collection" onClick={this.props.closeMenu}>Collection</Link></li>
-          <li><Link to="/map" onClick={this.props.closeMenu}>Map</Link></li>
-          <li><Link to="/timeline" onClick={this.props.closeMenu}>Timeline</Link></li>
-          <li><Link to="/education" onClick={this.props.closeMenu}>Education</Link></li>
+          <li><NavLink exact={true} to="/" onClick={this.props.closeMenu}>Home</NavLink></li>
+          <li><NavLink to="/themes" onClick={this.props.closeMenu}>Themes</NavLink></li>
+          <li><NavLink exact={true} to="/collection" onClick={this.props.closeMenu}>Collection</NavLink></li>
+          <li><NavLink exact={true} to="/map" onClick={this.props.closeMenu}>Map</NavLink></li>
+          <li><NavLink exact={true} to="/timeline" onClick={this.props.closeMenu}>Timeline</NavLink></li>
+          <li><NavLink exact={true} to="/education" onClick={this.props.closeMenu}>Education</NavLink></li>
         </ul>
       </div>
       <div className="OpenSideMenu__bottom">
        <ul className="OpenSideMenu__bottom_list">
-         <li><Link to="/" onClick={this.props.closeMenu}>About</Link></li>
-         <li><Link to="/" onClick={this.props.closeMenu}>Terms of use</Link></li>
+         <li><NavLink to="/" onClick={this.props.closeMenu}>About</NavLink></li>
+         <li><NavLink to="/" onClick={this.props.closeMenu}>Terms of use</NavLink></li>
        </ul>
        <div className="OpenSideMenu__lang_control">
           {languages.map((language, i) => (
             <button
+              key={language.code}
               onClick={() => setLanguage(language.code)}
               className={`OpenSideMenu__lang_control_btn ${language.code === currentLanguage.code ? 'leActiveClassForLang' : ''}`}
             >{language.label}</button>
@@ -66,6 +67,6 @@ const mapStateToProps = state => ({
   currentLanguage: getCurrentLanguage(state),
 })
 
-export default connect(mapStateToProps, {
+export default withRouter(connect(mapStateToProps, {
   setLanguage,
-})(OpenSideMenu)
+})(OpenSideMenu))

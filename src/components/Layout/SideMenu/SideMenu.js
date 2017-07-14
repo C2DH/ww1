@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import OpenSideMenu from '../OpenSideMenu'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import './SideMenu.css'
@@ -51,4 +52,4 @@ class SideMenu extends PureComponent {
 const mapStateToProps = state => ({
   language: getCurrentLanguage(state),
 })
-export default connect(mapStateToProps)(SideMenu)
+export default withRouter(connect(mapStateToProps)(SideMenu))
