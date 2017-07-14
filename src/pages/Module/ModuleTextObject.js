@@ -9,24 +9,14 @@ import './Module.css'
 
 const fullHeight = { height: '100%'}
 
-class ModuleObject extends PureComponent {
+class ModuleTextObject extends PureComponent {
   render() {
     const { chapter, module } = this.props
     const cover = 'https://images.pexels.com/photos/416676/pexels-photo-416676.jpeg?h=350&auto=compress&cs=tinysrgb'
-    const size = get(module, 'size', 'medium')
 
-    let cardImgHeight = '400px'
-    if(size === 'small'){
-      cardImgHeight = '250px'
-    }
-    if(size === 'medium'){
-      cardImgHeight = '400px'
-    }
-    if(size === 'big'){
-      cardImgHeight = '90vh'
-    }
+    const cardImgHeight = '400px'
 
-    const objectStyle = {
+    const textObjectStyle = {
       position: 'relative',
       height: '100%',
       width: '100%',
@@ -38,6 +28,19 @@ class ModuleObject extends PureComponent {
       justifyContent: 'center',
     }
 
+    const textStyle={
+      position: 'relative',
+      height: '100%',
+      width: '100%',
+      zIndex: '1',
+      color: get(module, 'text.color', '#fff'),
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }
+
+
     const objectContainerStyle = {
       width: '100%',
       height: cardImgHeight,
@@ -45,48 +48,41 @@ class ModuleObject extends PureComponent {
       backgroundImage: `url(${cover})`
     }
 
-    const ModuleObjectCard = () => (
-      <div style={objectStyle}>
-        <Card className="Module__objectCard">
+    const ModuleTextObjectCard = () => (
+
+        <Card className="Module__textObjectCard">
           <div className="GenericCard__div_img" style={objectContainerStyle}></div>
           <CardBlock>
             <div className="d-inline-flex">
               <i className="icon-hand Mods__DocumentOnly_Card_icon"  />
               <div className="Module__objectCard_text">
-                {module.caption}
+                {module.object.caption}
               </div>
             </div>
           </CardBlock>
         </Card>
-      </div>
 
     )
 
     return (
       <div style={{height:'100%'}}>
         <Background color={get(module, 'background.color')} />
-          {(size === 'small') &&
+        <div style={textObjectStyle}>
             <Row style={fullHeight}>
-              <Col md="4" />
-              <Col md="4" style={fullHeight}>
-                <ModuleObjectCard />
+              <Col md="6"  className="Module__textObject_Col">
+                <div style={textStyle} className="Module__textObject_Text">
+                  {module.text.content}
+                </div>
               </Col>
-              <Col md="4" />
-          </Row>}
-          {(size === 'medium') &&
-            <Row style={fullHeight}>
-              <Col md="2" />
-              <Col md="8">
-                <ModuleObjectCard />
+              <Col md="6" className="Module__textObject_Col">
+                <ModuleTextObjectCard />
               </Col>
-              <Col md="2" />
-          </Row>}
-
-         {(size === 'big') && <ModuleObjectCard />}
+          </Row>
+        </div>
       </div>
     )
   }
 }
 
 
-export default ModuleObject
+export default ModuleTextObject
