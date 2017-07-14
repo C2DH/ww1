@@ -52,7 +52,7 @@ const translateDocument = lang => doc => ({
 
 const translateStory = lang => story => ({
   ...story,
-  translated: translateObject(story.metadata, lang.code, [
+  translated: translateObject(story.data, lang.code, [
     'title',
     'abstract',
   ])
@@ -234,17 +234,23 @@ export const getChapter = createSelector(
   (theme, lang) => maybeNull(theme)(translateStory(lang))
 )
 
+export const getTotalChapterModules = createSelector(
+  getChapter,
+  chapter => maybeNull(chapter)(chapter => get(chapter, `contents.modules`, []).length)
+)
+
 // Modules
 
 // TODO: In a real world this should switch between module types...
-const translateModule = memoize((module, language) => maybeNull(module)(module => ({
+// TODO: Implement correct memoize fucking shit memoize only first arg...
+const translateModule = /*memoize*/ ((module, langCode) => maybeNull(module)(module => ({
   ...module,
-  text: translateObject(module.text, language, ['content']),
+  text: translateObject(module.text, langCode, ['content']),
 })))
 
 export const getModule = (state, moduleIndex) =>
   maybeNull(getChapter(state))(chapter => {
     const module = get(chapter, `contents.modules[${moduleIndex - 1}]`, null)
     const language = getCurrentLanguage(state)
-    return translateModule(module, language)
+    return translateModule(module, language.code)
   })

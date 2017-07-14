@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { get } from 'lodash'
 import Background from '../../components/Background'
-import ChaptersControl from '../../components/ChaptersControl'
 import { Container } from 'reactstrap';
 
 import {
@@ -21,16 +20,11 @@ class ChapterCover extends PureComponent  {
       <Container fluid className="padding-r-l-0 ChapterCover__container">
          <Background
            image={get(chapter, 'covers[0].attachment')}
-           overlay={get(chapter, 'metadata.background.overlay')}
-           color={get(chapter, 'metadata.background.backgroundColor')}
+           overlay={get(chapter, 'data.background.overlay')}
+           color={get(chapter, 'data.background.backgroundColor')}
          />
          <div  className="ChapterCover__inner_container">
            <div>
-            <ChaptersControl
-              title="Occupation"
-              currentIndex="1"
-              count="6"
-            />
             <div className="ChapterCover__label_container">
               <label>CHAPTER {get(chapter, 'id')}</label>
             </div>
