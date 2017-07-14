@@ -242,7 +242,8 @@ export const getTotalChapterModules = createSelector(
 // Modules
 
 // TODO: In a real world this should switch between module types...
-const translateModule = memoize((module, langCode) => maybeNull(module)(module => ({
+// TODO: Implement correct memoize fucking shit memoize only first arg...
+const translateModule = /*memoize*/ ((module, langCode) => maybeNull(module)(module => ({
   ...module,
   text: translateObject(module.text, langCode, ['content']),
 })))
