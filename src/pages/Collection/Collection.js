@@ -37,6 +37,7 @@ import {
 
 import CollectionMasonry from '../../components/CollectionMasonry'
 import CollectionFilters from '../../components/CollectionFilters'
+import Spinner from '../../components/Spinner'
 import "./Collection.css"
 
 const Range = Slider.Range
@@ -196,6 +197,9 @@ class Collection extends PureComponent {
             </button>
           </div>
 
+          {(!documents && loading) && <div style={{ paddingTop: 120 }}>
+            <Spinner />
+          </div>}
 
           <div>
             {documents && <CollectionMasonry
