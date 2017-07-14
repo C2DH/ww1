@@ -17,7 +17,6 @@ import Manual from './pages/Manual'
 import ThemeExplorer from './pages/ThemeExplorer'
 import ChapterCover from './pages/ChapterCover'
 
-import Mods from './pages/Mods'
 
 
 class Routes extends PureComponent {
@@ -55,8 +54,6 @@ class Routes extends PureComponent {
           <Route path='/resources' exact component={Resources} />
           <Route path='/manual' exact component={Manual} />
           <Route path='/themes/:themeSlug' component={ThemeExplorer} />
-          {/* temporary Route */}
-          <Route path='/mods' exact component={Mods} />
         </Switch>
         {isModal ? <Route path='/collection/item/:id' component={CollectionDetailModal} /> : null}
       </div>
