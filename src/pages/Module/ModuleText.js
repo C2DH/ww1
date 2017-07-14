@@ -24,7 +24,7 @@ class ModuleText extends PureComponent {
       height: '100%',
       width: '100%',
       zIndex: '1',
-      color: get(module, 'text.color', '#000'),
+      color: get(module, 'text.color', '#fff'),
       display: 'flex',
       flexDirection: 'column',
       alignItems: alignItems,
@@ -37,7 +37,7 @@ class ModuleText extends PureComponent {
     return <div style={{height:'100%'}}>
       <Background color={get(module, 'background.color')}/>
       <div style={textStyle}>
-        {module.text.content}
+        <div className="Module__text">{module.text.content}</div>
       </div>
     </div>
   }

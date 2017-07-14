@@ -6,6 +6,7 @@
   padding: 5px;
   justify-content: center;
   align-items: center;
+  z-index: 99;
 }
 
 .ChaptersControl__chapters_num_container span {
@@ -30,6 +31,7 @@
   cursor: pointer;
   font-size: 20px;
   font-weight: bold;
+  z-index: 99;
 }
 
 .ChaptersControl__chapters_btn_control {
@@ -50,4 +52,5 @@
   height: 100px;
   display: flex;
   flex-direction: column;
+  z-index: 99;
 }
