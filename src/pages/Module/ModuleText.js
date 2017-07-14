@@ -9,9 +9,9 @@ import './Module.css'
 class ModuleText extends PureComponent {
   render() {
     const { chapter, module } = this.props
+    const position = get(module, 'text.position')
 
     let alignItems = 'center'
-    const position = get(module, 'text.position', 'center')
     if(position === 'left'){
       alignItems = 'flex-start'
     }
@@ -20,15 +20,8 @@ class ModuleText extends PureComponent {
     }
 
     const textStyle={
-      position: 'relative',
-      height: '100%',
-      width: '100%',
-      zIndex: '1',
       color: get(module, 'text.color', '#fff'),
-      display: 'flex',
-      flexDirection: 'column',
       alignItems: alignItems,
-      justifyContent: 'center',
     }
 
 
@@ -36,7 +29,7 @@ class ModuleText extends PureComponent {
 
     return <div style={{height:'100%'}}>
       <Background color={get(module, 'background.color')}/>
-      <div style={textStyle}>
+      <div className="Module__container" style={textStyle}>
         <div className="Module__text">{module.text.content}</div>
       </div>
     </div>

@@ -17,15 +17,8 @@ class ModuleTextObject extends PureComponent {
     const cardImgHeight = '400px'
 
     const textObjectStyle = {
-      position: 'relative',
-      height: '100%',
-      width: '100%',
-      zIndex: '1',
       backgroundColor: get(module, 'background.color', '#fff'),
-      display: 'flex',
-      flexDirection: 'column',
       alignItems: 'center',
-      justifyContent: 'center',
     }
 
     const textStyle={
@@ -51,7 +44,7 @@ class ModuleTextObject extends PureComponent {
     const ModuleTextObjectCard = () => (
 
         <Card className="Module__textObjectCard">
-          <div className="GenericCard__div_img" style={objectContainerStyle}></div>
+          <div style={objectContainerStyle}></div>
           <CardBlock>
             <div className="d-inline-flex">
               <i className="icon-hand Mods__DocumentOnly_Card_icon"  />
@@ -67,7 +60,7 @@ class ModuleTextObject extends PureComponent {
     return (
       <div style={{height:'100%'}}>
         <Background color={get(module, 'background.color')} />
-        <div style={textObjectStyle}>
+        <div style={textObjectStyle} className="Module__container">
             <Row style={fullHeight}>
               <Col md="6"  className="Module__textObject_Col">
                 <div style={textStyle} className="Module__textObject_Text">

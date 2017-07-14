@@ -1,3 +1,16 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+.Module__container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .Module__text {
   max-width: 400px;
   font-family: Georgia;
@@ -28,4 +41,60 @@
 .Module__textObject_Text {
   font-family: Georgia;
   font-size: 24px;
+}
+
+.ModuleCarousel__slider_container {
+  margin: 0 auto;
+  padding: 40px;
+  width: 80%;
+  color: #333;
+  padding-top: 100px;
+}
+
+.ModuleCarousel__inner_slider {
+  width: 400px;
+  height: 300px;
+  margin-left: 20px;
+  margin-right: 20px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.ModuleCarousel__caption {
+  height: 100px;
+  background-color: white;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: inline-flex;
+  color: #333;
+  justify-content: flex-start;
+  padding: 20px;
+  padding-left: 110px;
+}
+
+.ModuleCarousel__caption_icon {
+  height: 40px;
+  align-self: center;
+  margin-right: 20px;
+  font-size: 28px;
+}
+
+.ModuleCarousel__control_container {
+  padding: 20px;
+  width: 200px;
+  height: 70px;
+  border-radius: 30px;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  margin-top: 50px;
+}
+
+.ModuleCarousel__control_btn {
+  border: 0px;
+  background-color: transparent;
+  color: #fff;
+
 }

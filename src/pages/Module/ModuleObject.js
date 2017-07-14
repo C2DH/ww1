@@ -27,15 +27,8 @@ class ModuleObject extends PureComponent {
     }
 
     const objectStyle = {
-      position: 'relative',
-      height: '100%',
-      width: '100%',
-      zIndex: '1',
       backgroundColor: get(module, 'background.color', '#fff'),
-      display: 'flex',
-      flexDirection: 'column',
       alignItems: 'center',
-      justifyContent: 'center',
     }
 
     const objectContainerStyle = {
@@ -46,9 +39,9 @@ class ModuleObject extends PureComponent {
     }
 
     const ModuleObjectCard = () => (
-      <div style={objectStyle}>
+      <div style={objectStyle} className="Module__container">
         <Card className="Module__objectCard">
-          <div className="GenericCard__div_img" style={objectContainerStyle}></div>
+          <div style={objectContainerStyle}></div>
           <CardBlock>
             <div className="d-inline-flex">
               <i className="icon-hand Mods__DocumentOnly_Card_icon"  />

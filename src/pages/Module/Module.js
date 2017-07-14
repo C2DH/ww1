@@ -5,6 +5,7 @@ import ChaptersControl from '../../components/ChaptersControl'
 import ModuleText from './ModuleText'
 import ModuleObject from './ModuleObject'
 import ModuleTextObject from './ModuleTextObject'
+import ModuleCarousel from './ModuleCarousel'
 import './Module.css'
 
 import {
@@ -22,7 +23,7 @@ const fakeModule = {
     background: {
       color: '#333'
     },
-    position: 'center',
+    position: 'left',
     text: {
       content: 'Quisque velit nisi, pretium ut lacinia in, elementum id enim. Donec rutrum congue leo eget malesuada. Donec sollicitudin molestie malesuada. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.'
     }
@@ -33,7 +34,7 @@ const fakeModule = {
     background: {
       color: '#333'
     },
-    size: 'small',
+    size: 'big',
     caption: "ciao ciao"
   },
 
@@ -66,7 +67,8 @@ class Module extends PureComponent {
 
       {/* <ModuleText chapter={chapter} module={fakeModule.text}/> */}
       {/* <ModuleObject chapter={chapter} module={fakeModule.object}  /> */}
-      <ModuleTextObject chapter={chapter} module={fakeModule.text_object}  />
+      {/* <ModuleTextObject chapter={chapter} module={fakeModule.text_object}  /> */}
+      <ModuleCarousel chapter={chapter} module={fakeModule.object} />
     </div>
   }
 }
