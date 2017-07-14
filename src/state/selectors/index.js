@@ -4,8 +4,14 @@ import { memoize, isNull, get, mapValues, includes, chunk, map, range, find, omi
 // fp <3
 const maybeNull = a => fn => isNull(a) ? null : fn(a)
 
-// Current language
-const getCurrentLanguage = state => state.settings.language
+// Languages
+export const getLanguages = state => state.languages
+
+export const getCurrentLanguage = createSelector(
+  state => getLanguages(state),
+  state => state.settings.language,
+  (languages, currentLangCode) => find(languages, { code: currentLangCode })
+)
 
 // Generic translate object with this shape:
 // {
@@ -35,7 +41,7 @@ const translateObject = (data, lang, transKeys = '*', fallbackLang = 'en') =>
 // Translate a document using given language
 const translateDocument = lang => doc => ({
   ...doc,
-  translated: translateObject(doc.data, lang, [
+  translated: translateObject(doc.data, lang.code, [
     'description',
     'repository',
     'date',
@@ -46,7 +52,7 @@ const translateDocument = lang => doc => ({
 
 const translateStory = lang => story => ({
   ...story,
-  translated: translateObject(story.metadata, lang, [
+  translated: translateObject(story.metadata, lang.code, [
     'title',
     'abstract',
   ])
@@ -193,7 +199,7 @@ export const [
   canLoadMoreMapDocuments,
   getMapDocumentsCount,
   getMapDocumentsLoading,
-] = makeDocumentsListSelectors(state => state.collectionDocuments)
+] = makeDocumentsListSelectors(state => state.mapDocuments)
 
 export const [
   getMapDocumentsDataTypesFacets,

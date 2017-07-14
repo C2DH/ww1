@@ -1,14 +1,17 @@
 import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
 import OpenSideMenu from '../OpenSideMenu'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import './SideMenu.css'
 
+import {
+  getCurrentLanguage,
+} from '../../../state/selectors'
+
 
 class SideMenu extends PureComponent {
-
   state = {
-    open:false,
-    lang: 'EN'
+    open: false,
   }
 
   toggleMenu = () => {
@@ -17,10 +20,8 @@ class SideMenu extends PureComponent {
     })
   }
 
-  setLang = (lang) => this.setState({ lang })
-
-
-  render () {
+  render() {
+    const { language } = this.props
     return (
       <CSSTransitionGroup component="div"
       transitionName="sidemenu"
@@ -39,12 +40,15 @@ class SideMenu extends PureComponent {
       <div className={this.state.open ? "SideMenu__vertical_title_container d-flex justify-content-center hidden-md-down" : "SideMenu__vertical_title_container_close d-flex justify-content-center hidden-md-down"}>
          <p className="SideMenu__vertical_title">ÉISCHTE WELTKRICH</p>
        </div>
-       <span className="SideMenu__langBtn btn btn-secondary hidden-md-down">{this.state.lang}</span>
+       <span className="SideMenu__langBtn btn btn-secondary hidden-md-down">{language.label}</span>
      </div>
-     {this.state.open ? <OpenSideMenu setLang={this.setLang}  key="close" closeMenu={this.toggleMenu} key="opensidemenu"/> : null}
+     {this.state.open ? <OpenSideMenu closeMenu={this.toggleMenu} key="opensidemenu"/> : null}
     </CSSTransitionGroup>
     )
   }
 }
 
-export default SideMenu
+const mapStateToProps = state => ({
+  language: getCurrentLanguage(state),
+})
+export default connect(mapStateToProps)(SideMenu)

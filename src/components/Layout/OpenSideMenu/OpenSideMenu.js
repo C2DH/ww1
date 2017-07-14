@@ -1,13 +1,20 @@
 import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
 import { Button, ButtonGroup } from 'reactstrap'
 import './OpenSideMenu.css'
 import { Link } from 'react-router-dom'
 
+import {
+  getLanguages,
+  getCurrentLanguage,
+} from '../../../state/selectors'
+import {
+  setLanguage,
+} from '../../../state/actions'
 
 class OpenSideMenu extends PureComponent {
-
   state = {
-    open:false
+    open: false,
   }
 
   toggleMenu = () => {
@@ -17,7 +24,7 @@ class OpenSideMenu extends PureComponent {
   }
 
   render () {
-    const { setLang } = this.props
+    const { setLanguage, languages, currentLanguage } = this.props
     return (
      <div className="OpenSideMenu d-flex flex-column">
       <div className="OpenSideMenu__top">
@@ -39,9 +46,12 @@ class OpenSideMenu extends PureComponent {
          <li><Link to="/" onClick={this.props.closeMenu}>Terms of use</Link></li>
        </ul>
        <div className="OpenSideMenu__lang_control">
-          <button onClick={() => setLang('EN')} className="OpenSideMenu__lang_control_btn">EN</button>{' '}
-          <button onClick={() => setLang('FR')} className="OpenSideMenu__lang_control_btn">FR</button>{' '}
-          <button onClick={() => setLang('DE')} className="OpenSideMenu__lang_control_btn">DE</button>
+          {languages.map((language, i) => (
+            <button
+              onClick={() => setLanguage(language.code)}
+              className={`OpenSideMenu__lang_control_btn ${language.code === currentLanguage.code ? 'leActiveClassForLang' : ''}`}
+            >{language.label}</button>
+          ))}
        </div>
        <div className="OpenSideMenu__bottom_logos">
        </div>
@@ -51,4 +61,11 @@ class OpenSideMenu extends PureComponent {
   }
 }
 
-export default OpenSideMenu
+const mapStateToProps = state => ({
+  languages: getLanguages(state),
+  currentLanguage: getCurrentLanguage(state),
+})
+
+export default connect(mapStateToProps, {
+  setLanguage,
+})(OpenSideMenu)

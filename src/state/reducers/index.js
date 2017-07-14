@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import document from './document'
+import languages from './languages'
 import settings from './settings'
 import mapDocuments from './mapDocuments'
 import timelineDocuments from './timelineDocuments'
@@ -16,5 +17,6 @@ export default combineReducers({
   themeDetail,
   chapterDetail,
   document,
+  languages,
   settings,
 })
