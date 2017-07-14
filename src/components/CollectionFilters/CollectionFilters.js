@@ -20,6 +20,8 @@ class CollectionFilters extends PureComponent {
       yearsFilteredCounts,
       onUncertainYearsChange,
       uncertainYearsCount,
+      onResetDataType,
+      onResetYear,
     } = this.props
     return (
       <div className="CollectionFilters__container">
@@ -36,7 +38,7 @@ class CollectionFilters extends PureComponent {
         {dataTypes &&
           <div className="CollectionFilters__reset_container d-flex align-items-center">
             <h5 className="CollectionFilters__reset_title">TYPE</h5>
-            <a className="CollectionFilters__reset">Reset</a>
+            <a className="CollectionFilters__reset" onClick={onResetDataType}>Reset</a>
           </div>
         }
         <div className="CollectionFilters__filter_container d-flex flex-column">
@@ -56,7 +58,7 @@ class CollectionFilters extends PureComponent {
         </div>
         <div className="CollectionFilters__reset_container d-flex align-items-center">
           <h5 className="CollectionFilters__reset_title">PERIOD</h5>
-          <a className="CollectionFilters__reset">Reset</a>
+          <a className="CollectionFilters__reset" onClick={onResetYear}>Reset</a>
         </div>
 
         <div className="CollectionFilters__time">

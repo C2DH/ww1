@@ -37,6 +37,7 @@ import {
 
 import CollectionMasonry from '../../components/CollectionMasonry'
 import CollectionFilters from '../../components/CollectionFilters'
+import Spinner from '../../components/Spinner'
 import "./Collection.css"
 
 const Range = Slider.Range
@@ -89,7 +90,7 @@ class Collection extends PureComponent {
 
   getDocsParams = (filters = {}) => {
     const { searchString, filterDataTypes, filterYears, filterUncertainYears } = this.getFilters(filters)
-    const makeOverlaps = y => y ? `${y[0]}-01-01,${y[1]}-12-31` : undefined
+    const makeOverlaps = y => y ? `${y[0]}-01-01,${y[1] - 1}-12-31` : undefined
     const filterDataTypesList = keys(filterDataTypes)
 
     const applyFilters = {}
@@ -128,6 +129,13 @@ class Collection extends PureComponent {
     this.props.history.replace(`/collection?${queryStirng}`)
   }
 
+  resetYearFilter = () => {
+    const queryStirng = this.getQueryString({
+      filterYears: DEFAULT_FILTER_YEARS,
+    })
+    this.props.history.replace(`/collection?${queryStirng}`)
+  }
+
   handleOnUncertainYearsChange = (filterUncertainYears) => {
     const queryStirng = this.getQueryString({ filterUncertainYears })
     this.props.history.replace(`/collection?${queryStirng}`)
@@ -140,6 +148,13 @@ class Collection extends PureComponent {
       : omit(filterDataTypes, dataType)
     const queryStirng = this.getQueryString({
       filterDataTypes: nextFilterDataTypes,
+    })
+    this.props.history.replace(`/collection?${queryStirng}`)
+  }
+
+  resetFilterDataType = () => {
+    const queryStirng = this.getQueryString({
+      filterDataTypes: {},
     })
     this.props.history.replace(`/collection?${queryStirng}`)
   }
@@ -183,6 +198,9 @@ class Collection extends PureComponent {
             </button>
           </div>
 
+          {(!documents && loading) && <div style={{ paddingTop: 120 }}>
+            <Spinner />
+          </div>}
 
           <div>
             {documents && <CollectionMasonry
