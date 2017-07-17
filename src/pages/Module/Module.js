@@ -6,6 +6,7 @@ import ModuleObject from './ModuleObject'
 import ModuleTextObject from './ModuleTextObject'
 import ModuleCarousel from './ModuleCarousel'
 import ModuleMap from './ModuleMap'
+import ModuleMapText from './ModuleMapText'
 import './Module.css'
 
 import {
@@ -63,7 +64,8 @@ class Module extends PureComponent {
       {/* <ModuleObject chapter={chapter} module={fakeModule.object}  /> */}
       {/* <ModuleTextObject chapter={chapter} module={fakeModule.text_object}  /> */}
       {/* <ModuleCarousel chapter={chapter} module={fakeModule.object} /> */}
-      <ModuleMap chapter={chapter} module={fakeModule.object} />
+      {/* <ModuleMap chapter={chapter} module={fakeModule.object} /> */}
+      <ModuleMapText chapter={chapter} module={fakeModule.text_object}  />
     </div>
   }
 }
