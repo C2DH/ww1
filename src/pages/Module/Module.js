@@ -33,7 +33,7 @@ const fakeModule = {
     background: {
       color: '#333'
     },
-    size: 'big',
+    size: 'medium',
     caption: "ciao ciao"
   },
 
@@ -58,10 +58,10 @@ class Module extends PureComponent {
     const { chapter, module } = this.props
     console.log(chapter, module)
     return <div style={moduleContainerStyle}>
-      <ModuleText chapter={chapter} module={module}/>
+      {/* <ModuleText chapter={chapter} module={module}/> */}
       {/* <ModuleObject chapter={chapter} module={fakeModule.object}  /> */}
       {/* <ModuleTextObject chapter={chapter} module={fakeModule.text_object}  /> */}
-      {/* <ModuleCarousel chapter={chapter} module={fakeModule.object} /> */}
+      <ModuleCarousel chapter={chapter} module={fakeModule.object} />
     </div>
   }
 }

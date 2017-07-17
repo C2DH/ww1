@@ -48,20 +48,22 @@
   padding: 40px;
   width: 80%;
   color: #333;
-  padding-top: 100px;
 }
 
 .ModuleCarousel__inner_slider {
-  width: 400px;
-  height: 300px;
+  height: 400px;
   margin-left: 20px;
   margin-right: 20px;
-  background-size: cover;
-  background-repeat: no-repeat;
+  margin-top: 30px;
+}
+
+.ModuleCarousel__inner_slider--opaque img {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
 }
 
 .ModuleCarousel__caption {
-  height: 100px;
+  height: 70px;
   background-color: white;
   position: absolute;
   bottom: 0;
@@ -83,18 +85,41 @@
 
 .ModuleCarousel__control_container {
   padding: 20px;
-  width: 200px;
-  height: 70px;
+  width: 160px;
+  height: 40px;
   border-radius: 30px;
   margin: auto;
   background-color: rgba(0, 0, 0, 0.5);
   text-align: center;
-  margin-top: 50px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
 }
 
 .ModuleCarousel__control_btn {
   border: 0px;
   background-color: transparent;
+  position: absolute;
+  top: calc(100% + 40px);
+  display: block;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  transform: translate(0, -50%);
+  cursor: pointer;
+  color: transparent;
+  border: none;
+  outline: none;
+  background: transparent;
   color: #fff;
+}
 
+.ModuleCarousel__control_btn_left {
+  right: calc(50% + 50px);
+}
+
+.ModuleCarousel__control_btn_right {
+  right: calc(50% - 70px);
 }
