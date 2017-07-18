@@ -53,6 +53,19 @@
   padding-bottom: 15px;
 }
 
+.CollectionItem__close_btn {
+	border: 1px solid #DBDBD0;
+  height: 48px;
+  width: 48px;
+  color: #fff;
+  background-color: #2F2F2F;
+  margin: 15px;
+  padding: 0.5rem 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 2;
+}
+
 .CollectionItem__date {
   color: #9B9B9B;
   font-size: 0.875rem;

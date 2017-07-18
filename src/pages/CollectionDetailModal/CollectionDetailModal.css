@@ -26,6 +26,7 @@
   padding: 0.5rem 0.5rem;
   border-radius: 50%;
   cursor: pointer;
+  z-index: 2;
 }
 
 /* Small devices (landscape phones, 576px and up)*/

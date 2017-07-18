@@ -56,6 +56,17 @@ class AdditionalInformation extends PureComponent {
  }
 }
 
+const CloseButton = () => (
+  <button
+    type="button"
+    className="CollectionItem__close_btn btn btn-secondary"
+    aria-label="Close"
+    style={{position: 'fixed', top: 0, right: 0, zIndex: 1}}
+    >
+      <i aria-hidden="true" className="material-icons">close</i>
+    </button>
+  )
+
 //id: 193 has related!
 const RelatedObjects = ({items}) => {
 
@@ -106,6 +117,8 @@ export default ({doc}) => {
     <div className="CollectionItem__wrapper_div">
       <Container>
         <Row>
+          {/* TODO let close btn onClick go back to collection
+          <CloseButton />*/}
             <Col xs="12" lg="8">
               <CollectionItemPreview doc={doc}/>
             </Col>
