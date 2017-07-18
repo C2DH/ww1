@@ -33,7 +33,7 @@
   color:  #F36455;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .TimelineExpandableYear__container {
     border-left: 0.5px solid #DBDBD0;
     border-right: 0.5px solid #DBDBD0;

@@ -23,6 +23,7 @@ class Timeline extends PureComponent {
     viewedYear: null,
     viewedMonth: null,
     scrollToId: null,
+
   }
 
   componentDidMount() {
@@ -66,8 +67,9 @@ class Timeline extends PureComponent {
           </Col>
         </Row>
         <Row>
-          <Col md="2" sm="12" xs="12" className="Timeline__TimelineNav fixed">
+          <Col lg="2" md="12" sm="12" xs="12" className="Timeline__TimelineNav fixed">
             <div className="Timeline__yearsContainer">
+              <div className="hidden-lg-up Timeline__yearsContainer_responsive_borders"></div>
               {YEARS.map(year =>(
                  <TimelineExpandableYear
                    onYearClick={this.onYearClick}
@@ -79,7 +81,7 @@ class Timeline extends PureComponent {
               ))}
             </div>
           </Col>
-          {documents && <Col md="10" sm="12" xs="12" className="Timeline__scrollingCol">
+          {documents && <Col lg="10" md="12" sm="12" xs="12" className="Timeline__scrollingCol">
             {documents.map(doc => (
               <div key={doc.id}>
                 <TimelineExpandableItem

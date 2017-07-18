@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { get, findIndex } from 'lodash'
+import { get, last, head } from 'lodash'
 import { Container, Row, Col } from 'reactstrap';
 import { Card, CardImg, CardBlock } from 'reactstrap';
 import Slider from 'react-slick'
@@ -52,11 +52,11 @@ class ModuleCarousel extends PureComponent {
     }
     const { currentIndex } = this.state
     let currentCount = currentIndex + 1
-    if(currentIndex == 5){
+    if(currentIndex == last(currentIndex)){
       currentCount = 1
     }
-    if(currentIndex == -1){
-      currentCount = 5
+    if(currentIndex == head(currentIndex)){
+      currentCount = last(currentIndex) + 1
     }
     return (
       <div style={{height:'100%'}}>

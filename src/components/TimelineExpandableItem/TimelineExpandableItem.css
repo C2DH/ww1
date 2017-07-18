@@ -31,15 +31,25 @@
   width: 100%;
 }
 
-.TimelineExpandableItem__btn_container,
-.TimelineExpandableItem__date_container {
-  min-width: 130px;
+.TimelineExpandableItem__empty_right,
+.TimelineExpandableItem__btn_container {
+  min-width: 100px;
 }
 
 .TimelineExpandableItem__btn_container {
   margin-left: auto;
   display: flex;
 }
+
+.TimelineExpandableItem__responsive_click {
+  display: none;
+}
+
+.TimelineExpandableItem__date_container,
+.TimelineExpandableItem__empty_left {
+  min-width: 180px;
+}
+
 
 .TimelineExpandableItem__text {
   padding-top: 20px;
@@ -56,25 +66,60 @@
   margin-left: 5px;
 }
 
+.TimelineExpandableItem__show_less {
+  display: none;
+}
+
 @media (max-width: 991px) {
   .TimelineExpandableItem__title {
     font-size: 1.5em;
   }
 }
 
+@media (max-width: 767px) {
+  .TimelineExpandableItem__date_container,
+  .TimelineExpandableItem__empty_left {
+    min-width: 160px;
+  }
+  .TimelineExpandableItem__empty_right,
+  .TimelineExpandableItem__btn_container {
+    min-width: 60px;
+  }
+}
+
 @media (max-width: 576px) {
-  .TimelineExpandableItem__title {
-    font-size: 1em;
+  .TimelineExpandableItem__flex_container {
+    display: flex;
+    flex-direction: column;
   }
   .TimelineExpandableItem__btn_container,
   .TimelineExpandableItem__date_container {
-    min-width: 70px;
+    min-width: 80px;
   }
   .TimelineExpandableItem__date_container p {
     font-size: 12px;
   }
-  .TimelineExpandableItem__containerClose,
-  .TimelineExpandableItem__containerOpen {
-    padding: 10px;
+  .TimelineExpandableItem__responsive_click {
+    display: block;
+    position: absolute;
+    width: 95%;
+    height: 90%;
+  }
+  .TimelineExpandableItem__titleContainerOpen {
+    margin-bottom: 0px;
+  }
+  .TimelineExpandableItem__show_less {
+    display: inline-flex;
+    justify-content: center;
+  }
+  .TimelineExpandableItem__show_less p {
+    margin-bottom: 0px;
+    position: relative;
+    top: 13px;
+    color: #F56350;
+    background-color: #fff;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
   }
 }
