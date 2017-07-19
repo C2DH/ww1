@@ -1,5 +1,5 @@
-import { createSelector } from 'reselect'
-import { memoize, isNull, get, mapValues, includes, chunk, map, range, find, omit } from 'lodash'
+import { createSelector, defaultMemoize } from 'reselect'
+import { memoize, isNull, get, mapValues, keyBy, isPlainObject, isArray, includes, chunk, map, range, find, omit } from 'lodash'
 
 // fp <3
 const maybeNull = a => fn => isNull(a) ? null : fn(a)
@@ -242,15 +242,51 @@ export const getTotalChapterModules = createSelector(
 // Modules
 
 // TODO: In a real world this should switch between module types...
-// TODO: Implement correct memoize fucking shit memoize only first arg...
-const translateModule = /*memoize*/ ((module, langCode) => maybeNull(module)(module => ({
+const translateModule = (module, langCode) => maybeNull(module)(module => ({
   ...module,
   text: translateObject(module.text, langCode, ['content']),
-})))
+}))
 
-export const getModule = (state, moduleIndex) =>
-  maybeNull(getChapter(state))(chapter => {
-    const module = get(chapter, `contents.modules[${moduleIndex - 1}]`, null)
-    const language = getCurrentLanguage(state)
-    return translateModule(module, language.code)
+const joinIds = (source, obj) => {
+  const sourceById = keyBy(source, 'id')
+
+  const mapIds = obj => mapValues(obj, (v, k, o) => {
+    if (isPlainObject(v)) {
+      return mapIds(v)
+    }
+    if (isArray(v)) {
+      return v.map(e => {
+        if (isPlainObject(e)) {
+          return mapIds(e)
+        }
+        return e
+      })
+    }
+    if (k === 'id' && (typeof v === 'number' || typeof v === 'string')) {
+      return get(sourceById, v, v)
+    }
+    return v
   })
+
+  return mapIds(obj)
+}
+
+const getClearModule = createSelector(
+  getChapter,
+  (_, index) => index,
+  (chapter, index) => {
+    return get(chapter, `contents.modules[${index - 1}]`, null)
+  }
+)
+
+export const makeGetModule = () => {
+  return createSelector(
+    getChapter,
+    getClearModule,
+    getCurrentLanguage,
+    (chapter, module, lang) => {
+      const transModule = translateModule(module, lang.code)
+      return joinIds(chapter.documents.map(d => ({ ...d, id: d.document_id })), transModule)
+    }
+  )
+}

@@ -11,7 +11,7 @@ import './Module.css'
 
 import {
   getChapter,
-  getModule,
+  makeGetModule,
 } from '../../state/selectors'
 
 const moduleContainerStyle = {
@@ -58,7 +58,7 @@ const fakeModule = {
 class Module extends PureComponent {
   render() {
     const { chapter, module } = this.props
-    console.log(chapter, module)
+    // console.log(chapter, module)
     return <div style={moduleContainerStyle}>
       <ModuleText chapter={chapter} module={module}/>
       {/* <ModuleObject chapter={chapter} module={fakeModule.object}  /> */}
@@ -71,12 +71,16 @@ class Module extends PureComponent {
 }
 
 
-const mapStateToProps = (state, props) => {
-  const moduleIndex = props.match.params.moduleIndex
-  return {
-    chapter: getChapter(state),
-    module: getModule(state, moduleIndex),
+const makeMapStateToProps = () => {
+  const getModule = makeGetModule()
+  const mapStateToProps = (state, props) => {
+    const moduleIndex = props.match.params.moduleIndex
+    return {
+      chapter: getChapter(state),
+      module: getModule(state, moduleIndex),
+    }
   }
+  return mapStateToProps
 }
 
-export default connect(mapStateToProps)(Module)
+export default connect(makeMapStateToProps)(Module)
