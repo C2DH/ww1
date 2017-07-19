@@ -2,8 +2,25 @@ import React, { PureComponent } from 'react'
 import './ChaptersControl.css'
 
 class ChaptersControl extends PureComponent {
+  componentDidMount() {
+    window.addEventListener('keydown', this.handleKeyPress)
+  }
 
-  render () {
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleKeyPress)
+  }
+
+  handleKeyPress = (e) => {
+    const { hasPrev, hasNext, onClickPrev, onClickNext } = this.props
+    if (e.key === 'ArrowDown' && hasNext) {
+      onClickNext()
+    }
+    if (e.key === 'ArrowUp' && hasPrev) {
+      onClickPrev()
+    }
+  }
+
+  render() {
     const { hasNext, hasPrev, title, onClickNext, onClickPrev, currentIndex, count } = this.props
     return (
       <div>
