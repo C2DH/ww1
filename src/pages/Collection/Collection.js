@@ -225,9 +225,11 @@ class Collection extends PureComponent {
               onSearchChange={this.handleSearchStringChange}
               dataTypes={dataTypesFacets}
               selectedDataTypes={filterDataTypes}
+              onResetDataType={this.resetFilterDataType}
               onToggleDataType={this.toggleFilterDataType}
               selectedYears={filterYears}
               onYearChange={this.handleOnYearChange}
+              onResetYear={this.resetYearFilter}
               uncertainYears={filterUncertainYears}
               onUncertainYearsChange={this.handleOnUncertainYearsChange}
               yearsCounts={yearsFacets}
