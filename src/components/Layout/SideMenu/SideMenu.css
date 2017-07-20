@@ -18,6 +18,10 @@
   color: white;
 }
 
+.SideMenu__menuBtnDark{
+  color: #F56350;
+}
+
 .SideMenu__menuBtn:hover {
   color: #F56350;
   background-color: transparent;
@@ -135,6 +139,11 @@
     height: auto;
     background-color: #333;
   }
+
+  .SideMenu__menuBtnDark{
+    color: white;
+  }
+
  }
 
 

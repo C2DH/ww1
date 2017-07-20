@@ -18,18 +18,22 @@
   font-family: 'Vinter Web',Georgia, serif;
 }
 
-
+.OpenSideMenu__list li a.active{
+  color:#F56350;
+  opacity: 1;
+}
 .OpenSideMenu__list li a,
 .OpenSideMenu__bottom_list li a{
-  color: rgba(0, 0, 0, 0.70);
+  color: black;
+  opacity: 0.70;
 }
 
 .OpenSideMenu__list li a:hover,
 .OpenSideMenu__list li a:focus,
 .OpenSideMenu__bottom_list li a:hover,
 .OpenSideMenu__bottom_list li a:focus {
-  color: rgba(0, 0, 0, 1);
   text-decoration: none;
+  opacity: 1;
 }
 
 .OpenSideMenu__bottom {
@@ -38,7 +42,7 @@
 
 .OpenSideMenu__bottom_list {
   list-style: none;
-  margin: 50px 50px 10px 50px;
+  margin: 0px 50px 10px 50px;
   padding-left: 0px;
   font-family: 'Atlas Grotesk Wew',Arial, sans-serif;
   font-size: 1.12rem;
@@ -80,6 +84,10 @@
   border-left: none;
   border-right: 1px solid #DBDBD0;
   border-bottom: 2px solid white;
+}
+
+.OpenSideMenu__lang_control_btn.leActiveClassForLang{
+    border-bottom: 2px solid #F56350;
 }
 
 .OpenSideMenu__lang_control_btn:hover {
@@ -131,7 +139,6 @@
 
   .OpenSideMenu__lang_control_btn.leActiveClassForLang{
       display: none;
-      border-bottom: 2px solid #F56350;
   }
 
  }

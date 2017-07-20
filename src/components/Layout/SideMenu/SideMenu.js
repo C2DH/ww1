@@ -38,7 +38,10 @@ class SideMenu extends PureComponent {
          className={this.state.open ? "SideMenu d-flex flex-column justify-content-center" : "SideMenu-close d-flex flex-column justify-content-center"}
          >
          <Switch>
-           <Route path='/themes' render={() => <Burger className="ClassToAddToThemesRoute" open={this.state.open} onClick={this.toggleMenu} />} />
+           <Route path='/collection' render={() => <Burger className="SideMenu__menuBtnDark" open={this.state.open} onClick={this.toggleMenu} />} />
+           <Route path='/map' render={() => <Burger className="SideMenu__menuBtnDark" open={this.state.open} onClick={this.toggleMenu} />} />
+           <Route path='/timeline' render={() => <Burger className="SideMenu__menuBtnDark" open={this.state.open} onClick={this.toggleMenu} />} />
+
            <Route render={() => <Burger open={this.state.open} onClick={this.toggleMenu} />} />
          </Switch>
 
