@@ -51,7 +51,7 @@ class SideMenu extends PureComponent {
       <div className={this.state.open ? "SideMenu__vertical_title_container d-flex justify-content-center hidden-md-down" : "SideMenu__vertical_title_container_close d-flex justify-content-center hidden-md-down"}>
          <p className="SideMenu__vertical_title">ÉISCHTE WELTKRICH</p>
        </div>
-       <span className="SideMenu__langBtn btn btn-secondary hidden-md-down">{language.label}</span>
+       <span className="SideMenu__langBtn btn btn-secondary hidden-md-down" onClick={this.toggleMenu} >{language.label}</span>
      </div>
      {this.state.open ? <OpenSideMenu closeMenu={this.toggleMenu} key="opensidemenu"/> : null}
     </CSSTransitionGroup>

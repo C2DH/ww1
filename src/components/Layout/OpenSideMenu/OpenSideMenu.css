@@ -65,31 +65,42 @@
 }
 
 .OpenSideMenu__lang_control {
-  height: 40px;
   background-color: #fff;
-  border-bottom: 1px solid #DBDBD0;
-  display: inline-flex;
-  align-items: center;
-  width: 100%;
-  justify-content: center;
+  padding: 10px 0px;
+  border-top: 1px solid #DBDBD0;
+  text-align: center;
 }
 
 .OpenSideMenu__lang_control_btn {
-  background-color: transparent;
-  border: none;
-  color: rgba(0, 0, 0, 1);
   border-radius: 0px;
+  font-family: 'Atlas Grotesk Web', Arial, sans-serif;
   font-weight: 500;
-  padding: 5px;
-  margin-right: 10px;
-  margin-left: 10px;
   cursor: pointer;
-  height: 32px;
+  border-top: none;
+  border-left: none;
+  border-right: 1px solid #DBDBD0;
+  border-bottom: 2px solid white;
+}
+
+.OpenSideMenu__lang_control_btn:hover {
+  color: #F56350;
+  border-bottom: 2px solid #F56350;
+  background-color: white;
+}
+
+.OpenSideMenu__lang_control_btn:focus,
+.OpenSideMenu__lang_control_btn.focus{
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 
 .OpenSideMenu__lang_control_btn:active,
-.OpenSideMenu__lang_control_btn:focus {
-  border-bottom: 2px solid #F56350;
+.OpenSideMenu__lang_control_btn.active{
+  background-color: transparent;
+}
+
+.OpenSideMenu__lang_control_btn.leActiveClassForLang{
+  display: inline-block;
 }
 
 /*Small devices (landscape phones, 576px and up)*/
@@ -118,13 +129,9 @@
     text-align: left;
   }
 
-  .OpenSideMenu__lang_control {
-    padding-left: 50px;
-    justify-content: flex-start;
-  }
-
-  .OpenSideMenu__lang_control_btn {
-    margin-left: 0px;
+  .OpenSideMenu__lang_control_btn.leActiveClassForLang{
+      display: none;
+      border-bottom: 2px solid #F56350;
   }
 
  }
