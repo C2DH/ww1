@@ -51,3 +51,15 @@ export const objToCommaStr = obj => keys(obj).join(',')
 
 export const getThemeCover = theme =>
   get(theme, 'covers[0].attachment')
+
+const PLACE_TYPE_ICONS = {
+  bombing: 'fa-bomb',
+  // ...
+}
+export const getPlaceTypeIcon = placeType => {
+  const icon = PLACE_TYPE_ICONS[placeType]
+  if (typeof icon === 'undefined') {
+    return 'fa-bom'
+  }
+  return icon
+}

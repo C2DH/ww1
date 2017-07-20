@@ -2,18 +2,9 @@ import React from 'react'
 import MapMenuItem from '../MapMenuItem'
 import YearsRange  from '../YearsRange'
 import './MapSideMenu.css'
-
-const PLACE_TYPE_ICONS = {
-  bombing: 'fa-bomb',
-  // ...
-}
-const getPlaceTypeIcon = placeType => {
-  const icon = PLACE_TYPE_ICONS[placeType]
-  if (typeof icon === 'undefined') {
-    return 'fa-bom'
-  }
-  return icon
-}
+import {
+  getPlaceTypeIcon,
+} from '../../utils'
 
 const MapSideMenu = ({
   dataPlaceTypes,
