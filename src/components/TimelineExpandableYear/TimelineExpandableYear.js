@@ -27,9 +27,9 @@ class TimelineExpandableYear extends PureComponent {
     const { year, openMonth, disabledMonths = [] } = this.props
     return (
       <div onClick={this.onYearClick} className="TimelineExpandableYear__container">
-        <span className={this.props.open ? "TimelineExpandableYear__year" : null}>{year}</span>
+        <span className={this.props.open ? "TimelineExpandableYear__year expanded" : "TimelineExpandableYear__year"}>{year}</span>
         {this.props.open ?
-          <div className="TimelineExpandableYear__expandable">
+          <div className="TimelineExpandableYear__expandable hidden-md-down">
             {months.map(month =>(
               <Month key={month} open={month === openMonth} disabled={disabledMonths.indexOf(month) !== -1}/>
             ))}

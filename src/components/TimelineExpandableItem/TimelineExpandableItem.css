@@ -1,53 +1,27 @@
-.TimelineExpandableItem__containerClose {
-  margin: 10px;
-  width: initial!important;
-  margin-right: 10px!important;
-  background-color: #fff;
-  min-height: 120px;
-  padding: 20px;
-  border: 1px solid #DBDBD0;
+.TimelineExpandableItem__date_container h6{
+  font-weight: 400;
+  font-size: 0.875rem;
 }
 
-.TimelineExpandableItem__containerOpen {
-  margin: 10px;
-  width: initial!important;
-  margin-right: 10px!important;
-  background-color: #fff;
-  padding: 20px;
-  border: 1px solid #DBDBD0;
+.TimelineExpandableItem__btn{
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  padding: 4px 0 0 0;
+  cursor: pointer;
 }
 
 .TimelineExpandableItem__title {
   color:#F36455;
-  font-size: 2em;
+  font-size: 1.875rem;
 }
 
 .TimelineExpandableItem__titleContainerOpen {
   margin-bottom: 20px;
 }
 
-.TimelineExpandableItem__flex_container {
-  display: inline-flex;
-  width: 100%;
-}
-
-.TimelineExpandableItem__empty_right,
-.TimelineExpandableItem__btn_container {
-  min-width: 100px;
-}
-
-.TimelineExpandableItem__btn_container {
-  margin-left: auto;
-  display: flex;
-}
-
-.TimelineExpandableItem__responsive_click {
-  display: none;
-}
-
-.TimelineExpandableItem__date_container,
-.TimelineExpandableItem__empty_left {
-  min-width: 180px;
+.TimelineExpandableItem__container {
+  margin-top: 15px;
 }
 
 
@@ -56,10 +30,14 @@
   padding-bottom: 20px;
   border-top: 1px solid #DBDBD0;
   border-bottom: 1px solid #DBDBD0;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 
 .TimelineExpandableItem__imgTitle {
-  font-weight: 600;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.875rem;
 }
 
 .TimelineExpandableItem__img {
@@ -67,10 +45,50 @@
 }
 
 .TimelineExpandableItem__show_less {
-  display: none;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #F56350;
+  margin-bottom: -8px;
 }
 
-@media (max-width: 991px) {
+.TimelineExpandableItem__show_less span{
+  background-color: white;
+  padding: 0px 10px;
+}
+
+/*Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {
+
+}
+
+/*Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+
+
+    .TimelineExpandableItem__btn{
+      width: 30px;
+        height: 30px;
+        padding: 2px 0 0 2px;
+    }
+
+ }
+
+/*Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+
+  .TimelineExpandableItem__title {
+    font-size: 2rem;
+  }
+
+ }
+
+/*Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+
+ }
+
+/*@media (max-width: 991px) {
   .TimelineExpandableItem__title {
     font-size: 1.5em;
   }
@@ -122,4 +140,4 @@
     padding-right: 10px;
     cursor: pointer;
   }
-}
+}*/

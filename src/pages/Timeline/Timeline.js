@@ -3,7 +3,7 @@ import { find } from 'lodash'
 import { connect } from 'react-redux'
 import WayPoint from 'react-waypoint'
 import moment from 'moment'
-import { Row, Col } from 'reactstrap'
+import { Container, Row, Col } from 'reactstrap'
 import TimelineExpandableItem from '../../components/TimelineExpandableItem'
 import TimelineExpandableYear from '../../components/TimelineExpandableYear'
 import {
@@ -60,41 +60,47 @@ class Timeline extends PureComponent {
   render() {
     const { documents } = this.props
     return (
-      <div style={{height: '100vh'}}>
-        <Row className="Timeline__TopRow">
-          <Col md="12">
-            <h2>Timeline</h2>
-          </Col>
-        </Row>
-        <Row>
-          <Col lg="2" md="12" sm="12" xs="12" className="Timeline__TimelineNav fixed">
-            <div className="Timeline__yearsContainer">
-              <div className="hidden-lg-up Timeline__yearsContainer_responsive_borders"></div>
-              {YEARS.map(year =>(
-                 <TimelineExpandableYear
-                   onYearClick={this.onYearClick}
-                   open={year === this.state.viewedYear}
-                   openMonth={this.state.viewedMonth}
-                   year={year}
-                   key={year}
-                 />
-              ))}
-            </div>
-          </Col>
-          {documents && <Col lg="10" md="12" sm="12" xs="12" className="Timeline__scrollingCol">
-            {documents.map(doc => (
-              <div key={doc.id}>
-                <TimelineExpandableItem
-                  scrollTo={doc.id === this.state.scrollToId}
-                  onScrollComplete={this.onItemScrollComplete}
-                  item={doc}
-                  key={doc.id}
-                />
-                <WayPoint onEnter={() => this.entering(doc)} />
+      <div className="Timeline__Wrapper">
+        <div className="Timeline__TopRow d-flex align-items-center">
+          <Container>
+            <Row>
+              <Col md="12">
+                <h2>Timeline</h2>
+              </Col>
+            </Row>
+          </Container>
+        </div>
+        <Container className="Timeline__Content">
+          <Row>
+            <Col lg="1" md="12" sm="12" xs="12" className="Timeline__TimelineNav fixed">
+              <div className="Timeline__yearsContainer d-flex flex-lg-column">
+                <div className="hidden-lg-up Timeline__yearsContainer_responsive_borders"></div>
+                {YEARS.map(year =>(
+                   <TimelineExpandableYear
+                     onYearClick={this.onYearClick}
+                     open={year === this.state.viewedYear}
+                     openMonth={this.state.viewedMonth}
+                     year={year}
+                     key={year}
+                   />
+                ))}
               </div>
-            ))}
-          </Col>}
-        </Row>
+            </Col>
+            {documents && <Col lg="11" md="12" sm="12" xs="12" className="Timeline__scrollingCol">
+              {documents.map(doc => (
+                <div key={doc.id} className="Timeline__expandable_wrapper">
+                  <TimelineExpandableItem
+                    scrollTo={doc.id === this.state.scrollToId}
+                    onScrollComplete={this.onItemScrollComplete}
+                    item={doc}
+                    key={doc.id}
+                  />
+                  <WayPoint onEnter={() => this.entering(doc)} />
+                </div>
+              ))}
+            </Col>}
+          </Row>
+        </Container>
       </div>
     )
   }

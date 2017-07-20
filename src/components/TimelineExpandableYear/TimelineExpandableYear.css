@@ -1,13 +1,19 @@
 .TimelineExpandableYear__container {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px;
   width: 100%;
-  border-top: 0.5px solid #DBDBD0;
-  border-bottom: 0.5px solid #DBDBD0;
+  border-bottom: 1px solid #DBDBD0;
+  border-right: 1px solid #DBDBD0;
 }
 
 .TimelineExpandableYear__year {
-  font-weight: 600;
+  font-family: "Atlas Grotesk", Arial, sans-serifa;
+  font-weight: 500;
+  color: black;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.TimelineExpandableYear__year.expanded {
   color: #F36455;
 }
 
@@ -33,27 +39,27 @@
   color:  #F36455;
 }
 
-@media (max-width: 991px) {
-  .TimelineExpandableYear__container {
-    border-left: 0.5px solid #DBDBD0;
-    border-right: 0.5px solid #DBDBD0;
-    display: inline-flex;
-    justify-content: center;
-  }
+/*Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {
 
-  .TimelineExpandableYear__year {
-    align-self: center;
-  }
-
-  .TimelineExpandableYear__month_marker {
-    padding-left: 2px;
-    padding-right: 2px;
-  }
-
-  .TimelineExpandableYear__expandable {
-    /*flex-direction: row;
-    padding-top: 2.5px;
-    padding-left: 3px;*/
-    display: none;
-  }
 }
+
+/*Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+
+ }
+
+/*Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+
+  .TimelineExpandableYear__container {
+    padding: 10px 0px;
+    border-right: none;
+  }
+
+ }
+
+/*Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+
+ }

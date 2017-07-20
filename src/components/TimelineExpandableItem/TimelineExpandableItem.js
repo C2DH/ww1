@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom'
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Container } from 'reactstrap';
+import { Container, Row, Col, Collapse } from 'reactstrap';
 import './TimelineExpandableItem.css'
 
 
@@ -11,15 +11,15 @@ const TimelineEventDate = ({ startDate, endDate}) => {
   const endDateFormatted = moment(endDate).format('DD MMMM YYYY')
 
  if(startDate === endDate) {
-   return (<span>{startDateFormatted}</span>)
+   return (<h6>{startDateFormatted}</h6>)
  }  if(startDate && endDate) {
-    return (<span>{startDateFormatted} <br/> {endDateFormatted}</span>)
+    return (<h6>{startDateFormatted} <br/> {endDateFormatted}</h6>)
   } if(startDate && !endDate) {
-    return (<span>{startDateFormatted}</span>)
+    return (<h6>{startDateFormatted}</h6>)
   } if(!startDate && endDate) {
-    return (<span>{endDateFormatted}</span>)
+    return (<h6>{endDateFormatted}</h6>)
   }
-  return (<span>Unknow date</span>)
+  return (<h6>Unknow date</h6>)
 
 }
 
@@ -48,52 +48,43 @@ class TimelineExpandableItem extends PureComponent {
 render () {
 
   return (
-      <Container className={this.state.open ? "TimelineExpandableItem__containerOpen" : "TimelineExpandableItem__containerClose" }>
-        <div className="TimelineExpandableItem__responsive_click" onClick={this.toggleExpand} ></div>
-        <div className="TimelineExpandableItem__flex_container">
-          <div className="TimelineExpandableItem__date_container">
+      <Container fluid={true}>
+        <Row>
+          <Col xs="12" md="3" lg="2" className="TimelineExpandableItem__date_container">
             <TimelineEventDate
               startDate={this.props.item.translated.date}
               endDate={this.props.item.translated.end_date}
             />
-            {/* <p style={{marginBottom: 0}}>{this.props.item.translated.date}</p>
-            <p>{(this.props.item.translated.date !== this.props.item.translated.end_date) && this.props.item.translated.end_date}</p> */}
-          </div>
-          <div className={this.state.open ? "TimelineExpandableItem__titleContainerOpen" : null}>
-            <h2 className="TimelineExpandableItem__title">
-              {this.props.item.translated.date}{' '}
+          </Col>
+          <Col xs="12" md="8" lg="9">
+          <h2 className="TimelineExpandableItem__title" onClick={this.toggleExpand}>
               {this.props.item.title}
             </h2>
-          </div>
-          <div className="TimelineExpandableItem__btn_container hidden-xs-down">
-            <button onClick={this.toggleExpand} className="expandableItem__btn" key="button">
-              {this.state.open ? <i className="icon-remove" /> : <i className="icon-add" />}
+          </Col>
+          <Col md="1" lg="1" className="TimelineExpandableItem__btn_container hidden-sm-down">
+            <button onClick={this.toggleExpand} className="btn btn-secondary TimelineExpandableItem__btn" key="button">
+              <i className="material-icons">{this.state.open ? 'remove': 'add'}</i>
             </button>
-          </div>
-        </div>
-        {this.state.open ?
-        <div>
-          <div className="TimelineExpandableItem__flex_container">
-            <div className="TimelineExpandableItem__show_less" onClick={this.toggleExpand}><p>SHOW LESS</p></div>
-            <div className="TimelineExpandableItem__empty_left"></div>
-            <div>
+          </Col>
+        </Row>
+        <Collapse isOpen={this.state.open}>
+          <Row>
+          <Col md={{ size: 9, offset: 3 }} lg={{ size: 9, offset: 2 }} className="TimelineExpandableItem__container">
+            <h6 className="TimelineExpandableItem__show_less hidden-md-up" onClick={this.toggleExpand}><span>show less</span></h6>
               <p className="TimelineExpandableItem__text">{this.props.item.translated.description}</p>
-            </div>
-            <div className="TimelineExpandableItem__empty_right"></div>
-          </div>
-
-          <div className="TimelineExpandableItem__flex_container">
-            <div className="TimelineExpandableItem__empty_left"></div>
-            <div>
-              <h6 className="TimelineExpandableItem__imgTitle">RELATED OBJECTS</h6>
+          </Col>
+          </Row>
+          <Row>
+          <Col md={{ size: 10, offset: 3 }}  lg={{ size: 10, offset: 2 }} className="TimelineExpandableItem__container">
+              <h6 className="TimelineExpandableItem__imgTitle">related objects</h6>
               <div>
                 <img className="img-responsives TimelineExpandableItem__img" src="http://placehold.it/200x120" alt="historical document"/>
                 <img className="img-responsives TimelineExpandableItem__img" src="http://placehold.it/200x120" alt="historical document" />
                 <img className="img-responsives TimelineExpandableItem__img" src="http://placehold.it/200x120" alt="historical document" />
               </div>
-            </div>
-          </div>
-        </div> : null }
+          </Col>
+          </Row>
+        </Collapse>
       </Container>
 
      )
