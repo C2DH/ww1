@@ -45,16 +45,16 @@ class OpenSideMenu extends PureComponent {
          <li><NavLink to="/" onClick={this.props.closeMenu}>About</NavLink></li>
          <li><NavLink to="/" onClick={this.props.closeMenu}>Terms of use</NavLink></li>
        </ul>
+       <div className="OpenSideMenu__bottom_logos">
+       </div>
        <div className="OpenSideMenu__lang_control">
           {languages.map((language, i) => (
             <button
               key={language.code}
               onClick={() => setLanguage(language.code)}
-              className={`OpenSideMenu__lang_control_btn ${language.code === currentLanguage.code ? 'leActiveClassForLang' : ''}`}
+              className={`OpenSideMenu__lang_control_btn btn btn-secondary ${language.code === currentLanguage.code ? 'leActiveClassForLang' : ''}`}
             >{language.label}</button>
           ))}
-       </div>
-       <div className="OpenSideMenu__bottom_logos">
        </div>
       </div>
      </div>

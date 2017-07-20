@@ -39,7 +39,7 @@ class Home extends React.Component {
     return (
       <div className="Home__wrapper">
         {this.backgroundClasses.map((className, index) => (
-           <div className={'Home__background ' + className}>
+           <div className={'Home__background ' + className} key={index}>
            </div>
         ))}
         <Container className="Home__container d-flex flex-column">
