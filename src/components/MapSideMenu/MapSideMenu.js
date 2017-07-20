@@ -1,4 +1,5 @@
 import React from 'react'
+import { pure } from 'recompose'
 import MapMenuItem from '../MapMenuItem'
 import YearsRange  from '../YearsRange'
 import './MapSideMenu.css'
@@ -73,4 +74,4 @@ const MapSideMenu = ({
   </div>
 )
 
-export default MapSideMenu
+export default pure(MapSideMenu)

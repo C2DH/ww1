@@ -53,7 +53,8 @@ export const getThemeCover = theme =>
   get(theme, 'covers[0].attachment')
 
 const PLACE_TYPE_ICONS = {
-  bombing: 'fa-bomb',
+  bombing: 'alarm_add',
+  hospital: 'alarm_add',
   // ...
 }
 export const getPlaceTypeIcon = placeType => {

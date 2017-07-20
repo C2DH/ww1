@@ -190,11 +190,23 @@ export const [
 // Map documents
 
 export const [
-  getMapDocuments,
+  getDummyMapDocuments,
   canLoadMoreMapDocuments,
   getMapDocumentsCount,
   getMapDocumentsLoading,
 ] = makeDocumentsListSelectors(state => state.mapDocuments)
+
+export const getMapDocuments = createSelector(
+  getDummyMapDocuments,
+  docs => maybeNull(docs)(docs => docs.map(doc => ({
+    ...doc,
+    coordinates: get(doc, 'data.coordinates.geometry.coordinates', [])
+      .slice(0, 2)
+      // For same positin problem....
+      .map(x => Number(x) + Math.random() / 1000)
+      .reverse()
+  })))
+)
 
 export const [
   getMapDocumentsDataPlaceTypesFacets,
