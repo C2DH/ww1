@@ -56,12 +56,9 @@ const styles = {
   }
 }
 
-
 const Map = ReactMapboxGl({
-  accessToken: "pk.eyJ1IjoiYmlhbmNoaW1ybyIsImEiOiJOY0FqNUxrIn0.C2YPVWz8M0nPeG2pZLybKQ"
+  accessToken: "pk.eyJ1IjoiZWlzY2h0ZXdlbHRrcmljaCIsImEiOiJjajRpYnR1enEwNjV2MndtcXNweDR5OXkzIn0._eSF2Gek8g-JuTGBpw7aXw"
 })
-
-
 
 
 class MapPage extends PureComponent {
@@ -228,7 +225,7 @@ class MapPage extends PureComponent {
                 zoom={zoom}
                 onDrag={this.onDrag}
                 touchZoomRotate={false}
-                style="mapbox://styles/mapbox/streets-v9"
+                style="mapbox://styles/eischteweltkrich/cj5cizaj205vv2qlegw01hubm"
                 containerStyle={{
                   height: "100vh",
                   width: "100%",
