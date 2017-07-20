@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react'
-import { isNull, get, zipObject, memoize, filter, keys, omit, isUndefined } from 'lodash'
-import Slider from 'rc-slider'
-import 'rc-slider/assets/index.css'
+import { keys, omit, isUndefined } from 'lodash'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import qs from 'query-string'
 import matchMedia from 'matchmedia'
@@ -39,8 +37,6 @@ import CollectionMasonry from '../../components/CollectionMasonry'
 import CollectionFilters from '../../components/CollectionFilters'
 import Spinner from '../../components/Spinner'
 import "./Collection.css"
-
-const Range = Slider.Range
 
 class Collection extends PureComponent {
   constructor(props) {
@@ -212,11 +208,11 @@ class Collection extends PureComponent {
 
         </div>
 
-          <CSSTransitionGroup component="div"
+        <CSSTransitionGroup
+          component="div"
           transitionName="filters"
           transitionEnterTimeout={500}
-          transitionLeaveTimeout={500}
-          >
+          transitionLeaveTimeout={500}>
           {this.state.sidebarOpen && (
             <CollectionFilters
               key="Collectionfilters"
@@ -236,10 +232,8 @@ class Collection extends PureComponent {
               yearsFilteredCounts={yearsFilteredFacets}
               uncertainYearsCount={uncertainYears}
             />
-            )}
-          </CSSTransitionGroup>
-
-
+          )}
+        </CSSTransitionGroup>
       </div>
     )
   }
