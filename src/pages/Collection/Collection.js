@@ -9,6 +9,7 @@ import {
   parseQsCommaNumListValue,
   parseQsCommaObjValue,
   objToCommaStr,
+  makeOverlaps,
 } from '../../utils'
 import breakpoints from '../../breakpoints'
 import { connect } from 'react-redux'
@@ -26,7 +27,6 @@ import {
   getCollectionDocumentsCount,
   getCollectionDocumentsLoading,
   getCollectionDocumentsTotalCount,
-  getCollectionDocumentsTotalFacets,
   getCollectionDocumentsDataTypesFacets,
   getCollectionDocumentsYearsFacets,
   getCollectionDocumentsFilteredYearsFacets,
@@ -85,7 +85,6 @@ class Collection extends PureComponent {
 
   getDocsParams = (filters = {}) => {
     const { searchString, filterDataTypes, filterYears, filterUncertainYears } = this.getFilters(filters)
-    const makeOverlaps = y => y ? `${y[0]}-01-01,${y[1] - 1}-12-31` : undefined
     const filterDataTypesList = keys(filterDataTypes)
 
     const applyFilters = {}
@@ -250,7 +249,7 @@ const mapStateToProps = (state, ownProps) => ({
   filterDataTypes: parseQsCommaObjValue(ownProps.location, 'types'),
   filterYears: parseQsCommaNumListValue(ownProps.location, 'years', DEFAULT_FILTER_YEARS),
   filterUncertainYears: parseQsBooleanValue(ownProps.location, 'uncertainYears'),
-  // Counts stuff
+  // Counts / facets stuff
   count: getCollectionDocumentsCount(state),
   totalCount: getCollectionDocumentsTotalCount(state),
   dataTypesFacets: getCollectionDocumentsDataTypesFacets(state),

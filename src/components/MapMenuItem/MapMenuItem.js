@@ -2,13 +2,12 @@ import React from 'react'
 import { Badge } from 'reactstrap'
 import './MapMenuItem.css'
 
-
-const MapMenuItem = (props) => (
-  <div className="MapMenuItem__container">
-    <i className={`fa ${props.iconClass} MapMenuItem__icon`} />
-    <p>{props.label}</p>
+const MapMenuItem = ({ iconClass, label, count, selected, onClick }) => (
+  <div className="MapMenuItem__container" onClick={onClick}>
+    <i className={`fa ${iconClass} MapMenuItem__icon`} />
+    <p style={ selected ? { color: 'green' } :  undefined }>{label}</p>
     <h5 className="MapMenuItem__badge_container">
-      <Badge className="MapMenuItem__badge">1</Badge>
+      <Badge className="MapMenuItem__badge">{count}</Badge>
     </h5>
   </div>
 )
