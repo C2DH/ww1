@@ -12,23 +12,23 @@ class ModuleText extends PureComponent {
     const position = get(module, 'text.position')
 
     let alignItems = 'center'
-    if(position === 'left'){
+    if (position === 'left') {
       alignItems = 'flex-start'
-    }
-    if(position === 'right'){
+    } else if (position === 'right') {
       alignItems = 'flex-end'
     }
 
-    const textStyle={
+    const textStyle = {
       color: get(module, 'text.color', '#fff'),
       alignItems: alignItems,
     }
 
-
-
+    const backgroundColor = get(module, 'background.color')
+    const backgroundImage = get(module, 'background.object.id.attachment')
+    const backgroundOverlay = get(module, 'background.object.overlay')
 
     return <div style={{height:'100%'}}>
-      <Background color={get(module, 'background.color')}/>
+      <Background image={backgroundImage} color={backgroundColor} overlay={backgroundOverlay} />
       <div className="Module__container" style={textStyle}>
         <div className="Module__text">{module.text.content}</div>
       </div>
