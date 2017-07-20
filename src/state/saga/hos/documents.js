@@ -1,15 +1,31 @@
 import { put, select, fork, call, all } from 'redux-saga/effects'
-import { identity, omit } from 'lodash'
+import { identity, omit, map, keys } from 'lodash'
 import qs from 'query-string'
 import { takeLatestAndCancel } from '../effects/take'
 
 export const DEFAULT_PAGE_SIZE = 50
+
+/**
+  facetsConfig: [
+    // Facet
+    data__type: [
+      // List of params to omit to calculate cross facets
+      'filters.data__type__in'
+    ],
+    data__year: [
+     'filters.data__year__isnull',
+      'overlaps',
+    ]
+],
+  ]
+**/
 
 // Saga for documents
 const makeDocuments = (
   actionType,
   apiFn,
   selectState,
+  facetsConfig,
   pageSize = DEFAULT_PAGE_SIZE,
   transform = identity,
 ) => {
@@ -28,26 +44,15 @@ const makeDocuments = (
 
       // Calculate cross facets
       let facets = {}
-      if (crossFacets) {
-        const facetsCalls = [
-          // Facets for data types omit data type filter
-          call(apiFn, {
-            ...omit(params, [
-              'filters.data__type__in',
-            ]),
-            facets: ['data__type'],
+      if (crossFacets && facetsConfig) {
+        // Make a call per facet and omit related params to calculate cross facets
+        const facetsCalls = map(facetsConfig, (paramsToOmit, facet) => {
+          return call(apiFn, {
+            ...omit(params, paramsToOmit),
+            facets: [facet],
             facets_only: true,
-          }),
-          // Facets for years
-          call(apiFn, {
-            ...omit(params, [
-              'filters.data__year__isnull',
-              'overlaps',
-            ]),
-            facets: ['data__year'],
-            facets_only: true,
-          }),
-        ]
+          })
+        })
 
         const facetsResults = yield all(facetsCalls)
         // Merge facets field of all responses
@@ -77,7 +82,8 @@ const makeDocuments = (
     yield put({ type: `${actionType}_META_LOADING` })
     try {
       const data = yield call(apiFn, {
-        facets: ['data__type', 'data__year'],
+        facets: keys(facetsConfig),
+        facets_only: true,
       })
       yield put({ type: `${actionType}_META_SUCCESS`, payload: data })
     } catch (error) {

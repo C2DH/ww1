@@ -101,17 +101,36 @@ export default function* rootSaga() {
     GET_COLLECTION_DOCUMENTS,
     api.getCollectionDocuments,
     state => state.collectionDocuments,
+    {
+      data__type: [
+        'filters.data__type__in'
+      ],
+      data__year: [
+       'filters.data__year__isnull',
+        'overlaps',
+      ],
+    }
   ))
   yield fork(makeDocuments(
     GET_TIMELINE_DOCUMENTS,
     api.getTimelineDocuments,
     state => state.timelineDocuments,
+    null,
     BIG_PAGE_SIZE,
   ))
   yield fork(makeDocuments(
     GET_MAP_DOCUMENTS,
     api.getMapDocuments,
     state => state.mapDocuments,
+    {
+      data__place_type: [
+        'filters.data__place_type__in'
+      ],
+      data__year: [
+       'filters.data__year__isnull',
+        'overlaps',
+      ],
+    },
     BIG_PAGE_SIZE,
   ))
 }
