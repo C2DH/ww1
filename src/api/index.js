@@ -1,5 +1,6 @@
 // Standard api calls
 import request from 'superagent'
+import { omit } from 'lodash'
 const API_URL = '/api'
 
 // Extract only body from response, when other stuff like response
@@ -35,7 +36,7 @@ export const getMapDocuments = (params = {}) => getDocuments({
     data__coordinates__isnull: false,
     ...params.filters,
   },
-  ...params,
+  ...omit(params, 'filters'),
 })
 
 export const getTimelineDocuments = (params = {}) => getDocuments({
@@ -44,7 +45,7 @@ export const getTimelineDocuments = (params = {}) => getDocuments({
     ...params.filters,
   },
   orderby: 'data__date',
-  ...params,
+  ...omit(params, 'filters'),
 })
 
 export const getDocument = (id) =>

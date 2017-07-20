@@ -3,6 +3,7 @@ import { values, max as lmax, range, get } from 'lodash'
 import { scaleLinear } from 'd3-scale'
 import Dimensions from 'react-dimensions'
 import Slider from 'rc-slider'
+import 'rc-slider/assets/index.css'
 import './YearsRange.css'
 
 const Range = Slider.Range

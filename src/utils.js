@@ -1,5 +1,6 @@
 import qs from 'query-string'
-import { keys, zipObject, filter, memoize, map, keyBy, isArray, get } from 'lodash'
+import { keys, zipObject, filter, map, keyBy, isArray, get } from 'lodash'
+import { defaultMemoize } from 'reselect'
 
 export const parseQsValue = (location, key, defaultValue = null) => {
   const params = qs.parse(qs.extract(location.search))
@@ -10,7 +11,7 @@ export const parseQsBooleanValue = (location, key, defaultValue = 1) => {
   return !!parseInt(parseQsValue(location, key, defaultValue))
 }
 
-const commaStrToList = memoize((str, defaultValue) => {
+const commaStrToList = defaultMemoize((str, defaultValue) => {
   const l = filter(str.split(','))
   if (l.length === 0) {
     return defaultValue
@@ -22,7 +23,7 @@ export const parseQsCommaListValue = (location, key, defaultValue = []) => {
   return commaStrToList(parseQsValue(location, key, ''), defaultValue)
 }
 
-const commaStrToNumList = memoize((str, defaultValue) => {
+const commaStrToNumList = defaultMemoize((str, defaultValue) => {
   return commaStrToList(str, defaultValue).map(a => +a)
 })
 
@@ -32,16 +33,19 @@ export const parseQsCommaNumListValue = (location, key, defaultValue = []) => {
 
 // From my,name,is,giova to { my: true, name: true, is: true, giova: true }
 // util for filtering like stuff
-const commaStrToObj = memoize((typesStr, defaultValue) => {
+const commaStrToObj = defaultMemoize((typesStr, defaultValue) => {
   const l = filter(typesStr.split(','))
   if (l.length === 0) {
     return defaultValue
   }
   return zipObject(l, l.map(_ => true))
 })
-export const parseQsCommaObjValue = (location, key, defaultValue = {}) => {
+const emptyObj = {}
+export const parseQsCommaObjValue = (location, key, defaultValue = emptyObj) => {
   return commaStrToObj(parseQsValue(location, key, ''), defaultValue)
 }
+
+export const makeOverlaps = y => y ? `${y[0]}-01-01,${y[1] - 1}-12-31` : undefined
 
 export const objToCommaStr = obj => keys(obj).join(',')
 

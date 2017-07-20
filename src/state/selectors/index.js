@@ -100,7 +100,14 @@ const makeDocumentsListSelectors = selectState => {
   ]
 }
 
-const makeDocumentsMetaSelectors = selectState => {
+// Documents facets
+const intersectFacets = (totalFacets, currentFacets, facetName) => get(totalFacets, facetName, []).map(facet => ({
+  [facetName]: get(facet, facetName),
+  count: get(find(get(currentFacets, facetName, []), { [facetName]: get(facet, facetName) }), 'count', 0) /*null */
+}))
+
+
+const makeDocumentsMetaSelectors = (selectState, dataTypeFacetName = 'data__type') => {
   // Generic facets
   const getDocumentsTotalFacets = state => selectState(state).meta.facets
   const getDocumentsFacets = state => selectState(state).list.facets
@@ -109,10 +116,7 @@ const makeDocumentsMetaSelectors = selectState => {
   const getDocumentsDataTypesFacets = createSelector(
     getDocumentsTotalFacets,
     getDocumentsFacets,
-    (totalFacets, currentFacets) => get(totalFacets, 'data__type', []).map(({ data__type }) => ({
-      data__type,
-      count: get(find(get(currentFacets, 'data__type', []), { data__type }), 'count', null)
-    }))
+    (totalFacets, currentFacets) => intersectFacets(totalFacets, currentFacets, dataTypeFacetName)
   )
 
   const makeYearsFacets = facets =>
@@ -183,15 +187,6 @@ export const [
   getCollectionDocumentsTotalCount,
 ] = makeDocumentsMetaSelectors(state => state.collectionDocuments)
 
-// Timeline documents
-
-export const [
-  getTimelineDocuments,
-  canLoadMoreTimelineDocuments,
-  getTimelineDocumentsCount,
-  getTimelineDocumentsLoading,
-] = makeDocumentsListSelectors(state => state.timelineDocuments)
-
 // Map documents
 
 export const [
@@ -202,12 +197,21 @@ export const [
 ] = makeDocumentsListSelectors(state => state.mapDocuments)
 
 export const [
-  getMapDocumentsDataTypesFacets,
+  getMapDocumentsDataPlaceTypesFacets,
   getMapDocumentsYearsFacets,
   getMapDocumentsFilteredYearsFacets,
   getMapDocumentsUncertainYears,
   getMapDocumentsTotalCount,
-] = makeDocumentsMetaSelectors(state => state.mapDocuments)
+] = makeDocumentsMetaSelectors(state => state.mapDocuments, 'data__place_type')
+
+// Timeline documents
+
+export const [
+  getTimelineDocuments,
+  canLoadMoreTimelineDocuments,
+  getTimelineDocumentsCount,
+  getTimelineDocumentsLoading,
+] = makeDocumentsListSelectors(state => state.timelineDocuments)
 
 // Themes
 
