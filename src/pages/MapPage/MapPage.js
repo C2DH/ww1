@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { isUndefined, keys, omit } from 'lodash'
 import qs from 'query-string'
-import ReactMapboxGl, {  Marker, Feature, Cluster, ZoomControl } from 'react-mapbox-gl'
+import ReactMapboxGl, {  Marker, Layer, Feature, Cluster, ZoomControl } from 'react-mapbox-gl'
 import MapSideMenu from '../../components/MapSideMenu'
 import './MapPage.css'
 import {
@@ -54,6 +54,13 @@ const styles = {
     pointerEvents: 'none'
   }
 }
+
+
+const Map = ReactMapboxGl({
+  accessToken: "pk.eyJ1IjoiYmlhbmNoaW1ybyIsImEiOiJOY0FqNUxrIn0.C2YPVWz8M0nPeG2pZLybKQ"
+})
+
+
 
 
 class MapPage extends PureComponent {
@@ -180,14 +187,8 @@ class MapPage extends PureComponent {
       selectedYears,
       includeUncertainYears,
     } = this.props
-    console.log(yearsFacets)
 
     return (
-        //  {documents && <div>
-        //   {documents.map(doc => (
-        //     <pre key={doc.id}>{JSON.stringify(doc)}</pre>
-        //   ))}
-        // </div>}
 
       <div>
         <div className="MapPage__TopRow">
@@ -201,30 +202,29 @@ class MapPage extends PureComponent {
         </div>
         <div className="MapPage__MainRow">
             <div style={{width: '80%'}}>
-              <ReactMapboxGl
-                style="mapbox://styles/mapbox/streets-v8"
+              <Map
                 center={[6.087, 49.667]}
                 zoom={[8]}
-                accessToken="pk.eyJ1IjoiYmlhbmNoaW1ybyIsImEiOiJOY0FqNUxrIn0.C2YPVWz8M0nPeG2pZLybKQ"
+                style="mapbox://styles/mapbox/streets-v9"
                 containerStyle={{
                   height: "100vh",
                   width: "100%",
                   paddingtop: "100px"
                 }}>
-                <ZoomControl />
-                {documents && <Cluster ClusterMarkerFactory={this.clusterMarker} clusterThreshold={1} radius={60}>
-                {
-                  [].map(doc =>
-                    <Marker
-                      key={doc.id}
-                      style={styles.marker}
-                      coordinates={doc.data.coordinates.geometry.coordinates.slice(0, 2).map(x => Number(x) + Math.random() / 1000).reverse()}>
-                      M
-                    </Marker>
-                  )
-                }
-              </Cluster>}
-               </ReactMapboxGl>
+                  <ZoomControl />
+                  {documents && <Cluster ClusterMarkerFactory={this.clusterMarker} clusterThreshold={1} radius={60}>
+                  {
+                    documents.map(doc =>
+                      <Marker
+                        key={doc.id}
+                        style={styles.marker}
+                        coordinates={doc.data.coordinates.geometry.coordinates.slice(0, 2).map(x => Number(x) + Math.random() / 1000).reverse()}>
+                        M
+                      </Marker>
+                    )
+                  }
+                </Cluster>}
+              </Map>
             </div>
 
           <div className="MapPage__Filters_container">
