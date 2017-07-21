@@ -1,5 +1,6 @@
 import React from 'react';
 import JSONTree from 'react-json-tree'
+import { Player, ControlBar, BigPlayButton } from 'video-react';
 
 export default class CollectionItemPreviewVideo extends React.PureComponent {
   render() {
@@ -8,7 +9,12 @@ export default class CollectionItemPreviewVideo extends React.PureComponent {
     return (
     <div className="CollectionItem__doc_container d-flex flex-column">
       <div className="CollectionItem__doc_preview">
-        <JSONTree data={doc} />
+        <Player fluid>
+          <source src={doc.attachment} />
+          <BigPlayButton position="center" />
+          <ControlBar autoHide={false} />
+        </Player>
+
       </div>
       <div className="CollectionItem__doc_controls">
         <button className="CollectionItem__btn_download"><i className="icon-file_download" /></button>
