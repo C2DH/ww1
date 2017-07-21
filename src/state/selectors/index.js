@@ -257,11 +257,24 @@ export const getTotalChapterModules = createSelector(
 
 // Modules
 
-// TODO: In a real world this should switch between module types...
-const translateModule = (module, langCode) => maybeNull(module)(module => ({
+const translateModuleText = (module, langCode) => ({
   ...module,
   text: translateObject(module.text, langCode, ['content']),
-}))
+})
+
+const translateModuleObject = (module, langCode) => translateObject(module, langCode, ['caption'])
+
+// TODO: In a real world this should switch between module types...
+const translateModule = (module, langCode) => maybeNull(module)(module => {
+  switch (module.module) {
+    case 'text':
+      return translateModuleText(module, langCode)
+    case 'object':
+      return translateModuleObject(module, langCode)
+    default:
+      return module
+  }
+})
 
 const joinIds = (source, obj) => {
   const sourceById = keyBy(source, 'id')

@@ -18,6 +18,17 @@ const moduleContainerStyle = {
   height: '100vh',
 }
 
+const getModuleComponent = moduleType => {
+  switch (moduleType) {
+    case 'text':
+      return ModuleText
+    case 'object':
+      return ModuleObject
+    default:
+      throw new Error(`Invalid module type ${moduleType}`)
+  }
+}
+
 const fakeModule = {
   text: {
     module: 'text',
@@ -60,7 +71,11 @@ class Module extends PureComponent {
     const { chapter, module } = this.props
     // console.log(chapter, module)
     return <div style={moduleContainerStyle}>
-      <ModuleText chapter={chapter} module={module}/>
+      {React.createElement(getModuleComponent(module.module), {
+        chapter,
+        module,
+      })}
+      {/* <ModuleText chapter={chapter} module={module}/> */}
       {/* <ModuleObject chapter={chapter} module={fakeModule.object}  /> */}
       {/* <ModuleTextObject chapter={chapter} module={fakeModule.text_object}  /> */}
       {/* <ModuleCarousel chapter={chapter} module={fakeModule.object} /> */}
