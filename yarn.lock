@@ -3994,6 +3994,10 @@ lcid@^1.0.0:
   dependencies:
     invert-kv "^1.0.0"
 
+leaflet@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.1.0.tgz#63246715cfc783dca6798b843a250e8e6fd84918"
+
 leven@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/leven/-/leven-2.1.0.tgz#c2e7a9f772094dee9d34202ae8acce4687875580"
@@ -5425,6 +5429,14 @@ react-json-tree@^0.10.9:
     babel-runtime "^6.6.1"
     prop-types "^15.5.8"
     react-base16-styling "^0.5.1"
+
+react-leaflet@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/react-leaflet/-/react-leaflet-1.4.0.tgz#45b0d1ca2fe8fff91c3e023cfe4eab0783416491"
+  dependencies:
+    babel-runtime "^6.23.0"
+    lodash "^4.0.0"
+    warning "^3.0.0"
 
 react-mapbox-gl@^2.1.0:
   version "2.1.0"
