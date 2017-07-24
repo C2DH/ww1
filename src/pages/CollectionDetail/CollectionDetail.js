@@ -29,11 +29,15 @@ class CollectionDetail extends Component {
     this.props.unloadDocument()
   }
 
+  close = () => {
+    this.props.history.push('/collection')
+  }
+
   render(){
     const { doc } = this.props
     return(
       <div>
-        {doc && <CollectionItem doc={doc}/>}
+        {doc && <CollectionItem doc={doc} onCloseClick={this.close} />}
       </div>
     )
   }

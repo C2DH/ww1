@@ -27,11 +27,15 @@ class CollectionDetailModal extends PureComponent {
     this.props.unloadDocument()
   }
 
+  close = () => {
+    this.props.history.goBack()
+  }
+
   render(){
     const { doc, loading } = this.props
     return (
       <div className="CollectionDetailModal__container d-flex">
-        {doc && <CollectionItem doc={doc}/>}
+        {doc && <CollectionItem doc={doc} onCloseClick={this.close} />}
       </div>
     )
   }
