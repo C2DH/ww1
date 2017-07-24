@@ -116,9 +116,9 @@ export default ({doc}) => {
   return (
     <div className="CollectionItem__wrapper_div">
       <Container>
-        <Row>
-          {/* TODO let close btn onClick go back to collection
-          <CloseButton />*/}
+        {/* TODO let close btn onClick go back to collection*/}
+        <CloseButton />
+        <Row className="CollectionItem__main_row">
             <Col xs="12" lg="8">
               <CollectionItemPreview doc={doc}/>
             </Col>
