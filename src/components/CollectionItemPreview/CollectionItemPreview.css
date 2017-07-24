@@ -1,4 +1,10 @@
 .CollectionItemPreviewPDF__controls {
+  position: fixed;
+  bottom: 0px;
+  left: -56px;
+  right: 32%;
+  background-color: #000;
+  color: #fff;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -61,4 +67,5 @@
   border: 0px;
   font-size: 20px;
   cursor: pointer;
+  margin-right: 15px;
 }

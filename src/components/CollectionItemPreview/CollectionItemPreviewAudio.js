@@ -28,7 +28,7 @@ export default class CollectionItemPreviewAudio extends React.PureComponent {
     const { volume } = this.state
 
     return (
-    <div className="CollectionItem__doc_container d-flex flex-column">
+    <div>
       <div className="CollectionItem__doc_preview">
         {/* <JSONTree data={doc} /> */}
         <div style={{height:'auto'}}>

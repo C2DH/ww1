@@ -35,7 +35,8 @@ export default class CollectionItemPreviewImage extends React.PureComponent {
     const bounds = [xy(0, 0), xy(doc.data.width, doc.data.height)];
 
     return (
-    <div className="CollectionItem__doc_container d-flex flex-column">
+    // <div className="CollectionItem__doc_container d-flex flex-column">
+		<div>	
       <div className="CollectionItem__doc_preview" style={{height:'80vh'}}>
         {/* <img src={doc.src} alt={doc.title} className="img-fluid" style={{maxHeight:'70vh'}}/> */}
         <Map

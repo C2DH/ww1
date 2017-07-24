@@ -57,14 +57,15 @@ class AdditionalInformation extends PureComponent {
 }
 
 const CloseButton = () => (
-  <button
-    type="button"
-    className="CollectionItem__close_btn btn btn-secondary"
-    aria-label="Close"
-    style={{position: 'fixed', top: 0, right: 0, zIndex: 1}}
-    >
-      <i aria-hidden="true" className="material-icons">close</i>
+  <div className="CollectionItem__close_btn_container">
+    <button
+      type="button"
+      className="CollectionItem__close_btn"
+      aria-label="Close"
+      >
+        <i aria-hidden="true" className="material-icons">close</i>
     </button>
+  </div>
   )
 
 //id: 193 has related!
@@ -120,7 +121,9 @@ export default ({doc}) => {
         <CloseButton />
         <Row className="CollectionItem__main_row">
             <Col xs="12" lg="8">
-              <CollectionItemPreview doc={doc}/>
+              <div className="CollectionItem__doc_container">
+                <CollectionItemPreview doc={doc}/>
+              </div>
             </Col>
             <Col xs="12" lg="4" className="CollectionItem__info_container">
                 <p className="CollectionItem__date">
@@ -147,6 +150,7 @@ export default ({doc}) => {
               <AdditionalInformation metadata={EXAMPLE_METADATA}/>
 
             </Col>
+
         </Row>
 
       </Container>
