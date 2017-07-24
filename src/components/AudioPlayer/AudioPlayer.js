@@ -37,9 +37,9 @@ class AudioPlayer extends PureComponent {
           volume={volume}
         />
         <div className="AudioPlayer__volume_container">
-          <div style={{width:'50%', display:'flex', justifyContent:'center'}}>
-            <input type="range" min="0" max="1" step="0.01" value={volume} onChange={this.handleVolumeChange}/>
-          </div>
+          <i className="material-icons AudioPlayer__volume_icon">volume_mute</i>
+          <input type="range" min="0" max="1" step="0.01" value={volume} onChange={this.handleVolumeChange}/>
+          <i className="material-icons AudioPlayer__volume_icon">volume_up</i>
         </div>
       </div>
     )

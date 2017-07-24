@@ -18,6 +18,14 @@
 
 .AudioPlayer__volume_container {
   margin-top: 20px;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.AudioPlayer__volume_icon {
+  color: #9B9B9B;
+  margin-right: 5px;
+  margin-left: 5px;
 }

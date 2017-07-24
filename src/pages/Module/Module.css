@@ -66,10 +66,15 @@
 }
 
 .Module__object__audio__caption {
-  height: 30px;
+  height: 80px;
   background-color: white;
-  justify-content: center;
-  /*align-self: flex-end;*/
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  padding-left: 56px;
+  display: flex;
+  align-items: center;
+
 }
 
 .Module__textObject_Text {
