@@ -3,15 +3,16 @@ import React, { PureComponent } from 'react'
 import { pure } from 'recompose'
 import { connect } from 'react-redux'
 import { get } from 'lodash'
-import { Container, Row, Col } from 'reactstrap';
-import { Card, CardImg, CardBlock } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap'
+import { Card, CardImg, CardBlock } from 'reactstrap'
 import { Player, ControlBar, BigPlayButton } from 'video-react'
+import AudioPlayer from '../../components/AudioPlayer'
 
 import Background from '../../components/Background'
 
 const fullHeight = { height: '100%'}
 
-class VideoWrapper extends PureComponent {
+class ModuleObjectContentVideo extends PureComponent {
   state = {
     width: null,
     height: null,
@@ -24,14 +25,24 @@ class VideoWrapper extends PureComponent {
       width: node.parentNode.clientWidth,
       height: node.parentNode.clientHeight,
     })
-    console.log(node)
-    this.player.subscribeToStateChange(this.handlePlayerChange)
-    console.log(this.player)
+    this.unsubscribe = this.player.manager.subscribeToPlayerStateChange(this.handlePlayerChange)
+    window.addEventListener('resize', this.handleResize)
   }
 
-  // componentWillUnmount() {
-  //   this.player.
-  // }
+  componentWillUnmount() {
+    if (typeof this.unsubscribe === 'function') {
+      this.unsubscribe()
+    }
+    window.removeEventListener('resize', this.handleResize)
+  }
+
+  handleResize = () => {
+    const node = ReactDOM.findDOMNode(this)
+    this.setState({
+      width: node.parentNode.clientWidth,
+      height: node.parentNode.clientHeight,
+    })
+  }
 
   handlePlayerChange = (state) => {
     this.setState({
@@ -57,21 +68,23 @@ class VideoWrapper extends PureComponent {
       }
     }
 
+    const { module } = this.props
+    const media = get(module, 'id.attachment')
 
     return (
       <div style={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
         <Player fluid={false} ref={ref => this.player = ref} height={playerHeight} width={playerWidth}>
-          <source src={'https://player.vimeo.com/external/223611221.sd.mp4?s=740bb77a04459c2aa3d8c7404d6b3b97693f0731&profile_id=164'} />
+          <source src={media} />
           <BigPlayButton position="center" />
           <ControlBar autoHide={false} />
         </Player>
-        <div style={{ height: 70, textAlign: 'left', width: playerWidth, backgroundColor: 'white' }}>ahahah</div>
+        <div style={{ height: 70, textAlign: 'left', width: playerWidth, backgroundColor: 'white' }}>{module.caption}</div>
       </div>
     )
   }
 }
 
-const ModuleObjectCard = pure(({ module }) => {
+const ModuleObjectContentImage = pure(({ module }) => {
   const media = get(module, 'id.attachment')
   const size = get(module, 'size', 'medium')
 
@@ -99,14 +112,7 @@ const ModuleObjectCard = pure(({ module }) => {
   return (
     <div style={objectStyle} className="Module__container">
       <Card className="Module__objectCard">
-        {/* <div style={objectContainerStyle}></div> */}
-        {/* <div style={{ width: '100%', height: 400, backgroundColor: 'red' }}>
-          <Player fluid={false} height={400}>
-            <source src={media} />
-            <BigPlayButton position="center" />
-            <ControlBar autoHide={false} />
-          </Player>
-        </div> */}
+        <div style={objectContainerStyle}></div>
         <CardBlock>
           <div className="d-inline-flex">
             <i className="icon-hand Mods__DocumentOnly_Card_icon"  />
@@ -119,6 +125,31 @@ const ModuleObjectCard = pure(({ module }) => {
     </div>
   )
 })
+
+class ModuleObjectContentAudio extends PureComponent {
+  render() {
+    const { module } = this.props
+    const media = get(module, 'id.attachment')
+    return (
+      <div className='Module__object__audio'>
+        <AudioPlayer source={`https://cors-anywhere.herokuapp.com/${media}`} />
+        <div className="Module__object__audio__caption">{module.caption}</div>
+      </div>
+    )
+  }
+}
+
+const ModuleObjectContent = ({ module }) => {
+  if (module.type === 'video') {
+    return <ModuleObjectContentVideo module={module} />
+  } else if (module.type === 'image') {
+    return <ModuleObjectContentImage module={module} />
+  } else if (module.type === 'audio') {
+    return <ModuleObjectContentAudio module={module} />
+  } else {
+    throw new Error(`ModuleObject invalid module type [${module.type}]`)
+  }
+}
 
 class ModuleObject extends PureComponent {
   render() {
@@ -138,8 +169,7 @@ class ModuleObject extends PureComponent {
             <Row style={fullHeight}>
               <Col md="4" />
               <Col md="4" style={fullHeight}>
-                {/* <ModuleObjectCard module={module} /> */}
-                <VideoWrapper module={module}/>
+                <ModuleObjectContent module={module}/>
               </Col>
               <Col md="4" />
           </Row>}
@@ -148,8 +178,7 @@ class ModuleObject extends PureComponent {
             <Row style={fullHeight}>
               <Col md="2" />
               <Col md="8">
-                {/* <ModuleObjectCard module={module} /> */}
-                <VideoWrapper module={module}/>
+                <ModuleObjectContent module={module}/>
               </Col>
               <Col md="2" />
           </Row>}
@@ -157,8 +186,7 @@ class ModuleObject extends PureComponent {
          {(size === 'big') &&
             <Row style={fullHeight}>
               <Col md="12">
-                <VideoWrapper module={module}/>
-                {/* <ModuleObjectCard module={module} /> */}
+                <ModuleObjectContent module={module}/>
               </Col>
           </Row>}
          }
