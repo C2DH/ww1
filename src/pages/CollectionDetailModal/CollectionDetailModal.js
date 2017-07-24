@@ -32,16 +32,6 @@ class CollectionDetailModal extends PureComponent {
     return (
       <div className="CollectionDetailModal__container d-flex">
         {doc && <CollectionItem doc={doc}/>}
-        <div className="CollectionDetailModal__close_btn_container">
-            <button
-              type="button"
-              className="CollectionDetailModal__close_btn btn btn-secondary"
-              aria-label="Close"
-              onClick={() => this.props.history.goBack()}
-              >
-              <i aria-hidden="true" className="material-icons">close</i>
-            </button>
-        </div>
       </div>
     )
   }
