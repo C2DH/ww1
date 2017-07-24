@@ -91,6 +91,18 @@
   letter-spacing: 5px;
 }
 
+.Home__title {
+  animation-duration: 1s;
+  animation-delay: 0.2s;
+}
+
+.Home__subtitle,
+.Home__MainRow-yearsCol,
+.Home__NavigationRow{
+  animation-duration: 1s;
+  animation-delay: 1.2s;
+}
+
 .Home__subtitle {
   font-family: Georgia, serif;
   font-style: italic;
@@ -127,6 +139,36 @@ h3.Home__MainRow-yearsCol-xs {
   margin-bottom: 30px;
 }
 
+.Home__NavigationCol_link span,
+.Home__NavigationCol_link span{
+  display: inline-block;
+  overflow: hidden;
+  padding: 0px 5px;
+}
+
+.Home__NavigationCol_link .icon-hand,
+.Home__NavigationCol_link .icon-hand-reverse {
+  font-size: 1rem;
+  transition: all 0.2s ease-in-out;
+  display: block;
+}
+
+.Home__NavigationCol_link .icon-hand{
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.Home__NavigationCol_link .icon-hand-reverse{
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.Home__NavigationCol_link:hover .icon-hand,
+.Home__NavigationCol_link:hover .icon-hand-reverse {
+  opacity: 1;
+  transform: translateX(0%);
+}
+
 .Home__NavigationCol_h6 {
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -135,7 +177,8 @@ h3.Home__MainRow-yearsCol-xs {
 }
 
 .Home__NavigationCol_h2{
-  font-size: 2.25rem;
+  font-size: 2.2rem;
+  display: inline-block;
 }
 
 .Home__NavigationCol {
@@ -184,8 +227,8 @@ h3.Home__MainRow-yearsCol-xs {
     margin-bottom:20px;
   }
 
-  .Home__MainRow{
-    border-bottom: 1px solid #fff;
+  .Home__NavigationRow{
+    border-top: 1px solid #fff;
   }
 
 

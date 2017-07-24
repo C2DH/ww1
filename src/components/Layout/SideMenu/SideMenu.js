@@ -35,7 +35,7 @@ class SideMenu extends PureComponent {
       transitionLeaveTimeout={300}>
        <div
          key="open"
-         className={this.state.open ? "SideMenu d-flex flex-column justify-content-center" : "SideMenu-close d-flex flex-column justify-content-center"}
+         className={this.state.open ? "SideMenu d-flex flex-column justify-content-center animated fadeInLeft" : "SideMenu-close d-flex flex-column justify-content-center animated fadeInLeft"}
          >
          <Switch>
            <Route path='/collection' render={() => <Burger className="SideMenu__menuBtnDark" open={this.state.open} onClick={this.toggleMenu} />} />

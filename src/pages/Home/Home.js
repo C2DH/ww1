@@ -45,39 +45,65 @@ class Home extends React.Component {
         <Container className="Home__container d-flex flex-column">
           <div className="Home__MainRow d-flex flex-column justify-content-center">
           <Row>
-            <Col lg="1" md="1" xs="1" className="Home__MainRow-yearsCol hidden-md-down"><h3>1914</h3></Col>
+            <Col lg="1" md="1" xs="1" className="Home__MainRow-yearsCol hidden-md-down animated fadeIn"><h3>1914</h3></Col>
             <Col lg="10" md="12">
-              <h3 className="hidden-lg-up Home__MainRow-yearsCol-xs">1914 – 1918</h3>
-              <h1 className="Home__title">ÉISCHTE WELTKRICH</h1>
-              <h4 className="Home__subtitle">Remembering the Great War in Luxembourg</h4>
+              <h3 className="hidden-lg-up Home__MainRow-yearsCol-xs animated fadeIn">1914 – 1918</h3>
+              <h1 className="Home__title animated fadeIn">ÉISCHTE WELTKRICH</h1>
+              <h4 className="Home__subtitle animated fadeIn">Remembering the Great War in Luxembourg</h4>
             </Col>
-            <Col lg="1" md="1"  xs="1" className="Home__MainRow-yearsCol hidden-md-down"><h3>1918</h3></Col>
+            <Col lg="1" md="1"  xs="1" className="Home__MainRow-yearsCol hidden-md-down animated fadeIn"><h3>1918</h3></Col>
           </Row>
           </div>
-          <div className="Home__NavigationRow">
+          <div className="Home__NavigationRow animated fadeInUp">
           <Row>
             <Col lg="3" md="6" xs="12" className="Home__NavigationCol Home__NavigationCol_themes">
-              <Link to="/themes">
+              <Link to="/themes" className="Home__NavigationCol_link">
                 <h6 className="Home__NavigationCol_h6">DISCOVER THE</h6>
-                <h2 className="Home__NavigationCol_h2">Themes</h2>
+                <span>
+                  <i className="icon-hand" />
+                </span>
+                <h2 className="Home__NavigationCol_h2">
+                  Themes
+                </h2>
+                <span>
+                  <i className="icon-hand-reverse" />
+                </span>
               </Link>
             </Col>
             <Col lg="3" md="6" xs="12" className="Home__NavigationCol Home__NavigationCol_collection">
-              <Link to="/collection">
+              <Link to="/collection" className="Home__NavigationCol_link">
               <h6 className="Home__NavigationCol_h6">BROWSE THE</h6>
+                <span>
+                  <i className="icon-hand" />
+                </span>
               <h2 className="Home__NavigationCol_h2">Collection</h2>
+                <span>
+                  <i className="icon-hand-reverse" />
+                </span>
               </Link>
             </Col>
             <Col lg="3" md="6" xs="12" className="Home__NavigationCol Home__NavigationCol_map">
-              <Link to="/map">
+              <Link to="/map" className="Home__NavigationCol_link">
                 <h6 className="Home__NavigationCol_h6">EXPLORE THE</h6>
+                  <span>
+                    <i className="icon-hand" />
+                  </span>
                 <h2 className="Home__NavigationCol_h2">Map</h2>
+                  <span>
+                    <i className="icon-hand-reverse" />
+                  </span>
               </Link>
             </Col>
             <Col lg="3" md="6" xs="12" className="Home__NavigationCol Home__NavigationCol_timeline">
-              <Link to="/timeline">
+              <Link to="/timeline" className="Home__NavigationCol_link">
                 <h6 className="Home__NavigationCol_h6">FOLLOW THE</h6>
+                  <span>
+                    <i className="icon-hand" />
+                  </span>
                 <h2 className="Home__NavigationCol_h2">Timeline</h2>
+                  <span>
+                    <i className="icon-hand-reverse" />
+                  </span>
               </Link>
             </Col>
           </Row>

@@ -6,6 +6,7 @@ import App from './App'
 //import registerServiceWorker from './registerServiceWorker';
 
 import './index.css'
+import 'animate.css'
 
 ReactDOM.render(
   <App />,

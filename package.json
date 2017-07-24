@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "http://miller.inmagik.com",
   "dependencies": {
+    "animate.css": "^3.5.2",
     "bootstrap": "4.0.0-alpha.6",
     "d3-scale": "^1.0.6",
     "leaflet": "^1.1.0",

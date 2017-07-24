@@ -6,6 +6,8 @@
   width: 58px;
   background-color: transparent;
   text-align: center;
+  animation-duration: 1s;
+  animation-delay: 1.2s;
 }
 
 .SideMenu__menuBtn {
