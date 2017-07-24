@@ -1,0 +1,23 @@
+.AudioPlayer__btn {
+    color: #FFF;
+    border-radius: 100%;
+    margin-left: 10px;
+    background-color: transparent;
+    border: 1px solid #fff;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    z-index: 9;
+    margin-bottom: 20px;
+}
+
+.AudioPlayer__volume_container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}

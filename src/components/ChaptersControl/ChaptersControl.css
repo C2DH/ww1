@@ -27,7 +27,9 @@
   border: 1px solid #fff;
   width: 45px;
   height: 45px;
-  padding-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   font-size: 20px;
   font-weight: bold;
@@ -35,7 +37,6 @@
 }
 
 .ChaptersControl__chapters_btn_control {
-  padding-top: 10px;
   margin-bottom: 10px;
   min-height: 45px;
   background-color: rgba(0, 0, 0, 0.4);

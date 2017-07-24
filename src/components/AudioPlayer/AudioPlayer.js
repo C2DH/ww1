@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import Wavesurfer from 'react-wavesurfer';
+import './AudioPlayer.css'
 
 const ctx = document.createElement('canvas').getContext('2d');
 const linGrad = ctx.createLinearGradient(0, 64, 0, 200)
@@ -25,7 +26,7 @@ class AudioPlayer extends PureComponent {
     const { volume, playing } = this.state
     return (
       <div style={{ width: '100%' }}>
-        <button onClick={this.handleTogglePlay}>
+        <button className="AudioPlayer__btn" onClick={this.handleTogglePlay}>
           {this.state.playing && <i className="material-icons">stop</i>}
           {!this.state.playing && <i className="material-icons">play_arrow</i>}
         </button>
@@ -35,7 +36,7 @@ class AudioPlayer extends PureComponent {
           playing={playing}
           volume={volume}
         />
-        <div style={{display:'flex', justifyContent:'center'}}>
+        <div className="AudioPlayer__volume_container">
           <div style={{width:'50%', display:'flex', justifyContent:'center'}}>
             <input type="range" min="0" max="1" step="0.01" value={volume} onChange={this.handleVolumeChange}/>
           </div>

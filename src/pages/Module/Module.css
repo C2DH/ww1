@@ -23,6 +23,21 @@
   width: 100%;
 }
 
+.ModuleObject__container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ModuleObject__caption {
+  height: 100px;
+  background-color: #fff;
+  text-align: left;
+}
+
 .Module__objectCard_text {
   color: #222;
 }

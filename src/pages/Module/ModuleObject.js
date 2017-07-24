@@ -72,13 +72,13 @@ class ModuleObjectContentVideo extends PureComponent {
     const media = get(module, 'id.attachment')
 
     return (
-      <div style={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+      <div className="ModuleObject__container">
         <Player fluid={false} ref={ref => this.player = ref} height={playerHeight} width={playerWidth}>
           <source src={media} />
           <BigPlayButton position="center" />
           <ControlBar autoHide={false} />
         </Player>
-        <div style={{ height: 70, textAlign: 'left', width: playerWidth, backgroundColor: 'white' }}>{module.caption}</div>
+        <div lassName="ModuleObject__caption" style={{width: playerWidth}}>{module.caption}</div>
       </div>
     )
   }
