@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { isUndefined, keys, omit } from 'lodash'
 import qs from 'query-string'
-import ReactMapboxGl, {  Marker, Feature, Cluster, ZoomControl } from 'react-mapbox-gl'
+import ReactMapboxGl, { Popup, Marker, Layer, Feature, Cluster, ZoomControl } from 'react-mapbox-gl'
 import MapSideMenu from '../../components/MapSideMenu'
 import './MapPage.css'
 import {
@@ -10,6 +10,7 @@ import {
   parseQsCommaNumListValue,
   parseQsCommaObjValue,
   objToCommaStr,
+  getPlaceTypeIcon,
   makeOverlaps,
 } from '../../utils'
 import {
@@ -40,7 +41,7 @@ const styles = {
     alignItems: 'center',
     color: 'white',
     border: '2px solid #56C498',
-    pointerEvents: 'none'
+    // pointerEvents: 'none'
   },
   marker: {
     width: 30,
@@ -51,12 +52,22 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     border: '2px solid #C9C9C9',
-    pointerEvents: 'none'
+    // pointerEvents: 'none'
   }
 }
 
+const Map = ReactMapboxGl({
+  accessToken: "pk.eyJ1IjoiZWlzY2h0ZXdlbHRrcmljaCIsImEiOiJjajRpYnR1enEwNjV2MndtcXNweDR5OXkzIn0._eSF2Gek8g-JuTGBpw7aXw"
+})
+
 
 class MapPage extends PureComponent {
+  state = {
+    center: [6.087, 49.667],
+    zoom: [8],
+    selectedDocument: null,
+  }
+
   componentDidMount() {
     this.props.loadMapDocumentsMeta()
     this.props.loadMapDocuments(this.getDocsParams())
@@ -167,6 +178,16 @@ class MapPage extends PureComponent {
     </Marker>
   )
 
+  onMarkerClick = (doc) => {
+    this.setState({
+      selectedDocument: doc,
+      zoom: [10],
+      center: doc.coordinates,
+    })
+  }
+
+  onDrag = () => this.setState({ selectedDocument: null })
+
   render() {
     const {
       documents,
@@ -180,14 +201,9 @@ class MapPage extends PureComponent {
       selectedYears,
       includeUncertainYears,
     } = this.props
-    console.log(yearsFacets)
+    const { selectedDocument, center, zoom } = this.state
 
     return (
-        //  {documents && <div>
-        //   {documents.map(doc => (
-        //     <pre key={doc.id}>{JSON.stringify(doc)}</pre>
-        //   ))}
-        // </div>}
 
       <div>
         <div className="MapPage__TopRow">
@@ -201,30 +217,45 @@ class MapPage extends PureComponent {
         </div>
         <div className="MapPage__MainRow">
             <div style={{width: '80%'}}>
-              <ReactMapboxGl
-                style="mapbox://styles/mapbox/streets-v8"
-                center={[6.087, 49.667]}
-                zoom={[8]}
-                accessToken="pk.eyJ1IjoiYmlhbmNoaW1ybyIsImEiOiJOY0FqNUxrIn0.C2YPVWz8M0nPeG2pZLybKQ"
+              <Map
+                center={center}
+                trackResize={false}
+                dragRotate={false}
+                keyboard={false}
+                zoom={zoom}
+                onDrag={this.onDrag}
+                touchZoomRotate={false}
+                style="mapbox://styles/eischteweltkrich/cj5cizaj205vv2qlegw01hubm"
                 containerStyle={{
                   height: "100vh",
                   width: "100%",
                   paddingtop: "100px"
                 }}>
-                <ZoomControl />
-                {documents && <Cluster ClusterMarkerFactory={this.clusterMarker} clusterThreshold={1} radius={60}>
-                {
-                  [].map(doc =>
-                    <Marker
-                      key={doc.id}
-                      style={styles.marker}
-                      coordinates={doc.data.coordinates.geometry.coordinates.slice(0, 2).map(x => Number(x) + Math.random() / 1000).reverse()}>
-                      M
-                    </Marker>
-                  )
-                }
-              </Cluster>}
-               </ReactMapboxGl>
+                  <ZoomControl />
+                  {documents && <Cluster ClusterMarkerFactory={this.clusterMarker} clusterThreshold={1} radius={60}>
+                  {
+                    documents.map(doc =>
+                      <Marker
+                        key={doc.id}
+                        style={styles.marker}
+                        onClick={() => this.onMarkerClick(doc)}
+                        coordinates={doc.coordinates}>
+                        <i className="material-icons">{getPlaceTypeIcon(doc.data.place_type)}</i>
+                      </Marker>
+                    )
+                  }
+                </Cluster>}
+                {selectedDocument && (
+                  <Popup
+                    coordinates={selectedDocument.coordinates}
+                    offset={[0, -50]}
+                    key={selectedDocument.id}>
+                    <div>
+                      {selectedDocument.title}
+                    </div>
+                  </Popup>
+                )}
+              </Map>
             </div>
 
           <div className="MapPage__Filters_container">

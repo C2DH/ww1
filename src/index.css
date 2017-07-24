@@ -1,3 +1,6 @@
+@import "~video-react/dist/video-react.css";
+@import "~leaflet/dist/leaflet.css";
+
 /* fonts */
 @font-face {
   font-family: 'Atlas Grotesk Web';

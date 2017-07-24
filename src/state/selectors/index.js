@@ -190,11 +190,23 @@ export const [
 // Map documents
 
 export const [
-  getMapDocuments,
+  getDummyMapDocuments,
   canLoadMoreMapDocuments,
   getMapDocumentsCount,
   getMapDocumentsLoading,
 ] = makeDocumentsListSelectors(state => state.mapDocuments)
+
+export const getMapDocuments = createSelector(
+  getDummyMapDocuments,
+  docs => maybeNull(docs)(docs => docs.map(doc => ({
+    ...doc,
+    coordinates: get(doc, 'data.coordinates.geometry.coordinates', [])
+      .slice(0, 2)
+      // For same positin problem....
+      .map(x => Number(x) + Math.random() / 1000)
+      .reverse()
+  })))
+)
 
 export const [
   getMapDocumentsDataPlaceTypesFacets,
@@ -245,11 +257,24 @@ export const getTotalChapterModules = createSelector(
 
 // Modules
 
-// TODO: In a real world this should switch between module types...
-const translateModule = (module, langCode) => maybeNull(module)(module => ({
+const translateModuleText = (module, langCode) => ({
   ...module,
   text: translateObject(module.text, langCode, ['content']),
-}))
+})
+
+const translateModuleObject = (module, langCode) => translateObject(module, langCode, ['caption'])
+
+// TODO: In a real world this should switch between module types...
+const translateModule = (module, langCode) => maybeNull(module)(module => {
+  switch (module.module) {
+    case 'text':
+      return translateModuleText(module, langCode)
+    case 'object':
+      return translateModuleObject(module, langCode)
+    default:
+      return module
+  }
+})
 
 const joinIds = (source, obj) => {
   const sourceById = keyBy(source, 'id')
