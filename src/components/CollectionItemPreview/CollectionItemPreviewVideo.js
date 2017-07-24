@@ -7,8 +7,8 @@ export default class CollectionItemPreviewVideo extends React.PureComponent {
     const { doc } = this.props
     console.log(doc)
     return (
-    <div className="CollectionItem__doc_container d-flex flex-column">
-      <div className="CollectionItem__doc_preview">
+    <div>
+      <div className="CollectionItemPreview__doc_preview">
         <Player fluid>
           <source src={doc.attachment} />
           <BigPlayButton position="center" />

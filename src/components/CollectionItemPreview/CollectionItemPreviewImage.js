@@ -21,7 +21,7 @@ export default class CollectionItemPreviewImage extends React.PureComponent {
     zoom: -1
   }
 
-  zoomTo = (zoom) => (e) => {
+  zoomTo = (zoom) => {
     this.setState({zoom})
   }
 
@@ -35,8 +35,9 @@ export default class CollectionItemPreviewImage extends React.PureComponent {
     const bounds = [xy(0, 0), xy(doc.data.width, doc.data.height)];
 
     return (
-    <div className="CollectionItem__doc_container d-flex flex-column">
-      <div className="CollectionItem__doc_preview" style={{height:'80vh'}}>
+    // <div className="CollectionItem__doc_container d-flex flex-column">
+		<div>
+      <div className="CollectionItemPreview__doc_preview" style={{height:'80vh'}}>
         {/* <img src={doc.src} alt={doc.title} className="img-fluid" style={{maxHeight:'70vh'}}/> */}
         <Map
           minZoom={-1}
@@ -54,7 +55,7 @@ export default class CollectionItemPreviewImage extends React.PureComponent {
 
       </div>
       <div className="CollectionItem__doc_controls">
-        {/* <ZoomControl zoom={zoom} maxZoom={2} minZoom={0} zoomTo={this.zoomTo}/> */}
+        <ZoomControl zoom={zoom} maxZoom={2} minZoom={0} zoomTo={this.zoomTo}/>
 
         {/* <WhiteTooltip target="CollectionItem__btn_download" tooltipText={<span>Download image and data<br/>Download image</span>} /> */}
         <button

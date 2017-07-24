@@ -5,20 +5,20 @@
 }
 
 .CollectionItem__container {
-    display: flex;
-    overflow: hidden;
-    height: 100vh;
-    position: relative;
-    width: 100%;
-    backface-visibility: hidden;
-    will-change: overflow;
+  display: flex;
+  overflow: hidden;
+  height: 100vh;
+  position: relative;
+  width: 100%;
+  backface-visibility: hidden;
+  will-change: overflow;
 }
 
 .CollectionItem__doc_container {
-  height: auto;
-  /*display: flex;
-  flex-direction: column;*/
-  /*justify-content: center;*/
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .CollectionItem__doc_controls{
@@ -33,37 +33,46 @@
   flex-grow: 0;
 }
 
-.CollectionItem__doc_preview{
-  flex-grow: 1;
-  width: 100%;
-  /*max-height: 80%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;*/
-
-}
-
 .CollectionItem__info_container {
   max-height: 100vh;
   overflow-x: scroll;
   padding-top: 58px;
   border-left: none;
   padding-bottom: 15px;
+  z-index: 2;
+  background-color: #2F2F2F;
+}
+
+.CollectionItem__close_btn_container {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 70px;
+  height: 100vh;
+  border-left: 1px solid #DBDBD0;
+  z-index: 3;
 }
 
 .CollectionItem__close_btn {
 	border: 1px solid #DBDBD0;
   height: 48px;
   width: 48px;
-  color: #fff;
+  color: #DBDBD0;
   background-color: #2F2F2F;
   margin: 15px;
   padding: 0.5rem 0.5rem;
   border-radius: 50%;
   cursor: pointer;
   z-index: 2;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+
+
+.CollectionItem__close_btn i {
+  line-height: 1.3;
 }
 
 .CollectionItem__date {
@@ -192,12 +201,17 @@
     flex-direction: column;*/
     /*justify-content: center;*/
   }
-
   .CollectionItem__info_container {
     border-left: 1px solid #DBDBD0;
   }
-
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {  }
+@media (min-width: 1200px) {
+}
+
+@media (max-width: 991px) {
+  .CollectionItem__close_btn_container {
+    border-left: 0px;
+  }
+}

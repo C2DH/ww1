@@ -47,8 +47,8 @@ export default class CollectionItemPreviewPDF extends React.PureComponent {
   render() {
     const { doc } = this.props
     return (
-    <div className="CollectionItem__doc_container d-flex flex-column">
-      <div className="CollectionItem__doc_preview">
+    <div>
+      <div className="CollectionItemPreview__doc_preview">
         <ReactPDF
           scale={this.state.scale}
           pageIndex={this.state.pageIndex}
@@ -56,12 +56,12 @@ export default class CollectionItemPreviewPDF extends React.PureComponent {
           onPageLoad={this.onPageLoad}
           file={`https://cors-anywhere.herokuapp.com/${doc.src}`} />
       </div>
-      <div className="CollectionItem__doc_controls" style={{backgroundColor:'#000', color:'#fff'}}>
+      <div className="CollectionItem__doc_controls">
 
         <div className="CollectionItemPreviewPDF__controls">
           <div style={{padding:'8'}}>Page <span className="CollectionItemPreviewPDF__controls_current_page">{this.state.pageNumber}</span> of {this.state.total}</div>
-          <div className="CollectionItemPreviewPDF__controls_page_arrows"><a href="#" onClick={(evt)=>{this.prevPage()}}><i className="icon-arrow-down" /></a><span>{' | '}</span><a href="#" onClick={(evt)=>{this.nextPage()}}><i className="icon-arrow-up" /></a></div>
-          <div className="CollectionItemPreviewPDF__controls_zoom"><a href="#" onClick={(evt)=>{this.zoomIn()}}><i className="icon-zoom_in" /></a><span>{' | '}</span><a href="#" onClick={(evt)=>{this.zoomOut()}}><i className="icon-zoom_out" /></a></div>
+          <div className="CollectionItemPreviewPDF__controls_page_arrows"><button onClick={(evt)=>{this.prevPage()}}><i className="material-icons">arrow_downward</i></button><span>{' | '}</span><button  onClick={(evt)=>{this.nextPage()}}><i className="material-icons">arrow_upward</i></button></div>
+          <div className="CollectionItemPreviewPDF__controls_zoom"><button onClick={(evt)=>{this.zoomIn()}}><i className="icon-zoom_in" /></button><span>{' | '}</span><button  onClick={(evt)=>{this.zoomOut()}}><i className="icon-zoom_out" /></button></div>
           <div className="CollectionItemPreviewPDF__controls_fit_to_page">
             <select>
               <option>Fit to page</option>

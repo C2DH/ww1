@@ -56,16 +56,19 @@ class AdditionalInformation extends PureComponent {
  }
 }
 
-const CloseButton = () => (
-  <button
-    type="button"
-    className="CollectionItem__close_btn btn btn-secondary"
-    aria-label="Close"
-    style={{position: 'fixed', top: 0, right: 0, zIndex: 1}}
-    >
-      <i aria-hidden="true" className="material-icons">close</i>
-    </button>
-  )
+const CloseButton = ({ onClick }) => (
+  <div className="CollectionItem__close_btn_container">
+    <button
+      type="button"
+      className="CollectionItem__close_btn"
+      aria-label="Close"
+      onClick={onClick}
+      style={{position: 'fixed', top: 0, right: 0, zIndex: 1}}
+      >
+        <i aria-hidden="true" className="material-icons">close</i>
+      </button>
+  </div>
+)
 
 //id: 193 has related!
 const RelatedObjects = ({items}) => {
@@ -106,7 +109,7 @@ const MiniMap = ({coords, width=230, height=140}) => {
 
 
 
-export default ({doc}) => {
+export default ({ doc, onCloseClick }) => {
   console.log(doc)
   let coords = get(doc, 'data.coordinates.geometry.coordinates')
   if(coords){
@@ -116,13 +119,14 @@ export default ({doc}) => {
   return (
     <div className="CollectionItem__wrapper_div">
       <Container>
-        <Row>
-          {/* TODO let close btn onClick go back to collection
-          <CloseButton />*/}
+        <CloseButton onClick={onCloseClick} />
+        <Row className="CollectionItem__main_row">
             <Col xs="12" lg="8">
-              <CollectionItemPreview doc={doc}/>
+              <div className="CollectionItem__doc_container">
+                <CollectionItemPreview doc={doc}/>
+              </div>
             </Col>
-            <Col xs="12" lg="4" className="CollectionItem__info_container">
+            <Col xs="12" lg="3" className="CollectionItem__info_container">
                 <p className="CollectionItem__date">
                   <EventDate
                     date={get(doc, 'translated.date')}
@@ -147,6 +151,7 @@ export default ({doc}) => {
               <AdditionalInformation metadata={EXAMPLE_METADATA}/>
 
             </Col>
+            <Col lg="1" className="hidden-sm-down" style={{paddingRight: 0, paddingLeft: 0, maxWidth: '1px'}}/>
         </Row>
 
       </Container>
