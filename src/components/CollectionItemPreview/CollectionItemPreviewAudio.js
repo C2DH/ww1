@@ -37,7 +37,7 @@ export default class CollectionItemPreviewAudio extends React.PureComponent {
           {!this.state.playing && <i className="material-icons">play_arrow</i>}
         </button>
         <Wavesurfer
-          options={{barHeight:4, barWidth:2, waveColor:linGrad }}
+          options={{barHeight:4, barWidth:2, waveColor:linGrad, cursorColor: '#F56350', progressColor:'#F56350' }}
           // audioFile={'http://api.soundcloud.com/tracks/325499815/stream?client_id=2t9loNQH90kzJcsFCODdigxfp325aq4z&secret_token=s-m4avW'}
           audioFile={`https://cors-anywhere.herokuapp.com/${doc.attachment}`}
           pos={this.state.pos}
