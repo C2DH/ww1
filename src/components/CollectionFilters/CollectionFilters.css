@@ -134,6 +134,7 @@
   width: 30px;
   border-radius: 15px;
   font-family: "Atlas Grotesk", Arial, sans-serif;
+  padding-top: 6px;
 }
 
 .CollectionFilters__time{

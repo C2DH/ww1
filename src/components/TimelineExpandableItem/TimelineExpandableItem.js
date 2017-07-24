@@ -74,7 +74,7 @@ render () {
               <p className="TimelineExpandableItem__text">{this.props.item.translated.description}</p>
           </Col>
           </Row>
-          <Row>
+          {/*<Row>
           <Col md={{ size: 10, offset: 3 }}  lg={{ size: 10, offset: 2 }} className="TimelineExpandableItem__container">
               <h6 className="TimelineExpandableItem__imgTitle">related objects</h6>
               <div>
@@ -84,6 +84,7 @@ render () {
               </div>
           </Col>
           </Row>
+          */}
         </Collapse>
       </Container>
 

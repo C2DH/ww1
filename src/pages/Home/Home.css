@@ -19,10 +19,10 @@
   left:0px;
   right: 0px;
   bottom: 0px;
-  animation-name: fadeInOut, scale;
-  animation-timing-function: ease-in-out;
+  animation-name: fadeInOut,scale;
+  animation-timing-function: linear;
   animation-iteration-count: infinite;
-  animation-duration: 16.5s;
+  animation-duration: 15s;
 }
 
 @keyframes fadeInOut {
@@ -47,8 +47,14 @@
   0% {
     transform: scale(1);
   }
+  33% {
+    transform: scale(1.05);
+  }
+  97% {
+    transform: scale(1);
+  }
   100% {
-    transform: scale(1.2);
+    transform: scale(1);
   }
 }
 
@@ -56,21 +62,21 @@
   background-image:
    linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url(/home_bkg/background_1.jpg);
-  animation-delay: 0s, 0s;
+  animation-delay: 0s;
 }
 
 .Home__background--slide2{
   background-image:
     linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url(/home_bkg/background_2.jpg);
-  animation-delay: 5.5s, 5s;
+  animation-delay: -5s;
 }
 
 .Home__background--slide3{
   background-image:
     linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url(/home_bkg/background_3.jpg);
-  animation-delay: 11s, 10.5s;
+  animation-delay: -10s;
 }
 
 .Home__MainRow {
