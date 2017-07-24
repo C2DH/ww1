@@ -56,16 +56,17 @@ class AdditionalInformation extends PureComponent {
  }
 }
 
-const CloseButton = () => (
+const CloseButton = ({ onClick }) => (
   <button
     type="button"
     className="CollectionItem__close_btn btn btn-secondary"
     aria-label="Close"
+    onClick={onClick}
     style={{position: 'fixed', top: 0, right: 0, zIndex: 1}}
     >
       <i aria-hidden="true" className="material-icons">close</i>
     </button>
-  )
+)
 
 //id: 193 has related!
 const RelatedObjects = ({items}) => {
@@ -106,7 +107,7 @@ const MiniMap = ({coords, width=230, height=140}) => {
 
 
 
-export default ({doc}) => {
+export default ({ doc, onCloseClick }) => {
   console.log(doc)
   let coords = get(doc, 'data.coordinates.geometry.coordinates')
   if(coords){
@@ -116,8 +117,7 @@ export default ({doc}) => {
   return (
     <div className="CollectionItem__wrapper_div">
       <Container>
-        {/* TODO let close btn onClick go back to collection*/}
-        <CloseButton />
+        <CloseButton onClick={onCloseClick} />
         <Row className="CollectionItem__main_row">
             <Col xs="12" lg="8">
               <CollectionItemPreview doc={doc}/>
