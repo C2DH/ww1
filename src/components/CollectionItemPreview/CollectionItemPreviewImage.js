@@ -28,7 +28,7 @@ export default class CollectionItemPreviewImage extends React.PureComponent {
   render() {
     const { doc } = this.props
 
-    if(!doc){ return null }
+    if(!doc || !doc.data.width){ return null }
 
     const { zoom } = this.state
 

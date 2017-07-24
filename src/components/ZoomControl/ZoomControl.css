@@ -7,14 +7,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
+  position: absolute;
+  bottom: 10px;
 }
 
-.ZoomControl__plus_btn,
-.ZoomControl__minus_btn,
-.ZoomControl__reset_btn {
+.ZoomControl__container button {
   color: #fff;
-  background-color: #1C1C1C;
+  background-color: transparent;
   border: 0px;
 }
 
