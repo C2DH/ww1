@@ -36,8 +36,8 @@ export default class CollectionItemPreviewImage extends React.PureComponent {
 
     return (
     // <div className="CollectionItem__doc_container d-flex flex-column">
-		<div>	
-      <div className="CollectionItem__doc_preview" style={{height:'80vh'}}>
+		<div>
+      <div className="CollectionItemPreview__doc_preview" style={{height:'80vh'}}>
         {/* <img src={doc.src} alt={doc.title} className="img-fluid" style={{maxHeight:'70vh'}}/> */}
         <Map
           minZoom={-1}

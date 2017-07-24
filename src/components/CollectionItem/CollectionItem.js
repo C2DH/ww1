@@ -126,7 +126,7 @@ export default ({ doc, onCloseClick }) => {
                 <CollectionItemPreview doc={doc}/>
               </div>
             </Col>
-            <Col xs="12" lg="4" className="CollectionItem__info_container">
+            <Col xs="12" lg="3" className="CollectionItem__info_container">
                 <p className="CollectionItem__date">
                   <EventDate
                     date={get(doc, 'translated.date')}
@@ -151,7 +151,7 @@ export default ({ doc, onCloseClick }) => {
               <AdditionalInformation metadata={EXAMPLE_METADATA}/>
 
             </Col>
-
+            <Col lg="1" className="hidden-sm-down" style={{paddingRight: 0, paddingLeft: 0, maxWidth: '1px'}}/>
         </Row>
 
       </Container>

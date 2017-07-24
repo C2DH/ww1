@@ -48,7 +48,7 @@ export default class CollectionItemPreviewPDF extends React.PureComponent {
     const { doc } = this.props
     return (
     <div>
-      <div className="CollectionItem__doc_preview">
+      <div className="CollectionItemPreview__doc_preview">
         <ReactPDF
           scale={this.state.scale}
           pageIndex={this.state.pageIndex}
@@ -60,7 +60,7 @@ export default class CollectionItemPreviewPDF extends React.PureComponent {
 
         <div className="CollectionItemPreviewPDF__controls">
           <div style={{padding:'8'}}>Page <span className="CollectionItemPreviewPDF__controls_current_page">{this.state.pageNumber}</span> of {this.state.total}</div>
-          <div className="CollectionItemPreviewPDF__controls_page_arrows"><a href="#" onClick={(evt)=>{this.prevPage()}}><i className="icon-arrow-down" /></a><span>{' | '}</span><a href="#" onClick={(evt)=>{this.nextPage()}}><i className="icon-arrow-up" /></a></div>
+          <div className="CollectionItemPreviewPDF__controls_page_arrows"><a href="#" onClick={(evt)=>{this.prevPage()}}><i className="material-icons">arrow_downward</i></a><span>{' | '}</span><a href="#" onClick={(evt)=>{this.nextPage()}}><i className="material-icons">arrow_upward</i></a></div>
           <div className="CollectionItemPreviewPDF__controls_zoom"><a href="#" onClick={(evt)=>{this.zoomIn()}}><i className="icon-zoom_in" /></a><span>{' | '}</span><a href="#" onClick={(evt)=>{this.zoomOut()}}><i className="icon-zoom_out" /></a></div>
           <div className="CollectionItemPreviewPDF__controls_fit_to_page">
             <select>
