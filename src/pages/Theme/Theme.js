@@ -19,6 +19,16 @@ import Background from '../../components/Background'
 const getFirstChapterSlug = theme => get(theme, 'stories[0].slug')
 
 class Theme extends PureComponent {
+   state = {
+     open: false
+   }
+
+   toggleChapters = () => {
+     this.setState({
+       open: !this.state.open
+     })
+   }
+
   jumpToFirstChapter = () => {
     const { theme } = this.props
     const firstChapterSlug = getFirstChapterSlug(theme)
@@ -43,7 +53,7 @@ class Theme extends PureComponent {
           <div>
             <div className="Theme__chapters_btn_container">
               <span>Chapters</span>
-              <button className="Theme__chapters_btn"><i className="material-icons md-24">list</i></button>
+              <button className="Theme__chapters_btn" onClick={this.toggleChapters}><i className="material-icons md-24">{this.state.open ? 'close' : 'list'}</i></button>
             </div>
             <label>THEME</label>
             <h1>{theme.translated.title}</h1>
@@ -53,7 +63,18 @@ class Theme extends PureComponent {
             {firstChapterSlug && <button onClick={this.jumpToFirstChapter} className="Theme__start_btn">START</button>}
           </div>
         </div>
-
+        {this.state.open &&
+        <div className="Theme__chapters_container">
+          <div className="Theme__chapters_top" />
+            <div className="Theme__chapter_scroll_container">
+              {get(theme, 'stories').map((chapter, i) =>(
+                <div key={chapter.i} className="Theme__chapter">
+                  <h4>{chapter.translated.title}</h4>
+                  <h2 className="Theme__chapter_num">{chapter.i}</h2>
+                </div>
+              ))}
+          </div>
+        </div>}
       </Container>
     )
   }

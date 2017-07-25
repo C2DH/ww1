@@ -207,6 +207,7 @@
   margin-right: 10px;
   border: 0px;
   border-radius: 100%;
+  z-index: 1111;
 }
 
 .CollectionItem__AdditionalInformation_text {

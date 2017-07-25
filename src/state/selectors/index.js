@@ -55,7 +55,8 @@ const translateStory = lang => story => ({
   translated: translateObject(story.data, lang.code, [
     'title',
     'abstract',
-  ])
+  ]),
+  stories: get(story, 'stories', []).map(translateStory(lang))
 })
 
 // Make base paginate list state selectors

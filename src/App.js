@@ -15,7 +15,6 @@ import CollectionDetailModal from './pages/CollectionDetailModal'
 import Resources from './pages/Resources'
 import Manual from './pages/Manual'
 import ThemeExplorer from './pages/ThemeExplorer'
-import ChapterCover from './pages/ChapterCover'
 
 
 
