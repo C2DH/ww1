@@ -78,7 +78,7 @@ class ModuleObjectContentVideo extends PureComponent {
           <BigPlayButton position="center" />
           <ControlBar autoHide={false} />
         </Player>
-        <div lassName="ModuleObject__caption" style={{width: playerWidth}}>{module.caption}</div>
+        <div className="ModuleObject__caption" style={{width: playerWidth}}>{module.caption}</div>
       </div>
     )
   }
