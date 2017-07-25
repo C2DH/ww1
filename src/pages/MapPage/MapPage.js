@@ -35,12 +35,13 @@ const styles = {
     width: 30,
     height: 30,
     borderRadius: '50%',
-    backgroundColor: '#51D5A0',
+    backgroundColor: 'white',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    color: 'white',
-    border: '2px solid #56C498',
+    color: '#F56350',
+    border: '2px solid white',
+    fontWeight: 500
     // pointerEvents: 'none'
   },
   marker: {
@@ -231,7 +232,7 @@ class MapPage extends PureComponent {
                   width: "100%",
                   paddingtop: "100px"
                 }}>
-                  <ZoomControl />
+                  {/*<ZoomControl />*/}
                   {documents && <Cluster ClusterMarkerFactory={this.clusterMarker} clusterThreshold={1} radius={60}>
                   {
                     documents.map(doc =>
