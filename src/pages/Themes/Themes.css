@@ -1,31 +1,32 @@
 .Themes__container {
   background-color: #333332;
-  margin-top: -60px;
+  /*margin-top: -60px;
   padding-top: 60px;
-  min-height: calc(100vh + 60px);
+  min-height: calc(100vh + 60px);*/
+  height: 100vh;
   text-align: center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
-  /*background-image: url(/home_bkg/background_transparent.png);*/
   transition: background-image 600ms ease-in-out 300ms;
+  overflow: hidden;
 }
 
 .Themes__TitleRow {
-  margin-top: 40px;
-  margin-bottom: 40px;
+  /*margin-top: 40px;
+  margin-bottom: 40px;*/
 }
 
 .Themes__TitleRow h1 {
-  font-size: 4.5em;
-  margin: auto;
+  font-size: 6rem;
+  /*margin: auto;*/
   color: #F36455;
   z-index: 1000;
 }
 
 .Themes__theme_title_container {
-  width: 100%;
-  margin-bottom: 50px;
+  /*width: 100%;
+  margin-bottom: 50px;*/
 }
 
 .Themes__theme_title_container hr {
@@ -35,8 +36,9 @@
 
 .Themes__theme_title {
   color: #fff;
-  margin: auto;
+  margin: 0px;
   padding: 25px;
+  font-size: 3.125rem;
   text-transform: uppercase;
 }
 
@@ -75,6 +77,7 @@
 .Themes__backgroundTheme {
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center center;
 }
 
 @media (max-width: 767px) {

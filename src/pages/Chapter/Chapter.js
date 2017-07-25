@@ -47,7 +47,7 @@ class Chapter extends PureComponent  {
               const baseUrl = `/themes/${theme.slug}/chapters/${chapter.slug}`
               return (
                 <ChaptersControl
-                  title={chapter.title}
+                  title={theme.translated.title}
                   hasPrev={index > 0}
                   hasNext={index < totalChapterModules}
                   onClickNext={() => {
