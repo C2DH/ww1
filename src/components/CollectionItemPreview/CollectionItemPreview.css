@@ -86,8 +86,7 @@
 @media (max-width: 991px) {
   .CollectionItemPreviewPDF__controls {
     position: sticky;
-    left: 0;
-    margin-right: 60px;
+    margin-left: -28px;
     z-index: 4;
   }
 }

@@ -43,6 +43,43 @@
   background-color: #2F2F2F;
 }
 
+.CollectionItem__info {
+  height: 100%;
+  width: 90%;
+  padding-right: 20px;
+}
+
+@media (max-width: 1215px) {
+  .CollectionItem__info {
+    padding-right: 25px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .CollectionItem__info {
+    padding-right: 0px;
+    width: 100%;
+  }
+}
+@media (max-width: 1135px) {
+  .CollectionItem__info {
+    width: 80%;
+  }
+}
+@media (max-width: 1130px) {
+  .CollectionItem__info {
+    padding-right: 10px;
+  }
+}
+
+@media (max-width: 991px) {
+  .CollectionItem__info {
+    padding-right: 0px;
+    width: 100%;
+  }
+}
+
+
 .CollectionItem__close_btn_container {
   position: fixed;
   right: 0;
@@ -150,10 +187,13 @@
   color: #C2C1C3;
   background-color: transparent;
   border: 1px solid #C2C1C3;
-  border-radius: 16px;
+  border-radius: 18px;
   margin-right: 8px;
   font-family: "Atlas Grotesk Web", Arial, sans-serif;
   cursor: pointer;
+  line-height: 1;
+  text-transform: capitalize;
+  padding: 0.4rem 1rem;
 }
 
 .CollectionItem__btn_download {
@@ -214,5 +254,9 @@
 @media (max-width: 991px) {
   .CollectionItem__close_btn_container {
     border-left: 0px;
+  }
+  .CollectionItem__doc_controls {
+    height: auto;
+    width: auto;
   }
 }

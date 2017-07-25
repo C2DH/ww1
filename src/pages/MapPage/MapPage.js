@@ -227,7 +227,7 @@ class MapPage extends PureComponent {
                 touchZoomRotate={false}
                 style="mapbox://styles/eischteweltkrich/cj5cizaj205vv2qlegw01hubm"
                 containerStyle={{
-                  height: "100vh",
+                  height: "calc(100vh - 100px)",
                   width: "100%",
                   paddingtop: "100px"
                 }}>

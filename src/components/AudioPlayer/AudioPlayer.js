@@ -22,14 +22,17 @@ class AudioPlayer extends PureComponent {
   handleVolumeChange = (e) => this.setState({ volume: e.target.value })
 
   render() {
-    const { source } = this.props
+    const { source, title  } = this.props
     const { volume, playing } = this.state
     return (
       <div style={{ width: '100%' }}>
-        <button className="AudioPlayer__btn" onClick={this.handleTogglePlay}>
-          {this.state.playing && <i className="material-icons">stop</i>}
-          {!this.state.playing && <i className="material-icons">play_arrow</i>}
-        </button>
+        <div className="AudioPlayer__top">
+          <button className="AudioPlayer__btn" onClick={this.handleTogglePlay}>
+            {this.state.playing && <i className="material-icons">stop</i>}
+            {!this.state.playing && <i className="material-icons">play_arrow</i>}
+          </button>
+          <h4 className="AudioPlayer__title">{title}</h4>
+        </div>
         <Wavesurfer
           options={{barHeight:4, barWidth:2, waveColor:linGrad, cursorColor: '#F56350', progressColor:'#F56350' }}
           audioFile={source}

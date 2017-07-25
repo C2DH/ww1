@@ -125,7 +125,8 @@ export default ({ doc, onCloseClick }) => {
                 <CollectionItemPreview doc={doc}/>
               </div>
             </Col>
-            <Col xs="12" lg="3" className="CollectionItem__info_container">
+            <Col xs="12" lg="4" className="CollectionItem__info_container">
+              <div className="CollectionItem__info">
                 <p className="CollectionItem__date">
                   <EventDate
                     date={get(doc, 'translated.date')}
@@ -133,24 +134,24 @@ export default ({ doc, onCloseClick }) => {
                     endDate={doc.translated.end_date}
                   />
                 </p>
-              <h3 className="CollectionItem__title">{doc.title}</h3>
-              <hr className="CollectionItem__title_divider" />
-              <p className="CollectionItem__description">
-                  { get(doc, 'translated.description') }
-              </p>
+                <h3 className="CollectionItem__title">{doc.title}</h3>
+                <hr className="CollectionItem__title_divider" />
+                <p className="CollectionItem__description">
+                    { get(doc, 'translated.description') }
+                </p>
 
-              {/* <JSONTree data={doc} /> */}
-              { coords && (
-                <MiniMap coords={coords}/>
-              )}
-              { get(doc, "documents.length") && (
-                <RelatedObjects items={get(doc, "documents")}/>
-              )}
-              <SeeAlso doc={doc}/>
-              <AdditionalInformation metadata={EXAMPLE_METADATA}/>
+                { coords && (
+                  <MiniMap coords={coords}/>
+                )}
+                { get(doc, "documents.length") && (
+                  <RelatedObjects items={get(doc, "documents")}/>
+                )}
+                <SeeAlso doc={doc}/>
+                <AdditionalInformation metadata={EXAMPLE_METADATA}/>
+             </div>
 
             </Col>
-            <Col lg="1" className="hidden-sm-down" style={{paddingRight: 0, paddingLeft: 0, maxWidth: '1px'}}/>
+            {/* <Col lg="1" className="hidden-sm-down" style={{paddingRight: 0, paddingLeft: 0, maxWidth: '1px'}}/> */}
         </Row>
 
       </Container>

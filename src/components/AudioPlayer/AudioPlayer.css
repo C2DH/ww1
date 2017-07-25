@@ -1,19 +1,36 @@
+.AudioPlayer__top {
+  margin-bottom: 20px;
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.AudioPlayer__title {
+  color: #FFF;
+  margin-bottom: 0px;
+}
+
 .AudioPlayer__btn {
-    color: #FFF;
-    border-radius: 100%;
-    margin-left: 10px;
-    background-color: transparent;
-    border: 1px solid #fff;
-    width: 45px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 20px;
-    font-weight: bold;
-    z-index: 9;
-    margin-bottom: 20px;
+  color: #FFF;
+  border-radius: 100%;
+  margin-left: 10px;
+  background-color: transparent;
+  border: 1px solid #fff;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  z-index: 9;
+  margin-right: 20px;
+}
+
+.AudioPlayer__btn:hover {
+  color: #2F2F2F;
+  background-color: #fff;
+  border-color: #2F2F2F;
 }
 
 .AudioPlayer__volume_container {
