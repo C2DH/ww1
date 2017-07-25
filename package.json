@@ -10,6 +10,7 @@
     "leaflet": "^1.1.0",
     "lodash": "^4.17.4",
     "mapbox-gl": "^0.38.0",
+    "matchmedia": "^0.1.2",
     "moment": "^2.18.1",
     "query-string": "^4.3.4",
     "rc-slider": "^8.1.3",
