@@ -33,12 +33,12 @@ class AdditionalInformation extends PureComponent {
   return (
     <div>
       <div className="CollectionItem__additional_info d-flex align-items-center">
-        <h6 onClick={this.toggleInfo} className="CollectionItem__label">
+        <h6 className="CollectionItem__label">
           additional information
         </h6>
-        <i className="material-icons">{this.state.open? 'keyboard_arrow_up': 'keyboard_arrow_down'}</i>
+        <i className="material-icons" onClick={this.toggleInfo}>{this.state.open ? 'keyboard_arrow_up': 'keyboard_arrow_down'}</i>
       </div>
-       <Collapse isOpen={this.state.open}>
+       {this.state.open &&
        <table className="table table-bordered CollectionItem__AdditionalInformation_table">
            <tbody>
          { metadataKeys.map(k => (
@@ -48,8 +48,7 @@ class AdditionalInformation extends PureComponent {
            </tr>
          ))}
          </tbody>
-        </table>
-       </Collapse>
+        </table>}
     </div>
 
   )
