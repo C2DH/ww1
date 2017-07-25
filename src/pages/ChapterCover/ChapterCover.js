@@ -28,9 +28,9 @@ class ChapterCover extends PureComponent  {
             <div className="ChapterCover__label_container">
               <label>CHAPTER {get(chapter, 'id')}</label>
             </div>
-            <h1>{get(chapter, 'title')}</h1>
+            <h1>{chapter.translated.title}</h1>
             <div className="ChapterCover__text_container">
-              <p>{get(chapter, 'abstract')}</p>
+              <p>{chapter.translated.abstract}</p>
             </div>
             <div className="ChapterCover__bottom_text_container">
               <p>Use your mouse, keyboard or the<br/>arrows to read the story</p>

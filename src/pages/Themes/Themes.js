@@ -3,7 +3,7 @@ import { get } from 'lodash'
 import MediaQuery from 'react-responsive'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Container, Row } from 'reactstrap'
+import { Container, Row, Col } from 'reactstrap'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import './Themes.css'
 import {
@@ -30,9 +30,9 @@ class ThemeContainer extends PureComponent {
   render() {
     const { theme, hover, responsiveBackground } = this.props
     return (
-       <div>
-         <MediaQuery minWidth={768} className="Themes__theme_container">
-           <hr />
+       <div className="Themes__theme_container">
+         <MediaQuery minWidth={768}>
+           <hr></hr>
            <h2 className="Themes__theme_title">
              <Link
                className="Themes__theme_title_link"
@@ -40,9 +40,8 @@ class ThemeContainer extends PureComponent {
              onMouseEnter={this.handleOnMouseEnter}
              onMouseLeave={this.handleOnMouseLeave}>
                {hover ? <i className="icon-hand Themes__hand_pointer_left" /> : null}{theme.translated.title}{hover ? <i className="icon-hand-reverse Themes__hand_pointer_right" /> : null}</Link></h2>
-           <hr className="hidden-md-up" />
         </MediaQuery>
-        <MediaQuery maxWidth={767} className="Themes__theme_container" style={{backgroundImage: `url(${responsiveBackground})`}}>
+        <MediaQuery maxWidth={767} style={{backgroundImage: `url(${responsiveBackground})`}}>
           <hr />
           <h2 className="Themes__theme_title">{theme.translated.title}</h2>
           <hr className="hidden-md-up" />
@@ -80,7 +79,7 @@ class Themes extends PureComponent {
     const { themes } = this.props
 
     return (
-      <Container fluid className="padding-r-l-0 Themes__container">
+      <Container fluid className="Themes__container d-flex flex-column justify-content-center">
         {/* style={{ backgroundImage: hoverTheme ? `url(${hoverTheme.cover})` : undefined }}> */}
         <CSSTransitionGroup component="div"
         transitionName="backgroundTheme"
@@ -88,22 +87,26 @@ class Themes extends PureComponent {
         transitionLeaveTimeout={500}>
         {hoverTheme && (
           <div key="background" style={{
-            width: '100%',
-            height: '100%',
             position:'absolute',
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
             zIndex: 1000,
-            backgroundImage: `url(${getThemeCover(hoverTheme)})`
+            backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(${getThemeCover(hoverTheme)})`
           }}
           className="Themes__backgroundTheme">
           </div>
         )}
         </CSSTransitionGroup>
         <Row className="Themes__TitleRow" style={{zIndex: 1001}}>
-          <h1>Themes</h1>
+          <Col>
+            <h1>Themes</h1>
+          </Col>
         </Row>
         <Row>
 
-          {themes && <div className="Themes__theme_title_container" style={{zIndex: 1001}}>
+          {themes && <Col className="Themes__theme_title_container" style={{zIndex: 1001}}>
             {themes.map(theme =>(
               <ThemeContainer
                 key={theme.id}
@@ -114,8 +117,8 @@ class Themes extends PureComponent {
                 responsiveBackground={getThemeCover(theme)}
               />
             ))}
-            <hr className="hidden-md-down" />
-          </div>}
+            <hr></hr>
+          </Col>}
         </Row>
       </Container>
     )
