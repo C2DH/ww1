@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
-import { get } from 'lodash'
+import { get, forEach } from 'lodash'
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import { connect } from 'react-redux'
 import { Container } from 'reactstrap';
 import './Theme.css'
@@ -63,18 +64,25 @@ class Theme extends PureComponent {
             {firstChapterSlug && <button onClick={this.jumpToFirstChapter} className="Theme__start_btn">START</button>}
           </div>
         </div>
-        {this.state.open &&
-        <div className="Theme__chapters_container">
-          <div className="Theme__chapters_top" />
-            <div className="Theme__chapter_scroll_container">
-              {get(theme, 'stories').map((chapter, i) =>(
-                <div key={chapter.i} className="Theme__chapter">
-                  <h4>{chapter.translated.title}</h4>
-                  <h2 className="Theme__chapter_num">{chapter.i}</h2>
+        <CSSTransitionGroup component="div"
+          transitionName="chapter"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}>
+           {this.state.open &&
+            <div className="Theme__chapters_container">
+              <div className="Theme__chapters__inner_container">
+                <div className="Theme__chapters_top"></div>
+                  <div className="Theme__chapter_scroll_container">
+                    {get(theme, 'stories').map((chapter, i) => (
+                      <div key={chapter.id} className="Theme__chapter">
+                        <div className="Theme__chapter_title"><h4>{chapter.translated.title}</h4></div>
+                        <div className="Theme__chapter_num"><h2>{i + 1}</h2></div>
+                      </div>
+                    ))}
                 </div>
-              ))}
-          </div>
-        </div>}
+              </div>
+            </div>}
+        </CSSTransitionGroup>
       </Container>
     )
   }
