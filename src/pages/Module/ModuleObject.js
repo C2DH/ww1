@@ -155,8 +155,10 @@ class ModuleObject extends PureComponent {
   render() {
     const { chapter, module } = this.props
 
-    const size = get(module, 'size')
-
+    let size = get(module, 'size')
+    if (module.type === 'audio') {
+      size = 'big' }
+      
     const backgroundColor = get(module, 'background.color')
     const backgroundImage = get(module, 'background.object.id.attachment')
     const backgroundOverlay = get(module, 'background.object.overlay')
