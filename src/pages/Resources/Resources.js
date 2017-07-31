@@ -20,22 +20,22 @@ const Resources = () => (
     <div className="Resources__cards_container">
       <ResourceCard
         pubDate="12 April 2017"
-        title="Yankees go home"
+        title="Lorem Ipsum"
         author="John Doe"
       />
       <ResourceCard
         pubDate="12 April 2017"
-        title="Yankees go home"
+        title="Lorem Ipsum"
         author="John Doe"
       />
       <ResourceCard
         pubDate="12 April 2017"
-        title="Yankees go home"
+        title="Lorem Ipsum"
         author="John Doe"
       />
       <ResourceCard
         pubDate="12 April 2017"
-        title="Yankees go home"
+        title="Lorem Ipsum"
         author="John Doe"
       />
     </div>

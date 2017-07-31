@@ -31,7 +31,7 @@
   -ms-transform: rotate(90deg); /* IE 9 */
   -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
   transform: rotate(90deg);
-  font-size: 18px!important;
+  font-size: 16px!important;
 }
 
 .TimelineExpandableYear__month_marker_active {
