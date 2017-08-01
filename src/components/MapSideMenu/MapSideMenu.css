@@ -2,6 +2,21 @@
   padding-top: 100px;
 }
 
+.MapSideMenu__input_container {
+  position: relative;
+  top: 0;
+  height: 60px;
+  padding-left: 0px;
+  padding-right: 15px;
+  background-color: #fff;
+  width: 100%;
+  border-bottom: 1px solid #DBDBD0;
+}
+
+.MapSideMenu__input_container_icon {
+  margin-right: 10px;
+}
+
 .MapSideMenu__titleContainer {
   border-bottom: 0.3px solid #DBDBD0;
   padding: 10px;

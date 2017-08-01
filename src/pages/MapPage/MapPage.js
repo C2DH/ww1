@@ -6,6 +6,7 @@ import ReactMapboxGl, { Popup, Marker, Layer, Feature, Cluster, ZoomControl } fr
 import MapSideMenu from '../../components/MapSideMenu'
 import './MapPage.css'
 import {
+  parseQsValue,
   parseQsBooleanValue,
   parseQsCommaNumListValue,
   parseQsCommaObjValue,
@@ -18,6 +19,9 @@ import {
   loadMapDocumentsMeta,
   unloadMapDocuments,
   unloadMapDocumentsList,
+  autocompleteMapSetTerm,
+  autocompleteMapSearch,
+  autocompleteMapClear,
 } from '../../state/actions'
 import {
   getMapDocuments,
@@ -28,6 +32,8 @@ import {
   getMapDocumentsYearsFacets,
   getMapDocumentsFilteredYearsFacets,
   getMapDocumentsUncertainYears,
+  getMapDocumentsAutocompleteSearchTerm,
+  getMapDocumentsAutocompleteResults,
 } from '../../state/selectors'
 
 const styles = {
@@ -81,6 +87,7 @@ class MapPage extends PureComponent {
   componentDidMount() {
     this.props.loadMapDocumentsMeta()
     this.props.loadMapDocuments(this.getDocsParams())
+    this.props.autocompleteMapSetTerm(this.props.searchString)
   }
 
   componentWillUnmount() {
@@ -89,18 +96,21 @@ class MapPage extends PureComponent {
 
   componentWillReceiveProps(nextProps) {
     if (
-      // nextProps.searchString !== this.props.searchString ||
+      nextProps.searchString !== this.props.searchString ||
       nextProps.selectedPlaceTypes !== this.props.selectedPlaceTypes ||
       nextProps.selectedYears !== this.props.selectedYears ||
       nextProps.includeUncertainYears !== this.props.includeUncertainYears
     ) {
       this.props.unloadMapDocumentsList()
       this.props.loadMapDocuments(this.getDocsParams({
-        // searchString: nextProps.searchString,
+        searchString: nextProps.searchString,
         selectedPlaceTypes: nextProps.selectedPlaceTypes,
         selectedYears: nextProps.selectedYears,
         includeUncertainYears: nextProps.includeUncertainYears,
       }))
+    }
+    if (this.props.documents !== nextProps.documents) {
+      this.setState({ selectedDocument: null })
     }
   }
 
@@ -110,6 +120,7 @@ class MapPage extends PureComponent {
       'selectedPlaceTypes',
       'includeUncertainYears',
       'selectedYears',
+      'searchString',
     ].reduce((r, filter) => ({
       ...r,
       [filter]: isUndefined(filters[filter]) ? this.props[filter] : filters[filter]
@@ -118,7 +129,7 @@ class MapPage extends PureComponent {
 
   // Get parameters for API call
   getDocsParams = (filters = {}) => {
-    const { selectedPlaceTypes, includeUncertainYears, selectedYears } = this.getFilters(filters)
+    const { selectedPlaceTypes, includeUncertainYears, selectedYears, searchString } = this.getFilters(filters)
     const placeTypesIn = keys(selectedPlaceTypes)
 
     const applyFilters = {}
@@ -130,7 +141,7 @@ class MapPage extends PureComponent {
     }
 
     return {
-      // q: searchString,
+      q: searchString,
       overlaps: makeOverlaps(selectedYears),
       filters: applyFilters,
     }
@@ -138,13 +149,20 @@ class MapPage extends PureComponent {
 
   // Get querystring to push
   getQueryString = (filters = {}) => {
-    const { selectedPlaceTypes, includeUncertainYears, selectedYears } = this.getFilters(filters)
+    const { selectedPlaceTypes, includeUncertainYears, selectedYears, searchString } = this.getFilters(filters)
     return qs.stringify({
-      // q: searchString,
+      q: searchString,
       types: objToCommaStr(selectedPlaceTypes),
       years: selectedYears.join(','),
       uncertainYears: includeUncertainYears ? '1' : '0'
     }, { encode: false })
+  }
+
+  handleAutocopleteSelect = (value, item) => {
+    this.props.autocompleteMapSetTerm(value)
+    this.props.autocompleteMapClear()
+    const queryStirng = this.getQueryString({ searchString: value })
+    this.props.history.replace(`/map?${queryStirng}`)
   }
 
   togglePlaceTypeSelection = placeType => {
@@ -210,6 +228,8 @@ class MapPage extends PureComponent {
       uncertainYears,
       selectedYears,
       includeUncertainYears,
+      autocompleteSearchTerm,
+      autocompleteResults,
     } = this.props
 
     const { selectedDocument, center, zoom } = this.state
@@ -286,6 +306,10 @@ class MapPage extends PureComponent {
               onYearsSelectionChange={this.handleYearsSelectionChange}
               yearsCounts={yearsFacets}
               yearsFilteredCounts={yearsFilteredFacets}
+              searchString={autocompleteSearchTerm}
+              onSearchChange={this.props.autocompleteMapSearch}
+              autocompleteResults={autocompleteResults}
+              onAutocompleteSelect={this.handleAutocopleteSelect}
             />
           </div>
         </div>
@@ -301,7 +325,7 @@ const mapStateToProps = (state, ownProps) => ({
   documents: getMapDocuments(state),
   loading: getMapDocumentsLoading(state),
   // Query string mapping
-  // searchString: parseQsValue(ownProps.location, 'q', ''),
+  searchString: parseQsValue(ownProps.location, 'q', ''),
   selectedPlaceTypes: parseQsCommaObjValue(ownProps.location, 'types'),
   selectedYears: parseQsCommaNumListValue(ownProps.location, 'years', DEFAULT_FILTER_YEARS),
   includeUncertainYears: parseQsBooleanValue(ownProps.location, 'uncertainYears'),
@@ -312,6 +336,9 @@ const mapStateToProps = (state, ownProps) => ({
   yearsFacets: getMapDocumentsYearsFacets(state),
   yearsFilteredFacets: getMapDocumentsFilteredYearsFacets(state),
   uncertainYears: getMapDocumentsUncertainYears(state),
+  // Autocomplete
+  autocompleteSearchTerm: getMapDocumentsAutocompleteSearchTerm(state),
+  autocompleteResults: getMapDocumentsAutocompleteResults(state),
 })
 
 export default connect(mapStateToProps, {
@@ -319,4 +346,7 @@ export default connect(mapStateToProps, {
   loadMapDocumentsMeta,
   unloadMapDocumentsList,
   unloadMapDocuments,
+  autocompleteMapClear,
+  autocompleteMapSetTerm,
+  autocompleteMapSearch,
 })(MapPage)

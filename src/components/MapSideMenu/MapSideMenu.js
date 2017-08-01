@@ -1,4 +1,5 @@
 import React from 'react'
+import Autocomplete from 'react-autocomplete'
 import { pure } from 'recompose'
 import MapMenuItem from '../MapMenuItem'
 import YearsRange  from '../YearsRange'
@@ -20,8 +21,33 @@ const MapSideMenu = ({
   selectedYears,
   onYearsSelectionChange,
   onResetSelectedYears,
+  searchString,
+  onSearchChange,
+  autocompleteResults,
+  onAutocompleteSelect,
 }) => (
   <div className="MapSideMenu__container">
+    <div className="d-flex align-items-center CollectionFilters__input_container">
+      <i className="material-icons CollectionFilters__input_container_icon hidden-md-down">search</i>
+      {/* <input className="form-control CollectionFilters__input" onChange={onSearchChange} value={searchString} placeholder="Search here (e.g: postcard)" /> */}
+      <form onSubmit={(e) => {
+        e.preventDefault()
+        onAutocompleteSelect(searchString)
+      }}>
+      <Autocomplete
+        value={searchString}
+        onChange={(event, value) => onSearchChange(value)}
+        onSelect={onAutocompleteSelect}
+        items={autocompleteResults}
+        getItemValue={item => item}
+        renderItem={(item, isHighlighted) => (
+          <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
+            {item}
+          </div>
+        )}
+      />
+      </form>
+    </div>
     <div className="MapSideMenu__titleContainer">
       <h5 className="MapSideMenu__titleContainer_title">TYPE</h5>
       <a className="MapSideMenu__titleContainer_reset" onClick={onResetSelectedPlaceTypes}>Reset</a>

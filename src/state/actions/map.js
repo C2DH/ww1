@@ -29,3 +29,22 @@ export const unloadMapDocumentsMeta = () => ({
 export const unloadMapDocuments = () => ({
   type: GET_MAP_DOCUMENTS_UNLOAD,
 })
+
+// Autocomplete
+
+export const GET_MAP_DOCUMENTS_AUTOCOMPLETE_SET_TERM = 'GET_MAP_DOCUMENTS_AUTOCOMPLETE_SET_TERM'
+export const autocompleteMapSetTerm = (term) => ({
+  type: GET_MAP_DOCUMENTS_AUTOCOMPLETE_SET_TERM,
+  payload: { term }
+})
+
+export const GET_MAP_DOCUMENTS_AUTOCOMPLETE_SEARCH = 'GET_MAP_DOCUMENTS_AUTOCOMPLETE_SEARCH'
+export const autocompleteMapSearch = (term) => ({
+  type: GET_MAP_DOCUMENTS_AUTOCOMPLETE_SEARCH,
+  payload: { term }
+})
+
+export const GET_MAP_DOCUMENTS_AUTOCOMPLETE_CLEAR = 'GET_MAP_DOCUMENTS_AUTOCOMPLETE_CLEAR'
+export const autocompleteMapClear = () => ({
+  type: GET_MAP_DOCUMENTS_AUTOCOMPLETE_CLEAR,
+})
