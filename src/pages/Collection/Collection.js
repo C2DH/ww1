@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { keys, omit, isUndefined } from 'lodash'
+import { keys, omit, isUndefined, isNull } from 'lodash'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import qs from 'query-string'
 import matchMedia from 'matchmedia'
@@ -215,6 +215,7 @@ class Collection extends PureComponent {
           {this.state.sidebarOpen && (
             <CollectionFilters
               key="Collectionfilters"
+              hideFilters={isNull(count)}
               searchString={searchString}
               toggleOpen={this.toggleOpen}
               onSearchChange={this.handleSearchStringChange}

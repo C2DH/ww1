@@ -22,6 +22,7 @@ class CollectionFilters extends PureComponent {
       uncertainYearsCount,
       onResetDataType,
       onResetYear,
+      hideFilters,
     } = this.props
     return (
       <div className="CollectionFilters__container">
@@ -35,46 +36,49 @@ class CollectionFilters extends PureComponent {
           <i className="material-icons CollectionFilters__input_container_icon hidden-md-down">search</i>
           <input className="form-control CollectionFilters__input" onChange={onSearchChange} value={searchString} placeholder="Search here (e.g: postcard)" />
         </div>
-        {dataTypes &&
-          <div className="CollectionFilters__reset_container d-flex align-items-center">
-            <h5 className="CollectionFilters__reset_title">TYPE</h5>
-            <a className="CollectionFilters__reset" onClick={onResetDataType}>Reset</a>
+
+        {!hideFilters && <div>
+          {dataTypes &&
+            <div className="CollectionFilters__reset_container d-flex align-items-center">
+              <h5 className="CollectionFilters__reset_title">TYPE</h5>
+              <a className="CollectionFilters__reset" onClick={onResetDataType}>Reset</a>
+            </div>
+          }
+          <div className="CollectionFilters__filter_container d-flex flex-column">
+            {dataTypes && dataTypes.map(({ count, data__type }) => {
+              const selected = typeof selectedDataTypes[data__type] !== 'undefined' || Object.keys(selectedDataTypes).length === 0
+              return (
+                  <div key={data__type} onClick={() => onToggleDataType(data__type)}
+                       className={ selected ? 'CollectionFilters__filter_wrapper d-flex w-100 justify-content-between opacity-100' : 'CollectionFilters__filter_wrapper d-flex w-100 justify-content-between opacity-50'  }>
+
+                    <p className="CollectionFilters__filter">{data__type}</p>
+                    <Badge className="CollectionFilters__filter_badge">
+                      {isNull(count) ? '0' : count}
+                    </Badge>
+                  </div>
+              )
+            })}
           </div>
-        }
-        <div className="CollectionFilters__filter_container d-flex flex-column">
-          {dataTypes && dataTypes.map(({ count, data__type }) => {
-            const selected = typeof selectedDataTypes[data__type] !== 'undefined' || Object.keys(selectedDataTypes).length === 0
-            return (
-                <div key={data__type} onClick={() => onToggleDataType(data__type)}
-                     className={ selected ? 'CollectionFilters__filter_wrapper d-flex w-100 justify-content-between opacity-100' : 'CollectionFilters__filter_wrapper d-flex w-100 justify-content-between opacity-50'  }>
+          <div className="CollectionFilters__reset_container d-flex align-items-center">
+            <h5 className="CollectionFilters__reset_title">PERIOD</h5>
+            <a className="CollectionFilters__reset" onClick={onResetYear}>Reset</a>
+          </div>
 
-                  <p className="CollectionFilters__filter">{data__type}</p>
-                  <Badge className="CollectionFilters__filter_badge">
-                    {isNull(count) ? '0' : count}
-                  </Badge>
-                </div>
-            )
-          })}
-        </div>
-        <div className="CollectionFilters__reset_container d-flex align-items-center">
-          <h5 className="CollectionFilters__reset_title">PERIOD</h5>
-          <a className="CollectionFilters__reset" onClick={onResetYear}>Reset</a>
-        </div>
-
-        <div className="CollectionFilters__time">
-          <YearsRange
-            uncertainYearsCount={uncertainYearsCount}
-            uncertainYears={uncertainYears}
-            onUncertainYearsChange={onUncertainYearsChange}
-            min={1914}
-            max={1920}
-            defaultValue={[1914, 1920]}
-            onChange={onYearChange}
-            value={selectedYears}
-            counts={yearsCounts}
-            filteredCounts={yearsFilteredCounts}
-          />
-        </div>
+          <div className="CollectionFilters__time">
+            <YearsRange
+              uncertainYearsCount={uncertainYearsCount}
+              uncertainYears={uncertainYears}
+              onUncertainYearsChange={onUncertainYearsChange}
+              min={1914}
+              max={1920}
+              defaultValue={[1914, 1920]}
+              onChange={onYearChange}
+              value={selectedYears}
+              counts={yearsCounts}
+              filteredCounts={yearsFilteredCounts}
+            />
+          </div>
+        </div>}
       </div>
     )
   }
