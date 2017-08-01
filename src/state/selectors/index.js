@@ -153,6 +153,19 @@ const makeDocumentsMetaSelectors = (selectState, dataTypeFacetName = 'data__type
   ]
 }
 
+const makeDocumentsAutocompleteSelectors = (selectState) => {
+  const getDocumentsAutocompleteSearchTerm = state =>
+    selectState(state).autocomplete.term
+
+  const getDocumentsAutocompleteResults = state =>
+    selectState(state).autocomplete.results
+
+  return [
+    getDocumentsAutocompleteSearchTerm,
+    getDocumentsAutocompleteResults,
+  ]
+}
+
 // const getDocumentsGrid = createSelector(
 //   getDocuments,
 //   documents => chunk(documents, 4).map(grid => ({
@@ -188,6 +201,11 @@ export const [
   getCollectionDocumentsTotalCount,
 ] = makeDocumentsMetaSelectors(state => state.collectionDocuments)
 
+export const [
+  getCollectionDocumentsAutocompleteSearchTerm,
+  getCollectionDocumentsAutocompleteResults,
+] = makeDocumentsAutocompleteSelectors(state => state.collectionDocuments)
+
 // Map documents
 
 export const [
@@ -196,6 +214,11 @@ export const [
   getMapDocumentsCount,
   getMapDocumentsLoading,
 ] = makeDocumentsListSelectors(state => state.mapDocuments)
+
+export const [
+  getMapDocumentsAutocompleteSearchTerm,
+  getMapDocumentsAutocompleteResults,
+] = makeDocumentsAutocompleteSelectors(state => state.mapDocuments)
 
 export const getMapDocuments = createSelector(
   getDummyMapDocuments,

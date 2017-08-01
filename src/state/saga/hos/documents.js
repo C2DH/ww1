@@ -2,6 +2,7 @@ import { put, select, fork, call, all } from 'redux-saga/effects'
 import { identity, omit, map, keys } from 'lodash'
 import qs from 'query-string'
 import { takeLatestAndCancel } from '../effects/take'
+import * as api from '../../../api'
 
 export const DEFAULT_PAGE_SIZE = 50
 
@@ -27,6 +28,7 @@ const makeDocuments = (
   selectState,
   facetsConfig,
   pageSize = DEFAULT_PAGE_SIZE,
+  apiSuggestFn = api.suggestDocuments,
   transform = identity,
 ) => {
   function* handleGetDocumentsList({ payload: { params, reset, crossFacets } }) {
@@ -91,6 +93,16 @@ const makeDocuments = (
     }
   }
 
+  function *handleGetDocumentsAutocomplete({ payload: { term } }) {
+    yield put({ type: `${actionType}_AUTOCOMPLETE_SEARCH_LOADING` })
+    try {
+      const data = yield call(apiSuggestFn, term)
+      yield put({ type: `${actionType}_AUTOCOMPLETE_SEARCH_SUCCESS`, payload: data })
+    } catch (error) {
+      yield put({ type: `${actionType}_AUTOCOMPLETE_SEARCH_FAILURE`, error })
+    }
+  }
+
   return function* watchGetDocumentsList() {
     yield fork(
       takeLatestAndCancel,
@@ -103,6 +115,12 @@ const makeDocuments = (
       `${actionType}_META`,
       `${actionType}_META_UNLOAD`,
       handleGetDocumentsMeta
+    )
+    yield fork(
+      takeLatestAndCancel,
+      `${actionType}_AUTOCOMPLETE_SEARCH`,
+      `${actionType}_AUTOCOMPLETE_CLEAR`,
+      handleGetDocumentsAutocomplete
     )
   }
 }

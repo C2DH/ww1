@@ -33,6 +33,8 @@ import {
   getCollectionDocumentsYearsFacets,
   getCollectionDocumentsFilteredYearsFacets,
   getCollectionDocumentsUncertainYears,
+  getCollectionDocumentsAutocompleteResults,
+  getCollectionDocumentsAutocompleteSearchTerm,
 } from '../../state/selectors'
 
 import CollectionMasonry from '../../components/CollectionMasonry'
@@ -266,8 +268,8 @@ const mapStateToProps = (state, ownProps) => ({
   yearsFilteredFacets: getCollectionDocumentsFilteredYearsFacets(state),
   uncertainYears: getCollectionDocumentsUncertainYears(state),
   // Autocomplete
-  autocompleteSearchTerm: state.collectionDocuments.autocomplete.term,
-  autocompleteResults: state.collectionDocuments.autocomplete.results,
+  autocompleteSearchTerm: getCollectionDocumentsAutocompleteSearchTerm(state),
+  autocompleteResults: getCollectionDocumentsAutocompleteResults(state),
 })
 
 export default connect(mapStateToProps, {

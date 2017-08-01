@@ -26,11 +26,6 @@ import {
   GET_CHAPTER_LOADING,
   GET_CHAPTER_FAILURE,
   GET_CHAPTER_UNLOAD,
-  COLLECTION_DOCUMENTS_AUTOCOMPLETE_SEARCH,
-  COLLECTION_DOCUMENTS_AUTOCOMPLETE_SEARCH_LOADING,
-  COLLECTION_DOCUMENTS_AUTOCOMPLETE_SEARCH_FAILURE,
-  COLLECTION_DOCUMENTS_AUTOCOMPLETE_SEARCH_SUCCESS,
-  COLLECTION_DOCUMENTS_AUTOCOMPLETE_CLEAR,
 } from '../actions'
 
 const BIG_PAGE_SIZE = 1000
@@ -77,16 +72,6 @@ function *handleGetChapter({ payload }) {
   }
 }
 
-function *handleGetCollectionDocumentsAutocomplete({ payload: { term } }) {
-  yield put({ type: COLLECTION_DOCUMENTS_AUTOCOMPLETE_SEARCH_LOADING })
-  try {
-    const data = yield call(api.suggestDocuments, term)
-    yield put({ type: COLLECTION_DOCUMENTS_AUTOCOMPLETE_SEARCH_SUCCESS, payload: data })
-  } catch (error) {
-    yield put({ type: COLLECTION_DOCUMENTS_AUTOCOMPLETE_SEARCH_FAILURE, error })
-  }
-}
-
 export default function* rootSaga() {
   yield fork(
     takeLatestAndCancel,
@@ -111,12 +96,6 @@ export default function* rootSaga() {
     GET_THEMES,
     GET_THEMES_UNLOAD,
     handleGetThemes,
-  )
-  yield fork(
-    takeLatestAndCancel,
-    COLLECTION_DOCUMENTS_AUTOCOMPLETE_SEARCH,
-    COLLECTION_DOCUMENTS_AUTOCOMPLETE_CLEAR,
-    handleGetCollectionDocumentsAutocomplete,
   )
   yield fork(makeDocuments(
     GET_COLLECTION_DOCUMENTS,

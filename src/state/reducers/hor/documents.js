@@ -105,10 +105,61 @@ const makeDocumentsMeta = (actionType) => {
   return reducer
 }
 
+const makeDocumentsAutocomplete = (actionType) => {
+
+  const defaultState = {
+    loading: false,
+    error: null,
+    term: '',
+    results: [],
+  }
+
+  const reducer = (prevState = defaultState, { type, payload, error }) => {
+    switch (type) {
+      case `${actionType}_AUTOCOMPLETE_SEARCH`:
+      case `${actionType}_AUTOCOMPLETE_SET_TERM`:
+        return {
+          ...prevState,
+          term: payload.term,
+        }
+      case `${actionType}_AUTOCOMPLETE_SEARCH_LOADING`:
+        return {
+          ...prevState,
+          loading: true,
+          error: null,
+        }
+      case `${actionType}_AUTOCOMPLETE_SEARCH_FAILURE`:
+        return {
+          ...prevState,
+          loading: false,
+          error,
+        }
+      case `${actionType}_AUTOCOMPLETE_SEARCH_SUCCESS`:
+        return {
+          ...prevState,
+          loading: false,
+          results: payload.results,
+        }
+      case `${actionType}_AUTOCOMPLETE_CLEAR`:
+        return {
+          ...prevState,
+          loading: false,
+          error: null,
+          results: [],
+        }
+      default:
+        return prevState
+    }
+  }
+
+  return reducer
+}
+
 export default (actionType, reducers) => {
   return resetOn(`${actionType}_UNLOAD` ,combineReducers({
     list: makeDocumentsList(actionType),
     meta: resetOn(`${actionType}_META_UNLOAD`, makeDocumentsMeta(actionType)),
+    autocomplete: makeDocumentsAutocomplete(actionType),
     ...reducers
   }))
 }
