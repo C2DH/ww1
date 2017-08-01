@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { keys, omit, isUndefined, isNull } from 'lodash'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import qs from 'query-string'
-import matchMedia from 'matchmedia'
 import {
   parseQsValue,
   parseQsBooleanValue,
@@ -11,9 +12,7 @@ import {
   objToCommaStr,
   makeOverlaps,
 } from '../../utils'
-import breakpoints from '../../breakpoints'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { isMobileScreen } from '../../breakpoints'
 import {
   loadCollectionDocuments,
   loadCollectionDocumentsMeta,
@@ -39,13 +38,13 @@ import {
 import CollectionMasonry from '../../components/CollectionMasonry'
 import CollectionFilters from '../../components/CollectionFilters'
 import Spinner from '../../components/Spinner'
-import "./Collection.css"
+import './Collection.css'
 
 class Collection extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {
-      sidebarOpen: !matchMedia(`screen and (max-width: ${breakpoints.md}px)`).matches,
+      sidebarOpen: !isMobileScreen(),
     }
   }
 
@@ -162,7 +161,7 @@ class Collection extends PureComponent {
     this.props.loadMoreCollectionDocuments(this.getDocsParams())
   }
 
-  toggleOpen = () => {
+  toggleSidebarOpen = () => {
     this.setState({
       sidebarOpen: !this.state.sidebarOpen
     })
@@ -194,7 +193,7 @@ class Collection extends PureComponent {
             <h2>Collection</h2>
             <span className="Collection__items_shown hidden-md-down"><strong>{count} / {totalCount}</strong> ITEMS SHOWN</span>
 
-            <button type="button" className="Collection__open_heading_btn btn btn-secondary" onClick={this.toggleOpen}>
+            <button type="button" className="Collection__open_heading_btn btn btn-secondary" onClick={this.toggleSidebarOpen}>
               <i className="material-icons">{this.state.sidebarOpen ? 'chevron_right' : 'search'}</i>
             </button>
           </div>
@@ -223,7 +222,7 @@ class Collection extends PureComponent {
             <CollectionFilters
               key="Collectionfilters"
               hideFilters={isNull(count)}
-              toggleOpen={this.toggleOpen}
+              toggleOpen={this.toggleSidebarOpen}
               searchString={autocompleteSearchTerm}
               onSearchChange={this.props.autocompleteCollectionSearch}
               autocompleteResults={autocompleteResults}

@@ -7,13 +7,18 @@ import {
   AutoSizer,
   WindowScroller,
 } from 'react-virtualized'
+import { isMobileScreen } from '../../breakpoints'
 import CollectionDoc from '../CollectionDoc'
+
+const DEFAULT_COLUMN_WIDTH = 234
+const MOBILE_HORIZONTAL_PADDING = 10
+const MOBILE_COLUMN_COUNT = 3
 
 class CollectionMasonry extends PureComponent {
   constructor(props) {
     super(props)
 
-    this.columnWidth = 234
+    this.columnWidth = DEFAULT_COLUMN_WIDTH
     this.gutterSize = 10
     this.horizontalPadding = 0
     this.columnCount = 4
@@ -36,9 +41,16 @@ class CollectionMasonry extends PureComponent {
     this.masonry = ref
   }
 
-  calculateColumnCount = (width) => {
-    this.columnCount = Math.floor(( width + this.gutterSize ) / ( this.columnWidth + this.gutterSize ))
-    this.horizontalPadding = (width - (this.columnCount * this.columnWidth + (this.columnCount-1) * + this.gutterSize)) / 2
+  calculateColumnCountAndWidth = (width) => {
+    if (isMobileScreen()) {
+      this.columnCount = MOBILE_COLUMN_COUNT
+      this.horizontalPadding = MOBILE_HORIZONTAL_PADDING
+      this.columnWidth = Math.floor((((width - this.horizontalPadding * 2) + this.gutterSize) / this.columnCount) - this.gutterSize)
+    } else {
+      this.columnWidth = DEFAULT_COLUMN_WIDTH
+      this.columnCount = Math.floor(( width + this.gutterSize ) / ( this.columnWidth + this.gutterSize ))
+      this.horizontalPadding = (width - (this.columnCount * this.columnWidth + (this.columnCount-1) * + this.gutterSize)) / 2
+    }
   }
 
   resetCellPositioner = () => {
@@ -50,7 +62,7 @@ class CollectionMasonry extends PureComponent {
   }
 
   onResize = ({ height, width }) => {
-    this.calculateColumnCount(width)
+    this.calculateColumnCountAndWidth(width)
     this.resetCellPositioner()
     this.masonry.recomputeCellPositions()
   }
@@ -76,7 +88,8 @@ class CollectionMasonry extends PureComponent {
     let hasImage
 
     if (item.snapshot && item.data.thumbnail_height) {
-      imageHeight = item.data.thumbnail_height
+      const delta = (this.columnWidth / DEFAULT_COLUMN_WIDTH)
+      imageHeight = item.data.thumbnail_height * (delta > 1 ? 1 : delta)
       hasImage = true
     } else {
       imageHeight = 200
