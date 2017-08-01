@@ -105,9 +105,10 @@ const makeDocumentsMeta = (actionType) => {
   return reducer
 }
 
-export default (actionType) => {
+export default (actionType, reducers) => {
   return resetOn(`${actionType}_UNLOAD` ,combineReducers({
     list: makeDocumentsList(actionType),
     meta: resetOn(`${actionType}_META_UNLOAD`, makeDocumentsMeta(actionType)),
+    ...reducers
   }))
 }

@@ -21,6 +21,11 @@ const buildMillerParams = (params) => {
   return newParams
 }
 
+export const suggestDocuments = (term) =>
+  request.get(`${API_URL}/document/suggest/`)
+    .query({ q: term })
+    .then(extractBody)
+
 export const getDocuments = (params = {}) =>
   request.get(`${API_URL}/document/`)
     .query(buildMillerParams(params))

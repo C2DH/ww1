@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import Autocomplete from 'react-autocomplete'
 import { isNull, memoize } from 'lodash'
 import { Badge } from 'reactstrap'
 import YearsRange from '../YearsRange'
@@ -23,6 +24,8 @@ class CollectionFilters extends PureComponent {
       onResetDataType,
       onResetYear,
       hideFilters,
+      autocompleteResults,
+      onAutocompleteSelect,
     } = this.props
     return (
       <div className="CollectionFilters__container">
@@ -34,7 +37,24 @@ class CollectionFilters extends PureComponent {
         </div>
         <div className="d-flex align-items-center CollectionFilters__input_container">
           <i className="material-icons CollectionFilters__input_container_icon hidden-md-down">search</i>
-          <input className="form-control CollectionFilters__input" onChange={onSearchChange} value={searchString} placeholder="Search here (e.g: postcard)" />
+          {/* <input className="form-control CollectionFilters__input" onChange={onSearchChange} value={searchString} placeholder="Search here (e.g: postcard)" /> */}
+          <form onSubmit={(e) => {
+            e.preventDefault()
+            onAutocompleteSelect(searchString)
+          }}>
+          <Autocomplete
+            value={searchString}
+            onChange={(event, value) => onSearchChange(value)}
+            onSelect={onAutocompleteSelect}
+            items={autocompleteResults}
+            getItemValue={item => item}
+            renderItem={(item, isHighlighted) => (
+              <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
+                {item}
+              </div>
+            )}
+          />
+          </form>
         </div>
 
         {!hideFilters && <div>

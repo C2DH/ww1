@@ -20,6 +20,9 @@ import {
   loadMoreCollectionDocuments,
   unloadCollectionDocuments,
   unloadCollectionDocumentsList,
+  autocompleteCollectionSearch,
+  autocompleteCollectionSetTerm,
+  autocompleteCollectionClear,
 } from '../../state/actions'
 import {
   getCollectionDocuments,
@@ -49,6 +52,7 @@ class Collection extends PureComponent {
   componentDidMount() {
     this.props.loadCollectionDocumentsMeta()
     this.props.loadCollectionDocuments(this.getDocsParams())
+    this.props.autocompleteCollectionSetTerm(this.props.searchString)
   }
 
   componentWillUnmount() {
@@ -112,9 +116,10 @@ class Collection extends PureComponent {
     }, { encode: false })
   }
 
-  handleSearchStringChange = (e) => {
-    const searchString = e.target.value
-    const queryStirng = this.getQueryString({ searchString })
+  handleAutocopleteSelect = (value, item) => {
+    this.props.autocompleteCollectionSetTerm(value)
+    this.props.autocompleteCollectionClear()
+    const queryStirng = this.getQueryString({ searchString: value })
     this.props.history.replace(`/collection?${queryStirng}`)
   }
 
@@ -178,6 +183,8 @@ class Collection extends PureComponent {
       yearsFacets,
       yearsFilteredFacets,
       uncertainYears,
+      autocompleteSearchTerm,
+      autocompleteResults,
     } = this.props
 
     return (
@@ -216,9 +223,11 @@ class Collection extends PureComponent {
             <CollectionFilters
               key="Collectionfilters"
               hideFilters={isNull(count)}
-              searchString={searchString}
               toggleOpen={this.toggleOpen}
-              onSearchChange={this.handleSearchStringChange}
+              searchString={autocompleteSearchTerm}
+              onSearchChange={this.props.autocompleteCollectionSearch}
+              autocompleteResults={autocompleteResults}
+              onAutocompleteSelect={this.handleAutocopleteSelect}
               dataTypes={dataTypesFacets}
               selectedDataTypes={filterDataTypes}
               onResetDataType={this.resetFilterDataType}
@@ -257,6 +266,9 @@ const mapStateToProps = (state, ownProps) => ({
   yearsFacets: getCollectionDocumentsYearsFacets(state),
   yearsFilteredFacets: getCollectionDocumentsFilteredYearsFacets(state),
   uncertainYears: getCollectionDocumentsUncertainYears(state),
+  // Autocomplete
+  autocompleteSearchTerm: state.collectionDocuments.autocomplete.term,
+  autocompleteResults: state.collectionDocuments.autocomplete.results,
 })
 
 export default connect(mapStateToProps, {
@@ -265,4 +277,7 @@ export default connect(mapStateToProps, {
   loadMoreCollectionDocuments,
   unloadCollectionDocuments,
   unloadCollectionDocumentsList,
+  autocompleteCollectionSearch,
+  autocompleteCollectionSetTerm,
+  autocompleteCollectionClear,
 })(Collection)
