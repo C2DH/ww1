@@ -57,6 +57,15 @@ const styles = {
   }
 }
 
+const MapToolTip = ({ snapshot, title, text }) => (
+  <div className="MapToolTip">
+    {snapshot && <div className="MapToolTip__img" style={{background: `url(${snapshot})`}}/>}
+    <h5 className="MapToolTip__title">{title}</h5>
+    <p className="MapToolTip__text">{text}</p>
+  </div>
+
+)
+
 const Map = ReactMapboxGl({
   accessToken: "pk.eyJ1IjoiZWlzY2h0ZXdlbHRrcmljaCIsImEiOiJjajRpYnR1enEwNjV2MndtcXNweDR5OXkzIn0._eSF2Gek8g-JuTGBpw7aXw"
 })
@@ -202,6 +211,7 @@ class MapPage extends PureComponent {
       selectedYears,
       includeUncertainYears,
     } = this.props
+
     const { selectedDocument, center, zoom } = this.state
 
     return (
@@ -250,10 +260,13 @@ class MapPage extends PureComponent {
                   <Popup
                     coordinates={selectedDocument.coordinates}
                     offset={[0, -50]}
+                    style={{boxShadow: '0 2px 5px 5px rgba(0,0,0,0.11)'}}
                     key={selectedDocument.id}>
-                    <div>
-                      {selectedDocument.title}
-                    </div>
+                    <MapToolTip
+                      snapshot={selectedDocument.snapshot}
+                      title={selectedDocument.title}
+                      text={selectedDocument.translated.description}
+                    />
                   </Popup>
                 )}
               </Map>
