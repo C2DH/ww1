@@ -319,7 +319,7 @@ class MapPage extends PureComponent {
 }
 
 // TODO: Make a consts file...
-const DEFAULT_FILTER_YEARS = ['<1914', '1920>']
+const DEFAULT_FILTER_YEARS = ['<1914', '1921>']
 
 const mapStateToProps = (state, ownProps) => ({
   documents: getMapDocuments(state),
