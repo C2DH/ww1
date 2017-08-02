@@ -55,6 +55,16 @@
   margin: 4px;
 }
 
+@keyframes Map__PositionContro--animatedBackground {
+  0% { background-color: rgba(0, 0, 0, .7); }
+  50% { background-color: #F56350; }
+	100% { background-color: rgba(0, 0, 0, .7); }
+}
+
+.Map__PositionControl--geolocating{
+  animation: Map__PositionContro--animatedBackground 2s linear infinite;
+}
+
 .Map__LayersControl {
   width: 36px;
   height: 36px;

@@ -79,14 +79,44 @@ const Map = ReactMapboxGl({
 })
 
 
-const PositionControl = () => (
-  <div className="Map__PositionControl">
-    <i className="material-icons md-24">location_searching</i>
-  </div>
-)
+class PositionControl extends React.PureComponent {
+
+  state = {
+    geolocating : false,
+  }
+
+  handleClick = (e) => {
+    if (navigator.geolocation) {
+        this.setState({geolocating:true})
+        return navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            if(pos.coords && pos.coords.latitude){
+              const center = [pos.coords.longitude, pos.coords.latitude]
+              console.log("setting", center)
+              this.setState({geolocating:false})
+              this.props.setCenter(center)
+            }
+          },
+          (err) => {
+            this.setState({geolocating:false})
+          }
+        )
+    } else {
+
+    }
+  }
+
+  render(){
+    const { setCenter } = this.props
+    return (
+      <div className={`Map__PositionControl ${this.state.geolocating ? 'Map__PositionControl--geolocating': '' }`} onClick={this.handleClick}>
+        <i className="material-icons md-24">location_searching</i>
+      </div>
+    )
+  }
+}
 
 class LayersControl extends React.PureComponent {
-
   state = {
     popoverOpen : false
   }
@@ -268,6 +298,7 @@ class MapPage extends PureComponent {
   onDrag = () => this.setState({ selectedDocument: null })
 
   handleSetLayer = (layer) => this.setState({ selectedLayer: layer })
+  handleSetCenter = (center) => this.setState({ center })
 
   render() {
     const {
@@ -328,7 +359,7 @@ class MapPage extends PureComponent {
                 }}>
                   <ZoomControl className="Map__ZoomControl"/>
                   <div className="Map__Controls">
-                    <PositionControl></PositionControl>
+                    <PositionControl setCenter={this.handleSetCenter}></PositionControl>
                     <LayersControl setLayer={this.handleSetLayer} currentLayer={this.state.selectedLayer}></LayersControl>
 
                   </div>
