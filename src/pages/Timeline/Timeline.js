@@ -42,14 +42,25 @@ class Timeline extends PureComponent {
     })
   }
 
-  onYearClick = (year) => {
+  moveToDocAtYearAndMonth = (year, month) => {
     const doc = find(this.props.documents, d => {
-      // TODO: Better to this ehheeh
-      const currentYear = +d.data.date.original.split('-')[0]
-      return currentYear === year
+      const [docYear,docMonth] = d.data.date.original.split('-')
+      const sameYear = year === +docYear
+      if (month) {
+        return sameYear && month === +docMonth
+      } else {
+        return sameYear
+      }
     })
     if (doc) {
-      this.setState({ scrollToId: doc.id })
+      let nextState = {
+        scrollToId: doc.id,
+        viewedYear: year,
+      }
+      if (month) {
+        nextState = { ...nextState, viewedMonth: month }
+      }
+      this.setState(nextState)
     }
   }
 
@@ -77,7 +88,7 @@ class Timeline extends PureComponent {
                 <div className="hidden-lg-up Timeline__yearsContainer_responsive_borders"></div>
                 {YEARS.map(year =>(
                    <TimelineExpandableYear
-                     onYearClick={this.onYearClick}
+                     onYearClick={this.moveToDocAtYearAndMonth}
                      open={year === this.state.viewedYear}
                      openMonth={this.state.viewedMonth}
                      year={year}
