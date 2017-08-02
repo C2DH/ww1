@@ -2,7 +2,9 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { isUndefined, keys, omit } from 'lodash'
 import qs from 'query-string'
-import ReactMapboxGl, { Popup, Marker, Layer, Feature, Cluster, ZoomControl } from 'react-mapbox-gl'
+import ReactMapboxGl, { Popup, Marker, Layer, Feature, Cluster, ZoomControl, GeoJSONLayer, Source } from 'react-mapbox-gl'
+import * as MapboxGL from 'mapbox-gl';
+import { Button, Popover, PopoverTitle, PopoverContent, ButtonGroup, ButtonToolbar } from 'reactstrap';
 import MapSideMenu from '../../components/MapSideMenu'
 import './MapPage.css'
 import {
@@ -77,11 +79,60 @@ const Map = ReactMapboxGl({
 })
 
 
+const PositionControl = () => (
+  <div className="Map__PositionControl">
+    <i className="material-icons md-24">location_searching</i>
+  </div>
+)
+
+class LayersControl extends React.PureComponent {
+
+  state = {
+    popoverOpen : false
+  }
+
+  togglePopover = (e) => {
+    this.setState({ popoverOpen: !this.state.popoverOpen })
+  }
+
+  handleSetLayer = (layer) => (e) => {
+    const { setLayer } = this.props
+    setLayer(layer)
+    this.setState({ popoverOpen: false })
+  }
+
+  render(){
+    const { currentLayer } = this.props
+    return (
+      <div>
+      <div className="Map__LayersControl" id="Map__LayersControl" onClick={this.togglePopover}>
+        <i className="material-icons md-24">layers</i>
+      </div>
+      <Popover placement={'right'} isOpen={this.state.popoverOpen} target="Map__LayersControl">
+            <PopoverContent>
+              <ButtonToolbar>
+              <ButtonGroup vertical>
+                <Button active={currentLayer==='1914.geojson'} onClick={this.handleSetLayer('1914.geojson')}>See 1914 borders</Button>
+                <Button active={currentLayer==='1920.geojson'} onClick={this.handleSetLayer('1920.geojson')}>See 1920 borders</Button>
+                <Button active={currentLayer===null} onClick={this.handleSetLayer(null)}>See today map</Button>
+              </ButtonGroup>
+              </ButtonToolbar>
+            </PopoverContent>
+      </Popover>
+      </div>
+    )
+
+  }
+}
+
+
+
 class MapPage extends PureComponent {
   state = {
     center: [6.087, 49.667],
     zoom: [8],
     selectedDocument: null,
+    selectedLayer: null,
   }
 
   componentDidMount() {
@@ -216,6 +267,8 @@ class MapPage extends PureComponent {
 
   onDrag = () => this.setState({ selectedDocument: null })
 
+  handleSetLayer = (layer) => this.setState({ selectedLayer: layer })
+
   render() {
     const {
       documents,
@@ -233,6 +286,17 @@ class MapPage extends PureComponent {
     } = this.props
 
     const { selectedDocument, center, zoom } = this.state
+    const linePaint: MapboxGL.LinePaint = {
+      'line-color': '#F56350'
+    };
+
+    const symbolLayout: MapboxGL.SymbolLayout = {
+      'text-field': '{Territor}'
+    };
+    const symbolPaint: MapboxGL.SymbolPaint = {
+      'text-color': '#F56350'
+    };
+
 
     return (
 
@@ -262,7 +326,12 @@ class MapPage extends PureComponent {
                   width: "100%",
                   paddingtop: "100px"
                 }}>
-                  {/*<ZoomControl />*/}
+                  <ZoomControl className="Map__ZoomControl"/>
+                  <div className="Map__Controls">
+                    <PositionControl></PositionControl>
+                    <LayersControl setLayer={this.handleSetLayer} currentLayer={this.state.selectedLayer}></LayersControl>
+
+                  </div>
                   {documents && <Cluster ClusterMarkerFactory={this.clusterMarker} clusterThreshold={1} radius={60}>
                   {
                     documents.map(doc =>
@@ -276,6 +345,22 @@ class MapPage extends PureComponent {
                     )
                   }
                 </Cluster>}
+
+                { this.state.selectedLayer === '1914.geojson' && (
+                    <GeoJSONLayer
+                      symbolLayout={symbolLayout}
+                      symbolPaint={symbolPaint}
+                      linePaint={linePaint}
+                      data="borders/1914.geojson"/>
+                )}
+                { this.state.selectedLayer === '1920.geojson' && (
+                    <GeoJSONLayer
+                      symbolLayout={symbolLayout}
+                      symbolPaint={symbolPaint}
+                      linePaint={linePaint}
+                      data="borders/1914.geojson"/>
+                )}
+
                 {selectedDocument && (
                   <Popup
                     coordinates={selectedDocument.coordinates}

@@ -37,3 +37,29 @@
   text-transform: uppercase;
   font-size: 14px;
 }
+
+
+.Map__Controls {
+  position: absolute;
+  left: 20px;
+  z-index: 10000;
+  color: #fff;
+}
+
+.Map__PositionControl {
+  width: 36px;
+  height: 36px;
+  background-color: rgba(0, 0, 0, .7);
+  border-radius: 100px;
+  padding: 6px;
+  margin: 4px;
+}
+
+.Map__LayersControl {
+  width: 36px;
+  height: 36px;
+  background-color: rgba(0, 0, 0, .7);
+  border-radius: 100px;
+  padding: 6px;
+  margin: 4px;
+}
