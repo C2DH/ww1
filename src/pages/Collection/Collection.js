@@ -7,7 +7,7 @@ import qs from 'query-string'
 import {
   parseQsValue,
   parseQsBooleanValue,
-  parseQsCommaNumListValue,
+  parseQsCommaListValue,
   parseQsCommaObjValue,
   objToCommaStr,
   makeOverlaps,
@@ -249,7 +249,7 @@ class Collection extends PureComponent {
   }
 }
 
-const DEFAULT_FILTER_YEARS = [1914, 1921]
+const DEFAULT_FILTER_YEARS = ['<1914', '1921>']
 
 const mapStateToProps = (state, ownProps) => ({
   documents: getCollectionDocuments(state),
@@ -258,7 +258,7 @@ const mapStateToProps = (state, ownProps) => ({
   // Query string mapping
   searchString: parseQsValue(ownProps.location, 'q', ''),
   filterDataTypes: parseQsCommaObjValue(ownProps.location, 'types'),
-  filterYears: parseQsCommaNumListValue(ownProps.location, 'years', DEFAULT_FILTER_YEARS),
+  filterYears: parseQsCommaListValue(ownProps.location, 'years', DEFAULT_FILTER_YEARS),
   filterUncertainYears: parseQsBooleanValue(ownProps.location, 'uncertainYears'),
   // Counts / facets stuff
   count: getCollectionDocumentsCount(state),

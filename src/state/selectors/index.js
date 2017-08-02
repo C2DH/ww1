@@ -1,5 +1,20 @@
 import { createSelector, defaultMemoize } from 'reselect'
-import { memoize, isNull, get, mapValues, keyBy, isPlainObject, isArray, includes, chunk, map, range, find, omit } from 'lodash'
+import {
+  memoize,
+  isNull,
+  get,
+  mapValues,
+  keyBy,
+  isPlainObject,
+  isArray,
+  includes,
+  chunk,
+  map,
+  range,
+  find,
+  omit,
+  reduce
+} from 'lodash'
 
 // fp <3
 const maybeNull = a => fn => isNull(a) ? null : fn(a)
@@ -120,11 +135,25 @@ const makeDocumentsMetaSelectors = (selectState, dataTypeFacetName = 'data__type
     (totalFacets, currentFacets) => intersectFacets(totalFacets, currentFacets, dataTypeFacetName)
   )
 
-  const makeYearsFacets = facets =>
+  const makeYearsFacetsUnsum = facets =>
     get(facets, 'data__year', []).reduce((r, f) => ({
       ...r,
       [f.data__year]: f.count,
     }), {})
+
+  // TODO: Move this hardcoed shit away
+  const MIN_YEAR = 1914
+  const MAX_YEAR = 1920
+  const makeYearsFacets = facets =>
+    reduce(makeYearsFacetsUnsum(facets), (r, count, year) => {
+      if (year < MIN_YEAR) {
+        return { ...r, [`<${MIN_YEAR}`]: get(r, `<${MIN_YEAR}`, 0) + count }
+      } else if (year > MAX_YEAR) {
+        return { ...r, [`${MAX_YEAR}>`]: get(r, `${MAX_YEAR}>`, 0) + count }
+      } else {
+        return { ...r, [year]: count }
+      }
+    }, {})
 
   const getDocumentsYearsFacets = createSelector(
     getDocumentsTotalFacets,

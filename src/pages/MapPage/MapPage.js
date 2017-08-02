@@ -8,7 +8,7 @@ import './MapPage.css'
 import {
   parseQsValue,
   parseQsBooleanValue,
-  parseQsCommaNumListValue,
+  parseQsCommaListValue,
   parseQsCommaObjValue,
   objToCommaStr,
   getPlaceTypeIcon,
@@ -319,7 +319,7 @@ class MapPage extends PureComponent {
 }
 
 // TODO: Make a consts file...
-const DEFAULT_FILTER_YEARS = [1914, 1925]
+const DEFAULT_FILTER_YEARS = ['<1914', '1920>']
 
 const mapStateToProps = (state, ownProps) => ({
   documents: getMapDocuments(state),
@@ -327,7 +327,7 @@ const mapStateToProps = (state, ownProps) => ({
   // Query string mapping
   searchString: parseQsValue(ownProps.location, 'q', ''),
   selectedPlaceTypes: parseQsCommaObjValue(ownProps.location, 'types'),
-  selectedYears: parseQsCommaNumListValue(ownProps.location, 'years', DEFAULT_FILTER_YEARS),
+  selectedYears: parseQsCommaListValue(ownProps.location, 'years', DEFAULT_FILTER_YEARS),
   includeUncertainYears: parseQsBooleanValue(ownProps.location, 'uncertainYears'),
   // Count / facets stuff
   count: getMapDocumentsCount(state),

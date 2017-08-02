@@ -45,7 +45,25 @@ export const parseQsCommaObjValue = (location, key, defaultValue = emptyObj) => 
   return commaStrToObj(parseQsValue(location, key, ''), defaultValue)
 }
 
-export const makeOverlaps = y => y ? `${y[0]}-01-01,${y[1] - 1}-12-31` : undefined
+export const makeOverlaps = y => {
+  // it's hot today, in a perfect world it would be correct
+  // to use lte gte stuff
+  // but it's hot today when <year i suppose 0 the jesus birthday
+  // when year> i suppose 2099 i'll be dead or i'll be a robot
+  const numerize = year => {
+    if (typeof year === 'number') {
+      return year
+    }
+    if (year.charAt(0) === '<') {
+      return 0
+    } else if (year.charAt(year.length - 1) === '>') {
+      return 2099
+    }
+    return year
+  }
+  const yy = isArray(y) ? y.map(numerize) : undefined
+  return yy ? `${yy[0]}-01-01,${yy[1] - 1}-12-31` : undefined
+}
 
 export const objToCommaStr = obj => keys(obj).join(',')
 
