@@ -53,6 +53,7 @@
   border-radius: 100px;
   padding: 6px;
   margin: 4px;
+  cursor: pointer;
 }
 
 @keyframes Map__PositionContro--animatedBackground {
@@ -72,4 +73,5 @@
   border-radius: 100px;
   padding: 6px;
   margin: 4px;
+  cursor: pointer;
 }
