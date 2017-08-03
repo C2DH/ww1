@@ -12,6 +12,7 @@ import {
 } from '../../state/actions'
 import {
   getTimelineDocuments,
+  getTimelineValidMonthsByYears,
   getTimelineDocumentsLoading,
 } from '../../state/selectors'
 import './Timeline.css'
@@ -69,7 +70,7 @@ class Timeline extends PureComponent {
   }
 
   render() {
-    const { documents } = this.props
+    const { documents, validMonthsByYears } = this.props
     return (
       <div className="Timeline__Wrapper">
         <div className="Timeline__TopRow d-flex align-items-center">
@@ -88,6 +89,7 @@ class Timeline extends PureComponent {
                 <div className="hidden-lg-up Timeline__yearsContainer_responsive_borders"></div>
                 {YEARS.map(year =>(
                    <TimelineExpandableYear
+                     validMonthsByYears={validMonthsByYears}
                      onYearClick={this.moveToDocAtYearAndMonth}
                      open={year === this.state.viewedYear}
                      openMonth={this.state.viewedMonth}
@@ -119,6 +121,7 @@ class Timeline extends PureComponent {
 
 const mapStateToProps = state => ({
   documents: getTimelineDocuments(state),
+  validMonthsByYears: getTimelineValidMonthsByYears(state),
   loading: getTimelineDocumentsLoading(state),
 })
 

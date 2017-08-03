@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react'
+import { get, padStart } from 'lodash'
 import './TimelineExpandableYear.css'
 
 const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
-const Month = ({ month, open, disabled, onMonthClick }) => {
+const Month = ({ month, validMonths, open, disabled, onMonthClick }) => {
   if(open) {
     return (
       <div className="d-inline-block">
@@ -11,8 +12,8 @@ const Month = ({ month, open, disabled, onMonthClick }) => {
         <i className="icon-fiber_manual_record TimelineExpandableYear__month_marker_active" />
       </div>)
     }
-  if(disabled) {
-    return (<i className="icon-fiber_manual_record TimelineExpandableYear__month_marker" style={{color: 'green'}}/>)
+  if (typeof validMonths[padStart(month, 2, 0)] === 'undefined') {
+    return (<i className="icon-fiber_manual_record TimelineExpandableYear__month_marker" style={{color: '#222'}}/>)
   } else {
     return (<i className="icon-fiber_manual_record TimelineExpandableYear__month_marker" onClick={e => {
       e.preventDefault()
@@ -22,6 +23,7 @@ const Month = ({ month, open, disabled, onMonthClick }) => {
   }
 }
 
+const emptyObject = {}
 class TimelineExpandableYear extends PureComponent {
 
   onYearClick = () => {
@@ -33,7 +35,7 @@ class TimelineExpandableYear extends PureComponent {
   }
 
    render() {
-    const { year, openMonth, disabledMonths = [] } = this.props
+    const { year, openMonth, validMonthsByYears, disabledMonths = [] } = this.props
     return (
       <div onClick={this.onYearClick} className="TimelineExpandableYear__container">
         <span className={this.props.open ? "TimelineExpandableYear__year expanded" : "TimelineExpandableYear__year"}>{year}</span>
@@ -45,6 +47,7 @@ class TimelineExpandableYear extends PureComponent {
                 month={month}
                 open={month === openMonth}
                 onMonthClick={this.onMonthClick}
+                validMonths={get(validMonthsByYears, year, emptyObject)}
                 disabled={disabledMonths.indexOf(month) !== -1}
               />
             ))}

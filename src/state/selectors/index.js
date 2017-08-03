@@ -1,6 +1,7 @@
 import { createSelector, defaultMemoize } from 'reselect'
 import {
   memoize,
+  groupBy,
   isNull,
   get,
   mapValues,
@@ -277,6 +278,19 @@ export const [
   getTimelineDocumentsCount,
   getTimelineDocumentsLoading,
 ] = makeDocumentsListSelectors(state => state.timelineDocuments)
+
+export const getTimelineValidMonthsByYears = createSelector(
+  getTimelineDocuments,
+  docs => maybeNull(docs)(docs => {
+    return mapValues(groupBy(docs, d => {
+      const [docYear,docMonth] = d.data.date.original.split('-')
+      return docYear
+    }), docs => groupBy(docs, d => {
+      const [docYear,docMonth] = d.data.date.original.split('-')
+      return docMonth
+    }))
+  })
+)
 
 // Themes
 
