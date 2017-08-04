@@ -1,4 +1,5 @@
 import { createSelector, defaultMemoize } from 'reselect'
+import moment from 'moment'
 import {
   memoize,
   groupBy,
@@ -290,6 +291,46 @@ export const getTimelineValidMonthsByYears = createSelector(
       return docMonth
     }))
   })
+)
+
+// Fuck off waypoint today giova win :D!
+export const getTimelineVisibleDocuments = createSelector(
+  state => state.timelineDocuments.list.ids,
+  state => state.timelineDocuments.list.data,
+  state => state.timelineDocuments.visibleDocuments,
+  (ids, data, visibleById) => maybeNull(ids)(ids => ids.reduce((visibleDocs, id) => {
+    if (typeof visibleById[id] !== 'undefined') {
+      return visibleDocs.concat(data[id])
+    }
+    return visibleDocs
+  }, [])
+))
+
+export const getLastVisibleDoc = createSelector(
+  getTimelineVisibleDocuments,
+  visibleDocs => maybeNull(visibleDocs)(visibleDocs => {
+    if (visibleDocs.length > 0) {
+      return visibleDocs[visibleDocs.length - 1]
+    }
+    return null
+  })
+)
+
+export const getViewedYearAndMonth = createSelector(
+  getLastVisibleDoc,
+  (doc) => {
+    if (isNull(doc)) {
+      return {
+        viewedYear: null,
+        viewedMonth: null,
+      }
+    }
+    const m = moment(doc.data.start_date)
+    return {
+      viewedYear: m.year(),
+      viewedMonth: m.month() + 1,
+    }
+  }
 )
 
 // Themes
