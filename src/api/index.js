@@ -77,3 +77,7 @@ export const getChapter = (idOrSlug) =>
       parser: 'yaml',
     })
     .then(extractBody)
+
+export const getStaticStory = (idOrSlug) =>
+  request.get(`${API_URL}/story/${idOrSlug}/`)
+    .then(extractBody)

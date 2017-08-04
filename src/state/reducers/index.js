@@ -8,6 +8,7 @@ import collectionDocuments from './collectionDocuments'
 import themes from './themes'
 import themeDetail from './themeDetail'
 import chapterDetail from './chapterDetail'
+import staticStoryDetail from './staticStoryDetail'
 
 export default combineReducers({
   collectionDocuments,
@@ -16,6 +17,7 @@ export default combineReducers({
   themes,
   themeDetail,
   chapterDetail,
+  staticStoryDetail,
   document,
   languages,
   settings,

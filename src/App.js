@@ -14,9 +14,10 @@ import CollectionDetail from './pages/CollectionDetail'
 import CollectionDetailModal from './pages/CollectionDetailModal'
 import Resources from './pages/Resources'
 import Manual from './pages/Manual'
+import StaticStory from './pages/StaticStory'
 import ThemeExplorer from './pages/ThemeExplorer'
 
-
+const About = () => <StaticStory slug='about' />
 
 class Routes extends PureComponent {
   //https://reacttraining.com/react-router/web/example/modal-gallery
@@ -53,6 +54,7 @@ class Routes extends PureComponent {
           <Route path='/resources' exact component={Resources} />
           <Route path='/manual' exact component={Manual} />
           <Route path='/themes/:themeSlug' component={ThemeExplorer} />
+          <Route path='/about' exact component={About} />
         </Switch>
         {isModal ? <Route path='/collection/item/:id' component={CollectionDetailModal} /> : null}
       </div>

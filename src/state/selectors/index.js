@@ -333,6 +333,21 @@ export const getViewedYearAndMonth = createSelector(
   }
 )
 
+// Static story
+
+const translateStaticStory = lang => story => ({
+  ...story,
+  data: translateObject(story.data, lang.code, [
+    'content',
+  ])
+})
+
+export const getStaticStory = createSelector(
+  state => state.staticStoryDetail.data,
+  getCurrentLanguage,
+  (theme, lang) => maybeNull(theme)(translateStaticStory(lang))
+)
+
 // Themes
 
 export const getThemes = createSelector(

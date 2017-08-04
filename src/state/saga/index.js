@@ -26,6 +26,11 @@ import {
   GET_CHAPTER_LOADING,
   GET_CHAPTER_FAILURE,
   GET_CHAPTER_UNLOAD,
+  GET_STATIC_STORY,
+  GET_STATIC_STORY_SUCCESS,
+  GET_STATIC_STORY_LOADING,
+  GET_STATIC_STORY_FAILURE,
+  GET_STATIC_STORY_UNLOAD,
 } from '../actions'
 
 const BIG_PAGE_SIZE = 1000
@@ -37,6 +42,16 @@ function *handleGetDocument({ payload }) {
     yield put({ type: GET_DOCUMENT_SUCCESS, payload: doc })
   } catch (error) {
     yield put({ type: GET_DOCUMENT_FAILURE, error })
+  }
+}
+
+function *handleGetStaticStory({ payload }) {
+  yield put({ type: GET_STATIC_STORY_LOADING })
+  try {
+    const story = yield call(api.getStaticStory, payload)
+    yield put({ type: GET_STATIC_STORY_SUCCESS, payload: story })
+  } catch (error) {
+    yield put({ type: GET_STATIC_STORY_FAILURE, error })
   }
 }
 
@@ -84,6 +99,12 @@ export default function* rootSaga() {
     GET_THEME,
     GET_THEME_UNLOAD,
     handleGetTheme,
+  )
+  yield fork(
+    takeLatestAndCancel,
+    GET_STATIC_STORY,
+    GET_STATIC_STORY_UNLOAD,
+    handleGetStaticStory,
   )
   yield fork(
     takeLatestAndCancel,
