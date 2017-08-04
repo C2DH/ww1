@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { isUndefined, keys, omit } from 'lodash'
+import { scaleLinear } from 'd3-scale'
 import qs from 'query-string'
 import ReactMapboxGl, { Popup, Marker, Layer, Feature, Cluster, ZoomControl, GeoJSONLayer, Source } from 'react-mapbox-gl'
 import * as MapboxGL from 'mapbox-gl';
@@ -38,10 +39,10 @@ import {
   getMapDocumentsAutocompleteResults,
 } from '../../state/selectors'
 
+const circleScale = scaleLinear().range([30, 100]).domain([1, 150])
+
 const styles = {
   clusterMarker: {
-    width: 30,
-    height: 30,
     borderRadius: '50%',
     backgroundColor: 'white',
     display: 'flex',
@@ -288,16 +289,20 @@ class MapPage extends PureComponent {
     this.props.history.replace(`/map?${queryStirng}`)
   }
 
-  clusterMarker = (coordinates, pointCount) => (
-    <Marker coordinates={coordinates} key={coordinates.toString()} style={styles.clusterMarker}>
+  clusterMarker = (coordinates, pointCount) => {
+    const r = circleScale(pointCount)
+    return <Marker coordinates={coordinates} key={coordinates.toString()} style={{
+      ...styles.clusterMarker,
+      width: r,
+      height: r,
+    }}>
       { pointCount }
     </Marker>
-  )
+  }
 
   onMarkerClick = (doc) => {
     this.setState({
       selectedDocument: doc,
-      zoom: [10],
       center: doc.coordinates,
     })
   }
