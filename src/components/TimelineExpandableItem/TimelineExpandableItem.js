@@ -40,7 +40,7 @@ class TimelineExpandableItem extends PureComponent {
     componentDidUpdate() {
       if (this.props.scrollTo) {
         const node = ReactDOM.findDOMNode(this)
-        node.scrollIntoView(false)
+        node.scrollIntoView(true)
         this.props.onScrollComplete()
       }
     }

@@ -310,7 +310,7 @@ export const getLastVisibleDoc = createSelector(
   getTimelineVisibleDocuments,
   visibleDocs => maybeNull(visibleDocs)(visibleDocs => {
     if (visibleDocs.length > 0) {
-      return visibleDocs[visibleDocs.length - 1]
+      return visibleDocs[0]
     }
     return null
   })
