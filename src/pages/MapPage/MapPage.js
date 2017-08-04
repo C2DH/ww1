@@ -78,7 +78,6 @@ const Map = ReactMapboxGl({
   accessToken: "pk.eyJ1IjoiZWlzY2h0ZXdlbHRrcmljaCIsImEiOiJjajRpYnR1enEwNjV2MndtcXNweDR5OXkzIn0._eSF2Gek8g-JuTGBpw7aXw"
 })
 
-
 class PositionControl extends React.PureComponent {
 
   state = {
@@ -155,14 +154,13 @@ class LayersControl extends React.PureComponent {
   }
 }
 
-
-
 class MapPage extends PureComponent {
   state = {
     center: [6.087, 49.667],
     zoom: [8],
     selectedDocument: null,
     selectedLayer: null,
+    sideMenuOpen: true,
   }
 
   componentDidMount() {
@@ -193,6 +191,15 @@ class MapPage extends PureComponent {
     if (this.props.documents !== nextProps.documents) {
       this.setState({ selectedDocument: null })
     }
+  }
+
+  toggleSideMenuOpen = () => {
+    this.setState(prevState => ({
+      sideMenuOpen: !prevState.sideMenuOpen,
+    }), () => {
+      // Manually trigger map resize!
+      this.map.getChildContext().map.resize()
+    })
   }
 
   // Get filters or filter prop
@@ -332,20 +339,24 @@ class MapPage extends PureComponent {
     return (
 
       <div>
-        <div className="MapPage__TopRow">
-          <div className="list-heading list-heading-closed">
+        <div className={`MapPage__TopRow`}>
+          <div className={`list-heading list-heading-${this.state.sideMenuOpen ? 'closed' : 'open'}`}>
             <h2>Map</h2>
             <span className="MapPage__items_shown"><strong>{count} / {totalCount}</strong> ITEMS SHOWN</span>
-            <button className="Collection__open_heading_btn" >
-              <i className="icon-keyboard_arrow_right" />
+            <button className="Collection__open_heading_btn" onClick={this.toggleSideMenuOpen}>
+              {this.state.sideMenuOpen ? (
+                <i className="icon-keyboard_arrow_right" />
+              ) : (
+                <i className="material-icons">search</i>
+              )}
             </button>
           </div>
         </div>
         <div className="MapPage__MainRow">
-            <div style={{width: '80%'}}>
+            <div className={`MapPage__MapContainer--menu${this.state.sideMenuOpen ? 'Open' : 'Close'}`}>
               <Map
+                ref={map => this.map = map}
                 center={center}
-                trackResize={false}
                 dragRotate={false}
                 keyboard={false}
                 zoom={zoom}
@@ -408,26 +419,28 @@ class MapPage extends PureComponent {
               </Map>
             </div>
 
-          <div className="MapPage__Filters_container">
-            <MapSideMenu
-              dataPlaceTypes={dataPlaceTypesFacets}
-              selectedPlaceTypes={selectedPlaceTypes}
-              onTogglePlaceTypeSelection={this.togglePlaceTypeSelection}
-              onResetSelectedPlaceTypes={this.resetPlaceTypesSelection}
-              uncertainYearsCount={uncertainYears}
-              includeUncertainYears={includeUncertainYears}
-              onIncludeUncertainYearsChange={this.handleOnIncludeUncertainYearsChange}
-              onResetSelectedYears={this.resetSelectedYears}
-              selectedYears={selectedYears}
-              onYearsSelectionChange={this.handleYearsSelectionChange}
-              yearsCounts={yearsFacets}
-              yearsFilteredCounts={yearsFilteredFacets}
-              searchString={autocompleteSearchTerm}
-              onSearchChange={this.props.autocompleteMapSearch}
-              autocompleteResults={autocompleteResults}
-              onAutocompleteSelect={this.handleAutocopleteSelect}
-            />
-          </div>
+          {this.state.sideMenuOpen && (
+            <div className="MapPage__Filters_container">
+              <MapSideMenu
+                dataPlaceTypes={dataPlaceTypesFacets}
+                selectedPlaceTypes={selectedPlaceTypes}
+                onTogglePlaceTypeSelection={this.togglePlaceTypeSelection}
+                onResetSelectedPlaceTypes={this.resetPlaceTypesSelection}
+                uncertainYearsCount={uncertainYears}
+                includeUncertainYears={includeUncertainYears}
+                onIncludeUncertainYearsChange={this.handleOnIncludeUncertainYearsChange}
+                onResetSelectedYears={this.resetSelectedYears}
+                selectedYears={selectedYears}
+                onYearsSelectionChange={this.handleYearsSelectionChange}
+                yearsCounts={yearsFacets}
+                yearsFilteredCounts={yearsFilteredFacets}
+                searchString={autocompleteSearchTerm}
+                onSearchChange={this.props.autocompleteMapSearch}
+                autocompleteResults={autocompleteResults}
+                onAutocompleteSelect={this.handleAutocopleteSelect}
+              />
+            </div>
+          )}
         </div>
      </div>
     )

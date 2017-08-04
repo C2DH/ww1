@@ -84,10 +84,6 @@ const MapSideMenu = ({
       <a className="MapSideMenu__titleContainer_reset" onClick={onResetSelectedYears}>Reset</a>
     </div>
     <div className="MapSideMenu__chartsContainer">
-        {/* counts={yearsCounts}
-
-        onChange={onYearsSelectionChange}
-        filteredCounts={yearsFilteredCounts} */}
       <YearsRange
         uncertainYearsCount={uncertainYearsCount}
         uncertainYears={includeUncertainYears}

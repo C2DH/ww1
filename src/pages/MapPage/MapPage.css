@@ -1,9 +1,16 @@
 .MapPage__TopRow {
-  width: 80%;
   height: 100px;
   background-color: #fff;
   border-bottom: 1px solid #DBDBD0;
   z-index: 10000;
+}
+
+.MapPage__MapContainer--menuOpen {
+  width: 80%;
+}
+
+.MapPage__MapContainer--menuClose {
+  width: 100%;
 }
 
 .MapPage__items_shown {
