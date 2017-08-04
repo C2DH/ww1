@@ -65,7 +65,7 @@ const MapSideMenu = ({
             label={placeType}
             count={data.count}
             onClick={() => onTogglePlaceTypeSelection(placeType)}
-            iconClass={getPlaceTypeIcon(placeType)}
+            icon={getPlaceTypeIcon(placeType)}
           />
         )
       })}

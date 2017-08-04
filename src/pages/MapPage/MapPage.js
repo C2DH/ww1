@@ -376,15 +376,16 @@ class MapPage extends PureComponent {
                   </div>
                   {documents && <Cluster ClusterMarkerFactory={this.clusterMarker} clusterThreshold={1} radius={60}>
                   {
-                    documents.map(doc =>
-                      <Marker
+                    documents.map(doc => {
+                      const icon = getPlaceTypeIcon(doc.data.place_type)
+                      return <Marker
                         key={doc.id}
                         style={styles.marker}
                         onClick={() => this.onMarkerClick(doc)}
                         coordinates={doc.coordinates}>
-                        <i className="material-icons">{getPlaceTypeIcon(doc.data.place_type)}</i>
+                        <i className={icon.class}>{icon.content}</i>
                       </Marker>
-                    )
+                    })
                   }
                 </Cluster>}
 

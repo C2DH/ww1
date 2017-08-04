@@ -71,14 +71,23 @@ export const getThemeCover = theme =>
   get(theme, 'covers[0].attachment')
 
 const PLACE_TYPE_ICONS = {
-  bombing: 'alarm_add',
-  hospital: 'alarm_add',
+  bombing: {
+    class: 'material-icons',
+    content: 'alarm_add'
+  },
+  hospital: {
+    class: 'material-icons',
+    content: 'favorite_border'
+  },
   // ...
 }
 export const getPlaceTypeIcon = placeType => {
   const icon = PLACE_TYPE_ICONS[placeType]
   if (typeof icon === 'undefined') {
-    return 'fa-bom'
+    return {
+      class: 'material-icons',
+      content: 'alarm_add'
+    }
   }
   return icon
 }
