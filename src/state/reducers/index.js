@@ -4,6 +4,7 @@ import languages from './languages'
 import settings from './settings'
 import mapDocuments from './mapDocuments'
 import timelineDocuments from './timelineDocuments'
+import resourceDocuments from './resourceDocuments'
 import collectionDocuments from './collectionDocuments'
 import themes from './themes'
 import themeDetail from './themeDetail'
@@ -14,6 +15,7 @@ export default combineReducers({
   collectionDocuments,
   mapDocuments,
   timelineDocuments,
+  resourceDocuments,
   themes,
   themeDetail,
   chapterDetail,

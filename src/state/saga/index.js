@@ -31,6 +31,7 @@ import {
   GET_STATIC_STORY_LOADING,
   GET_STATIC_STORY_FAILURE,
   GET_STATIC_STORY_UNLOAD,
+  GET_RESOURCE_DOCUMENTS,
 } from '../actions'
 
 const BIG_PAGE_SIZE = 1000
@@ -136,6 +137,13 @@ export default function* rootSaga() {
     GET_TIMELINE_DOCUMENTS,
     api.getTimelineDocuments,
     state => state.timelineDocuments,
+    null,
+    BIG_PAGE_SIZE,
+  ))
+  yield fork(makeDocuments(
+    GET_RESOURCE_DOCUMENTS,
+    api.getResourceDocuments,
+    state => state.resourceDocuments,
     null,
     BIG_PAGE_SIZE,
   ))

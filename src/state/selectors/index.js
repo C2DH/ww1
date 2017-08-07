@@ -59,6 +59,7 @@ const translateObject = (data, lang, transKeys = '*', fallbackLang = 'en') =>
 const translateDocument = lang => doc => ({
   ...doc,
   translated: translateObject(doc.data, lang.code, [
+    'title',
     'description',
     'repository',
     'date',
@@ -332,6 +333,15 @@ export const getViewedYearAndMonth = createSelector(
     }
   }
 )
+
+// Resource Documents
+
+export const [
+  getResourceDocuments,
+  canLoadMoreResourceDocuments,
+  getResourceDocumentsCount,
+  getResourceDocumentsLoading,
+] = makeDocumentsListSelectors(state => state.resourceDocuments)
 
 // Static story
 

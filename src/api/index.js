@@ -53,6 +53,13 @@ export const getTimelineDocuments = (params = {}) => getDocuments({
   ...omit(params, 'filters'),
 })
 
+export const getResourceDocuments = (params = {}) => getDocuments({
+  filters: {
+    data__type: 'resource',
+    ...params.filters,
+  },
+})
+
 export const getDocument = (id) =>
   request.get(`${API_URL}/document/${id}`)
     .then(extractBody)

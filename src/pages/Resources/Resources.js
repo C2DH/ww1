@@ -1,46 +1,56 @@
-import React from 'react'
-import {  Container, Row, Col } from 'reactstrap'
+import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
+import { Container, Row, Col } from 'reactstrap'
 import BigTitle from '../../components/BigTitle'
 import ResourceCard from '../../components/ResourceCard'
+import StaticStory from '../../components/StaticStory'
+import {
+  getResourceDocuments,
+} from '../../state/selectors'
+import {
+  loadResourceDocuments,
+  unloadResourceDocuments,
+} from '../../state/actions'
 import './Resources.css'
 
-const Resources = () => (
-  <Container fluid className="padding-r-l-0">
-    <BigTitle title="Resources" />
-    <div className="Resources__whiteBackground">
-      <Row>
-        <Col md="6">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis lorem ut libero malesuada feugiat. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Pellentesque in ipsum id orci porta dapibus. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Nulla porttitor accumsan tincidunt. Donec sollicitudin molestie malesuada.</p>
-        </Col>
-        <Col md="6">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis lorem ut libero malesuada feugiat. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Pellentesque in ipsum id orci porta dapibus. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Nulla porttitor accumsan tincidunt. Donec sollicitudin molestie malesuada.</p>
-        </Col>
-      </Row>
-    </div>
-    <div className="Resources__cards_container">
-      <ResourceCard
-        pubDate="12 April 2017"
-        title="Lorem Ipsum"
-        author="John Doe"
-      />
-      <ResourceCard
-        pubDate="12 April 2017"
-        title="Lorem Ipsum"
-        author="John Doe"
-      />
-      <ResourceCard
-        pubDate="12 April 2017"
-        title="Lorem Ipsum"
-        author="John Doe"
-      />
-      <ResourceCard
-        pubDate="12 April 2017"
-        title="Lorem Ipsum"
-        author="John Doe"
-      />
-    </div>
-  </Container>
+class Resources extends PureComponent {
+  componentDidMount() {
+    this.props.loadResourceDocuments()
+  }
 
-)
+  componentWillUnmount() {
+    this.props.unloadCollectionDocuments()
+  }
 
-export default Resources
+  render() {
+    const { documents } = this.props
+    return (
+      <Container fluid className="padding-r-l-0">
+        <BigTitle title="Resources" />
+        <div className="Resources__whiteBackground">
+          <StaticStory slug='resources' />
+        </div>
+        <div className="Resources__cards_container">
+          {documents && documents.map(doc => (
+            <ResourceCard
+              key={doc.id}
+              image={doc.snapshot || 'https://via.placeholder.com/250x250'}
+              pubDate="12 April 2017"
+              title={doc.translated.title}
+              author="John Doe"
+            />
+          ))}
+        </div>
+      </Container>
+    )
+  }
+}
+
+const mapStateToProps = state => ({
+  documents: getResourceDocuments(state),
+})
+
+export default connect(mapStateToProps, {
+  loadResourceDocuments,
+  unloadResourceDocuments,
+})(Resources)
