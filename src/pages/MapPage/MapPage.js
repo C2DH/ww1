@@ -163,15 +163,15 @@ class LayersControl extends React.PureComponent {
         <i className="material-icons md-24">layers</i>
       </div>
       <Popover placement={'right'} isOpen={this.state.popoverOpen} target="Map__LayersControl">
-            <PopoverContent>
-              <ButtonToolbar>
-              <ButtonGroup vertical>
-                <Button active={currentLayer==='1914.geojson'} onClick={this.handleSetLayer('1914.geojson')}>See 1914 borders</Button>
-                <Button active={currentLayer==='1920.geojson'} onClick={this.handleSetLayer('1920.geojson')}>See 1920 borders</Button>
-                <Button active={currentLayer===null} onClick={this.handleSetLayer(null)}>See today map</Button>
-              </ButtonGroup>
-              </ButtonToolbar>
-            </PopoverContent>
+        <PopoverContent>
+          <ButtonToolbar>
+          <ButtonGroup vertical>
+            <Button active={currentLayer==='1914.geojson'} onClick={this.handleSetLayer('1914.geojson')}>See 1914 borders</Button>
+            <Button active={currentLayer==='1920.geojson'} onClick={this.handleSetLayer('1920.geojson')}>See 1920 borders</Button>
+            <Button active={currentLayer===null} onClick={this.handleSetLayer(null)}>See today map</Button>
+          </ButtonGroup>
+          </ButtonToolbar>
+        </PopoverContent>
       </Popover>
       </div>
     )

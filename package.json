@@ -40,6 +40,7 @@
     "reselect": "^3.0.1",
     "slick-carousel": "^1.6.0",
     "superagent": "^3.5.2",
+    "uuid": "^3.1.0",
     "video-react": "^0.8.5",
     "wavesurfer.js": "^1.1.11"
   },

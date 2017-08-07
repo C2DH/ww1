@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactPDF from 'react-pdf';
 import PDF from 'react-pdf-js';
+import CollectionItemDownload from '../CollectionItemDownload'
 import './CollectionItemPreview.css'
 
 
@@ -91,7 +92,8 @@ export default class CollectionItemPreviewPDF extends React.PureComponent {
               <option>Fit to page</option>
             </select>
           </div> */}
-          <button className="CollectionItemPreviewPDF__download_btn"><i className="icon-file_download" /></button>
+          {/* <button className="CollectionItemPreviewPDF__download_btn"><i className="icon-file_download" /></button> */}
+          <CollectionItemDownload className="CollectionItemPreviewPDF__download_btn" doc={doc}/>
         </div>
       </div>
     </div>
