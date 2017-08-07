@@ -19,7 +19,7 @@ class Resources extends PureComponent {
   }
 
   componentWillUnmount() {
-    this.props.unloadCollectionDocuments()
+    this.props.unloadResourceDocuments()
   }
 
   render() {
