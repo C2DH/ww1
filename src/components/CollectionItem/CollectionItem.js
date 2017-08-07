@@ -1,4 +1,5 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from 'react'
+import { Link } from 'react-router-dom'
 import { Container, Row, Col, Label, Collapse, Button } from 'reactstrap'
 import EventDate from '../../components/EventDate'
 import moment from 'moment'
@@ -91,8 +92,8 @@ const RelatedObjects = ({items}) => {
 const SeeAlso = ({doc}) => (
   <div className="CollectionItem__Relatedobjects">
     <h6 className="CollectionItem__label">SEE ALSO</h6>
-      {doc.data.year && <button className="CollectionItem__btn btn btn-secondary">{get(doc, "data.year")}</button>}
-      {doc.data.type && <button className="CollectionItem__btn btn btn-secondary">{get(doc, "data.type")}</button>}
+      {doc.data.year && <Link to={`/collection/?types=${get(doc, "data.year")},${get(doc, "data.year",0)+1}`}><button className="CollectionItem__btn btn btn-secondary">{get(doc, "data.year")}</button></Link>}
+      {doc.data.type && <Link to={`/collection/?years=${get(doc, "data.type")}`}><button className="CollectionItem__btn btn btn-secondary">{get(doc, "data.type")}</button></Link>}
   </div>
 )
 
