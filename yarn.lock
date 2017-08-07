@@ -4017,6 +4017,12 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
+"linebreak@github:rkusa/linebreak":
+  version "0.3.0"
+  resolved "https://codeload.github.com/rkusa/linebreak/tar.gz/f315325603e47290a8392900d9b58c4c6dda7839"
+  dependencies:
+    unicode-trie "^0.3.0"
+
 load-json-file@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/load-json-file/-/load-json-file-1.1.0.tgz#956905708d58b4bab4c2261b04f59f31c99374c0"
@@ -4625,6 +4631,12 @@ onetime@^2.0.0:
   dependencies:
     mimic-fn "^1.0.0"
 
+opentype.js@^0.6.2:
+  version "0.6.9"
+  resolved "https://registry.yarnpkg.com/opentype.js/-/opentype.js-0.6.9.tgz#eb4db21ff58a12b2db78a652d7a4bf9605253089"
+  dependencies:
+    tiny-inflate "^1.0.2"
+
 opn@4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/opn/-/opn-4.0.2.tgz#7abc22e644dff63b0a96d5ab7f2790c0f01abc95"
@@ -4716,7 +4728,7 @@ package-json@^2.0.0:
     registry-url "^3.0.3"
     semver "^5.1.0"
 
-pako@~0.2.0:
+pako@^0.2.5, pako@~0.2.0:
   version "0.2.9"
   resolved "https://registry.yarnpkg.com/pako/-/pako-0.2.9.tgz#f3f7522f4ef782348da8161bad9ecfd51bf83a75"
 
@@ -4826,6 +4838,22 @@ pdfjs-dist@^1.7.339:
   dependencies:
     node-ensure "^0.0.0"
     worker-loader "^0.8.0"
+
+pdfjs-dist@^1.8.593:
+  version "1.8.610"
+  resolved "https://registry.yarnpkg.com/pdfjs-dist/-/pdfjs-dist-1.8.610.tgz#b7aa8adbca23a764a9c58d174b0683d46742472a"
+  dependencies:
+    node-ensure "^0.0.0"
+    worker-loader "^0.8.0"
+
+pdfjs@^2.0.0-alpha.3:
+  version "2.0.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/pdfjs/-/pdfjs-2.0.0-alpha.3.tgz#d76dc7c5f184b2640b8aeaf4bdda9b2f2331db0d"
+  dependencies:
+    linebreak rkusa/linebreak
+    opentype.js "^0.6.2"
+    unorm "^1.4.1"
+    uuid "^3.0.1"
 
 performance-now@^0.2.0:
   version "0.2.0"
@@ -5473,6 +5501,13 @@ react-mapbox-gl@^2.1.0:
     "@turf/helpers" "^4.4.0"
     deep-equal "^1.0.1"
     supercluster "^2.3.0"
+
+react-pdf-js@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/react-pdf-js/-/react-pdf-js-2.0.1.tgz#3991d65836a3fc5c4534970b3b9036ea442e6d93"
+  dependencies:
+    pdfjs-dist "^1.8.593"
+    prop-types "^15.5.10"
 
 react-pdf@^1.6.1:
   version "1.6.1"
@@ -6567,6 +6602,10 @@ timers-browserify@^2.0.2:
   dependencies:
     setimmediate "^1.0.4"
 
+tiny-inflate@^1.0.0, tiny-inflate@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/tiny-inflate/-/tiny-inflate-1.0.2.tgz#93d9decffc8805bd57eae4310f0b745e9b6fb3a7"
+
 tinyqueue@^1.1.0:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/tinyqueue/-/tinyqueue-1.2.2.tgz#947229e5e4197aba988acd27751dcc582e6728ff"
@@ -6708,6 +6747,13 @@ unflowify@^1.0.0:
     flow-remove-types "^1.1.2"
     through "^2.3.8"
 
+unicode-trie@^0.3.0:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/unicode-trie/-/unicode-trie-0.3.1.tgz#d671dddd89101a08bac37b6a5161010602052085"
+  dependencies:
+    pako "^0.2.5"
+    tiny-inflate "^1.0.0"
+
 uniq@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/uniq/-/uniq-1.0.1.tgz#b31c5ae8254844a3a8281541ce2b04b865a734ff"
@@ -6725,6 +6771,10 @@ uniqs@^2.0.0:
 universalify@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/universalify/-/universalify-0.1.0.tgz#9eb1c4651debcc670cc94f1a75762332bb967778"
+
+unorm@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/unorm/-/unorm-1.4.1.tgz#364200d5f13646ca8bcd44490271335614792300"
 
 unpipe@~1.0.0:
   version "1.0.0"
@@ -6821,7 +6871,7 @@ uuid@^2.0.1, uuid@^2.0.2:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-2.0.3.tgz#67e2e863797215530dff318e5bf9dcebfd47b21a"
 
-uuid@^3.0.0:
+uuid@^3.0.0, uuid@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.0.1.tgz#6544bba2dfda8c1cf17e629a3a305e2bb1fee6c1"
 
