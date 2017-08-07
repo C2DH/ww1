@@ -1,4 +1,5 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from 'react'
+import { Link } from 'react-router-dom'
 import { Container, Row, Col, Label, Collapse, Button } from 'reactstrap'
 import EventDate from '../../components/EventDate'
 import moment from 'moment'
@@ -8,10 +9,7 @@ import CollectionItemPreview from '../CollectionItemPreview'
 import './CollectionItem.css'
 
 
-const EXAMPLE_METADATA = {
-  author : "Mimmo",
-  publication_date: "1880"
-}
+const ADDITIONAL_METATDATA_KEYS = ['repository', 'copyright']
 
 
 class AdditionalInformation extends PureComponent {
@@ -27,8 +25,7 @@ class AdditionalInformation extends PureComponent {
   }
 
   render() {
-  const {metadata} = this.props
-  const metadataKeys = keys(metadata);
+  const {doc, metadataKeys=[]} = this.props
 
   return (
     <div>
@@ -41,12 +38,17 @@ class AdditionalInformation extends PureComponent {
        {this.state.open &&
        <table className="table table-bordered CollectionItem__AdditionalInformation_table">
            <tbody>
-         { metadataKeys.map(k => (
-           <tr key={k}>
-             <th scope="row">{capitalize(k.split("_").join(" "))}</th>
-             <td>{metadata[k]}</td>
-           </tr>
-         ))}
+         { metadataKeys.map(k => {
+           const datum = get(doc.translated, k, get(doc, k, null))
+           if(datum === null){ return null}
+           return (
+             <tr key={k}>
+               <th scope="row">{capitalize(k.split("_").join(" "))}</th>
+               <td>{datum}</td>
+             </tr>
+           )
+          })
+         }
          </tbody>
         </table>}
     </div>
@@ -69,7 +71,6 @@ const CloseButton = ({ onClick }) => (
   </div>
 )
 
-//id: 193 has related!
 const RelatedObjects = ({items}) => {
 
   return (<div className="CollectionItem__Relatedobjects">
@@ -91,8 +92,8 @@ const RelatedObjects = ({items}) => {
 const SeeAlso = ({doc}) => (
   <div className="CollectionItem__Relatedobjects">
     <h6 className="CollectionItem__label">SEE ALSO</h6>
-      {doc.data.year && <button className="CollectionItem__btn btn btn-secondary">{get(doc, "data.year")}</button>}
-      {doc.data.type && <button className="CollectionItem__btn btn btn-secondary">{get(doc, "data.type")}</button>}
+      {doc.data.year && <Link to={`/collection/?types=${get(doc, "data.year")},${get(doc, "data.year",0)+1}`}><button className="CollectionItem__btn btn btn-secondary">{get(doc, "data.year")}</button></Link>}
+      {doc.data.type && <Link to={`/collection/?years=${get(doc, "data.type")}`}><button className="CollectionItem__btn btn btn-secondary">{get(doc, "data.type")}</button></Link>}
   </div>
 )
 
@@ -147,7 +148,7 @@ export default ({ doc, onCloseClick }) => {
                   <RelatedObjects items={get(doc, "documents")}/>
                 )}
                 <SeeAlso doc={doc}/>
-                <AdditionalInformation metadata={EXAMPLE_METADATA}/>
+                <AdditionalInformation doc={doc} metadataKeys={ADDITIONAL_METATDATA_KEYS}/>
              </div>
 
             </Col>
