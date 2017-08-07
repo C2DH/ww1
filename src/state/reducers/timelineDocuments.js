@@ -10,12 +10,12 @@ const visibleDocuments = (prevState = {}, { type, payload }) => {
     case TIMELINE_DOCUMENT_ENTER_VIEWPORT:
       return {
         ...prevState,
-        [payload.id]: true
+        [payload]: true
       }
     case TIMELINE_DOCUMENT_LEAVE_VIEWPORT:
       return {
         ...prevState,
-        [payload.id]: undefined
+        [payload]: undefined,
       }
     default:
       return prevState

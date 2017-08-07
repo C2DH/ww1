@@ -299,13 +299,18 @@ export const getTimelineVisibleDocuments = createSelector(
   state => state.timelineDocuments.list.ids,
   state => state.timelineDocuments.list.data,
   state => state.timelineDocuments.visibleDocuments,
-  (ids, data, visibleById) => maybeNull(ids)(ids => ids.reduce((visibleDocs, id) => {
-    if (typeof visibleById[id] !== 'undefined') {
-      return visibleDocs.concat(data[id])
-    }
-    return visibleDocs
-  }, [])
-))
+  (ids, data, visibleByIndex) => maybeNull(ids)(ids =>
+    Object.keys(visibleByIndex)
+      .reduce((r, index) => {
+        if (visibleByIndex[index]) {
+          return r.concat(+index)
+        }
+        return r
+      }, [])
+      .sort()
+      .map(index => data[ids[index]])
+  )
+)
 
 export const getLastVisibleDoc = createSelector(
   getTimelineVisibleDocuments,

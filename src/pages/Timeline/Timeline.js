@@ -35,12 +35,12 @@ class Timeline extends PureComponent {
     this.props.unloadTimelineDocuments()
   }
 
-  entering = (doc) => {
-    this.props.timelineDocumentEnterViewport(doc)
+  entering = (docIndex) => {
+    this.props.timelineDocumentEnterViewport(docIndex)
   }
 
-  leaving = (doc) => {
-    this.props.timelineDocumentLeaveViewport(doc)
+  leaving = (docIndex) => {
+    this.props.timelineDocumentLeaveViewport(docIndex)
   }
 
   moveToDocAtYearAndMonth = (year, month) => {
@@ -98,7 +98,7 @@ class Timeline extends PureComponent {
               </div>
             </Col>
             {documents && <Col lg="11" md="12" sm="12" xs="12" className="Timeline__scrollingCol">
-              {documents.map(doc => (
+              {documents.map((doc, index) => (
                 <div key={doc.id} className="Timeline__expandable_wrapper">
                   <TimelineExpandableItem
                     scrollTo={doc.id === this.state.scrollToId}
@@ -107,8 +107,8 @@ class Timeline extends PureComponent {
                     key={doc.id}
                   />
                   <WayPoint
-                    onEnter={() => this.entering(doc)}
-                    onLeave={() => this.leaving(doc)}
+                    onEnter={() => this.entering(index)}
+                    onLeave={() => this.leaving(index)}
                   />
                 </div>
               ))}

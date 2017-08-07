@@ -15,13 +15,13 @@ export const unloadTimelineDocuments = () => ({
 })
 
 export const TIMELINE_DOCUMENT_ENTER_VIEWPORT = 'TIMELINE_DOCUMENT_ENTER_VIEWPORT'
-export const timelineDocumentEnterViewport = (doc) => ({
+export const timelineDocumentEnterViewport = (docIndex) => ({
   type: TIMELINE_DOCUMENT_ENTER_VIEWPORT,
-  payload: doc,
+  payload: docIndex,
 })
 
 export const TIMELINE_DOCUMENT_LEAVE_VIEWPORT = 'TIMELINE_DOCUMENT_LEAVE_VIEWPORT'
-export const timelineDocumentLeaveViewport = (doc) => ({
+export const timelineDocumentLeaveViewport = (docIndex) => ({
   type: TIMELINE_DOCUMENT_LEAVE_VIEWPORT,
-  payload: doc,
+  payload: docIndex,
 })
