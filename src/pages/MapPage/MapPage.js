@@ -307,6 +307,12 @@ class MapPage extends PureComponent {
     })
   }
 
+  closePopup = () => {
+    this.setState({
+      selectedDocument: null,
+    })
+  }
+
   onDrag = () => this.setState({ selectedDocument: null })
 
   handleSetLayer = (layer) => this.setState({ selectedLayer: layer })
@@ -415,7 +421,9 @@ class MapPage extends PureComponent {
                     offset={[0, -50]}
                     style={{boxShadow: '0 2px 5px 5px rgba(0,0,0,0.11)'}}
                     key={selectedDocument.id}>
+                    <i className="material-icons pointer float-right" onClick={this.closePopup}>close</i>
                     <MapToolTip
+                      className="clearfix"
                       snapshot={selectedDocument.snapshot}
                       title={selectedDocument.title}
                       text={selectedDocument.translated.description}

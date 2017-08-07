@@ -273,6 +273,10 @@ textarea:focus, input:focus{
   text-transform: uppercase;
 }
 
+.pointer{
+  cursor: pointer;
+}
+
 .expandableItem__btn {
   margin-left: auto;
   border-radius: 100%;
