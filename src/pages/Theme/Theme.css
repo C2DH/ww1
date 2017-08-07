@@ -134,8 +134,14 @@
   align-items: center;
 }
 
-.Theme__chapter_title:hover {
+.Theme__chapter_title a {
+  color: #111;
+  text-decoration: none;
+}
+
+.Theme__chapter_title a:hover {
   color: #F36455;
+  text-decoration: none;
 }
 
 .Theme__chapter_num {
