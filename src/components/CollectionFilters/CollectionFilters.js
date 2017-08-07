@@ -43,13 +43,18 @@ class CollectionFilters extends PureComponent {
             onAutocompleteSelect(searchString)
           }}>
           <Autocomplete
+            inputProps={{
+              className:'form-control CollectionFilters__input',
+              placeholder:'Search here (e.g: postcard)'
+            }}
+            wrapperStyle={{display:'flex', position:'relative'}}
             value={searchString}
             onChange={(event, value) => onSearchChange(value)}
             onSelect={onAutocompleteSelect}
             items={autocompleteResults}
             getItemValue={item => item}
             renderItem={(item, isHighlighted) => (
-              <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
+              <div className={isHighlighted ? 'CollectionFilters__autocompleteItem active' : 'CollectionFilters__autocompleteItem'}>
                 {item}
               </div>
             )}
