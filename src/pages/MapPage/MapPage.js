@@ -5,7 +5,7 @@ import { scaleLinear } from 'd3-scale'
 import qs from 'query-string'
 import ReactMapboxGl, { Popup, Marker, Layer, Feature, Cluster, ZoomControl, GeoJSONLayer, Source } from 'react-mapbox-gl'
 import * as MapboxGL from 'mapbox-gl';
-import { Button, Popover, PopoverTitle, PopoverContent, ButtonGroup, ButtonToolbar } from 'reactstrap';
+import { Button, Popover, PopoverTitle, PopoverContent, ButtonGroup, ButtonToolbar, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import MapSideMenu from '../../components/MapSideMenu'
 import './MapPage.css'
 import {
@@ -79,10 +79,13 @@ const Map = ReactMapboxGl({
   accessToken: "pk.eyJ1IjoiZWlzY2h0ZXdlbHRrcmljaCIsImEiOiJjajRpYnR1enEwNjV2MndtcXNweDR5OXkzIn0._eSF2Gek8g-JuTGBpw7aXw"
 })
 
+
+const LUXEMBOURG_BBOX = [2.230225,48.177076,10.140381,50.864911]
 class PositionControl extends React.PureComponent {
 
   state = {
     geolocating : false,
+    showingModal: false,
   }
 
   handleClick = (e) => {
@@ -90,11 +93,15 @@ class PositionControl extends React.PureComponent {
         this.setState({geolocating:true})
         return navigator.geolocation.getCurrentPosition(
           (pos) => {
+            this.setState({geolocating:false})
             if(pos.coords && pos.coords.latitude){
               const center = [pos.coords.longitude, pos.coords.latitude]
-              console.log("setting", center)
-              this.setState({geolocating:false})
-              this.props.setCenter(center)
+
+              if(center[0] < LUXEMBOURG_BBOX[0] || center[0] > LUXEMBOURG_BBOX[2] || center[1] < LUXEMBOURG_BBOX[1] || center[1] > LUXEMBOURG_BBOX[3]){
+                this.toggleModal()
+              } else {
+                this.props.setCenter(center)
+              }
             }
           },
           (err) => {
@@ -106,12 +113,29 @@ class PositionControl extends React.PureComponent {
     }
   }
 
+  toggleModal = () => {
+    this.setState({
+      showingModal: !this.state.showingModal,
+    })
+  }
+
   render(){
     const { setCenter } = this.props
     return (
       <div className={`Map__PositionControl ${this.state.geolocating ? 'Map__PositionControl--geolocating': '' }`} onClick={this.handleClick}>
         <i className="material-icons md-24">location_searching</i>
+
+        <Modal isOpen={this.state.showingModal} toggle={this.toggleModal}>
+          <ModalHeader toggle={this.toggleModal}>You're too far</ModalHeader>
+          <ModalBody>
+            You seem to be too far from Luxembourg...
+          </ModalBody>
+
+        </Modal>
+
       </div>
+
+
     )
   }
 }
