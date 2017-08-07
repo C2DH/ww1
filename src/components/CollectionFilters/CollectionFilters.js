@@ -54,6 +54,7 @@ class CollectionFilters extends PureComponent {
               </div>
             )}
           />
+          <button type='button' onClick={() => onSearchChange('')}>x</button>
           </form>
         </div>
 
