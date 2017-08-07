@@ -27,6 +27,8 @@ export default class CollectionItemDownload extends React.PureComponent {
   render(){
     const { doc, className } = this.props
     const buttonId = `CollectionItemDownload-${v4()}`
+
+    if(!doc){ return null }
     return (
 
       <button className={className}
