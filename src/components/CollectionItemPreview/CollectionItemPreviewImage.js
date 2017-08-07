@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ZoomControl from '../../components/ZoomControl'
 // import WhiteTooltip from '../../components/WhiteTooltip'
+import CollectionItemDownload from '../CollectionItemDownload'
 import { Map, TileLayer, ImageOverlay } from 'react-leaflet'
 import L from 'leaflet';
 
@@ -74,12 +75,9 @@ export default class CollectionItemPreviewImage extends React.PureComponent {
       </div>
       <div className="CollectionItem__doc_controls">
         <ZoomControl zoom={zoom} maxZoom={3} minZoom={-2.5} zoomTo={this.zoomTo}/>
-
         {/* <WhiteTooltip target="CollectionItem__btn_download" tooltipText={<span>Download image and data<br/>Download image</span>} /> */}
-        <button
-          className="CollectionItem__btn_download"
-          id="CollectionItem__btn_download"
-          ><i className="icon-file_download" /></button>
+				<CollectionItemDownload doc={doc} className="CollectionItem__btn_download"/>
+
       </div>
     </div>
   );

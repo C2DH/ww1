@@ -1,6 +1,7 @@
 import React from 'react';
 import JSONTree from 'react-json-tree'
 import { Player, ControlBar, BigPlayButton } from 'video-react';
+import CollectionItemDownload from '../CollectionItemDownload'
 
 export default class CollectionItemPreviewVideo extends React.PureComponent {
   render() {
@@ -17,7 +18,7 @@ export default class CollectionItemPreviewVideo extends React.PureComponent {
 
       </div>
       <div className="CollectionItem__doc_controls">
-        <button className="CollectionItem__btn_download"><i className="icon-file_download" /></button>
+        <CollectionItemDownload doc={doc} className="CollectionItem__btn_download"/>
       </div>
     </div>
   );

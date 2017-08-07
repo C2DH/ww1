@@ -1,6 +1,7 @@
 import React from 'react';
 import JSONTree from 'react-json-tree'
 import AudioPlayer from '../AudioPlayer'
+import CollectionItemDownload from '../CollectionItemDownload'
 
 export default class CollectionItemPreviewAudio extends React.PureComponent {
 
@@ -16,7 +17,7 @@ export default class CollectionItemPreviewAudio extends React.PureComponent {
         </div>
       </div>
       <div className="CollectionItem__doc_controls">
-        <button className="CollectionItem__btn_download"><i className="icon-file_download" /></button>
+        <CollectionItemDownload doc={doc} className="CollectionItem__btn_download"/>
       </div>
     </div>
   );
