@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { Container } from 'reactstrap';
-import { markdown } from 'markdown'
+import { Converter } from 'showdown'
 import {
   loadStaticStory,
   unloadStaticStory,
@@ -11,6 +11,8 @@ import './StaticStory.css'
 import {
   getStaticStory,
 } from '../../state/selectors'
+
+const converter = new Converter()
 
 class StaticStory extends PureComponent {
   componentDidMount() {
@@ -25,7 +27,7 @@ class StaticStory extends PureComponent {
     const { staticStory } = this.props
     let content = null
     if (staticStory && staticStory.data.content) {
-      content = markdown.toHTML(staticStory.data.content)
+      content = converter.makeHtml(staticStory.data.content)
     }
 
     return (
