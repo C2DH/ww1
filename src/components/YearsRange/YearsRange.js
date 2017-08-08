@@ -13,7 +13,7 @@ class YearsBarsUnwrap extends PureComponent {
   render() {
     const { barHeight, counts, filteredCounts, containerWidth, min, max } = this.props
     const maxCount = lmax(values(counts)) || 0
-    const scale = scaleLinear().domain([0, maxCount]).range([0, barHeight])
+    const scale = scaleLinear().domain([0, maxCount]).rangeRound([0, barHeight])
     const years = [`<${min}`].concat(range(min, max + 1)).concat(`${max}>`)
     const barWidth = containerWidth / years.length
 
@@ -122,7 +122,7 @@ class YearsRange extends PureComponent {
         <div style={{ height: barHeight + 30 }}>
           <YearsBars counts={counts} filteredCounts={filteredCounts} barHeight={barHeight} min={min} max={max} />
         </div>
-        <div style={{ marginTop: '-37px' }}>
+        <div style={{ marginTop: '-35px' }}>
           <Range
             allowCross={false}
             min={min - 1}
