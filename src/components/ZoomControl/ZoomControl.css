@@ -3,18 +3,22 @@
   height: 45px;
   background-color: #1C1C1C;
 	border-radius: 100px;
-  z-index: 999;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
   bottom: 10px;
 }
 
-.ZoomControl__container button {
+.ZoomControl__container .btn.btn-secondary {
   color: #fff;
   background-color: transparent;
   border: 0px;
+  cursor: pointer;
+}
+
+.ZoomControl__container .btn-secondary:focus,
+.ZoomControl__container .btn-secondary.focus{
+  box-shadow: none;
 }
 
 .ZoomControl__reset_btn {
@@ -33,10 +37,4 @@
 .ZoomControl__minus_btn{
   margin-right: 7px;
   font-size: 18px;
-}
-
-@media (max-width: 991px) {
-  .ZoomControl__container {
-    display: none;
-  }
 }
