@@ -8,10 +8,16 @@
   position: relative;
 }
 
-.CollectionItemPreview__leaflet_wrapper{
+.CollectionItemPreview__leaflet_wrapper,
+.CollectionItemPreview__audio_wrapper{
   flex-grow: 1;
   width: 100%;
   padding-top: 15px;
+}
+
+.CollectionItemPreview__audio_wrapper{
+  display: flex;
+  align-items: center;
 }
 
 .CollectionItemPreview__pdf_preview{

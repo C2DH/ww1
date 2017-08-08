@@ -9,13 +9,11 @@ export default class CollectionItemPreviewAudio extends React.PureComponent {
     const { doc } = this.props
 
     return (
-    <div>
       <div className="CollectionItemPreview__doc_preview">
         {/* <JSONTree data={doc} /> */}
-        <div style={{height:'auto', width: '100%'}}>
-          <AudioPlayer source={`https://cors-anywhere.herokuapp.com/${doc.attachment}`} title={doc.title}/>
+        <div className="CollectionItemPreview__audio_wrapper">
+            <AudioPlayer source={`https://cors-anywhere.herokuapp.com/${doc.attachment}`} title={doc.title}/>
         </div>
-      </div>
       <div className="CollectionItem__doc_controls">
         <CollectionItemDownload doc={doc} className="CollectionItem__btn_download"/>
       </div>
