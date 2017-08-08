@@ -9,13 +9,15 @@
 }
 
 .CollectionItemPreview__leaflet_wrapper,
-.CollectionItemPreview__audio_wrapper{
+.CollectionItemPreview__audio_wrapper,
+.CollectionItemPreview__video_wrapper{
   flex-grow: 1;
   width: 100%;
   padding-top: 15px;
 }
 
-.CollectionItemPreview__audio_wrapper{
+.CollectionItemPreview__audio_wrapper,
+.CollectionItemPreview__video_wrapper{
   display: flex;
   align-items: center;
 }
@@ -105,6 +107,38 @@
   font-size: 20px;
   cursor: pointer;
   margin-right: 15px;
+}
+
+.CollectionItemPreview__video_wrapper .video-react .video-react-big-play-button{
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  border: none;
+  background-color: rgba(47,47,47,0.9);
+  line-height: 1.7em;
+}
+
+.CollectionItemPreview__video_wrapper .video-react:hover .video-react-big-play-button,
+.CollectionItemPreview__video_wrapper .video-react .video-react-big-play-button:focus{
+    background-color: rgba(47,47,47,0.9);
+}
+
+.CollectionItemPreview__video_wrapper .video-react .video-react-play-progress{
+  background-color: #F56350;
+}
+
+.CollectionItemPreview__video_wrapper .video-react .video-react-control-bar{
+  background-color: rgba(47,47,47,0.9);
+}
+
+.CollectionItemPreview__video_wrapper .video-react .video-react-control:focus:before,
+.CollectionItemPreview__video_wrapper .video-react .video-react-control:hover:before,
+.CollectionItemPreview__video_wrapper .video-react .video-react-control:focus{
+  text-shadow: none;
+}
+
+.CollectionItemPreview__video_wrapper .video-react{
+  font-family: 'Atlas Grotesk Web', Arial, sans-serif;
 }
 
 @media (max-width: 991px) {
