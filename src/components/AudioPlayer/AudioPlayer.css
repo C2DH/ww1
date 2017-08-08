@@ -1,12 +1,20 @@
+.AudioPlayer__wrapper{
+  width: 100%;
+}
+
 .AudioPlayer__top {
   margin-bottom: 20px;
-  display: inline-flex;
-  align-items: baseline;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .AudioPlayer__title {
   color: #FFF;
   margin-bottom: 0px;
+  margin-top: 15px;
+  font-family: 'Vinter Web', Georgia, serif;
+  font-size: 1.875rem;
 }
 
 .AudioPlayer__btn {
@@ -45,4 +53,47 @@
   color: #9B9B9B;
   margin-right: 5px;
   margin-left: 5px;
+}
+
+.AudioPlayer__wave-gradient{
+  position: relative;
+}
+
+.AudioPlayer__wave-gradient::after{
+  content:"";
+  display: block;
+  position: absolute;
+  top:calc(50% - 1px);
+  bottom:0;
+  left:0;
+  right: 0;
+  background: rgba(47,47,47,0.75);
+  pointer-events: none;
+  border-top: 2px solid #2F2F2F;
+  z-index: 3;
+}
+
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {  }
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {  }
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+  .AudioPlayer__top {
+    display: inline-flex;
+    text-align: left;
+    flex-direction: row;
+  }
+
+  .AudioPlayer__title {
+    margin-top: 0px;
+  }
+
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
 }
