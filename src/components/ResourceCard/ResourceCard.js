@@ -3,7 +3,7 @@ import './ResourceCard.css'
 
 const ResourceCard = ({ title, author, image, pubDate }) => (
   <div className="ResourceCard__container">
-    <img src={image} />
+    <img src={image} className="ResourceCard__image"/>
     <div className="ResourceCard__text_container">
       <p className="ResourceCard__pub_date">Publishing date: {pubDate}</p>
       <h3>{title}</h3>

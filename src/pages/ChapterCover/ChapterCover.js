@@ -17,7 +17,7 @@ class ChapterCover extends PureComponent  {
     console.log(chapter)
 
     return (
-      <Container fluid className="padding-r-l-0 ChapterCover__container">
+      <Container fluid className="ChapterCover__container">
          <Background
            image={get(chapter, 'covers[0].attachment')}
            overlay={get(chapter, 'data.background.overlay')}

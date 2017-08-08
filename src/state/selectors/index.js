@@ -402,6 +402,7 @@ const translateModuleText = (module, langCode) => ({
 
 const translateModuleObject = (module, langCode) => translateObject(module, langCode, ['caption'])
 const translateModuleGallery = (module, langCode) => translateObject(module, langCode, ['caption'])
+const translateModuleMap = (module, langCode) => translateObject(module, langCode, ['caption'])
 
 const translateModule = (module, langCode) => maybeNull(module)(module => {
   switch (module.module) {
@@ -411,6 +412,8 @@ const translateModule = (module, langCode) => maybeNull(module)(module => {
       return translateModuleObject(module, langCode)
     case 'gallery':
       return translateModuleGallery(module, langCode)
+    case 'map':
+      return translateModuleMap(module, langCode)
     default:
       return module
   }
@@ -455,7 +458,7 @@ export const makeGetModule = () => {
     getCurrentLanguage,
     (chapter, module, lang) => {
       const transModule = translateModule(module, lang.code)
-      return joinIds(chapter.documents.map(d => ({ ...d, id: d.document_id })), transModule)
+      return joinIds(chapter.documents.map(d => ({ ...d, id: d.document_id })).map(translateDocument(lang)), transModule)
     }
   )
 }

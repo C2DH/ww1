@@ -1,45 +1,163 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+import { get } from 'lodash'
 import { Card, CardBlock } from 'reactstrap';
+import ReactMapboxGl, { Popup, Marker, Layer, Feature, Cluster, ZoomControl, GeoJSONLayer, Source } from 'react-mapbox-gl'
+import * as MapboxGL from 'mapbox-gl';
 import './Module.css'
+
+import {
+  getPlaceTypeIcon,
+} from '../../utils'
 
 const fullHeight = { height: '100%'}
 
+const styles = {
+  clusterMarker: {
+    borderRadius: '50%',
+    backgroundColor: 'white',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: '#F56350',
+    border: '2px solid white',
+    fontWeight: 500
+    // pointerEvents: 'none'
+  },
+  marker: {
+    width: 30,
+    height: 30,
+    borderRadius: '50%',
+    backgroundColor: '#E0E0E0',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    border: '2px solid #C9C9C9',
+    // pointerEvents: 'none'
+  }
+}
+
+const MapToolTip = ({ snapshot, title, text }) => (
+  <div className="MapToolTip">
+    {snapshot && <div className="MapToolTip__img" style={{background: `url(${snapshot})`}}/>}
+    <h5 className="MapToolTip__title">{title}</h5>
+    <p className="MapToolTip__text">{text}</p>
+  </div>
+
+)
+
+const Map = ReactMapboxGl({
+  accessToken: "pk.eyJ1IjoiZWlzY2h0ZXdlbHRrcmljaCIsImEiOiJjajRpYnR1enEwNjV2MndtcXNweDR5OXkzIn0._eSF2Gek8g-JuTGBpw7aXw"
+})
+
+
+
 class ModuleMap extends PureComponent {
+
+  state = {
+    center: [6.087, 49.667],
+    zoom: [8],
+    selectedDocument: null,
+    selectedLayer: null,
+    sideMenuOpen: true,
+  }
+
+  onDrag = () => this.setState({ selectedDocument: null })
+
+  onMarkerClick = (doc) => {
+    this.setState({
+      selectedDocument: doc,
+      center: doc.coordinates,
+    })
+  }
+
+  closePopup = () => {
+    this.setState({
+      selectedDocument: null,
+    })
+  }
+
+
   render() {
     const { chapter, module } = this.props
+    const { selectedDocument, center, zoom } = this.state
 
-    // temporary styles for map
-    const objectContainerStyle = {
-      width: '100%',
-      height: '90vh',
-      backgroundColor: `red`,
-      color: '#fff',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center'
-    }
+    if(!module || !module.objects){ return null }
 
-    const ModuleObjectCard = () => (
-      <div  className="Module__container">
-        <Card className="Module__objectCard">
-          <div style={objectContainerStyle}><h1>MAP</h1></div>
-          <CardBlock>
-            <div className="d-inline-flex">
-              <i className="icon-hand ModuleCarousel__caption_icon"  />
-              <div className="Module__objectCard_text">
-                {module.caption}
-              </div>
-            </div>
-          </CardBlock>
-        </Card>
-      </div>
-
-    )
+    // #TODO: move to selectors
+    const documents = (module.objects || []).map(o=>o.id)
+    .map(doc => ({
+      ...doc,
+      coordinates: get(doc, 'data.coordinates.geometry.coordinates', [])
+        .slice(0, 2)
+        // For same position problem....
+        .map(x => Number(x) + Math.random() / 1000)
+        .reverse()
+    }))
 
     return (
       <div style={{height:'100%'}}>
-        <ModuleObjectCard />
+        <div  className="Module__container">
+
+          <Map
+            // ref={map => this.map = map}
+            center={center}
+            dragRotate={false}
+            keyboard={false}
+            zoom={zoom}
+            onDrag={this.onDrag}
+            touchZoomRotate={false}
+            style="mapbox://styles/eischteweltkrich/cj5cizaj205vv2qlegw01hubm"
+            containerStyle={{
+              height: module.caption ? "calc(100vh - 100px)" : "100%",
+              width: "100%",
+              top: 0,
+              position: 'absolute'
+
+            }}>
+              <ZoomControl className="Map__ZoomControl"/>
+
+              {documents && <Cluster ClusterMarkerFactory={this.clusterMarker} clusterThreshold={1} radius={60}>
+              {
+                documents.map(doc => {
+                  const icon = getPlaceTypeIcon(doc.data.place_type)
+                  return <Marker
+                    key={doc.id}
+                    style={styles.marker}
+                    onClick={() => this.onMarkerClick(doc)}
+                    coordinates={doc.coordinates}>
+                    <i className={icon.class}>{icon.content}</i>
+                  </Marker>
+                })
+              }
+            </Cluster>}
+
+            {selectedDocument && (
+              <Popup
+                coordinates={selectedDocument.coordinates}
+                offset={[0, -50]}
+                style={{boxShadow: '0 2px 5px 5px rgba(0,0,0,0.11)'}}
+                key={selectedDocument.id}>
+                <i className="material-icons pointer float-right" onClick={this.closePopup}>close</i>
+                <MapToolTip
+                  className="clearfix"
+                  snapshot={selectedDocument.snapshot}
+                  title={selectedDocument.title}
+                  text={selectedDocument.translated.description}
+                />
+              </Popup>
+            )}
+          </Map>
+
+          { module.caption &&
+          <div className="ModuleMap__Caption">
+            <i className="icon-hand TimelineExpandableYear__month_marker_hand" />{' '}
+            <span>{module.caption}</span>
+          </div>
+          }
+
+
+        </div>
       </div>
     )
   }
