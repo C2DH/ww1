@@ -21,11 +21,11 @@ class ChaptersControl extends PureComponent {
   }
 
   render() {
-    const { hasNext, hasPrev, title, onClickNext, onClickPrev, currentIndex, count } = this.props
+    const { hasNext, hasPrev, title, onClickTheme, onClickNext, onClickPrev, currentIndex, count } = this.props
     return (
       <div>
         <div className="ChaptersControl__chapters_num_container">
-          <span>{title}</span>
+          <span onClick={onClickTheme}>{title}</span>
           <button className="ChaptersControl__chapters_btn">{currentIndex}/{count}</button>
         </div>
         <div className="ChaptersControl__controls_container">

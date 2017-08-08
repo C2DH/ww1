@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import { Link } from 'react-router-dom'
 import { get, forEach } from 'lodash'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import { connect } from 'react-redux'
@@ -38,10 +39,8 @@ class Theme extends PureComponent {
 
   render() {
     const { theme } = this.props
-    console.log(theme)
     const firstChapterSlug = getFirstChapterSlug(theme)
     const containerStyle = { backgroundImage: `url(${getThemeCover(theme)})` }
-
 
     return (
       <Container fluid className="padding-r-l-0 Theme__container" style={containerStyle}>
@@ -75,7 +74,9 @@ class Theme extends PureComponent {
                   <div className="Theme__chapter_scroll_container">
                     {get(theme, 'stories').map((chapter, i) => (
                       <div key={chapter.id} className="Theme__chapter">
-                        <div className="Theme__chapter_title"><h4>{chapter.translated.title}</h4></div>
+                        <div className="Theme__chapter_title">
+                          <Link to={`/themes/${theme.slug}/chapters/${chapter.slug}`}><h4>{chapter.translated.title}</h4></Link>
+                        </div>
                         <div className="Theme__chapter_num"><h2>{i + 1}</h2></div>
                       </div>
                     ))}

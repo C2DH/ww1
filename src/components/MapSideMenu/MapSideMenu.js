@@ -47,6 +47,7 @@ const MapSideMenu = ({
         )}
       />
       </form>
+      <button type='button' onClick={() => onSearchChange('')}>x</button>
     </div>
     <div className="MapSideMenu__titleContainer">
       <h5 className="MapSideMenu__titleContainer_title">TYPE</h5>

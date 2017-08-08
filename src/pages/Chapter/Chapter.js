@@ -44,12 +44,16 @@ class Chapter extends PureComponent  {
           <Route path={`${match.path}/modules/:moduleIndex`}>
             {({ match }) => {
               const index = match ? +match.params.moduleIndex : 0
-              const baseUrl = `/themes/${theme.slug}/chapters/${chapter.slug}`
+              const themeUrl = `/themes/${theme.slug}`
+              const baseUrl = `${themeUrl}/chapters/${chapter.slug}`
               return (
                 <ChaptersControl
                   title={theme.translated.title}
                   hasPrev={index > 0}
                   hasNext={index < totalChapterModules}
+                  onClickTheme={() => {
+                    history.push(themeUrl)
+                  }}
                   onClickNext={() => {
                     history.push(`${baseUrl}/modules/${index + 1}`)
                   }}

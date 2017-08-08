@@ -38,12 +38,13 @@ class OpenSideMenu extends PureComponent {
           <li><NavLink exact={true} to="/map" onClick={this.props.closeMenu}>Map</NavLink></li>
           <li><NavLink exact={true} to="/timeline" onClick={this.props.closeMenu}>Timeline</NavLink></li>
           <li><NavLink exact={true} to="/education" onClick={this.props.closeMenu}>Education</NavLink></li>
+          <li><NavLink exact={true} to="/resources" onClick={this.props.closeMenu}>Resources</NavLink></li>
         </ul>
       </div>
       <div className="OpenSideMenu__bottom">
        <ul className="OpenSideMenu__bottom_list">
-         <li><NavLink to="/" onClick={this.props.closeMenu}>About</NavLink></li>
-         <li><NavLink to="/" onClick={this.props.closeMenu}>Terms of use</NavLink></li>
+         <li><NavLink to="/about" onClick={this.props.closeMenu}>About</NavLink></li>
+         <li><NavLink to="/terms-of-use" onClick={this.props.closeMenu}>Terms of use</NavLink></li>
        </ul>
        <div className="OpenSideMenu__bottom_logos">
        </div>
