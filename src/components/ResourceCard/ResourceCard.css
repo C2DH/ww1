@@ -22,3 +22,9 @@
   position: absolute;
   bottom: 15px;
 }
+
+.ResourceCard__image {
+
+  max-height: 240px;
+  width: auto;
+}
