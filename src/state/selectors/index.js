@@ -401,14 +401,16 @@ const translateModuleText = (module, langCode) => ({
 })
 
 const translateModuleObject = (module, langCode) => translateObject(module, langCode, ['caption'])
+const translateModuleGallery = (module, langCode) => translateObject(module, langCode, ['caption'])
 
-// TODO: In a real world this should switch between module types...
 const translateModule = (module, langCode) => maybeNull(module)(module => {
   switch (module.module) {
     case 'text':
       return translateModuleText(module, langCode)
     case 'object':
       return translateModuleObject(module, langCode)
+    case 'gallery':
+      return translateModuleGallery(module, langCode)
     default:
       return module
   }

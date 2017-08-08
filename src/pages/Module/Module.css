@@ -99,6 +99,11 @@
   margin-top: 30px;
 }
 
+.ModuleCarousel__inner_slider img {
+  height: 100%;
+  width: auto;
+}
+
 .ModuleCarousel__inner_slider--opaque img {
   opacity: 0.5;
   filter: alpha(opacity=50);
