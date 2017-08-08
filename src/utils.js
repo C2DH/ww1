@@ -79,7 +79,34 @@ const PLACE_TYPE_ICONS = {
     class: 'iconmap-hospital',
     content: ''
   },
-  // ...
+  shelter: {
+    class: 'iconmap-shelter',
+    content: ''
+  },
+  'steel-plant': {
+    class: 'iconmap-steel-plant',
+    content: ''
+  },
+  cemetery: {
+    class: 'iconmap-cemetery',
+    content: ''
+  },
+  memorial: {
+    class: 'iconmap-memorial',
+    content: ''
+  },
+  'railway-station': {
+    class: 'iconmap-railway-station',
+    content: ''
+  },
+  'administrative-building': {
+    class: 'iconmap-administrative-building',
+    content: ''
+  },
+  'army-camp': {
+    class: 'iconmap-army-camp',
+    content: ''
+  }
 }
 export const getPlaceTypeIcon = placeType => {
   const icon = PLACE_TYPE_ICONS[placeType]

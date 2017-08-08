@@ -8,6 +8,7 @@ import * as MapboxGL from 'mapbox-gl';
 import { Button, Popover, PopoverTitle, PopoverContent, ButtonGroup, ButtonToolbar, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import MapSideMenu from '../../components/MapSideMenu'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
+import { isMobileScreen } from '../../breakpoints'
 import './MapPage.css'
 import {
   parseQsValue,
@@ -58,11 +59,13 @@ const styles = {
     width: 30,
     height: 30,
     borderRadius: '50%',
-    backgroundColor: '#E0E0E0',
+    backgroundColor: '#ffffff',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    border: '2px solid #C9C9C9',
+    color:'#F56350',
+    fontSize: '2rem',
+    cursor:'pointer',
     // pointerEvents: 'none'
   }
 }
@@ -126,12 +129,11 @@ class PositionControl extends React.PureComponent {
       <div className={`Map__PositionControl ${this.state.geolocating ? 'Map__PositionControl--geolocating': '' }`} onClick={this.handleClick}>
         <i className="material-icons md-24">location_searching</i>
 
-        <Modal isOpen={this.state.showingModal} toggle={this.toggleModal}>
-          <ModalHeader toggle={this.toggleModal}>You're too far</ModalHeader>
+        <Modal isOpen={this.state.showingModal} toggle={this.toggleModal} zIndex="9999">
+          <ModalHeader toggle={this.toggleModal}>Ooops</ModalHeader>
           <ModalBody>
-            You seem to be too far from Luxembourg...
+            You seem too far from Luxembourg...
           </ModalBody>
-
         </Modal>
 
       </div>
@@ -186,7 +188,7 @@ class MapPage extends PureComponent {
     zoom: [8],
     selectedDocument: null,
     selectedLayer: null,
-    sideMenuOpen: true,
+    sideMenuOpen: !isMobileScreen()
   }
 
   componentDidMount() {
@@ -361,7 +363,8 @@ class MapPage extends PureComponent {
 
     const { selectedDocument, center, zoom } = this.state
     const linePaint: MapboxGL.LinePaint = {
-      'line-color': '#F56350'
+      'line-color': '#F56350',
+      'line-width': 3
     };
 
     const symbolLayout: MapboxGL.SymbolLayout = {
@@ -413,7 +416,7 @@ class MapPage extends PureComponent {
                         style={styles.marker}
                         onClick={() => this.onMarkerClick(doc)}
                         coordinates={doc.coordinates}>
-                        <i className={icon.class}>{icon.content}</i>
+                        <span className={icon.class}>{icon.content}</span>
                       </Marker>
                     })
                   }
@@ -431,14 +434,14 @@ class MapPage extends PureComponent {
                       symbolLayout={symbolLayout}
                       symbolPaint={symbolPaint}
                       linePaint={linePaint}
-                      data="borders/1914.geojson"/>
+                      data="borders/1920.geojson"/>
                 )}
 
                 {selectedDocument && (
                   <Popup
                     coordinates={selectedDocument.coordinates}
-                    offset={[0, -50]}
-                    style={{boxShadow: '0 2px 5px 5px rgba(0,0,0,0.11)'}}
+                    anchor='bottom'
+                    offset={[0, -15]}
                     key={selectedDocument.id}>
                     <i className="material-icons pointer float-right" onClick={this.closePopup}>close</i>
                     <MapToolTip
