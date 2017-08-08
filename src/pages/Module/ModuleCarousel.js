@@ -66,9 +66,9 @@ class ModuleCarousel extends PureComponent {
             <span> {currentIndex + 1} / {module.objects.length} </span>
           </div>
         </Container>
-        <Row className="ModuleCarousel__caption">
+        <div className="ModuleCarousel__caption">
           <i className="icon-hand ModuleCarousel__caption_icon" />{module.caption}
-        </Row>
+        </div>
       </div>
     )
   }
