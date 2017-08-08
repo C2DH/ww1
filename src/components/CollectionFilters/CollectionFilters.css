@@ -155,6 +155,11 @@
   background-color: #DBDBD0;
 }
 
+.CollectionFilters__autocomplete_reset{
+  cursor: pointer;
+  padding-right: 10px;
+}
+
 /* Small devices (landscape phones, 576px and up)*/
 @media (min-width: 576px) {  }
 

@@ -59,8 +59,9 @@ class CollectionFilters extends PureComponent {
               </div>
             )}
           />
-          <button type='button' onClick={() => onSearchChange('')}>x</button>
           </form>
+          <i className="material-icons CollectionFilters__autocomplete_reset" onClick={() => onSearchChange('')}>close</i>
+
         </div>
 
         {!hideFilters && <div>
