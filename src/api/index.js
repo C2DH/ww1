@@ -32,7 +32,7 @@ export const getDocuments = (params = {}) =>
     .then(extractBody)
 
 export const getCollectionDocuments = (params = {}) => getDocuments({
-  exclude: { data__type__in: ['person', 'event', 'glossary', 'place'] },
+  exclude: { data__type__in: ['person', 'event', 'glossary', 'place', 'resource'] },
   ...params,
 })
 
