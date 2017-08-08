@@ -13,6 +13,7 @@
   cursor: pointer;
 }
 
+.TimelineExpandableYear__year:hover,
 .TimelineExpandableYear__year.expanded {
   color: #F36455;
 }
@@ -27,11 +28,26 @@
   font-size: 14px;
 }
 
+.TimelineExpandableYear__month_marker{
+    cursor: pointer;
+}
+
+.TimelineExpandableYear__month_marker:hover{
+    color:  #F36455;
+}
+
+.TimelineExpandableYear__month_marker.disabled{
+  color: #ccc;
+  cursor: default;
+}
+
+
 .TimelineExpandableYear__month_marker_hand {
   -ms-transform: rotate(90deg); /* IE 9 */
   -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
   transform: rotate(90deg);
   font-size: 16px!important;
+  cursor: pointer;
 }
 
 .TimelineExpandableYear__month_marker_active {

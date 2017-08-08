@@ -13,7 +13,7 @@ const Month = ({ month, validMonths, open, disabled, onMonthClick }) => {
       </div>)
     }
   if (typeof validMonths[padStart(month, 2, 0)] === 'undefined') {
-    return (<i className="icon-fiber_manual_record TimelineExpandableYear__month_marker" style={{color: '#222'}}/>)
+    return (<i className="icon-fiber_manual_record TimelineExpandableYear__month_marker disabled"/>)
   } else {
     return (<i className="icon-fiber_manual_record TimelineExpandableYear__month_marker" onClick={e => {
       e.preventDefault()

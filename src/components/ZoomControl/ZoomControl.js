@@ -5,17 +5,15 @@ const fixFloat = f => +(f.toFixed(2))
 const INC = 0.2
 
 const ZoomControl = ({zoom, maxZoom, minZoom, zoomTo}) => (
-  <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
     <div className="ZoomControl__container">
-      <button disabled={fixFloat(zoom - INC) < minZoom} onClick={() => zoomTo(fixFloat(zoom - INC))}>
-        <i className="icon-zoom_out" />
+      <button className="btn btn-secondary zoom" disabled={fixFloat(zoom - INC) < minZoom} onClick={() => zoomTo(fixFloat(zoom - INC))}>
+        <i className="material-icons">zoom_out</i>
       </button>
-      <button className="" onClick={() => zoomTo(minZoom)}>Reset</button>
-      <button className="" disabled={fixFloat(zoom + INC) > maxZoom} onClick={() => zoomTo(fixFloat(zoom + INC))}>
-        <i className="icon-zoom_in" />
+      <button className="btn btn-secondary reset" onClick={() => zoomTo(minZoom)}>Reset</button>
+      <button className="btn btn-secondary zoom" disabled={fixFloat(zoom + INC) > maxZoom} onClick={() => zoomTo(fixFloat(zoom + INC))}>
+        <i className="material-icons">zoom_in</i>
       </button>
     </div>
-  </div>
 )
 
 export default ZoomControl

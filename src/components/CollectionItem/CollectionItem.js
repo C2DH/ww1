@@ -29,13 +29,13 @@ class AdditionalInformation extends PureComponent {
 
   return (
     <div>
-      <div className="CollectionItem__additional_info d-flex align-items-center">
+      <div className="CollectionItem__additional_info d-flex align-items-center" onClick={this.toggleInfo}>
         <h6 className="CollectionItem__label">
           additional information
         </h6>
-        <i className="material-icons" onClick={this.toggleInfo}>{this.state.open ? 'keyboard_arrow_up': 'keyboard_arrow_down'}</i>
+        <i className="material-icons">{this.state.open ? 'keyboard_arrow_up': 'keyboard_arrow_down'}</i>
       </div>
-       {this.state.open &&
+      <Collapse isOpen={this.state.open}>
        <table className="table table-bordered CollectionItem__AdditionalInformation_table">
            <tbody>
          { metadataKeys.map(k => {
@@ -50,7 +50,8 @@ class AdditionalInformation extends PureComponent {
           })
          }
          </tbody>
-        </table>}
+        </table>
+      </Collapse>
     </div>
 
   )
@@ -58,17 +59,18 @@ class AdditionalInformation extends PureComponent {
 }
 
 const CloseButton = ({ onClick }) => (
-  <div className="CollectionItem__close_btn_container">
-    <button
-      type="button"
-      className="CollectionItem__close_btn"
-      aria-label="Close"
-      onClick={onClick}
-      style={{position: 'fixed', top: 0, right: 0, zIndex: 1}}
-      >
-        <i aria-hidden="true" className="material-icons">close</i>
-      </button>
-  </div>
+  <Col xs="12" lg="1" className="order-2-sm-1">
+    <div className="CollectionItem__close_btn_container">
+      <button
+        type="button"
+        className="CollectionItem__close_btn"
+        aria-label="Close"
+        onClick={onClick}
+        >
+          <i aria-hidden="true" className="material-icons">close</i>
+        </button>
+    </div>
+  </Col>
 )
 
 const RelatedObjects = ({items}) => {
@@ -92,8 +94,8 @@ const RelatedObjects = ({items}) => {
 const SeeAlso = ({doc}) => (
   <div className="CollectionItem__Relatedobjects">
     <h6 className="CollectionItem__label">SEE ALSO</h6>
-      {doc.data.year && <Link to={`/collection/?types=${get(doc, "data.year")},${get(doc, "data.year",0)+1}`}><button className="CollectionItem__btn btn btn-secondary">{get(doc, "data.year")}</button></Link>}
-      {doc.data.type && <Link to={`/collection/?years=${get(doc, "data.type")}`}><button className="CollectionItem__btn btn btn-secondary">{get(doc, "data.type")}</button></Link>}
+      {doc.data.year && <Link to={`/collection/?years=${get(doc, "data.year")},${get(doc, "data.year",0)+1}`}><button className="CollectionItem__btn btn btn-secondary">{get(doc, "data.year")}</button></Link>}
+      {doc.data.type && <Link to={`/collection/?types=${get(doc, "data.type")}`}><button className="CollectionItem__btn btn btn-secondary">{get(doc, "data.type")}</button></Link>}
   </div>
 )
 
@@ -118,15 +120,14 @@ export default ({ doc, onCloseClick }) => {
   }
   return (
     <div className="CollectionItem__wrapper_div">
-      <Container>
-        <CloseButton onClick={onCloseClick} />
+      <Container fluid>
         <Row className="CollectionItem__main_row">
-            <Col xs="12" lg="8">
+            <Col xs="12" lg="8" className="order-2">
               <div className="CollectionItem__doc_container">
                 <CollectionItemPreview doc={doc}/>
               </div>
             </Col>
-            <Col xs="12" lg="4" className="CollectionItem__info_container">
+            <Col xs="12" lg="3" className="CollectionItem__info_container order-2">
               <div className="CollectionItem__info">
                 <p className="CollectionItem__date">
                   <EventDate
@@ -152,6 +153,7 @@ export default ({ doc, onCloseClick }) => {
              </div>
 
             </Col>
+            <CloseButton onClick={onCloseClick} />
             {/* <Col lg="1" className="hidden-sm-down" style={{paddingRight: 0, paddingLeft: 0, maxWidth: '1px'}}/> */}
         </Row>
 

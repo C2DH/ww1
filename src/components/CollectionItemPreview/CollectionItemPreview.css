@@ -1,5 +1,4 @@
 .CollectionItemPreview__doc_preview{
-  padding: 15px;
   flex-grow: 1;
   width: 100%;
   display: flex;
@@ -7,6 +6,12 @@
   align-items: center;
   justify-content: center;
   position: relative;
+}
+
+.CollectionItemPreview__leaflet_wrapper{
+  flex-grow: 1;
+  width: 100%;
+  padding-top: 15px;
 }
 
 .CollectionItemPreview__pdf_preview{

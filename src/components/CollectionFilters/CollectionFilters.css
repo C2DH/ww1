@@ -15,10 +15,14 @@
   top: 0;
   height: 60px;
   padding-left: 0px;
-  padding-right: 15px;
+  padding-right: 0px;
   background-color: #fff;
   width: 100%;
   border-bottom: 1px solid #DBDBD0;
+}
+
+.CollectionFilters__input_container form{
+  width: 100%;
 }
 
 .CollectionFilters__filtermobile_title{
@@ -141,6 +145,21 @@
   padding: 15px;
 }
 
+.CollectionFilters__autocompleteItem{
+  padding: 15px 10px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.CollectionFilters__autocompleteItem.active{
+  background-color: #DBDBD0;
+}
+
+.CollectionFilters__autocomplete_reset{
+  cursor: pointer;
+  padding-right: 10px;
+}
+
 /* Small devices (landscape phones, 576px and up)*/
 @media (min-width: 576px) {  }
 
@@ -154,7 +173,7 @@
   }
 
   .CollectionFilters__input_container {
-    position: fixed;
+    position: absolute;
     top: 0;
     height: 100px;
     padding-left: 5px;

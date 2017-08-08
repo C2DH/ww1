@@ -55,9 +55,9 @@ export default class CollectionItemPreviewImage extends React.PureComponent {
 
     return (
     // <div className="CollectionItem__doc_container d-flex flex-column">
-		<div>
-      <div className="CollectionItemPreview__doc_preview" style={{height:'80vh'}}>
+    <div className="CollectionItemPreview__doc_preview">
         {/* <img src={doc.src} alt={doc.title} className="img-fluid" style={{maxHeight:'70vh'}}/> */}
+			<div className="CollectionItemPreview__leaflet_wrapper d-flex">
         <Map
           minZoom={-2.5}
           maxZoom={3}
@@ -66,13 +66,12 @@ export default class CollectionItemPreviewImage extends React.PureComponent {
           attributionControl={false}
           crs = {L.CRS.Simple} bounds={bounds} maxBounds={bounds} zoom={zoom}
           center={xy(doc.data.width/2, doc.data.height/2)}
-          style={{height:'80vh', width:'100%', background: 'transparent'}}>
+          style={{display:'flex', flexGrow:'1', width:'100%', background: 'transparent'}}>
           <ImageOverlay
             bounds={bounds}
             url={doc.src}/>
         </Map>
-
-      </div>
+			</div>
       <div className="CollectionItem__doc_controls">
         <ZoomControl zoom={zoom} maxZoom={3} minZoom={-2.5} zoomTo={this.zoomTo}/>
         {/* <WhiteTooltip target="CollectionItem__btn_download" tooltipText={<span>Download image and data<br/>Download image</span>} /> */}
