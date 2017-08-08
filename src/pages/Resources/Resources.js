@@ -25,23 +25,34 @@ class Resources extends PureComponent {
   render() {
     const { documents } = this.props
     return (
-      <Container fluid className="padding-r-l-0">
-        <BigTitle title="Resources" />
-        <div className="Resources__whiteBackground">
-          <StaticStory slug='resources' />
+      <div>
+        <div className="Resources__top_wrapper">
+          <Container>
+            <BigTitle title="Resources" />
+            <Row>
+              <Col>
+                  <StaticStory slug='resources' />
+              </Col>
+            </Row>
+          </Container>
         </div>
-        <div className="Resources__cards_container">
-          {documents && documents.map(doc => (
-            <ResourceCard
-              key={doc.id}
-              image={doc.snapshot || 'https://via.placeholder.com/250x250'}
-              pubDate="12 April 2017"
-              title={doc.translated.title}
-              author="John Doe"
-            />
-          ))}
-        </div>
-      </Container>
+        <Container>
+          <Row>
+            <Col>
+              {documents && documents.map(doc => (
+                <ResourceCard
+                  key={doc.id}
+                  image={doc.snapshot || 'https://via.placeholder.com/250x250'}
+                  pubDate="12 April 2017"
+                  title={doc.translated.title}
+                  author="John Doe"
+                />
+              ))}
+            </Col>
+          </Row>
+        </Container>
+      </div>
+
     )
   }
 }

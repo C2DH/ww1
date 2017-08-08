@@ -2,29 +2,56 @@
   margin-top: 10px;
   display: inline-flex;
   background-color: #fff;
-  width: 94%;
   padding: 15px;
   position: relative;
+  border: 1px solid #DBDBD0;
 }
 
 .ResourceCard__text_container {
-  padding-left: 15px;
+  padding-left: 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ResourceCard__downloadBtn_wrapper {
+  margin-top: auto;
 }
 
 .ResourceCard__downloadBtn {
-  padding: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  border-radius: 30px;
-  border: 1px solid #ccc;
-  text-transform: uppercase;
-  background-color: #fff;
-  position: absolute;
-  bottom: 15px;
+    border-radius: 23px;
+    display: flex;
+    font-family: "Atlas Grotesk Web";
+    font-weight: 500;
+    text-transform: uppercase;
 }
 
 .ResourceCard__image {
-
-  max-height: 240px;
-  width: auto;
+  width: 255px;
+  height: 255px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 1px solid #DBDBD0;
 }
+
+.ResourceCard__pub_date{
+  font-family: "Atlas Grotesk Web";
+  font-weight: 400;
+  font-size: 0.875rem;
+}
+
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {  }
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {  }
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .ResourceCard__text_container {
+    padding-left: 25px;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  }

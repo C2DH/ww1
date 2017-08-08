@@ -9,6 +9,7 @@ import {
 import {
   getStaticStory,
 } from '../../state/selectors'
+import './StaticStory.css'
 
 const converter = new Converter()
 
@@ -37,7 +38,7 @@ class StaticStory extends PureComponent {
 
     return (
       <div>
-        {content && <div  dangerouslySetInnerHTML={{ __html: content }} />}
+        {content && <div className="Static__intro" dangerouslySetInnerHTML={{ __html: content }} />}
       </div>
     )
   }

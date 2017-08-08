@@ -1,34 +1,35 @@
-.BigTitle__container {
-  background-color: #fff;
-  padding: 30px;
-  padding-left: 40px;
-}
-
-.BigTitle__TitleRow {
-  margin-top: 30px;
-  padding-bottom: 30px;
-  border-bottom: 1px solid #DBDBD0;
-}
-
 .BigTitle__title {
-  font-size: 4.5em;
+  font-size: 1.5rem;
+  border-bottom: 1px solid #DBDBD0;
+  text-align: center;
+  margin-top: 18px;
+  padding-bottom: 18px;
+  position: fixed;
+  width: 100%;
+  background: white;
+  z-index: 10;
+  margin-left: -15px;
 }
 
-@media (max-width: 767px) {
-  .BigTitle__container {
-    padding: 10px;
-    padding-left: 50px;
-  }
-  .BigTitle__TitleRow {
-    margin-top: 0px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #DBDBD0;
-    margin-left: -58px;
-    padding-left: 58px;
-  }
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {  }
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {  }
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
   .BigTitle__title {
-    font-size: 2rem;
-    padding-left: 30px;
-    padding-top: 20px;
+    position: relative;
+    margin-left: 0px;
+    font-size: 6.25rem;
+    height: auto;
+    text-align: left;
+    margin-top: 0px;
+    padding-bottom: 0px;
   }
 }
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  }

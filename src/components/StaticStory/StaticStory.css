@@ -1,9 +1,12 @@
-.Resources__top_wrapper{
-  background-color: white;
-  width: 100%;
-  padding-top: 0px;
-  padding-bottom: 25px;
-  margin-bottom: 25px;
+.Static__intro{
+  column-count: 1;
+  margin-top: 15px;
+  column-gap: 15px;
+  padding-top: 60px;
+}
+
+.Static__intro p{
+  font-size: 1rem;
 }
 
 /* Small devices (landscape phones, 576px and up)*/
@@ -14,9 +17,13 @@
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-  .Resources__top_wrapper{
-    padding-top: 50px;
+  .Static__intro{
+    column-count: 2;
+    padding-top: 0px;
+  }
 
+  .Static__intro p{
+    font-size: 1.125rem;
   }
 }
 
