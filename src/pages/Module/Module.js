@@ -4,7 +4,7 @@ import { Container } from 'reactstrap'
 import ModuleText from './ModuleText'
 import ModuleObject from './ModuleObject'
 import ModuleTextObject from './ModuleTextObject'
-import ModuleCarousel from './ModuleCarousel'
+import ModuleGallery from './ModuleGallery'
 import ModuleMap from './ModuleMap'
 import ModuleMapText from './ModuleMapText'
 import './Module.css'
@@ -24,6 +24,8 @@ const getModuleComponent = moduleType => {
       return ModuleText
     case 'object':
       return ModuleObject
+    case 'gallery':
+      return ModuleGallery
     default:
       throw new Error(`Invalid module type ${moduleType}`)
   }
