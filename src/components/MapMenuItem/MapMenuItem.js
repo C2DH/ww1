@@ -1,14 +1,18 @@
 import React from 'react'
 import { Badge } from 'reactstrap'
+import { isNull } from 'lodash'
 import './MapMenuItem.css'
 
 const MapMenuItem = ({ icon, label, count, selected, onClick }) => (
-  <div className="MapMenuItem__container" onClick={onClick}>
-    <i className={`${icon.class || ''} MapMenuItem__icon`}>{icon.content}</i>
-    <p style={ selected ? { color: 'black' } :  { color: 'gray' } }>{label}</p>
-    <h5 className="MapMenuItem__badge_container">
-      <Badge className="MapMenuItem__badge">{count}</Badge>
-    </h5>
+  <div onClick={onClick}
+    className={ selected ? 'CollectionFilters__filter_wrapper d-flex w-100 justify-content-between opacity-100' : 'CollectionFilters__filter_wrapper d-flex w-100 justify-content-between opacity-50'  }>
+    <p className="MapFilters__filter">
+      <span className={`${icon.class || ''} MapMenuItem__icon`}>{icon.content}</span>
+      <span>{label}</span>
+    </p>
+    <Badge className="CollectionFilters__filter_badge">
+      {isNull(count) ? '0' : count}
+    </Badge>
   </div>
 )
 

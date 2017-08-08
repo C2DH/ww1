@@ -1,16 +1,90 @@
-.MapPage__TopRow {
-  height: 100px;
-  background-color: #fff;
-  border-bottom: 1px solid #DBDBD0;
+.MapPage__MainRow{
+  height: 100vh;
+  padding-top: 100px;
+  display: flex;
+  width: 1px;
+}
+
+.MapPage__MainRow.openMap{
+  width: calc(100vw - 358px);
+}
+
+.MapPage__MainRow.closeMap{
+  width: calc(100vw - 58px);
+}
+
+.Map__ZoomControl{
+  left: 20px!important;
+  box-shadow: none!important;
+  border: none!important;
+}
+
+.Map__ZoomControl button{
+  width: 36px!important;
+  height: 36px!important;
+  background-color: rgba(0, 0, 0, .7)!important;
+  border-radius: 100%!important;
+  padding: 6px!important;
+  margin: 4px!important;
+  cursor: pointer!important;
+  background-image: none!important;
+  position: relative;
+  opacity: 1!important;
+}
+
+.Map__ZoomControl button:after{
+  display: flex;
+  color: white;
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  font-feature-settings: 'liga';
+}
+
+.Map__ZoomControl button:nth-of-type(1):after{
+    content: "add";
+}
+
+.Map__ZoomControl button:nth-of-type(2):after{
+    content: "remove";
+}
+
+.Map__Controls {
+  position: absolute;
+  left: 20px;
+  top: 100px;
   z-index: 10000;
+  color: #fff;
 }
 
-.MapPage__MapContainer--menuOpen {
-  width: 80%;
+.Map__LayersControl {
+  width: 36px;
+  height: 36px;
+  background-color: rgba(0, 0, 0, .7);
+  border-radius: 100px;
+  padding: 6px;
+  margin: 4px;
+  cursor: pointer;
 }
 
-.MapPage__MapContainer--menuClose {
-  width: 100%;
+.Map__LayersControl__Button{
+  border: none;
+}
+
+.Map__LayersControl__Button.btn-secondary:active,
+.Map__LayersControl__Button.btn-secondary.active,
+.Map__LayersControl__Button.show > .btn-secondary.dropdown-toggle{
+  background-color: #F56350;
+  color: white;
 }
 
 .MapPage__items_shown {
@@ -45,14 +119,6 @@
   font-size: 14px;
 }
 
-
-.Map__Controls {
-  position: absolute;
-  left: 20px;
-  z-index: 10000;
-  color: #fff;
-}
-
 .Map__PositionControl {
   width: 36px;
   height: 36px;
@@ -71,14 +137,4 @@
 
 .Map__PositionControl--geolocating{
   animation: Map__PositionContro--animatedBackground 2s linear infinite;
-}
-
-.Map__LayersControl {
-  width: 36px;
-  height: 36px;
-  background-color: rgba(0, 0, 0, .7);
-  border-radius: 100px;
-  padding: 6px;
-  margin: 4px;
-  cursor: pointer;
 }

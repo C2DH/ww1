@@ -1,19 +1,10 @@
-.MapMenuItem__container {
+.MapFilters__filter {
+  margin-bottom: 0px;
+  text-transform: capitalize;
   display: flex;
-  height: 30px;
+  align-items: center;
 }
 
 .MapMenuItem__icon {
-  padding-right: 10px;
-  position: relative;
-  top: 2px;
-}
-
-.MapMenuItem__badge_container {
-  margin-left: auto;
-}
-
-.MapMenuItem__badge {
-  background-color: #F36455;
-  font-weight: normal;
+  font-size: 2.2rem;
 }

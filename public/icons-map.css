@@ -1,0 +1,56 @@
+@font-face {
+  font-family: 'icomoon-map';
+  src:  url('fonts/icomoon-map.eot?hzlmh6');
+  src:  url('fonts/icomoon-map.eot?hzlmh6#iefix') format('embedded-opentype'),
+    url('fonts/icomoon-map.ttf?hzlmh6') format('truetype'),
+    url('fonts/icomoon-map.woff?hzlmh6') format('woff'),
+    url('fonts/icomoon-map.svg?hzlmh6#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="iconmap-"], [class*=" iconmap-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon-map' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.iconmap-administrative-building:before {
+  content: "\e900";
+}
+.iconmap-army-camp:before {
+  content: "\e901";
+}
+.iconmap-bombing:before {
+  content: "\e902";
+}
+.iconmap-cemetery:before {
+  content: "\e903";
+}
+.iconmap-hospital:before {
+  content: "\e904";
+}
+.iconmap-memorial:before {
+  content: "\e905";
+}
+.iconmap-others:before {
+  content: "\e906";
+}
+.iconmap-railway-station:before {
+  content: "\e907";
+}
+.iconmap-shelter:before {
+  content: "\e908";
+}
+.iconmap-steel-plant:before {
+  content: "\e909";
+}

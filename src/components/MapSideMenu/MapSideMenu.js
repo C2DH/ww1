@@ -11,6 +11,7 @@ import {
 const MapSideMenu = ({
   dataPlaceTypes,
   selectedPlaceTypes,
+  toggleOpen,
   onTogglePlaceTypeSelection,
   onResetSelectedPlaceTypes,
   uncertainYearsCount,
@@ -26,7 +27,13 @@ const MapSideMenu = ({
   autocompleteResults,
   onAutocompleteSelect,
 }) => (
-  <div className="MapSideMenu__container">
+  <div className="CollectionFilters__container">
+    <div className="CollectionFilters__filtermobile_title d-flex align-items-center hidden-lg-up">
+      <h2>Filters</h2>
+      <button type="button" className="CollectionFilters__filtermobile_title__check btn btn-secondary" onClick={toggleOpen}>
+        <i className="material-icons">check</i>
+      </button>
+    </div>
     <div className="d-flex align-items-center CollectionFilters__input_container">
       <i className="material-icons CollectionFilters__input_container_icon hidden-md-down">search</i>
       {/* <input className="form-control CollectionFilters__input" onChange={onSearchChange} value={searchString} placeholder="Search here (e.g: postcard)" /> */}
@@ -35,25 +42,30 @@ const MapSideMenu = ({
         onAutocompleteSelect(searchString)
       }}>
       <Autocomplete
+        inputProps={{
+          className:'form-control CollectionFilters__input',
+          placeholder:'Search here (e.g: bombing)'
+        }}
+        wrapperStyle={{display:'flex', position:'relative'}}
         value={searchString}
         onChange={(event, value) => onSearchChange(value)}
         onSelect={onAutocompleteSelect}
         items={autocompleteResults}
         getItemValue={item => item}
         renderItem={(item, isHighlighted) => (
-          <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
+          <div className={isHighlighted ? 'CollectionFilters__autocompleteItem active' : 'CollectionFilters__autocompleteItem'}>
             {item}
           </div>
         )}
       />
       </form>
-      <button type='button' onClick={() => onSearchChange('')}>x</button>
+                <i className="material-icons CollectionFilters__autocomplete_reset" onClick={() => onSearchChange('')}>close</i>
     </div>
-    <div className="MapSideMenu__titleContainer">
-      <h5 className="MapSideMenu__titleContainer_title">TYPE</h5>
-      <a className="MapSideMenu__titleContainer_reset" onClick={onResetSelectedPlaceTypes}>Reset</a>
+    <div className="CollectionFilters__reset_container d-flex align-items-center">
+      <h5 className="CollectionFilters__reset_title">TYPE</h5>
+      <a className="CollectionFilters__reset" onClick={onResetSelectedPlaceTypes}>Reset</a>
     </div>
-    <div className="MapSideMenu__sitesList">
+    <div className="CollectionFilters__filter_container d-flex flex-column">
       {dataPlaceTypes && dataPlaceTypes.map(data => {
         const placeType = data.data__place_type
         // Is current place type selected as a filter?
@@ -80,9 +92,9 @@ const MapSideMenu = ({
       <MapMenuItem label="Army camp" iconClass="fa-bomb"/>
       <MapMenuItem label="Others" iconClass="fa-map-marker"/> */}
     </div>
-    <div className="MapSideMenu__titleContainer">
-      <h5 className="MapSideMenu__titleContainer_title">PERIOD</h5>
-      <a className="MapSideMenu__titleContainer_reset" onClick={onResetSelectedYears}>Reset</a>
+    <div className="CollectionFilters__reset_container d-flex align-items-center">
+      <h5 className="CollectionFilters__reset_title">PERIOD</h5>
+      <a className="CollectionFilters__reset" onClick={onResetSelectedYears}>Reset</a>
     </div>
     <div className="MapSideMenu__chartsContainer">
       <YearsRange

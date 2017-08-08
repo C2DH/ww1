@@ -7,6 +7,7 @@ import ReactMapboxGl, { Popup, Marker, Layer, Feature, Cluster, ZoomControl, Geo
 import * as MapboxGL from 'mapbox-gl';
 import { Button, Popover, PopoverTitle, PopoverContent, ButtonGroup, ButtonToolbar, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import MapSideMenu from '../../components/MapSideMenu'
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import './MapPage.css'
 import {
   parseQsValue,
@@ -166,9 +167,9 @@ class LayersControl extends React.PureComponent {
         <PopoverContent>
           <ButtonToolbar>
           <ButtonGroup vertical>
-            <Button active={currentLayer==='1914.geojson'} onClick={this.handleSetLayer('1914.geojson')}>See 1914 borders</Button>
-            <Button active={currentLayer==='1920.geojson'} onClick={this.handleSetLayer('1920.geojson')}>See 1920 borders</Button>
-            <Button active={currentLayer===null} onClick={this.handleSetLayer(null)}>See today map</Button>
+            <Button className="Map__LayersControl__Button" active={currentLayer==='1914.geojson'} onClick={this.handleSetLayer('1914.geojson')}>See 1914 borders</Button>
+            <Button className="Map__LayersControl__Button" active={currentLayer==='1920.geojson'} onClick={this.handleSetLayer('1920.geojson')}>See 1920 borders</Button>
+            <Button className="Map__LayersControl__Button" active={currentLayer===null} onClick={this.handleSetLayer(null)}>See today map</Button>
           </ButtonGroup>
           </ButtonToolbar>
         </PopoverContent>
@@ -372,23 +373,17 @@ class MapPage extends PureComponent {
 
 
     return (
-
       <div>
-        <div className={`MapPage__TopRow`}>
-          <div className={`list-heading list-heading-${this.state.sideMenuOpen ? 'closed' : 'open'}`}>
+      <div className={this.state.sideMenuOpen ? "Collection__List--sidebar-open" : 'Collection__List--sidebar-close'}>
+        <div className={`Collection__List--list-heading d-flex align-items-center ${this.state.sideMenuOpen ? 'Collection__List--list-heading-closed' : '' }`}>
             <h2>Map</h2>
-            <span className="MapPage__items_shown"><strong>{count} / {totalCount}</strong> ITEMS SHOWN</span>
-            <button className="Collection__open_heading_btn" onClick={this.toggleSideMenuOpen}>
-              {this.state.sideMenuOpen ? (
-                <i className="icon-keyboard_arrow_right" />
-              ) : (
-                <i className="material-icons">search</i>
-              )}
+            <span className="Collection__items_shown hidden-md-down"><strong>{count} / {totalCount}</strong> ITEMS SHOWN</span>
+            <button type="button" className="Collection__open_heading_btn btn btn-secondary" onClick={this.toggleSideMenuOpen}>
+              <i className="material-icons">{this.state.sideMenuOpen ? 'chevron_right' : 'search'}</i>
             </button>
           </div>
-        </div>
-        <div className="MapPage__MainRow">
-            <div className={`MapPage__MapContainer--menu${this.state.sideMenuOpen ? 'Open' : 'Close'}`}>
+        <div
+          className={this.state.sideMenuOpen ? "MapPage__MainRow openMap" : 'MapPage__MainRow closeMap'}>
               <Map
                 ref={map => this.map = map}
                 center={center}
@@ -399,11 +394,11 @@ class MapPage extends PureComponent {
                 touchZoomRotate={false}
                 style="mapbox://styles/eischteweltkrich/cj5cizaj205vv2qlegw01hubm"
                 containerStyle={{
-                  height: "calc(100vh - 100px)",
-                  width: "100%",
-                  paddingtop: "100px"
+                  display: 'flex',
+                  flexGrow: '1',
+                  width:'100%',
                 }}>
-                  <ZoomControl className="Map__ZoomControl"/>
+                  <ZoomControl position="topLeft" className="Map__ZoomControl"/>
                   <div className="Map__Controls">
                     <PositionControl setCenter={this.handleSetCenter}></PositionControl>
                     <LayersControl setLayer={this.handleSetLayer} currentLayer={this.state.selectedLayer}></LayersControl>
@@ -455,31 +450,36 @@ class MapPage extends PureComponent {
                   </Popup>
                 )}
               </Map>
-            </div>
-
-          {this.state.sideMenuOpen && (
-            <div className="MapPage__Filters_container">
-              <MapSideMenu
-                dataPlaceTypes={dataPlaceTypesFacets}
-                selectedPlaceTypes={selectedPlaceTypes}
-                onTogglePlaceTypeSelection={this.togglePlaceTypeSelection}
-                onResetSelectedPlaceTypes={this.resetPlaceTypesSelection}
-                uncertainYearsCount={uncertainYears}
-                includeUncertainYears={includeUncertainYears}
-                onIncludeUncertainYearsChange={this.handleOnIncludeUncertainYearsChange}
-                onResetSelectedYears={this.resetSelectedYears}
-                selectedYears={selectedYears}
-                onYearsSelectionChange={this.handleYearsSelectionChange}
-                yearsCounts={yearsFacets}
-                yearsFilteredCounts={yearsFilteredFacets}
-                searchString={autocompleteSearchTerm}
-                onSearchChange={this.props.autocompleteMapSearch}
-                autocompleteResults={autocompleteResults}
-                onAutocompleteSelect={this.handleAutocopleteSelect}
-              />
-            </div>
-          )}
+          </div>
         </div>
+        <CSSTransitionGroup
+          component="div"
+          transitionName="filters"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={500}>
+        {this.state.sideMenuOpen && (
+            <MapSideMenu
+              key="Collectionfilters"
+              dataPlaceTypes={dataPlaceTypesFacets}
+              selectedPlaceTypes={selectedPlaceTypes}
+              toggleOpen={this.toggleSideMenuOpen}
+              onTogglePlaceTypeSelection={this.togglePlaceTypeSelection}
+              onResetSelectedPlaceTypes={this.resetPlaceTypesSelection}
+              uncertainYearsCount={uncertainYears}
+              includeUncertainYears={includeUncertainYears}
+              onIncludeUncertainYearsChange={this.handleOnIncludeUncertainYearsChange}
+              onResetSelectedYears={this.resetSelectedYears}
+              selectedYears={selectedYears}
+              onYearsSelectionChange={this.handleYearsSelectionChange}
+              yearsCounts={yearsFacets}
+              yearsFilteredCounts={yearsFilteredFacets}
+              searchString={autocompleteSearchTerm}
+              onSearchChange={this.props.autocompleteMapSearch}
+              autocompleteResults={autocompleteResults}
+              onAutocompleteSelect={this.handleAutocopleteSelect}
+            />
+        )}
+        </CSSTransitionGroup>
      </div>
     )
   }

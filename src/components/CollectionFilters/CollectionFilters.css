@@ -120,6 +120,7 @@
   padding: 10px 15px;
   cursor: pointer;
   border-bottom: 1px solid #DBDBD0;
+  align-items: center;
 }
 
 .CollectionFilters__filter_wrapper:last-of-type{
@@ -139,6 +140,7 @@
   border-radius: 15px;
   font-family: "Atlas Grotesk", Arial, sans-serif;
   padding-top: 6px;
+  height: 24px;
 }
 
 .CollectionFilters__time{
