@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import { scaleLinear } from 'd3-scale'
 import { connect } from 'react-redux'
 import { get } from 'lodash'
 import { Card, CardBlock } from 'reactstrap';
@@ -11,6 +12,8 @@ import {
 } from '../../utils'
 
 const fullHeight = { height: '100%'}
+
+const circleScale = scaleLinear().range([30, 100]).domain([1, 150])
 
 const styles = {
   clusterMarker: {
@@ -75,6 +78,17 @@ class ModuleMap extends PureComponent {
     this.setState({
       selectedDocument: null,
     })
+  }
+
+  clusterMarker = (coordinates, pointCount) => {
+    const r = circleScale(pointCount)
+    return <Marker coordinates={coordinates} key={coordinates.toString()} style={{
+      ...styles.clusterMarker,
+      width: r,
+      height: r,
+    }}>
+      { pointCount }
+    </Marker>
   }
 
 
