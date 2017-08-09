@@ -59,7 +59,7 @@ const MapSideMenu = ({
         )}
       />
       </form>
-                <i className="material-icons CollectionFilters__autocomplete_reset" onClick={() => onSearchChange('')}>close</i>
+      <i className="material-icons CollectionFilters__autocomplete_reset" onClick={() => onAutocompleteSelect('')}>close</i>
     </div>
     <div className="CollectionFilters__reset_container d-flex align-items-center">
       <h5 className="CollectionFilters__reset_title">TYPE</h5>
