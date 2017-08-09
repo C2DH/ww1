@@ -16,8 +16,8 @@ import Resources from './pages/Resources'
 import Manual from './pages/Manual'
 import StaticStory from './pages/StaticStory'
 import ThemeExplorer from './pages/ThemeExplorer'
+import About from './pages/About'
 
-const About = () => <StaticStory slug='about' />
 const TermsOfUse = () => <StaticStory slug='terms-of-use' />
 
 class Routes extends PureComponent {
