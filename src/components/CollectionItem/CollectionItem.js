@@ -136,7 +136,7 @@ export default ({ doc, onCloseClick }) => {
                     endDate={doc.translated.end_date}
                   />
                 </p>
-                <h3 className="CollectionItem__title">{doc.title}</h3>
+                <h3 className="CollectionItem__title">{doc.translated.title}</h3>
                 <hr className="CollectionItem__title_divider" />
                 <p className="CollectionItem__description">
                     { get(doc, 'translated.description') }
