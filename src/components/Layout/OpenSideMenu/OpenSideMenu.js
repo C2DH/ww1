@@ -32,8 +32,8 @@ class OpenSideMenu extends PureComponent {
           <p>ÉISCHTE WELTKRICH</p>
         </div>
         <ul className="OpenSideMenu__list">
-          <li><NavLink exact={true} to="/" onClick={this.props.closeMenu}>Home</NavLink></li>
-          <li><NavLink to="/themes" onClick={this.props.closeMenu}>Themes</NavLink></li>
+          <li><NavLink exact={true} to="/" onClick={this.props.closeMenu}>{this.context.t('home')}</NavLink></li>
+          <li><NavLink to="/themes" onClick={this.props.closeMenu}>{this.context.t('themes')}</NavLink></li>
           <li><NavLink exact={true} to="/collection" onClick={this.props.closeMenu}>Collection</NavLink></li>
           <li><NavLink exact={true} to="/map" onClick={this.props.closeMenu}>Map</NavLink></li>
           <li><NavLink exact={true} to="/timeline" onClick={this.props.closeMenu}>Timeline</NavLink></li>
@@ -61,6 +61,10 @@ class OpenSideMenu extends PureComponent {
      </div>
     )
   }
+}
+
+OpenSideMenu.contextTypes = {
+  t: React.PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
