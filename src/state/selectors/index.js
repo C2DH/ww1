@@ -2,6 +2,7 @@ import { createSelector, defaultMemoize } from 'reselect'
 import moment from 'moment'
 import {
   memoize,
+  keys,
   groupBy,
   isNull,
   get,
@@ -291,6 +292,16 @@ export const getTimelineValidMonthsByYears = createSelector(
       const [docYear,docMonth] = d.data.date.original.split('-')
       return docMonth
     }))
+  })
+)
+
+export const getTimelineYears = createSelector(
+  getTimelineDocuments,
+  docs => maybeNull(docs)(docs => {
+    return keys(groupBy(docs, d => {
+      const [docYear,docMonth] = d.data.date.original.split('-')
+      return docYear
+    })).map(y => +y)
   })
 )
 
