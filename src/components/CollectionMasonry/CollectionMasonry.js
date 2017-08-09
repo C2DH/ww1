@@ -79,6 +79,7 @@ class CollectionMasonry extends PureComponent {
       return null
     }
     const item = this.props.documents[index]
+    const { showDocLink=false } = this.props
 
     if (typeof item === 'undefined') {
       return null
@@ -112,7 +113,7 @@ class CollectionMasonry extends PureComponent {
       >
         <div>
           <div style={divStyle}>
-            <CollectionDoc doc={item} hasImage={hasImage} />
+            <CollectionDoc doc={item} hasImage={hasImage} showDocLink={showDocLink}/>
           </div>
         </div>
       </CellMeasurer>

@@ -2,9 +2,10 @@ import React from 'react'
 import { pure } from 'recompose'
 import { Link } from 'react-router-dom'
 import { get } from 'lodash'
+import CollectionItemLink from '../CollectionItemLink'
 import './CollectionDoc.css'
 
-const CollectionDoc = ({ doc, hasImage }) => (
+const CollectionDoc = ({ doc, hasImage, showDocLink=false }) => (
   <div className="CollectionDoc">
     <Link to={{ pathname:`/collection/item/${doc.id}`, state:{modal:true} }} >
       { hasImage && ( <img src={doc.snapshot} alt={doc.title}/> )}
@@ -16,6 +17,7 @@ const CollectionDoc = ({ doc, hasImage }) => (
     </Link>
     <div className="CollectionDoc__frame">
     </div>
+    {showDocLink && <div className="CollectionDoc__Link"><CollectionItemLink doc={doc}/></div>}
   </div>
 )
 

@@ -7,6 +7,7 @@ import { Container, Row, Col } from 'reactstrap'
 import { Card, CardImg, CardBlock } from 'reactstrap'
 import { Player, ControlBar, BigPlayButton } from 'video-react'
 import AudioPlayer from '../../components/AudioPlayer'
+import CollectionItemLink from '../../components/CollectionItemLink'
 
 import Background from '../../components/Background'
 
@@ -69,7 +70,12 @@ class ModuleObjectContentVideo extends PureComponent {
     }
 
     const { module } = this.props
-    const media = get(module, 'id.attachment')
+    let media = get(module, 'id.attachment')
+
+    // #TODO: FIXME SERVERS SIDE (OR HANDLE WITH PROXY)
+    if (media.indexOf("http://178.62.220.183/media/http") == 0){
+      media = decodeURIComponent(media.replace("http://178.62.220.183/media/", ""))
+    }
 
     return (
       <div className="ModuleObject__container">
@@ -78,7 +84,11 @@ class ModuleObjectContentVideo extends PureComponent {
           <BigPlayButton position="center" />
           <ControlBar autoHide={false} />
         </Player>
-        <div className="ModuleObject__caption" style={{width: playerWidth}}>{module.caption}</div>
+        <div className="ModuleObject__caption" style={{width: playerWidth}}>
+          {module.caption}
+          <span className="float-right"><CollectionItemLink doc={module.id}/></span>
+
+        </div>
       </div>
     )
   }
@@ -112,7 +122,9 @@ const ModuleObjectContentImage = pure(({ module }) => {
   return (
     <div style={objectStyle} className="Module__container">
       <Card className="Module__objectCard">
-        <div style={objectContainerStyle}></div>
+        <div style={objectContainerStyle}>
+          <div className="ModuleObjectContentImage__Link"><CollectionItemLink doc={module.id}/></div>
+        </div>
         <CardBlock>
           <div className="d-inline-flex">
             <i className="icon-hand Mods__DocumentOnly_Card_icon"  />
@@ -129,11 +141,20 @@ const ModuleObjectContentImage = pure(({ module }) => {
 class ModuleObjectContentAudio extends PureComponent {
   render() {
     const { module } = this.props
-    const media = get(module, 'id.attachment')
+    let media = get(module, 'id.attachment')
+
+    // #TODO: FIXME SERVERS SIDE (OR HANDLE WITH PROXY)
+    if (media.indexOf("http://178.62.220.183/media/http") == 0){
+      media = decodeURIComponent(media.replace("http://178.62.220.183/media/", ""))
+    }
+
     return (
       <div className='Module__object__audio'>
         <AudioPlayer source={`https://cors-anywhere.herokuapp.com/${media}`} />
-        <div className="Module__object__audio__caption">{module.caption}</div>
+        <div className="Module__object__audio__caption">
+          {module.caption}
+          <div className="ModuleObjectContentAudio__Link"><CollectionItemLink doc={module.id}/></div>
+        </div>
       </div>
     )
   }
@@ -158,7 +179,7 @@ class ModuleObject extends PureComponent {
     let size = get(module, 'size')
     if (module.type === 'audio') {
       size = 'big' }
-      
+
     const backgroundColor = get(module, 'background.color')
     const backgroundImage = get(module, 'background.object.id.attachment')
     const backgroundOverlay = get(module, 'background.object.overlay')

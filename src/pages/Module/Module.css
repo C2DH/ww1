@@ -181,3 +181,19 @@
   line-height: 80px;
   padding: 20px;
 }
+
+
+.ModuleObjectContentImage__Link{
+  position: absolute;
+  z-index: 100;
+  right: 10px;
+  top: 10px;
+}
+
+
+.ModuleObjectContentAudio__Link{
+  position: absolute;
+  z-index: 100;
+  right: 20px;
+  top: 30px;
+}
