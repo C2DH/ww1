@@ -1,33 +1,39 @@
 .OtherTeachersCard__Card {
-  width: 350px;
-  height: 140px;
+  max-width: 300px;
   background-color: #fff;
-  display: flex;
   border: 1px solid #DBDBD0;
-  padding: 10px;
+  padding: 15px;
   margin-right: 25px;
 }
 
-.OtherTeachersCard__img {
-  max-width: 120px;
-  max-height: 120px;
-}
-
-.OtherTeachersCard__text-container {
-  padding-left: 15px;
-  font-size: 14px;
+.OtherTeachersCard__Card > *{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .OtherTeachersCard__title {
-  margin-bottom: 3px;
+  margin-bottom: 15px;
   font-weight: bold;
 }
 
-.OtherTeachersCard__table {
-  display: grid;
-  line-height: 1.3em;
+
+.OtherTeachersCard__Card p{
+  margin-top: 1px;
+  margin-bottom: 1px;
+  font-family: 'Atlas Grotesk Web';
+  font-weight: 400;
 }
 
-.OtherTeachersCard__link {
-  margin-top: 5px;
+.OtherTeachersCard__project_link{
+  margin-top: 15px;
+  font-family: 'Atlas Grotesk Web';
+  font-weight: 400;
+  color: #F56350;
+  display: inline-flex;
+  border-radius: 23px;
+}
+
+.OtherTeachersCard__project_link .material-icons{
+  padding-left: 10px;
 }

@@ -1,16 +1,22 @@
-.EducationFooter__row {
+.EducationFooter__wrapper {
   background-color: #F36455;
   color: #fff;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  margin-left: -55px;
-  margin-right: -55px;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
-.EducationFooter__row h5 {
+.EducationFooter__content{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.EducationFooter__wrapper h5 {
   font-weight: normal;
-  padding-left: 50px;
-  padding-top: 10px;
+  font-size: 1rem
 }
 
 .EducationFooter__Btn {
@@ -21,4 +27,33 @@
   border-color: transparent;
   text-transform: uppercase;
   background-color: #fff;
+  font-family: 'Atlas Grotesk Web';
 }
+
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {  }
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {  }
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .EducationFooter__wrapper {
+    background-color: #F36455;
+    color: #fff;
+    position: fixed;
+    bottom: 0px;
+    left: 58px;
+    right: 0px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  .EducationFooter__wrapper h5 {
+    font-size: 1.25rem;
+  }
+
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  }

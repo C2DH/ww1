@@ -1,49 +1,21 @@
-.Education__h6,
-.Education__h6,
 .Education__h6 {
   color: #F36455;
   text-transform: uppercase;
   padding-bottom: 15px;
-}
-
-.Education__leftCol,
-.Education__rightCol {
-  padding-right: 80px;
-}
-
-.Education__rightCol {
-  padding-left: 40px;
-  border-left: 1px solid #DBDBD0;
+  padding-top: 25px;
 }
 
 .Education__ManualsRow > div {
-  /*margin-top: 30px;
-  padding-bottom: 40px;
-  border-bottom: 1px solid #DBDBD0;
-  margin-bottom: 30px;*/
   display: flex;
 }
 
 .Education__Card-container {
   overflow: auto;
   display: inline-flex;
+  width: 100%;
 }
 
 .Education__OtherTeachersRow {
-  padding-bottom: 40px;
-}
-
-@media (max-width: 767px) {
-  .Education__leftCol,
-  .Education__rightCol {
-    padding-right: 20px;
-  }
-  .Education__rightCol {
-    padding-left: 20px;
-    border-left: 0px;
-  }
-  .Education__TwoColRow h6 {
-    min-height: 50px;
-    padding-top: 10px;
-  }
+  padding-bottom: 85px;
+  border-top: 1px solid #DBDBD0;
 }
