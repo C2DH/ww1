@@ -20,9 +20,7 @@ import ThemeExplorer from './pages/ThemeExplorer'
 import About from './pages/About'
 import translations from './translations/translations.json'
 import { setLanguage } from './state/actions'
-
-
-const TermsOfUse = () => <StaticStory slug='terms-of-use' />
+import TermsOfUse from './pages/TermsOfUse'
 
 class Routes extends PureComponent {
   //https://reacttraining.com/react-router/web/example/modal-gallery

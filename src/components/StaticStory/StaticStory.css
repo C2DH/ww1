@@ -9,6 +9,12 @@
   font-size: 1rem;
 }
 
+.Static__intro h4{
+  color:#F06354;
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+
 /* Small devices (landscape phones, 576px and up)*/
 @media (min-width: 576px) {  }
 

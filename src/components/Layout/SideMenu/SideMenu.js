@@ -42,6 +42,7 @@ class SideMenu extends PureComponent {
            <Route path='/map' render={() => <Burger className="SideMenu__menuBtnDark" open={this.state.open} onClick={this.toggleMenu} />} />
            <Route path='/timeline' render={() => <Burger className="SideMenu__menuBtnDark" open={this.state.open} onClick={this.toggleMenu} />} />
            <Route path='/resources' render={() => <Burger className="SideMenu__menuBtnDark" open={this.state.open} onClick={this.toggleMenu} />} />
+           <Route path='/about' render={() => <Burger className="SideMenu__menuBtnDark" open={this.state.open} onClick={this.toggleMenu} />} />
            <Route render={() => <Burger open={this.state.open} onClick={this.toggleMenu} />} />
          </Switch>
 

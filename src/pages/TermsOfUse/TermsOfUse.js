@@ -2,15 +2,15 @@ import React from 'react'
 import {  Container, Row, Col } from 'reactstrap'
 import StaticStory from '../../components/StaticStory'
 import BigTitle from '../../components/BigTitle'
-import './About.css'
+import './TermsOfUse.css'
 
-const About = () => (
+const TermOfUse = () => (
     <div className="About__wrapper">
       <Container>
-        <BigTitle title="About" />
+        <BigTitle title="Terms of use" />
         <Row>
           <Col>
-              <StaticStory slug='about' />
+              <StaticStory slug='terms-of-use' />
           </Col>
         </Row>
       </Container>
@@ -18,4 +18,4 @@ const About = () => (
 
 )
 
-export default About
+export default TermOfUse
