@@ -164,6 +164,7 @@
   right: 0;
   border: 0px;
   border-radius: 100%;
+  cursor: pointer;
 }
 
 .CollectionItem__AdditionalInformation_text {
