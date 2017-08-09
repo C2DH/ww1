@@ -6,12 +6,17 @@ import CollectionItemDownload from '../CollectionItemDownload'
 export default class CollectionItemPreviewVideo extends React.PureComponent {
   render() {
     const { doc } = this.props
-    console.log(doc)
+    let attachment = doc.attachment
+    // #TODO: FIXME SERVERS SIDE (OR HANDLE WITH PROXY)
+    if (attachment.indexOf("http://178.62.220.183/media/http") == 0){
+      attachment = decodeURIComponent(attachment.replace("http://178.62.220.183/media/", ""))
+    }
+
     return (
     <div className="CollectionItemPreview__doc_preview">
       <div className="CollectionItemPreview__video_wrapper">
         <Player fluid>
-          <source src={doc.attachment} />
+          <source src={attachment} />
           <BigPlayButton position="center" />
           <ControlBar autoHide={false} />
         </Player>

@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import {i18nState} from "redux-i18n"
 import document from './document'
 import languages from './languages'
 import settings from './settings'
@@ -10,6 +11,7 @@ import themes from './themes'
 import themeDetail from './themeDetail'
 import chapterDetail from './chapterDetail'
 import staticStoryDetail from './staticStoryDetail'
+
 
 export default combineReducers({
   collectionDocuments,
@@ -23,4 +25,5 @@ export default combineReducers({
   document,
   languages,
   settings,
+  i18nState,
 })
