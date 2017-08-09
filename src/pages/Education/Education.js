@@ -4,49 +4,53 @@ import ManualCard from '../../components/ManualCard'
 import OtherTeachersCard from '../../components/OtherTeachersCard'
 import BigTitle from '../../components/BigTitle'
 import EducationFooter from '../../components/EducationFooter'
+import StaticStory from '../../components/StaticStory'
 import './Education.css'
 
 const Education = () => (
-  <Container fluid className="padding-r-l-0">
-    <BigTitle title="Education" />
-    <div className="whitebackground-container">
-      <Row className="Education__TwoColRow">
-        <Col sm="6" xs="12" className="Education__leftCol">
-          <h6>Introduction and pedagogical approach</h6>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis lorem ut libero malesuada feugiat. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Pellentesque in ipsum id orci porta dapibus. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Nulla porttitor accumsan tincidunt. Donec sollicitudin molestie malesuada.</p>
-        </Col>
-        <Col sm="6" xs="12" className="Education__rightCol">
-          <h6>Goal</h6>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis lorem ut libero malesuada feugiat. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Pellentesque in ipsum id orci porta dapibus. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Nulla porttitor accumsan tincidunt. Donec sollicitudin molestie malesuada.</p>
+  <div>
+    <div className="Resources__top_wrapper">
+      <Container>
+        <BigTitle title="Education" />
+        <Row>
+          <Col>
+              <StaticStory slug='education' />
+          </Col>
+        </Row>
+      </Container>
+    </div>
+    <Container>
+      <Row>
+        <Col>
+          <h6 className="Education__h6">Pedagogical manuals</h6>
         </Col>
       </Row>
-    </div>
-    <div className="padding-left-30">
       <Row className="Education__ManualsRow">
-        <Col md="12" sm="12" xs="12">
-          <h6>Pedagogical manuals</h6>
+        <Col lg="3" xs="6">
+            <ManualCard theme="grief and loss" title="the forgotten monument"/>
         </Col>
-        <Col md="12" sm="12" xs="12" className="overflow-y">
-          <div className="Education__Card-container">
-            <ManualCard />
-            <ManualCard />
-            <ManualCard />
-            <ManualCard />
-          </div>
+        <Col lg="3" xs="6">
+            <ManualCard theme="aftermath" title="an invitation to the Ball"/>
+        </Col>
+        <Col lg="3" xs="6">
+            <ManualCard theme="migration" title="the passport of Jean-Baptiste Gratia"/>
+        </Col>
+        <Col lg="3" xs="6">
+            <ManualCard theme="food crisis" title="250 grams of bread"/>
         </Col>
       </Row>
       <Row className="Education__OtherTeachersRow">
         <Col md="12">
-          <h6>See how other teacher used our materials</h6>
+          <h6 className="Education__h6">See how other teacher used our materials</h6>
           <div className="Education__Card-container">
             <OtherTeachersCard />
             <OtherTeachersCard />
           </div>
         </Col>
       </Row>
-      <EducationFooter />
-    </div>
-  </Container>
+    </Container>
+    <EducationFooter />
+  </div>
 
 )
 

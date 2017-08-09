@@ -2,7 +2,7 @@
   font-size: 1.5rem;
   border-bottom: 1px solid #DBDBD0;
   text-align: center;
-  margin-top: 18px;
+  padding-top: 18px;
   padding-bottom: 18px;
   position: fixed;
   width: 100%;
@@ -26,7 +26,7 @@
     font-size: 6.25rem;
     height: auto;
     text-align: left;
-    margin-top: 0px;
+    padding-top: 0px;
     padding-bottom: 0px;
   }
 }
