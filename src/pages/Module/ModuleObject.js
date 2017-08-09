@@ -69,7 +69,12 @@ class ModuleObjectContentVideo extends PureComponent {
     }
 
     const { module } = this.props
-    const media = get(module, 'id.attachment')
+    let media = get(module, 'id.attachment')
+
+    // #TODO: FIXME SERVERS SIDE (OR HANDLE WITH PROXY)
+    if (media.indexOf("http://178.62.220.183/media/http") == 0){
+      media = decodeURIComponent(media.replace("http://178.62.220.183/media/", ""))
+    }
 
     return (
       <div className="ModuleObject__container">
@@ -129,7 +134,13 @@ const ModuleObjectContentImage = pure(({ module }) => {
 class ModuleObjectContentAudio extends PureComponent {
   render() {
     const { module } = this.props
-    const media = get(module, 'id.attachment')
+    let media = get(module, 'id.attachment')
+
+    // #TODO: FIXME SERVERS SIDE (OR HANDLE WITH PROXY)
+    if (media.indexOf("http://178.62.220.183/media/http") == 0){
+      media = decodeURIComponent(media.replace("http://178.62.220.183/media/", ""))
+    }
+
     return (
       <div className='Module__object__audio'>
         <AudioPlayer source={`https://cors-anywhere.herokuapp.com/${media}`} />
@@ -158,7 +169,7 @@ class ModuleObject extends PureComponent {
     let size = get(module, 'size')
     if (module.type === 'audio') {
       size = 'big' }
-      
+
     const backgroundColor = get(module, 'background.color')
     const backgroundImage = get(module, 'background.object.id.attachment')
     const backgroundOverlay = get(module, 'background.object.overlay')
