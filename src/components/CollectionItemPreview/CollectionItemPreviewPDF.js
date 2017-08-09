@@ -51,24 +51,21 @@ export default class CollectionItemPreviewPDF extends React.PureComponent {
   render() {
     const { doc } = this.props
     return (
-    <div>
       <div className="CollectionItemPreview__doc_preview">
-        <div className="CollectionItemPreview__pdf_preview">
-
-          <PDF
-            file={`${doc.src}`}
-            onDocumentComplete={this.onDocumentComplete}
-            onPageComplete={this.onPageComplete}
-            page={this.state.page}
-            // ref={(ref)=>{this.pdf=ref}}
-            scale={this.state.scale}
-          />
-
+        <div className="CollectionItemPreview__pdf_wrapper">
+          <div className="CollectionItemPreview__pdf_scale">
+            <PDF
+              file={`${doc.src}`}
+              onDocumentComplete={this.onDocumentComplete}
+              onPageComplete={this.onPageComplete}
+              page={this.state.page}
+              ref={(ref)=>{this.pdf=ref}}
+              scale={this.state.scale}
+            />
+          </div>
         </div>
-      </div>
       <div className="CollectionItem__doc_controls">
-
-        <div className="CollectionItemPreviewPDF__controls">
+      <div className="CollectionItemPreviewPDF__controls">
           <div style={{padding:8}}>Page <span className="CollectionItemPreviewPDF__controls_current_page">{this.state.page}</span> of {this.state.pages}</div>
           <div className="CollectionItemPreviewPDF__controls_page_arrows">
             <button onClick={(evt)=>{this.prevPage()}}>
