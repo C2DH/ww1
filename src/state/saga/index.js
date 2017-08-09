@@ -1,4 +1,4 @@
-import { fork, put, call } from 'redux-saga/effects'
+import { fork, put, call, take, select } from 'redux-saga/effects'
 import { takeLatestAndCancel } from './effects/take'
 import * as api from '../../api'
 import makeDocuments from './hos/documents'
@@ -32,7 +32,12 @@ import {
   GET_STATIC_STORY_FAILURE,
   GET_STATIC_STORY_UNLOAD,
   GET_RESOURCE_DOCUMENTS,
+  UPDATE_SETTINGS,
 } from '../actions'
+
+import { getCurrentLanguage } from '../selectors'
+
+import {setLanguage} from "redux-i18n"
 
 const BIG_PAGE_SIZE = 1000
 
@@ -85,6 +90,17 @@ function *handleGetChapter({ payload }) {
     yield put({ type: GET_CHAPTER_SUCCESS, payload: chapter })
   } catch (error) {
     yield put({ type: GET_CHAPTER_FAILURE, error })
+  }
+}
+
+
+function *watchLanguage() {
+  
+  while(true) {
+    const { payload } = yield take(UPDATE_SETTINGS)
+    if(payload.language){
+      yield put(setLanguage(payload.language))
+    }
   }
 }
 
@@ -162,4 +178,7 @@ export default function* rootSaga() {
     },
     BIG_PAGE_SIZE,
   ))
+
+  yield fork(watchLanguage)
+
 }

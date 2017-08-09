@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Provider } from 'react-redux'
+import I18n from "redux-i18n"
 import store from './state'
 
 import Layout from './components/Layout'
@@ -17,12 +18,19 @@ import Manual from './pages/Manual'
 import StaticStory from './pages/StaticStory'
 import ThemeExplorer from './pages/ThemeExplorer'
 import About from './pages/About'
+import translations from './translations/translations.json'
+import { setLanguage } from './state/actions'
+
 
 const TermsOfUse = () => <StaticStory slug='terms-of-use' />
 
 class Routes extends PureComponent {
   //https://reacttraining.com/react-router/web/example/modal-gallery
   previousLocation = this.props.location
+
+  componentDidMount(){
+    store.dispatch(setLanguage('en_US'))
+  }
 
   componentWillUpdate(nextProps) {
     const { location } = this.props
@@ -66,12 +74,16 @@ class Routes extends PureComponent {
 
 const App = () => (
   <Provider store={store}>
-    <Router>
-      <Layout>
-        <Route component={Routes}/>
-      </Layout>
-    </Router>
+    <I18n translations={translations} fallbackLang="en_US">
+      <Router>
+        <Layout>
+          <Route component={Routes}/>
+        </Layout>
+      </Router>
+    </I18n>
   </Provider>
 )
+
+
 
 export default App
