@@ -3,74 +3,55 @@ import { connect } from 'react-redux'
 import { get } from 'lodash'
 import { Container, Row, Col } from 'reactstrap';
 import { Card, CardImg, CardBlock } from 'reactstrap';
+import {ModuleObjectContent} from './ModuleObject'
+import { Converter } from 'showdown'
 
 import Background from '../../components/Background'
 import './Module.css'
 
 const fullHeight = { height: '100%'}
+const converter = new Converter()
+
+
+const ObjectColumn = ({module}) => (
+  <Col md="6" className="Module__textObject_Col">
+    <ModuleObjectContent module={module}/>
+  </Col>
+)
+
+const TextColumn = ({content}) => (
+  <Col md="6"  className="Module__textObject_Col">
+    <div className="Module__textObject_Text">
+      <div className="" dangerouslySetInnerHTML={{ __html: content }} />
+    </div>
+  </Col>
+)
+
 
 class ModuleTextObject extends PureComponent {
   render() {
     const { chapter, module } = this.props
-    const cover = 'https://images.pexels.com/photos/416676/pexels-photo-416676.jpeg?h=350&auto=compress&cs=tinysrgb'
-
-    const cardImgHeight = '400px'
-
-    const textObjectStyle = {
-      backgroundColor: get(module, 'background.color', '#fff'),
-      alignItems: 'center',
+    const content = converter.makeHtml(module.text.content)
+    const obj = {
+      ...module.object,
+      size: 'medium'
     }
-
-    const textStyle={
-      position: 'relative',
-      height: '100%',
-      width: '100%',
-      zIndex: '1',
-      color: get(module, 'text.color', '#fff'),
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }
-
-
-    const objectContainerStyle = {
-      width: '100%',
-      height: cardImgHeight,
-      backgroundSize: 'cover',
-      backgroundImage: `url(${cover})`
-    }
-
-    const ModuleTextObjectCard = () => (
-
-        <Card className="Module__textObjectCard">
-          <div style={objectContainerStyle}></div>
-          <CardBlock>
-            <div className="d-inline-flex">
-              <i className="icon-hand Mods__DocumentOnly_Card_icon"  />
-              <div className="Module__objectCard_text">
-                {module.object.caption}
-              </div>
-            </div>
-          </CardBlock>
-        </Card>
-
-    )
-
     return (
-      <div style={{height:'100%'}}>
+      <div style={{height:'100%'}} className="Module__container">
         <Background color={get(module, 'background.color')} />
-        <div style={textObjectStyle} className="Module__container">
+        <div>
+          { module.layout == 'object-text' && (
             <Row style={fullHeight}>
-              <Col md="6"  className="Module__textObject_Col">
-                <div style={textStyle} className="Module__textObject_Text">
-                  {module.text.content}
-                </div>
-              </Col>
-              <Col md="6" className="Module__textObject_Col">
-                <ModuleTextObjectCard />
-              </Col>
-          </Row>
+              <ObjectColumn module={obj}/>
+              <TextColumn content={content}/>
+            </Row>
+          )}
+          { module.layout == 'text-object' && (
+            <Row style={fullHeight}>
+              <TextColumn content={content}/>
+              <ObjectColumn module={obj}/>
+            </Row>
+          )}
         </div>
       </div>
     )

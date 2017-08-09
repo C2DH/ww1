@@ -11,9 +11,11 @@
 }*/
 
 .SwitchModule-enter {
-  position: relative;
+  position: absolute;
   opacity: 0;
   top: 0;
+  width: calc(100% - 56px);
+  bottom: 0;
   z-index: 10000;
 }
 

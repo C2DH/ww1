@@ -414,6 +414,11 @@ const translateModuleText = (module, langCode) => ({
 const translateModuleObject = (module, langCode) => translateObject(module, langCode, ['caption'])
 const translateModuleGallery = (module, langCode) => translateObject(module, langCode, ['caption'])
 const translateModuleMap = (module, langCode) => translateObject(module, langCode, ['caption'])
+const translateModuleTextObject = (module, langCode) => ({
+  ...module,
+  object: translateObject(module.object, langCode, ['caption']),
+  text: translateObject(module.text, langCode, ['content'])
+})
 
 const translateModule = (module, langCode) => maybeNull(module)(module => {
   switch (module.module) {
@@ -425,6 +430,8 @@ const translateModule = (module, langCode) => maybeNull(module)(module => {
       return translateModuleGallery(module, langCode)
     case 'map':
       return translateModuleMap(module, langCode)
+    case 'text_object':
+      return translateModuleTextObject(module, langCode)
     default:
       return module
   }
