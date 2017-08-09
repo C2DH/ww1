@@ -26,6 +26,7 @@
 .OpenSideMenu__bottom_list li a{
   color: black;
   opacity: 0.70;
+  text-transform: capitalize;
 }
 
 .OpenSideMenu__list li a:hover,

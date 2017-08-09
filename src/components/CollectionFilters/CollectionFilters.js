@@ -30,7 +30,7 @@ class CollectionFilters extends PureComponent {
     return (
       <div className="CollectionFilters__container">
         <div className="CollectionFilters__filtermobile_title d-flex align-items-center hidden-lg-up">
-          <h2>Filters</h2>
+          <h2>{this.context.t('filters')}</h2>
           <button type="button" className="CollectionFilters__filtermobile_title__check btn btn-secondary" onClick={toggleOpen}>
             <i className="material-icons">check</i>
           </button>
@@ -45,7 +45,7 @@ class CollectionFilters extends PureComponent {
           <Autocomplete
             inputProps={{
               className:'form-control CollectionFilters__input',
-              placeholder:'Search here (e.g: postcard)'
+              placeholder:this.context.t('search here') + ' ' + this.context.t('(e.g: postcard)')
             }}
             wrapperStyle={{display:'flex', position:'relative'}}
             value={searchString}
@@ -67,8 +67,8 @@ class CollectionFilters extends PureComponent {
         {!hideFilters && <div>
           {dataTypes &&
             <div className="CollectionFilters__reset_container d-flex align-items-center">
-              <h5 className="CollectionFilters__reset_title">TYPE</h5>
-              <a className="CollectionFilters__reset" onClick={onResetDataType}>Reset</a>
+              <h5 className="CollectionFilters__reset_title">{this.context.t('type')}</h5>
+              <a className="CollectionFilters__reset" onClick={onResetDataType}>{this.context.t('reset')}</a>
             </div>
           }
           <div className="CollectionFilters__filter_container d-flex flex-column">
@@ -78,7 +78,7 @@ class CollectionFilters extends PureComponent {
                   <div key={data__type} onClick={() => onToggleDataType(data__type)}
                        className={ selected ? 'CollectionFilters__filter_wrapper d-flex w-100 justify-content-between opacity-100' : 'CollectionFilters__filter_wrapper d-flex w-100 justify-content-between opacity-50'  }>
 
-                    <p className="CollectionFilters__filter">{data__type}</p>
+                    <p className="CollectionFilters__filter">{this.context.t(data__type)}</p>
                     <Badge className="CollectionFilters__filter_badge">
                       {isNull(count) ? '0' : count}
                     </Badge>
@@ -87,8 +87,8 @@ class CollectionFilters extends PureComponent {
             })}
           </div>
           <div className="CollectionFilters__reset_container d-flex align-items-center">
-            <h5 className="CollectionFilters__reset_title">PERIOD</h5>
-            <a className="CollectionFilters__reset" onClick={onResetYear}>Reset</a>
+            <h5 className="CollectionFilters__reset_title">{this.context.t('period')}</h5>
+            <a className="CollectionFilters__reset" onClick={onResetYear}>{this.context.t('reset')}</a>
           </div>
 
           <div className="CollectionFilters__time">
@@ -111,5 +111,8 @@ class CollectionFilters extends PureComponent {
   }
 }
 
+CollectionFilters.contextTypes = {
+  t: React.PropTypes.func.isRequired
+}
 
 export default CollectionFilters

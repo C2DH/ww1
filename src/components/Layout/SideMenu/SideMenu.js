@@ -52,7 +52,7 @@ class SideMenu extends PureComponent {
         <i className="material-icons md-36">{this.state.open ? "close" : "menu"}</i>
       </button> */}
       <div className="SideMenu__menuBtn-text hidden-md-down">
-        <h6>{this.state.open ? "close" : "menu"}</h6>
+        <h6>{this.state.open ? this.context.t('close') : this.context.t('menu')}</h6>
       </div>
       <div className={this.state.open ? "SideMenu__vertical_title_container d-flex justify-content-center hidden-md-down" : "SideMenu__vertical_title_container_close d-flex justify-content-center hidden-md-down"}>
          <p className="SideMenu__vertical_title">ÉISCHTE WELTKRICH</p>
@@ -63,6 +63,10 @@ class SideMenu extends PureComponent {
     </CSSTransitionGroup>
     )
   }
+}
+
+SideMenu.contextTypes = {
+  t: React.PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({

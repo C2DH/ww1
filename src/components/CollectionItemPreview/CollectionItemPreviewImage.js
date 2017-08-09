@@ -73,7 +73,7 @@ export default class CollectionItemPreviewImage extends React.PureComponent {
         </Map>
 			</div>
       <div className="CollectionItem__doc_controls">
-        <ZoomControl zoom={zoom} maxZoom={3} minZoom={-2.5} zoomTo={this.zoomTo}/>
+        <ZoomControl zoom={zoom} maxZoom={3} minZoom={-2.5} zoomTo={this.zoomTo} reset={this.context.t('reset')}/>
         {/* <WhiteTooltip target="CollectionItem__btn_download" tooltipText={<span>Download image and data<br/>Download image</span>} /> */}
 				<CollectionItemDownload doc={doc} className="CollectionItem__btn_download"/>
 
@@ -81,4 +81,8 @@ export default class CollectionItemPreviewImage extends React.PureComponent {
     </div>
   );
   }
+}
+
+CollectionItemPreviewImage.contextTypes = {
+  t: React.PropTypes.func.isRequired
 }

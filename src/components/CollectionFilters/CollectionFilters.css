@@ -95,6 +95,7 @@
 }
 
 .CollectionFilters__reset_title {
+  text-transform: uppercase;
   font-size: 15px;
   letter-spacing: 1px;
   margin: 0px;

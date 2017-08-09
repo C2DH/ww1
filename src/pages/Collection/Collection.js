@@ -192,8 +192,8 @@ class Collection extends PureComponent {
       <div>
         <div className={this.state.sidebarOpen ? "Collection__List--sidebar-open" : 'Collection__List--sidebar-close'}>
           <div className={`Collection__List--list-heading d-flex align-items-center ${this.state.sidebarOpen ? 'Collection__List--list-heading-closed' : '' }`}>
-            <h2>Collection</h2>
-            <span className="Collection__items_shown hidden-md-down"><strong>{count} / {totalCount}</strong> ITEMS SHOWN</span>
+            <h2>{this.context.t('collection')}</h2>
+            <span className="Collection__items_shown hidden-md-down"><strong>{count} / {totalCount}</strong> {this.context.t('items shown')}</span>
 
             <button type="button" className="Collection__open_heading_btn btn btn-secondary" onClick={this.toggleSidebarOpen}>
               <i className="material-icons">{this.state.sidebarOpen ? 'chevron_right' : 'search'}</i>
@@ -247,6 +247,10 @@ class Collection extends PureComponent {
       </div>
     )
   }
+}
+
+Collection.contextTypes = {
+  t: React.PropTypes.func.isRequired
 }
 
 const DEFAULT_FILTER_YEARS = ['<1914', '1921>']

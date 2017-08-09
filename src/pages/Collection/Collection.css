@@ -28,6 +28,7 @@
 }
 
 .Collection__items_shown {
+  text-transform: uppercase;
   margin-left: auto;
   font-size: 0.875rem;
   font-family: 'Atlas Grotesk Web', Arial, sans-serif;

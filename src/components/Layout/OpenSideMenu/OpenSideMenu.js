@@ -35,16 +35,16 @@ class OpenSideMenu extends PureComponent {
           <li><NavLink exact={true} to="/" onClick={this.props.closeMenu}>{this.context.t('home')}</NavLink></li>
           <li><NavLink to="/themes" onClick={this.props.closeMenu}>{this.context.t('themes')}</NavLink></li>
           <li><NavLink exact={true} to="/collection" onClick={this.props.closeMenu}>{this.context.t('collection')}</NavLink></li>
-          <li><NavLink exact={true} to="/map" onClick={this.props.closeMenu}>Map</NavLink></li>
-          <li><NavLink exact={true} to="/timeline" onClick={this.props.closeMenu}>Timeline</NavLink></li>
-          <li><NavLink exact={true} to="/education" onClick={this.props.closeMenu}>Education</NavLink></li>
-          <li><NavLink exact={true} to="/resources" onClick={this.props.closeMenu}>Resources</NavLink></li>
+          <li><NavLink exact={true} to="/map" onClick={this.props.closeMenu}>{this.context.t('map')}</NavLink></li>
+          <li><NavLink exact={true} to="/timeline" onClick={this.props.closeMenu}>{this.context.t('timeline')}</NavLink></li>
+          <li><NavLink exact={true} to="/education" onClick={this.props.closeMenu}>{this.context.t('education')}</NavLink></li>
+          <li><NavLink exact={true} to="/resources" onClick={this.props.closeMenu}>{this.context.t('resources')}</NavLink></li>
         </ul>
       </div>
       <div className="OpenSideMenu__bottom">
        <ul className="OpenSideMenu__bottom_list">
-         <li><NavLink to="/about" onClick={this.props.closeMenu}>About</NavLink></li>
-         <li><NavLink to="/terms-of-use" onClick={this.props.closeMenu}>Terms of use</NavLink></li>
+         <li><NavLink to="/about" onClick={this.props.closeMenu}>{this.context.t('about')}</NavLink></li>
+         <li><NavLink to="/terms-of-use" onClick={this.props.closeMenu}>{this.context.t('terms of use')}</NavLink></li>
        </ul>
        <div className="OpenSideMenu__bottom_logos">
        </div>

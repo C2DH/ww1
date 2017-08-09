@@ -31,7 +31,7 @@ class AdditionalInformation extends PureComponent {
     <div>
       <div className="CollectionItem__additional_info d-flex align-items-center" onClick={this.toggleInfo}>
         <h6 className="CollectionItem__label">
-          additional information
+          {this.context.t('additional information')}
         </h6>
         <i className="material-icons">{this.state.open ? 'keyboard_arrow_up': 'keyboard_arrow_down'}</i>
       </div>
@@ -76,7 +76,7 @@ const CloseButton = ({ onClick }) => (
 const RelatedObjects = ({items}) => {
 
   return (<div className="CollectionItem__Relatedobjects">
-    <Label className="CollectionItem__label">RELATED OBJECTS</Label>
+    <Label className="CollectionItem__label">{this.context.t('related object')}</Label>
     <hr className="CollectionItem__Relatedobjects_divider mt-0" />
     { items.map(item => (
         <div key={item.id} className="d-inline-flex">
@@ -93,11 +93,12 @@ const RelatedObjects = ({items}) => {
 
 const SeeAlso = ({doc}) => (
   <div className="CollectionItem__Relatedobjects">
-    <h6 className="CollectionItem__label">SEE ALSO</h6>
+    <h6 className="CollectionItem__label">see also</h6>
       {doc.data.year && <Link to={`/collection/?years=${get(doc, "data.year")},${get(doc, "data.year",0)+1}`}><button className="CollectionItem__btn btn btn-secondary">{get(doc, "data.year")}</button></Link>}
       {doc.data.type && <Link to={`/collection/?types=${get(doc, "data.type")}`}><button className="CollectionItem__btn btn btn-secondary">{get(doc, "data.type")}</button></Link>}
   </div>
 )
+
 
 
 //TODO: MOVE AWAY. ADD GLOBAL MAPBOX ACCESS TOKEN
@@ -118,6 +119,7 @@ export default ({ doc, onCloseClick }) => {
     coords = coords.map(item => parseFloat(item))
     coords = [coords[0], coords[1]]
   }
+
   return (
     <div className="CollectionItem__wrapper_div">
       <Container fluid>
@@ -161,4 +163,8 @@ export default ({ doc, onCloseClick }) => {
 
     </div>
   )
+}
+
+AdditionalInformation.contextTypes = {
+  t: React.PropTypes.func.isRequired
 }

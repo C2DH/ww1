@@ -50,6 +50,9 @@
   text-transform: uppercase;
   font-size: 0.7rem;
   margin: 0px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* CSS transition styles */

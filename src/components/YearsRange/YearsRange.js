@@ -136,12 +136,16 @@ class YearsRange extends PureComponent {
           <label className="custom-control custom-checkbox align-items-center">
             <input type="checkbox" className="custom-control-input" onChange={() => onUncertainYearsChange(!uncertainYears)} checked={uncertainYears} />
             <span className="custom-control-indicator"></span>
-            <span className="custom-control-description YearsRange__Uncertain">{`Include ${uncertainYearsCount || 0} items with uncertain dates`}</span>
+            <span className="custom-control-description YearsRange__Uncertain">{this.context.t('include')}{` ${uncertainYearsCount || 0} `}{this.context.t('items with uncertain dates')}</span>
           </label>
         </div>
       </div>
     )
   }
+}
+
+YearsRange.contextTypes = {
+  t: React.PropTypes.func.isRequired
 }
 
 export default YearsRange
