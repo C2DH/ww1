@@ -28,6 +28,8 @@ const getModuleComponent = moduleType => {
       return ModuleGallery
     case 'map':
       return ModuleMap
+    case 'text_object':
+      return ModuleTextObject
     default:
       throw new Error(`Invalid module type ${moduleType}`)
   }

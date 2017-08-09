@@ -76,6 +76,8 @@ class ModuleObjectContentVideo extends PureComponent {
     if (media.indexOf("http://178.62.220.183/media/http") == 0){
       media = decodeURIComponent(media.replace("http://178.62.220.183/media/", ""))
     }
+    console.log(100, module)
+
 
     return (
       <div className="ModuleObject__container">
@@ -143,6 +145,8 @@ class ModuleObjectContentAudio extends PureComponent {
     const { module } = this.props
     let media = get(module, 'id.attachment')
 
+    if(!media){ return null }
+
     // #TODO: FIXME SERVERS SIDE (OR HANDLE WITH PROXY)
     if (media.indexOf("http://178.62.220.183/media/http") == 0){
       media = decodeURIComponent(media.replace("http://178.62.220.183/media/", ""))
@@ -160,7 +164,7 @@ class ModuleObjectContentAudio extends PureComponent {
   }
 }
 
-const ModuleObjectContent = ({ module }) => {
+export const ModuleObjectContent = ({ module }) => {
   if (module.type === 'video') {
     return <ModuleObjectContentVideo module={module} />
   } else if (module.type === 'image') {
