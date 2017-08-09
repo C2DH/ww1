@@ -1,38 +1,47 @@
 .Theme__container {
   height: 100vh;
+  position: relative;
 }
 
-.Theme__inner_container {
-  color: #fff;
+.Theme__wrapper{
+  height: 100vh;
   width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position:relative;
 }
 
-.Theme__inner_container label{
+.Theme__info_wrapper{
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}
+
+.Theme__info_wrapper > .row{
+  width: 100%;
+}
+
+.Theme__info_wrapper h6{
   color: #F56350;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 500;
   letter-spacing: 1px;
-}
-
-.Theme__inner_container h1 {
-  font-family: "Behrens Antiqua";
-  font-size: 90px;
   text-transform: uppercase;
 }
 
+.Theme__info_wrapper h1 {
+  font-family: "Behrens Antiqua", Georgia, serif;
+  font-size: 5.265rem;
+  text-transform: uppercase;
+  color: white;
+}
+
 .Theme__text_container {
-  max-width: 500px;
+  max-width: 60%;
 }
 
 .Theme__text_container p {
-  font-size: 24px;
+  font-size: 1.5rem;
   font-style: italic;
+  color: white;
 }
 
 .Theme__start_btn {
@@ -52,7 +61,6 @@
 
 .Theme__chapters_btn_container {
   position: absolute;
-  z-index: 200;
   top: 10px;
   right: 10px;
   display: inline-flex;
@@ -72,6 +80,7 @@
   height: 45px;
   padding-top: 8px;
   cursor: pointer;
+  z-index: 10;
 }
 
 .Theme__chapters_btn:hover {
@@ -84,7 +93,7 @@
   position: absolute;
   right: 0;
   top: 0;
-  width: 250px;
+  width: 375px;
   height: 100%;
   background-color: #F2F2ED;
   overflow:hidden;
@@ -101,37 +110,46 @@
   width: 100%;
   height: 80px;
   border-bottom: 1px solid #DBDBD0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Theme__chapters_back_btn{
+  background: transparent;
+  border-color: white;
+  border-radius: 23px;
+  color:#DC715A;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 .Theme__chapter_scroll_container {
    overflow: scroll;
     position:absolute;
-    height: calc(100% + 80px);
+    height: calc(100% - 80px);
     width:100%;
 }
 
 .Theme__chapter {
   width: 100%;
-  height: 160px;
+  height: 210px;
   color: #111;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   text-align: center;
   border-bottom: 1px solid #DBDBD0;
+  position: relative;
 }
 
 .Theme__chapter_title {
-  position: relative;
-  top: 45px;
   z-index: 11;
   color: #111;
   height: 100px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  height: 100%;
+  width: 100%
 }
 
 .Theme__chapter_title a {
@@ -144,20 +162,28 @@
   text-decoration: none;
 }
 
+.Theme__chapter_title h3{
+  font-size: 1.875rem;
+}
+
+
 .Theme__chapter_num {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  bottom: 50px;
   z-index: 10;
   color: #EFCAC1;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 100%;
+  width: 100%
 }
 
 .Theme__chapter_num h2 {
-  font-size: 8em;
-  margin: 0;
+  font-size: 12.5rem;
+  margin: -50px 0 0 0;
+  font-style: italic;
 }
 
 /* CSS transition styles */

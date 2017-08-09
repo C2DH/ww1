@@ -40,9 +40,7 @@
 
 .ChapterCover__inner_container h1 {
 	color: #FFFFFF;
-  font-family: 'Vinter';
-  font-size: 64px;
-  font-weight: 500;
+  font-size: 4rem;
   flex:1
 }
 

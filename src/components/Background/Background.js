@@ -8,13 +8,15 @@ export default class Background extends React.Component {
 
 
     const baseStyle = {
-      width: "100%",
+      left: "0px",
+      right: "0px",
       height: "100%",
       backgroundColor: overlay ? 'transparent' : color,
       backgroundImage: `url(${image})`,
       backgroundSize: 'cover',
-      position: 'fixed',
+      position: 'absolute',
       zIndex: 0,
+      filter:'grayscale(1)'
     }
 
     const overlayStyle = {
@@ -22,7 +24,7 @@ export default class Background extends React.Component {
       height: "100%",
       position: 'absolute',
       backgroundColor: overlay ? overlay: 'transparent',
-      opacity: 0.6,
+      opacity: 0.7,
     }
 
     return (

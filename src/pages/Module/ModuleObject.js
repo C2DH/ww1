@@ -128,7 +128,7 @@ const ModuleObjectContentImage = pure(({ module }) => {
           <div className="ModuleObjectContentImage__Link"><CollectionItemLink doc={module.id}/></div>
         </div>
         <CardBlock>
-          <div className="d-inline-flex">
+          <div className="d-inline-flex align-items-center">
             <i className="icon-hand Mods__DocumentOnly_Card_icon"  />
             <div className="Module__objectCard_text">
               {module.caption}
@@ -204,7 +204,7 @@ class ModuleObject extends PureComponent {
           {(size === 'medium') &&
             <Row style={fullHeight}>
               <Col md="2" />
-              <Col md="8">
+              <Col md="8" className="d-flex">
                 <ModuleObjectContent module={module}/>
               </Col>
               <Col md="2" />

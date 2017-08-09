@@ -27,7 +27,7 @@ class ModuleText extends PureComponent {
     const backgroundImage = get(module, 'background.object.id.attachment')
     const backgroundOverlay = get(module, 'background.object.overlay')
 
-    return <div style={{height:'100%'}}>
+    return <div style={{height:'100%', position:'relative'}}>
       <Background image={backgroundImage} color={backgroundColor} overlay={backgroundOverlay} />
       <div className="Module__container" style={textStyle}>
         <div className="Module__text">{module.text.content}</div>

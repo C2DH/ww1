@@ -93,6 +93,7 @@ class Themes extends PureComponent {
             left: 0,
             right: 0,
             zIndex: 1000,
+            filter:'grayscale(1)',
             backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(${getThemeCover(hoverTheme)})`
           }}
           className="Themes__backgroundTheme">
