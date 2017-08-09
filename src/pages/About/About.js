@@ -5,10 +5,16 @@ import BigTitle from '../../components/BigTitle'
 import './About.css'
 
 const About = () => (
-  <Container>
-    <BigTitle title="About" />
-    <StaticStory slug='about' />
-  </Container>
+    <div className="About__wrapper">
+      <Container>
+        <BigTitle title="About" />
+        <Row>
+          <Col>
+              <StaticStory slug='about' />
+          </Col>
+        </Row>
+      </Container>
+    </div>
 
 )
 
