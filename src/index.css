@@ -306,3 +306,7 @@ textarea:focus, input:focus{
 
 @media (max-width: 767px) {
 }
+
+.popover {
+  z-index: 10000 !important;
+}
