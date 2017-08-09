@@ -3,6 +3,11 @@
   padding: 10px;
   text-align: center;
   margin-bottom: 30px;
+  cursor: pointer;
+}
+
+.ManualCard__Card:hover .ManualCard__CardImg{
+  filter: grayscale(0);
 }
 
 .ManualCard__CardImg {
@@ -11,6 +16,8 @@
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+  filter: grayscale(0.8);
+  transition: filter 0.5s linear;
 }
 
 .ManualCard__CardImg:after {

@@ -1,17 +1,19 @@
 import React from 'react'
-import { Row, Col } from 'reactstrap'
+import { Row, Col, Container } from 'reactstrap'
 import './EducationFooter.css'
 
 const EducationFooter = () => (
-  <div>
-    <Row className="EducationFooter__row">
-      <Col md="10">
-        <h5>Did you use our manuals? Tell us more!</h5>
-      </Col>
-      <Col md="2">
-        <button className="EducationFooter__Btn">submit</button>
-      </Col>
-    </Row>
+  <div className="EducationFooter__wrapper">
+    <Container>
+      <Row>
+        <Col md="12">
+          <div className="EducationFooter__content">
+            <h5>Did you use our manuals? Tell us more!</h5>
+            <a className="btn btn-secondary EducationFooter__Btn" href="https://docs.google.com/forms/d/e/1FAIpQLSey5ZCDw49_li-rFjzbLtGbKmVlEljQZZBxqpJG1uU_sv1sVA/viewform" target="_blank">submit</a>
+          </div>
+        </Col>
+      </Row>
+    </Container>
   </div>
 )
 

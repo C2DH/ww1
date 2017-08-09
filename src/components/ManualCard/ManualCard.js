@@ -5,7 +5,7 @@ import './ManualCard.css'
   const ManualCard = (props) => {
     return (
         <Card className="ManualCard__Card">
-          <div className="ManualCard__CardImg" style={{backgroundImage: "url(https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180)"}}>
+          <div className="ManualCard__CardImg" style={{backgroundImage: "url(http://178.62.220.183/media/image/snapshots/kK2zbsr.snapshot.png)"}}>
 
           </div>
           <CardBlock>

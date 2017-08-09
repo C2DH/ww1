@@ -26,25 +26,27 @@ const Education = () => (
         </Col>
       </Row>
       <Row className="Education__ManualsRow">
-        <Col lg="3" xs="6">
+        <Col lg="3" xs="12">
             <ManualCard theme="grief and loss" title="the forgotten monument"/>
         </Col>
-        <Col lg="3" xs="6">
+        <Col lg="3" xs="12">
             <ManualCard theme="aftermath" title="an invitation to the Ball"/>
         </Col>
-        <Col lg="3" xs="6">
+        <Col lg="3" xs="12">
             <ManualCard theme="migration" title="the passport of Jean-Baptiste Gratia"/>
         </Col>
-        <Col lg="3" xs="6">
+        <Col lg="3" xs="12">
             <ManualCard theme="food crisis" title="250 grams of bread"/>
         </Col>
       </Row>
-      <Row className="Education__OtherTeachersRow">
+      <Row>
         <Col md="12">
-          <h6 className="Education__h6">See how other teacher used our materials</h6>
-          <div className="Education__Card-container">
-            <OtherTeachersCard />
-            <OtherTeachersCard />
+          <div className="Education__OtherTeachersRow">
+            <h6 className="Education__h6">See how other teachers used our materials</h6>
+            <div className="Education__Card-container">
+              <OtherTeachersCard />
+              <OtherTeachersCard />
+            </div>
           </div>
         </Col>
       </Row>
