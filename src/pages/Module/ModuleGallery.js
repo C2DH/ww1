@@ -23,6 +23,7 @@ const ModuleGallery = ({ module }) => {
     <div style={{ height: '100%' }}>
       <Background image={backgroundImage} color={backgroundColor} overlay={backgroundOverlay} />
       <CollectionMasonry
+        showDocLink={true}
         masonryStyle={{ paddingTop: 100 }}
         documents={makeDocs(module.objects)}
       />

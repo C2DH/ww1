@@ -7,6 +7,7 @@ import { Container, Row, Col } from 'reactstrap'
 import { Card, CardImg, CardBlock } from 'reactstrap'
 import { Player, ControlBar, BigPlayButton } from 'video-react'
 import AudioPlayer from '../../components/AudioPlayer'
+import CollectionItemLink from '../../components/CollectionItemLink'
 
 import Background from '../../components/Background'
 
@@ -83,7 +84,11 @@ class ModuleObjectContentVideo extends PureComponent {
           <BigPlayButton position="center" />
           <ControlBar autoHide={false} />
         </Player>
-        <div className="ModuleObject__caption" style={{width: playerWidth}}>{module.caption}</div>
+        <div className="ModuleObject__caption" style={{width: playerWidth}}>
+          {module.caption}
+          <span className="float-right"><CollectionItemLink doc={module.id}/></span>
+
+        </div>
       </div>
     )
   }
@@ -117,7 +122,9 @@ const ModuleObjectContentImage = pure(({ module }) => {
   return (
     <div style={objectStyle} className="Module__container">
       <Card className="Module__objectCard">
-        <div style={objectContainerStyle}></div>
+        <div style={objectContainerStyle}>
+          <div className="ModuleObjectContentImage__Link"><CollectionItemLink doc={module.id}/></div>
+        </div>
         <CardBlock>
           <div className="d-inline-flex">
             <i className="icon-hand Mods__DocumentOnly_Card_icon"  />
@@ -144,7 +151,10 @@ class ModuleObjectContentAudio extends PureComponent {
     return (
       <div className='Module__object__audio'>
         <AudioPlayer source={`https://cors-anywhere.herokuapp.com/${media}`} />
-        <div className="Module__object__audio__caption">{module.caption}</div>
+        <div className="Module__object__audio__caption">
+          {module.caption}
+          <div className="ModuleObjectContentAudio__Link"><CollectionItemLink doc={module.id}/></div>
+        </div>
       </div>
     )
   }

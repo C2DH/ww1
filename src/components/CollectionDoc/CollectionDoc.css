@@ -1,6 +1,7 @@
 .CollectionDoc{
   position: relative;
   overflow: hidden;
+  z-index: 0;
 }
 
 .CollectionDoc__frame{
@@ -40,8 +41,6 @@
   filter: brightness(75%);
 }
 
-
-
 .CollectionDoc__Image {
   width: auto;
   max-width: 100%;
@@ -66,4 +65,11 @@
 .CollectionDoc__inner_container_audio {
   background-color: #000;
   color: #fff;
+}
+
+.CollectionDoc__Link{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 200;
 }
