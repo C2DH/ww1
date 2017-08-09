@@ -17,8 +17,8 @@ import Manual from './pages/Manual'
 import StaticStory from './pages/StaticStory'
 import ThemeExplorer from './pages/ThemeExplorer'
 import About from './pages/About'
+import TermsOfUse from './pages/TermsOfUse'
 
-const TermsOfUse = () => <StaticStory slug='terms-of-use' />
 
 class Routes extends PureComponent {
   //https://reacttraining.com/react-router/web/example/modal-gallery
