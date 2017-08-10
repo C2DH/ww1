@@ -48,9 +48,12 @@ const makeDocuments = (
       let facets = {}
       if (crossFacets && facetsConfig) {
         // Make a call per facet and omit related params to calculate cross facets
-        const facetsCalls = map(facetsConfig, (paramsToOmit, facet) => {
+        const facetsCalls = map(facetsConfig, (paramsForFacet, facet) => {
+          const facetParams = typeof paramsForFacet === 'function'
+            ? paramsForFacet(params)
+            : omit(params, paramsForFacet)
           return call(apiFn, {
-            ...omit(params, paramsToOmit),
+            ...facetParams,
             facets: [facet],
             facets_only: true,
           })
