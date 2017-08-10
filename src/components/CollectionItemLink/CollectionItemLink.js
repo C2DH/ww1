@@ -11,7 +11,7 @@ export default class CollectionItemLink extends React.PureComponent {
 
     return (
         <Link to={{ pathname:`/collection/item/${doc.id}`, state:{modal:true} }}>
-          <i className="material-icons md-24">ic_info</i>
+          <i className="material-icons md-36">ic_info</i>
         </Link>
     )
   }
