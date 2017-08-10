@@ -7,9 +7,6 @@ const ChaptersSwitcher = ({ theme }) => (
   <div className="ChaptersSwitcher__chapters_container">
     <div className="ChaptersSwitcher__chapters__inner_container">
       <div className="ChaptersSwitcher__chapters_top">
-        <button className="btn btn-secondary ChaptersSwitcher__chapters_back_btn AtlasGrotesk-Medium-Web">
-          {theme.translated.title}
-        </button>
       </div>
         <div className="ChaptersSwitcher__chapter_scroll_container">
           {get(theme, 'stories').map((chapter, i) => (

@@ -4,9 +4,10 @@
   right: 10px;
   display: inline-flex;
   padding: 5px;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  z-index: 99;
+  z-index: 10000;
+  width: 240px;
 }
 
 .ChaptersControl__chapters_num_container span {

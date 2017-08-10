@@ -15,7 +15,7 @@ import {
 } from '../../state/selectors'
 
 const moduleContainerStyle = {
-  height: '100vh', display:'block'
+  height: '100vh'
 }
 
 const getModuleComponent = moduleType => {

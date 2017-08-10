@@ -80,7 +80,7 @@
   height: 45px;
   padding-top: 8px;
   cursor: pointer;
-  z-index: 10;
+  z-index: 9999;
 }
 
 
