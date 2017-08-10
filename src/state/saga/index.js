@@ -141,11 +141,11 @@ export default function* rootSaga() {
     state => state.collectionDocuments,
     {
       data__type: [
-       'filters.data__type__in',
+        'filters.data__type__in',
       ],
       data__year: [
-       'exclude.data__year__iexact',
-       'overlaps',
+        'exclude.data__year__iexact',
+        'overlaps',
       ],
     }
   ))
@@ -172,7 +172,7 @@ export default function* rootSaga() {
         'filters.data__place_type__in'
       ],
       data__year: [
-       'filters.data__year__isnull',
+        'exclude.data__year__iexact',
         'overlaps',
       ],
     },
