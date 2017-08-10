@@ -44,7 +44,7 @@ export const getCurrentLanguage = createSelector(
 // {
 //   description: 'Pasta Pizza'
 // }
-const translateObject = (data, lang, transKeys = '*', fallbackLang = 'en') =>
+const translateObject = (data, lang, transKeys = '*', fallbackLang = 'en_US') =>
   mapValues(data, (value, key) => {
     if (!includes(transKeys, key)) {
       return value

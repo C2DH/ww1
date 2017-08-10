@@ -42,7 +42,9 @@ class ModuleTextObject extends PureComponent {
         <div>
           { module.layout == 'object-text' && (
             <Row style={fullHeight}>
+              <div style={{height:400}}>
               <ObjectColumn module={obj}/>
+              </div>
               <TextColumn content={content}/>
             </Row>
           )}
