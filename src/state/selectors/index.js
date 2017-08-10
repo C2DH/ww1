@@ -15,6 +15,7 @@ import {
   map,
   range,
   find,
+  findIndex,
   omit,
   reduce
 } from 'lodash'
@@ -399,6 +400,19 @@ export const getChapter = createSelector(
   (theme, lang) => maybeNull(theme)(translateStory(lang))
 )
 
+export const getChapterIndex = createSelector(
+  getTheme,
+  getChapter,
+  (theme, chapter) => maybeNull(theme)(() => maybeNull(chapter)(() =>
+    findIndex(theme.stories, { id: chapter.id })
+  ))
+)
+
+export const getTotalThemeChapters = createSelector(
+  getTheme,
+  theme => maybeNull(theme)(theme => theme.stories.length)
+)
+
 export const getTotalChapterModules = createSelector(
   getChapter,
   chapter => maybeNull(chapter)(chapter => get(chapter, `contents.modules`, []).length)
@@ -465,7 +479,9 @@ const getClearModule = createSelector(
   getChapter,
   (_, index) => index,
   (chapter, index) => {
-    return get(chapter, `contents.modules[${index - 1}]`, null)
+    return maybeNull(chapter)(() =>
+      get(chapter, `contents.modules[${index - 1}]`, null)
+    )
   }
 )
 
@@ -475,8 +491,10 @@ export const makeGetModule = () => {
     getClearModule,
     getCurrentLanguage,
     (chapter, module, lang) => {
-      const transModule = translateModule(module, lang.code)
-      return joinIds(chapter.documents.map(d => ({ ...d, id: d.document_id })).map(translateDocument(lang)), transModule)
+      return maybeNull(module)(() => {
+        const transModule = translateModule(module, lang.code)
+        return joinIds(chapter.documents.map(d => ({ ...d, id: d.document_id })).map(translateDocument(lang)), transModule)
+      })
     }
   )
 }

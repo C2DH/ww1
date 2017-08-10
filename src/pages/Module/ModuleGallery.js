@@ -20,13 +20,19 @@ const ModuleGallery = ({ module }) => {
   const backgroundOverlay = get(module, 'background.object.overlay')
 
   return (
-    <div style={{ height: '100%' }}>
+    <div style={{ height: '100%', position: 'relative' }}>
       <Background image={backgroundImage} color={backgroundColor} overlay={backgroundOverlay} />
       <CollectionMasonry
         showDocLink={true}
-        masonryStyle={{ paddingTop: 100 }}
+        masonryStyle={{ paddingTop: 100,paddingBottom:80 }}
         documents={makeDocs(module.objects)}
       />
+    <div className="ModuleObject__caption_video">
+        <span>
+          <i className="icon-hand Mods__DocumentOnly_Card_icon"  />
+          <span> {module.caption}</span>
+        </span>
+    </div>
     </div>
   )
 }

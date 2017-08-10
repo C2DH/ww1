@@ -75,7 +75,9 @@ const fakeModule = {
 class Module extends PureComponent {
   render() {
     const { chapter, module } = this.props
-    // console.log(chapter, module)
+    if (!module) {
+      return null
+    }
     return <div style={moduleContainerStyle}>
       {React.createElement(getModuleComponent(module.module), {
         chapter,

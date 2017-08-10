@@ -11,7 +11,7 @@ import CollectionItemLink from '../../components/CollectionItemLink'
 
 import Background from '../../components/Background'
 
-const fullHeight = { height: '100%'}
+const fullHeight = { height: '100%', position:'relative'}
 
 class ModuleObjectContentVideo extends PureComponent {
   state = {
@@ -53,7 +53,7 @@ class ModuleObjectContentVideo extends PureComponent {
 
   render() {
     const { player, width, height } = this.state
-    let useHeight = height - 100
+    let useHeight = height -80;
 
     let playerHeight = 0
     let playerWidth = 0
@@ -62,7 +62,7 @@ class ModuleObjectContentVideo extends PureComponent {
       const videoMaxHeight = width * (player.videoHeight / player.videoWidth)
       if (videoMaxHeight < useHeight) {
         playerHeight = videoMaxHeight
-        playerWidth = width
+        playerWidth = width - 30
       } else {
         playerHeight = useHeight
         playerWidth = useHeight * (player.videoWidth / player.videoHeight)
@@ -80,16 +80,18 @@ class ModuleObjectContentVideo extends PureComponent {
 
 
     return (
-      <div className="ModuleObject__container">
+      <div className="ModuleObject__container_video">
         <Player fluid={false} ref={ref => this.player = ref} height={playerHeight} width={playerWidth}>
           <source src={media} />
           <BigPlayButton position="center" />
           <ControlBar autoHide={false} />
         </Player>
-        <div className="ModuleObject__caption" style={{width: playerWidth}}>
-          {module.caption}
-          <span className="float-right"><CollectionItemLink doc={module.id}/></span>
-
+        <div className="ModuleObject__caption_video">
+            <span>
+              <i className="icon-hand Mods__DocumentOnly_Card_icon"  />
+              <span> {module.caption}</span>
+            </span>
+            <div><CollectionItemLink doc={module.id}/></div>
         </div>
       </div>
     )
@@ -156,8 +158,11 @@ class ModuleObjectContentAudio extends PureComponent {
       <div className='Module__object__audio'>
         <AudioPlayer source={`https://cors-anywhere.herokuapp.com/${media}`} />
         <div className="Module__object__audio__caption">
-          {module.caption}
-          <div className="ModuleObjectContentAudio__Link"><CollectionItemLink doc={module.id}/></div>
+          <span>
+            <i className="icon-hand Mods__DocumentOnly_Card_icon"  />
+            <span> {module.caption}</span>
+          </span>
+          <div><CollectionItemLink doc={module.id}/></div>
         </div>
       </div>
     )
@@ -191,11 +196,11 @@ class ModuleObject extends PureComponent {
     return (
       <div style={fullHeight}>
         <Background image={backgroundImage} color={backgroundColor} overlay={backgroundOverlay} />
-
+        <Container fluid>
           {(size === 'small') &&
             <Row style={fullHeight}>
               <Col md="4" />
-              <Col md="4" style={fullHeight}>
+              <Col md="4" style={fullHeight} className="d-flex">
                 <ModuleObjectContent module={module}/>
               </Col>
               <Col md="4" />
@@ -211,12 +216,12 @@ class ModuleObject extends PureComponent {
           </Row>}
 
          {(size === 'big') &&
-            <Row style={fullHeight}>
+            <Row style={fullHeight} className="d-flex">
               <Col md="12">
                 <ModuleObjectContent module={module}/>
               </Col>
           </Row>}
-         }
+         </Container>
       </div>
     )
   }

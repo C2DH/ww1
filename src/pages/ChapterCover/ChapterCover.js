@@ -6,15 +6,18 @@ import { Container } from 'reactstrap';
 
 import {
   getChapter,
+  getChapterIndex,
 } from '../../state/selectors'
 
 import './ChapterCover.css'
 
 class ChapterCover extends PureComponent  {
   render() {
-    const { chapter } = this.props
+    const { chapter, index } = this.props
 
-    console.log(chapter)
+    if (!chapter) {
+      return null
+    }
 
     return (
       <Container fluid className="ChapterCover__container">
@@ -26,7 +29,7 @@ class ChapterCover extends PureComponent  {
          <div  className="ChapterCover__inner_container">
            <div>
             <div className="ChapterCover__label_container">
-              <label>CHAPTER {get(chapter, 'id')}</label>
+              <h6>CHAPTER {index + 1}</h6>
             </div>
             <h1>{chapter.translated.title}</h1>
             <div className="ChapterCover__text_container">
@@ -37,7 +40,6 @@ class ChapterCover extends PureComponent  {
             </div>
           </div>
          </div>
-
       </Container>
     )
   }
@@ -47,6 +49,7 @@ class ChapterCover extends PureComponent  {
 
 const mapStateToProps = state => ({
   chapter: getChapter(state),
+  index: getChapterIndex(state),
 })
 
 export default connect(mapStateToProps)(ChapterCover)

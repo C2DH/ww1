@@ -11,7 +11,7 @@ import {
   getPlaceTypeIcon,
 } from '../../utils'
 
-const fullHeight = { height: '100%'}
+const fullHeight = { height: '100%', position:'relative'}
 
 const circleScale = scaleLinear().range([30, 100]).domain([1, 150])
 
@@ -31,12 +31,13 @@ const styles = {
     width: 30,
     height: 30,
     borderRadius: '50%',
-    backgroundColor: '#E0E0E0',
+    backgroundColor: '#ffffff',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    border: '2px solid #C9C9C9',
-    // pointerEvents: 'none'
+    color:'#F56350',
+    fontSize: '2rem',
+    cursor:'pointer',
   }
 }
 
@@ -110,7 +111,7 @@ class ModuleMap extends PureComponent {
     }))
 
     return (
-      <div style={{height:'100%'}}>
+      <div style={{height:'100%', position:'relative'}}>
         <div  className="Module__container">
 
           <Map
@@ -123,7 +124,7 @@ class ModuleMap extends PureComponent {
             touchZoomRotate={false}
             style="mapbox://styles/eischteweltkrich/cj5cizaj205vv2qlegw01hubm"
             containerStyle={{
-              height: module.caption ? "calc(100vh - 100px)" : "100%",
+              height: module.caption ? "calc(100vh - 80px)" : "100%",
               width: "100%",
               top: 0,
               position: 'absolute'
@@ -149,8 +150,8 @@ class ModuleMap extends PureComponent {
             {selectedDocument && (
               <Popup
                 coordinates={selectedDocument.coordinates}
-                offset={[0, -50]}
-                style={{boxShadow: '0 2px 5px 5px rgba(0,0,0,0.11)'}}
+                anchor='bottom'
+                offset={[0, -15]}
                 key={selectedDocument.id}>
                 <i className="material-icons pointer float-right" onClick={this.closePopup}>close</i>
                 <MapToolTip
@@ -165,8 +166,10 @@ class ModuleMap extends PureComponent {
 
           { module.caption &&
           <div className="ModuleMap__Caption">
-            <i className="icon-hand TimelineExpandableYear__month_marker_hand" />{' '}
-            <span>{module.caption}</span>
+            <span>
+              <i className="icon-hand Mods__DocumentOnly_Card_icon"  />
+              <span> {module.caption}</span>
+            </span>
           </div>
           }
 

@@ -15,8 +15,7 @@ export default class Background extends React.Component {
       backgroundImage: `url(${image})`,
       backgroundSize: 'cover',
       position: 'absolute',
-      zIndex: 0,
-      filter:'grayscale(1)'
+      zIndex: 0
     }
 
     const overlayStyle = {

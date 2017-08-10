@@ -24,7 +24,6 @@ import './Module.css'
 const fullHeight = { height: '100%'}
 const converter = new Converter()
 
-
 const ObjectColumn = ({module}) => (
   <Col md="6" className="Module__textObject_Col">
     <ModuleObjectContent module={module}/>
@@ -113,22 +112,22 @@ class ModuleTextObject extends PureComponent {
     console.log(content)
 
     return (
-      <div style={{height:'100%'}} className="Module__container">
+      <div style={{height:'100%', position:'relative'}}>
         <Background color={get(module, 'background.color')} />
-        <div>
+        <Container fluid>
           { module.layout == 'object-text' && (
             <Row style={fullHeight}>
               <ObjectColumn module={obj}/>
-              <TextColumn content={content}/>
+              <TextColumn content={content} color={module.text.color}/>
             </Row>
           )}
           { module.layout == 'text-object' && (
             <Row style={fullHeight}>
-              <TextColumn content={content}/>
+              <TextColumn content={content} color={module.text.color}/>
               <ObjectColumn module={obj}/>
             </Row>
           )}
-        </div>
+        </Container>
       </div>
     )
   }
