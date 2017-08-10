@@ -37,9 +37,9 @@ class ModuleTextObject extends PureComponent {
       size: 'medium'
     }
     return (
-      <div style={{height:'100%'}} className="Module__container">
+      <div style={{height:'100%', position:'relative'}}>
         <Background color={get(module, 'background.color')} />
-        <div>
+        <Container fluid>
           { module.layout == 'object-text' && (
             <Row style={fullHeight}>
               <ObjectColumn module={obj}/>
@@ -52,7 +52,7 @@ class ModuleTextObject extends PureComponent {
               <ObjectColumn module={obj}/>
             </Row>
           )}
-        </div>
+        </Container>
       </div>
     )
   }

@@ -71,11 +71,12 @@
 }
 
 .Module__textObject_Col {
-  height: 100%;
+  height: 100vh;
   display: flex;
   align-items: center;
   padding-left: 30px;
   padding-right: 30px;
+
 }
 
 .Module__textObjectCard {
@@ -114,6 +115,8 @@
 .Module__textObject_Text {
   font-family: Georgia;
   font-size: 24px;
+  width: 100%;
+  color: white;
 }
 
 .ModuleCarousel__wrapper{
