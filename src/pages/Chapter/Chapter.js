@@ -1,11 +1,12 @@
 import React, { PureComponent } from 'react'
 import { CSSTransitionGroup } from 'react-transition-group'
 import { connect } from 'react-redux'
-import { Switch, Route, withRouter } from 'react-router-dom'
+import { Link, Switch, Route, withRouter } from 'react-router-dom'
 import { get } from 'lodash'
 import ChapterCover from '../ChapterCover'
 import Module from '../Module'
 import ChaptersControl from '../../components/ChaptersControl'
+import ChaptersSwitcher from '../../components/ChaptersSwitcher'
 import './Chapter.css'
 
 import {
@@ -22,6 +23,10 @@ import {
 } from '../../state/actions'
 
 class Chapter extends PureComponent  {
+  state = {
+    open: false,
+  }
+
   componentDidMount() {
     this.props.loadChapter(this.props.match.params.chapterSlug)
   }
@@ -29,12 +34,19 @@ class Chapter extends PureComponent  {
   componentWillReceiveProps(nextProps) {
     if (nextProps.match.params.chapterSlug !== this.props.match.params.chapterSlug) {
       this.props.unloadChapter()
+      this.toggleChapters()
       this.props.loadChapter(nextProps.match.params.chapterSlug)
     }
   }
 
   componentWillUnmount() {
     this.props.unloadChapter()
+  }
+
+  toggleChapters = () => {
+    this.setState({
+      open: !this.state.open
+    })
   }
 
   render() {
@@ -64,6 +76,9 @@ class Chapter extends PureComponent  {
                   title={theme.translated.title}
                   hasPrev={index > 0}
                   hasNext={index < totalChapterModules || chapterIndex + 1 < totalChapters}
+                  onClickChapters={() => {
+                    this.toggleChapters()
+                  }}
                   onClickTheme={() => {
                     history.push(themeUrl)
                   }}
@@ -89,6 +104,14 @@ class Chapter extends PureComponent  {
             }}
           </Route>
         )}
+        <CSSTransitionGroup component="div"
+          transitionName="chapter"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}>
+           {this.state.open &&
+             <ChaptersSwitcher theme={theme} />
+            }
+        </CSSTransitionGroup>
 
         {chapter && (
          <CSSTransitionGroup

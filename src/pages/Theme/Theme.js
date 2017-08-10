@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react'
 import { Link } from 'react-router-dom'
-import { get, forEach } from 'lodash'
+import { get } from 'lodash'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import { connect } from 'react-redux'
 import { Container, Row, Col } from 'reactstrap';
+import ChaptersSwitcher from '../../components/ChaptersSwitcher'
 import './Theme.css'
 
 import {
@@ -67,12 +68,7 @@ class Theme extends PureComponent {
         <h6>Chapters</h6>
         <button className="Theme__chapters_btn" onClick={this.toggleChapters}><i className="material-icons md-24">{this.state.open ? 'close' : 'list'}</i></button>
       </div>
-      <CSSTransitionGroup component="div"
-        transitionName="chapter"
-        transitionEnterTimeout={500}
-        transitionLeaveTimeout={300}>
-         {this.state.open &&
-          <div className="Theme__chapters_container">
+          {/*<div className="Theme__chapters_container">
             <div className="Theme__chapters__inner_container">
               <div className="Theme__chapters_top">
                 <button className="btn btn-secondary Theme__chapters_back_btn AtlasGrotesk-Medium-Web">
@@ -94,12 +90,20 @@ class Theme extends PureComponent {
                   ))}
               </div>
             </div>
-          </div>}
+          </div>*/}
+      <CSSTransitionGroup component="div"
+        transitionName="chapter"
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={300}>
+         {this.state.open &&
+           <ChaptersSwitcher theme={theme} />
+        }
       </CSSTransitionGroup>
     </div>
     )
   }
 }
+
 
 const mapStateToProps = state => ({
   theme: getTheme(state),
