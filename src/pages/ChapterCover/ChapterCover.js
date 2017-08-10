@@ -29,7 +29,7 @@ class ChapterCover extends PureComponent  {
          <div  className="ChapterCover__inner_container">
            <div>
             <div className="ChapterCover__label_container">
-              <label>CHAPTER {index + 1}</label>
+              <h6>CHAPTER {index + 1}</h6>
             </div>
             <h1>{chapter.translated.title}</h1>
             <div className="ChapterCover__text_container">
