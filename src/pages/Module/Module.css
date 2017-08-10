@@ -116,11 +116,19 @@
   font-size: 24px;
 }
 
+.ModuleCarousel__wrapper{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
 .ModuleCarousel__slider_container {
-  margin: 0 auto;
-  padding: 40px;
-  width: 80%;
-  color: #333;
+  flex-grow: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .ModuleCarousel__inner_slider {
@@ -141,17 +149,15 @@
 }
 
 .ModuleCarousel__caption {
-  height: 70px;
+  height: 80px;
   background-color: white;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: inline-flex;
+  display: flex;
   color: #333;
-  justify-content: flex-start;
-  padding: 20px;
-  padding-left: 110px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  flex-grow: 0;
+  font-family: 'Atlas Grotesk Web', Arial, sans-serif;
 }
 
 .ModuleCarousel__caption_icon {
@@ -174,6 +180,17 @@
   justify-content: center;
   align-items: center;
   color: #fff;
+  font-family: 'Atlas Grotesk Web', Arial, sans-serif;
+}
+
+.ModuleCarousel__CollectionItemLink{
+  position: absolute;
+  top:5px;
+  right: 5px;
+}
+
+.slick-initialized .slick-slide{
+  position: relative;
 }
 
 .ModuleCarousel__control_btn {
