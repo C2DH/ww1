@@ -5,6 +5,7 @@ import { Container, Row, Col } from 'reactstrap';
 import { Card, CardImg, CardBlock } from 'reactstrap';
 import Slider from 'react-slick'
 import Background from '../../components/Background'
+import CollectionItemLink from '../../components/CollectionItemLink'
 import './Module.css'
 
 
@@ -51,24 +52,41 @@ class ModuleCarousel extends PureComponent {
     const backgroundOverlay = get(module, 'background.object.overlay')
 
     return (
-      <div style={{height:'100%'}}>
+      <div style={{height:'100%', position:'relative'}}>
         <Background image={backgroundImage} color={backgroundColor} overlay={backgroundOverlay} />
-        <Container className="ModuleCarousel__slider_container">
-          <Slider {...settings}>
-            {module.objects.map((pic, i) => (
-              // <div className={`ModuleCarousel__inner_slider ${ i === currentIndex ? '' : 'ModuleCarousel__inner_slider--opaque'  }`} key={cover} style={{backgroundImage: `url(${cover})`}}/>
-              <div className={`ModuleCarousel__inner_slider ${ i !== currentIndex  ?  'ModuleCarousel__inner_slider--opaque' : '' }`} key={pic.id.id} >
-                <img src={pic.id.attachment} />
+        <Container fluid>
+          <Row>
+            <Col>
+              <div className="ModuleCarousel__wrapper">
+                <div className="ModuleCarousel__slider_container">
+                  <div style={{width:'100%',height:'100%'}}>
+                    <Slider {...settings}>
+                      {module.objects.map((pic, i) => (
+                        // <div className={`ModuleCarousel__inner_slider ${ i === currentIndex ? '' : 'ModuleCarousel__inner_slider--opaque'  }`} key={cover} style={{backgroundImage: `url(${cover})`}}/>
+                        <div className={`ModuleCarousel__inner_slider ${ i !== currentIndex  ?  'ModuleCarousel__inner_slider--opaque' : '' }`} key={pic.id.id} >
+                          <img src={pic.id.attachment} />
+                          <div className="ModuleCarousel__CollectionItemLink"><CollectionItemLink doc={pic.id}/></div>
+                        </div>
+                      ))}
+                    </Slider>
+                    <div className="ModuleCarousel__control_container">
+                      <span> {currentIndex + 1} / {module.objects.length} </span>
+                    </div>
+                  </div>
+
+                </div>
+                <div className="ModuleCarousel__caption">
+                    <span>
+                      <i className="icon-hand Mods__DocumentOnly_Card_icon"  />
+                      <span> {module.caption}</span>
+                    </span>
+                </div>
               </div>
-            ))}
-          </Slider>
-          <div className="ModuleCarousel__control_container">
-            <span> {currentIndex + 1} / {module.objects.length} </span>
-          </div>
-        </Container>
-        <div className="ModuleCarousel__caption">
-          <i className="icon-hand ModuleCarousel__caption_icon" />{module.caption}
-        </div>
+
+
+            </Col>
+          </Row>
+          </Container>
       </div>
     )
   }

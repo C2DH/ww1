@@ -25,7 +25,7 @@ class ChaptersControl extends PureComponent {
     return (
       <div>
         <div className="ChaptersControl__chapters_num_container">
-          <span onClick={onClickTheme}>{title}</span>
+          <span className="AtlasGrotesk-Medium-Web" onClick={onClickTheme}>{title}</span>
           <button onClick={onClickChapters} className="ChaptersControl__chapters_btn">{currentIndex}/{count}</button>
         </div>
         <div className="ChaptersControl__controls_container">

@@ -62,7 +62,7 @@ class ModuleObjectContentVideo extends PureComponent {
       const videoMaxHeight = width * (player.videoHeight / player.videoWidth)
       if (videoMaxHeight < useHeight) {
         playerHeight = videoMaxHeight
-        playerWidth = width
+        playerWidth = width - 30
       } else {
         playerHeight = useHeight
         playerWidth = useHeight * (player.videoWidth / player.videoHeight)

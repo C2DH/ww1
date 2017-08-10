@@ -71,11 +71,36 @@
 }
 
 .Module__textObject_Col {
-  height: 100%;
+  height: 100vh;
   display: flex;
   align-items: center;
   padding-left: 30px;
   padding-right: 30px;
+
+}
+
+.Module__textObject_Col .Module__object__audio{
+  width: 100%!important;
+  margin: 0px;
+}
+
+.Module__textObject_Col .Module__object__audio > .AudioPlayer__wrapper{
+  padding: 0px 20px!important;
+}
+
+.Module__textObject_Col .Module__object__audio__caption{
+  position: relative;
+  margin-top: 50px;
+}
+
+.Module__textObject_Col .ModuleObject__caption_video{
+  position: relative;
+}
+
+.Module__textObject_Col .ModuleObject__container_video{
+  margin-left: 0px;
+  margin-right: 0px;
+  height: auto;
 }
 
 .Module__textObjectCard {
@@ -114,13 +139,23 @@
 .Module__textObject_Text {
   font-family: Georgia;
   font-size: 24px;
+  width: 100%;
+  color: white;
+}
+
+.ModuleCarousel__wrapper{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin-left: -15px;
+  margin-right: -15px;
 }
 
 .ModuleCarousel__slider_container {
-  margin: 0 auto;
-  padding: 40px;
-  width: 80%;
-  color: #333;
+  flex-grow: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .ModuleCarousel__inner_slider {
@@ -141,17 +176,15 @@
 }
 
 .ModuleCarousel__caption {
-  height: 70px;
+  height: 80px;
   background-color: white;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: inline-flex;
+  display: flex;
   color: #333;
-  justify-content: flex-start;
-  padding: 20px;
-  padding-left: 110px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  flex-grow: 0;
+  font-family: 'Atlas Grotesk Web', Arial, sans-serif;
 }
 
 .ModuleCarousel__caption_icon {
@@ -174,6 +207,17 @@
   justify-content: center;
   align-items: center;
   color: #fff;
+  font-family: 'Atlas Grotesk Web', Arial, sans-serif;
+}
+
+.ModuleCarousel__CollectionItemLink{
+  position: absolute;
+  top:5px;
+  right: 5px;
+}
+
+.slick-initialized .slick-slide{
+  position: relative;
 }
 
 .ModuleCarousel__control_btn {
@@ -205,12 +249,14 @@
 
 .ModuleMap__Caption {
   width: 100%;
-  height: 100px;
+  height: 80px;
   background: #fff;
   position: absolute;
   bottom: 0px;
-  line-height: 80px;
-  padding: 20px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 
