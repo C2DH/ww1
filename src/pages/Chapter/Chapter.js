@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import { CSSTransitionGroup } from 'react-transition-group'
 import { connect } from 'react-redux'
 import { Switch, Route, withRouter } from 'react-router-dom'
+import { get } from 'lodash'
 import ChapterCover from '../ChapterCover'
 import Module from '../Module'
 import ChaptersControl from '../../components/ChaptersControl'
@@ -11,6 +12,8 @@ import {
   getTheme,
   getChapter,
   getTotalChapterModules,
+  getTotalThemeChapters,
+  getChapterIndex,
 } from '../../state/selectors'
 
 import {
@@ -35,7 +38,16 @@ class Chapter extends PureComponent  {
   }
 
   render() {
-    const { theme, location, chapter, totalChapterModules, match, history } = this.props
+    const {
+      theme,
+      location,
+      chapter,
+      totalChapterModules,
+      totalChapters,
+      chapterIndex,
+      match,
+      history
+    } = this.props
 
     return (
       <div>
@@ -45,27 +57,33 @@ class Chapter extends PureComponent  {
             {({ match }) => {
               const index = match ? +match.params.moduleIndex : 0
               const themeUrl = `/themes/${theme.slug}`
-              const baseUrl = `${themeUrl}/chapters/${chapter.slug}`
+              const chapterUrl = `${themeUrl}/chapters/${chapter.slug}`
+              const nextChapterSlug = get(theme, `stories[${chapterIndex + 1}].slug`)
               return (
                 <ChaptersControl
                   title={theme.translated.title}
                   hasPrev={index > 0}
-                  hasNext={index < totalChapterModules}
+                  hasNext={index < totalChapterModules || chapterIndex + 1 < totalChapters}
                   onClickTheme={() => {
                     history.push(themeUrl)
                   }}
                   onClickNext={() => {
-                    history.push(`${baseUrl}/modules/${index + 1}`)
+                    if (index < totalChapterModules) {
+                      history.push(`${chapterUrl}/modules/${index + 1}`)
+                    } else {
+                      // Go to cover of next chapter
+                      history.push(`${themeUrl}/chapters/${nextChapterSlug}`)
+                    }
                   }}
                   onClickPrev={() => {
                     if (index > 1) {
-                      history.push(`${baseUrl}/modules/${index - 1}`)
+                      history.push(`${chapterUrl}/modules/${index - 1}`)
                     } else {
-                      history.push(`${baseUrl}`)
+                      history.push(`${chapterUrl}`)
                     }
                   }}
-                  currentIndex={index}
-                  count={totalChapterModules}
+                  currentIndex={chapterIndex + 1}
+                  count={totalChapters}
                 />
               )
             }}
@@ -93,6 +111,8 @@ class Chapter extends PureComponent  {
 const mapStateToProps = state => ({
   theme: getTheme(state),
   chapter: getChapter(state),
+  chapterIndex: getChapterIndex(state),
+  totalChapters: getTotalThemeChapters(state),
   totalChapterModules: getTotalChapterModules(state),
 })
 
