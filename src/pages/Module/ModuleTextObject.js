@@ -12,17 +12,16 @@ import './Module.css'
 const fullHeight = { height: '100%'}
 const converter = new Converter()
 
-
 const ObjectColumn = ({module}) => (
   <Col md="6" className="Module__textObject_Col">
     <ModuleObjectContent module={module}/>
   </Col>
 )
 
-const TextColumn = ({content}) => (
+const TextColumn = ({content,color}) => (
   <Col md="6"  className="Module__textObject_Col">
     <div className="Module__textObject_Text">
-      <div className="" dangerouslySetInnerHTML={{ __html: content }} />
+      <div style={{color: color}} className="" dangerouslySetInnerHTML={{ __html: content }} />
     </div>
   </Col>
 )
@@ -43,12 +42,12 @@ class ModuleTextObject extends PureComponent {
           { module.layout == 'object-text' && (
             <Row style={fullHeight}>
               <ObjectColumn module={obj}/>
-              <TextColumn content={content}/>
+              <TextColumn content={content} color={module.text.color}/>
             </Row>
           )}
           { module.layout == 'text-object' && (
             <Row style={fullHeight}>
-              <TextColumn content={content}/>
+              <TextColumn content={content} color={module.text.color}/>
               <ObjectColumn module={obj}/>
             </Row>
           )}
