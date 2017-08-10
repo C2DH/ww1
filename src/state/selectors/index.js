@@ -44,7 +44,7 @@ export const getCurrentLanguage = createSelector(
 // {
 //   description: 'Pasta Pizza'
 // }
-const translateObject = (data, lang, transKeys = '*', fallbackLang = 'en') =>
+const translateObject = (data, lang, transKeys = '*', fallbackLang = 'en_US') =>
   mapValues(data, (value, key) => {
     if (!includes(transKeys, key)) {
       return value
@@ -161,17 +161,17 @@ const makeDocumentsMetaSelectors = (selectState, dataTypeFacetName = 'data__type
 
   const getDocumentsYearsFacets = createSelector(
     getDocumentsTotalFacets,
-    facets => omit(makeYearsFacets(facets), null)
+    facets => omit(makeYearsFacets(facets), 'uncertain')
   )
 
   const getDocumentsFilteredYearsFacets = createSelector(
     getDocumentsFacets,
-    facets => omit(makeYearsFacets(facets), null)
+    facets => omit(makeYearsFacets(facets), 'uncertain')
   )
 
   const getDocumentsUncertainYears = createSelector(
     getDocumentsFacets,
-    facets => get(makeYearsFacets(facets), null)
+    facets => get(makeYearsFacets(facets), 'uncertain')
   )
 
   // Count from meta info

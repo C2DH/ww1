@@ -249,17 +249,21 @@ class MapPage extends PureComponent {
     const placeTypesIn = keys(selectedPlaceTypes)
 
     const applyFilters = {}
+    const applyExclude = {}
+
     if (placeTypesIn.length) {
       applyFilters.data__place_type__in = placeTypesIn
     }
+
     if (!includeUncertainYears) {
-      applyFilters.data__year__isnull = false
+      applyExclude.data__year__iexact = 'uncertain'
     }
 
     return {
       q: searchString,
       overlaps: makeOverlaps(selectedYears),
       filters: applyFilters,
+      exclude: applyExclude,
     }
   }
 

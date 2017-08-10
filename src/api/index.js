@@ -32,25 +32,28 @@ export const getDocuments = (params = {}) =>
     .then(extractBody)
 
 export const getCollectionDocuments = (params = {}) => getDocuments({
-  exclude: { data__type__in: ['person', 'event', 'glossary', 'place', 'resource'] },
   ...params,
+  filters: {
+    data__type__in: ['image', 'audio', 'video', 'correspondence', 'other', 'physical object'],
+    ...params.filters,
+  },
 })
 
 export const getMapDocuments = (params = {}) => getDocuments({
+  ...params,
   filters: {
     data__coordinates__isnull: false,
     ...params.filters,
   },
-  ...omit(params, 'filters'),
 })
 
 export const getTimelineDocuments = (params = {}) => getDocuments({
+  ...params,
   filters: {
     data__type: 'event',
     ...params.filters,
   },
   orderby: 'data__date',
-  ...omit(params, 'filters'),
 })
 
 export const getResourceDocuments = (params = {}) => getDocuments({

@@ -91,13 +91,27 @@ const RelatedObjects = ({items}) => {
   </div>)
 }
 
-const SeeAlso = ({doc}) => (
+const SeeAlso = ({doc}) => {
+  let year = get(doc, "data.year")
+  const dataType = get(doc, "data.type")
+  if(year && parseInt(year)){
+    if(year < 1914){
+      year = '<1914,1914'
+    }
+    else if(year > 1914){
+      year = '1921,1921>'
+    } else {
+      year = `${year},${year+1}`
+    }
+  }
+
+  return (
   <div className="CollectionItem__Relatedobjects">
     <h6 className="CollectionItem__label">see also</h6>
-      {doc.data.year && <Link to={`/collection/?years=${get(doc, "data.year")},${get(doc, "data.year",0)+1}`}><button className="CollectionItem__btn btn btn-secondary">{get(doc, "data.year")}</button></Link>}
-      {doc.data.type && <Link to={`/collection/?types=${get(doc, "data.type")}`}><button className="CollectionItem__btn btn btn-secondary">{get(doc, "data.type")}</button></Link>}
-  </div>
-)
+      {year && <Link to={`/collection/?years=${year}`}><button className="CollectionItem__btn btn btn-secondary">{get(doc, "data.year")}</button></Link>}
+      {dataType && <Link to={`/collection/?types=${dataType}`}><button className="CollectionItem__btn btn btn-secondary">{get(doc, "data.type")}</button></Link>}
+  </div>)
+}
 
 
 

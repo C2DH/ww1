@@ -93,17 +93,21 @@ class Collection extends PureComponent {
     const filterDataTypesList = keys(filterDataTypes)
 
     const applyFilters = {}
+    const applyExclude = {}
+
     if (filterDataTypesList.length) {
       applyFilters.data__type__in = filterDataTypesList
     }
+
     if (!filterUncertainYears) {
-      applyFilters.data__year__isnull = false
+      applyExclude.data__year__iexact = 'uncertain'
     }
 
     return {
       q: searchString,
       overlaps: makeOverlaps(filterYears),
       filters: applyFilters,
+      exclude: applyExclude,
     }
   }
 
