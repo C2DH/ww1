@@ -34,7 +34,7 @@ class Chapter extends PureComponent  {
   componentWillReceiveProps(nextProps) {
     if (nextProps.match.params.chapterSlug !== this.props.match.params.chapterSlug) {
       this.props.unloadChapter()
-      this.toggleChapters()
+      this.setState({ open: false })
       this.props.loadChapter(nextProps.match.params.chapterSlug)
     }
   }
