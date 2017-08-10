@@ -14,9 +14,9 @@
   position: absolute;
   opacity: 0;
   top: 0;
-  width: calc(100% - 56px);
+  width: calc(100% - 58px);
   bottom: 0;
-  z-index: 10000;
+  /*z-index: 10000;*/
 }
 
 .SwitchModule-enter.SwitchModule-enter-active {
