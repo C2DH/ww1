@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import I18n from "redux-i18n"
 import store from './state'
+import { Tooltip } from 'redux-tooltip';
 
 import Layout from './components/Layout'
 import Home from './pages/Home'
@@ -75,6 +76,7 @@ const App = () => (
     <I18n translations={translations} fallbackLang="en_US">
       <Router>
         <Layout>
+          <Tooltip/>
           <Route component={Routes}/>
         </Layout>
       </Router>
