@@ -12,6 +12,7 @@ import WayPoint from 'react-waypoint'
 
 import { get } from 'lodash'
 import { setScrollDelta } from '../../state/actions'
+import { scaleLinear } from 'd3-scale'
 import './Module.css'
 
 import {
@@ -81,7 +82,8 @@ const fakeModule = {
 }
 
 
-const BASE_SCROLL_HELPER_HEIGHT = 1000
+const BASE_SCROLL_HELPER_HEIGHT = 201
+const SCROLL_THRESHOLD = 200
 
 const scrollHelperMapStateToProps = (state) => ({
     scroll: state.scroll,
@@ -89,7 +91,6 @@ const scrollHelperMapStateToProps = (state) => ({
 
 
 const ScrollHelperTop = connect(scrollHelperMapStateToProps) (class extends React.PureComponent {
-
 
   render(){
     return (
@@ -115,13 +116,12 @@ const ScrollHelperTop = connect(scrollHelperMapStateToProps) (class extends Reac
 const ScrollHelperBottom = connect(scrollHelperMapStateToProps, { setScrollDelta }) (class extends React.PureComponent {
 
   bottomHook = null;
+  lastTime = false
 
   handleScroll = (e) => {
     var rect = this.bottomHook.getBoundingClientRect();
     const delta = this.initialTop - rect.top
-    console.log("delta", delta, this.props.moduleIndex)
     this.props.setScrollDelta(delta)
-
   }
 
   componentDidMount(){
@@ -137,8 +137,11 @@ const ScrollHelperBottom = connect(scrollHelperMapStateToProps, { setScrollDelta
   render(){
     return (
         <div style={{
-            height:BASE_SCROLL_HELPER_HEIGHT-this.props.scroll, backgroundColor:'teal', width: '100%', position:'relative',
-            opacity: 0.05,
+            height: !this.props.scroll ? BASE_SCROLL_HELPER_HEIGHT : BASE_SCROLL_HELPER_HEIGHT - this.props.scroll - 10,
+            marginBottom: 10,
+            // height: BASE_SCROLL_HELPER_HEIGHT,
+            backgroundColor:'teal', width: '100%', position:'relative',
+            opacity: 0.5,
           }}>
           <div ref={(r)=>{
             this.bottomHook=r;
@@ -149,21 +152,121 @@ const ScrollHelperBottom = connect(scrollHelperMapStateToProps, { setScrollDelta
   }
 })
 
+
+const ScrollingContainer = connect(scrollHelperMapStateToProps, { setScrollDelta }) (class extends React.PureComponent {
+
+  firstScroll = false
+  scrollScale = scaleLinear()
+    .range([-201, 10, 0, 0, 0, 10, 201])
+    .domain([-200, 100, 100, 0, 100, 100, 200])
+
+  state = {
+    renderCycle:0,
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll, false)
+  }
+
+  componentWillUnmount(){
+    window.removeEventListener('scroll', this.handleScroll, false)
+  }
+
+  componentWillReceiveProps(){
+    // if(this.props.scroll > SCROLL_THRESHOLD || this.props.scroll < -SCROLL_THRESHOLD){
+    //   window.removeEventListener('scroll', this.handleScroll, false)
+    //   setTimeout(()=>{
+    //     window.addEventListener('scroll', this.handleScroll, false)
+    //   }, 300)
+    // }
+  }
+
+
+  handleScroll = (e) => {
+    if(this.firstScroll){
+        const scaledScroll = this.scrollScale(window.scrollY - BASE_SCROLL_HELPER_HEIGHT).toFixed(2)
+        // const scaledScroll = window.scrollY - BASE_SCROLL_HELPER_HEIGHT
+        console.log(scaledScroll, window.scrollY - BASE_SCROLL_HELPER_HEIGHT)
+
+        if(this.props.scroll != scaledScroll){
+            this.props.setScrollDelta(scaledScroll)
+        } else {
+          //needed for rendering and keeping marginTop in sync
+          this.setState({renderCycle:this.state.renderCycle+1})
+        }
+    }
+  }
+
+  render(){
+    const styleProps = this.firstScroll ? { height: this.innerDiv.clientHeight + BASE_SCROLL_HELPER_HEIGHT * 2} : {}
+    const xx =  window.scrollY - BASE_SCROLL_HELPER_HEIGHT
+    const innerProps =  {
+      marginTop :  this.firstScroll
+      ? window.scrollY  //+ Math.sign(xx) / 10
+      : BASE_SCROLL_HELPER_HEIGHT//BASE_SCROLL_HELPER_HEIGHT + currentScroll
+    }
+    return(
+    <div style={styleProps}>
+      <div ref={(d) => {
+          this.innerDiv = d
+          if(!this.firstScroll){
+              window.scrollTo(0, BASE_SCROLL_HELPER_HEIGHT)
+              this.firstScroll = true
+          }
+        }} style={innerProps}>
+        {this.props.children}
+      </div>
+    </div>)
+  }
+
+
+})
+
+
 class Module extends PureComponent {
 
+
+  totalScroll = 0
+  initialScroll = window.scrollY
+  
   componentWillReceiveProps (nextProps){
-    console.log(nextProps.scroll)
+
     if (this.props.scroll !== nextProps.scroll){
-      if(nextProps.scroll > 800){
-        console.log("bye bye")
+      if(nextProps.scroll > SCROLL_THRESHOLD){
+        console.log("bye bye to next")
         this.toNextModule()
-        window.scrollTo(0,0)
+        // window.scrollTo(0,0)
+      }
+      if(nextProps.scroll < -SCROLL_THRESHOLD){
+        console.log("bye bye to prev")
+        this.toPrevModule()
+        // window.scrollTo(0,0)
       }
     }
   }
 
+  handleScroll = (e) => {
+    console.log("scroll event", e, window.scrollY)
+    if(window.scrollY > this.initialScroll){
+      console.log("down")
+      this.totalScroll += window.scrollY
+    } else {
+      console.log("up")
+      this.totalScroll -= window.scrollY
+    }
+
+    console.log("total", this.totalScroll)
+    this.initialScroll = window.scrollY
+
+  }
+
   componentDidMount(){
     this.props.setScrollDelta(0)
+    // window.addEventListener('scroll', this.handleScroll, false)
+  }
+
+  componentWillUnmount(){
+    // window.removeEventListener('scroll', this.handleScroll, false)
   }
 
   toNextModule = () => {
@@ -174,9 +277,27 @@ class Module extends PureComponent {
 
     if (moduleIndex < totalChapterModules) {
       history.push(`${chapterUrl}/modules/${Number(moduleIndex) + 1}`)
+      return Number(moduleIndex) + 1
     } else {
       // Go to cover of next chapter
       history.push(`${themeUrl}/chapters/${nextChapterSlug}`)
+      return 0
+    }
+  }
+
+  toPrevModule = () => {
+    const { moduleIndex, totalChapterModules, history, theme, chapter, chapterIndex } = this.props
+    const themeUrl = `/themes/${theme.slug}`
+    const chapterUrl = `${themeUrl}/chapters/${chapter.slug}`
+
+    if (moduleIndex > 0) {
+      history.push(`${chapterUrl}/modules/${Number(moduleIndex) -1 }`)
+    } else {
+      // Go to cover of next chapter
+      if(chapterIndex > 0){
+        const prevChapterSlug = get(theme, `stories[${Number(chapterIndex) - 1}].slug`)
+        history.push(`${themeUrl}/chapters/${prevChapterSlug}`)
+      }
     }
   }
 
@@ -187,9 +308,9 @@ class Module extends PureComponent {
     if (!module) {
       return null
     }
-    return  <div>
-    <ScrollHelperTop moduleIndex={moduleIndex}/>
-    <div style={{ ...moduleContainerStyle, opacity:1 - (this.props.scroll/1000) }}>
+    return  <ScrollingContainer>
+    {/* <ScrollHelperTop moduleIndex={moduleIndex}/> */}
+    <div style={{ ...moduleContainerStyle, opacity:1 - (this.props.scroll/BASE_SCROLL_HELPER_HEIGHT) }}>
       {React.createElement(getModuleComponent(module.module), {
         chapter,
         module,
@@ -201,8 +322,9 @@ class Module extends PureComponent {
       {/* <ModuleMap chapter={chapter} module={fakeModule.object} /> */}
       {/* <ModuleMapText chapter={chapter} module={fakeModule.text_object}  /> */}
     </div>
-    <ScrollHelperBottom moduleIndex={moduleIndex}/>
-  </div>
+    {/* <div style={{height:140, backgroundColor:'red'}}>ciao</div> */}
+    {/* <ScrollHelperBottom moduleIndex={moduleIndex}/> */}
+  </ScrollingContainer>
   }
 }
 
