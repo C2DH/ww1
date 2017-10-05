@@ -206,16 +206,19 @@ class Module extends PureComponent {
   }
 
   componentDidMount(){
-    // this.props.setScrollDelta(0)
+    this._isMounted = false
     window.scrollTo(0, BASE_SCROLL_HELPER_HEIGHT)
+
     this.setState({stopScroll:true})
     setTimeout(()=>{
-      this.setState({stopScroll:false})
+      if(this._isMounted){
+        this.setState({stopScroll:false})
+      }
     }, 1200)
   }
 
   componentWillUnmount(){
-
+    this._isMounted = false
   }
 
   toNextModule = () => {
