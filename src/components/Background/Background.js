@@ -1,4 +1,6 @@
 import React from 'react';
+import * as d3Color from 'd3-color'
+
 
 
 export default class Background extends React.Component {
@@ -18,12 +20,15 @@ export default class Background extends React.Component {
       zIndex: 0
     }
 
+    const overlayRgb = d3Color.color(overlay || 'transparent').rgb()
+
     const overlayStyle = {
       width: "100%",
       height: "100%",
       position: 'absolute',
-      backgroundColor: overlay ? overlay: 'transparent',
-      opacity: 0.7,
+      // backgroundColor: overlay ? overlay: 'transparent',
+      opacity: 1,
+      background: `linear-gradient(to bottom, rgba(${overlayRgb.r},${overlayRgb.g},${overlayRgb.b},1) 0%,rgba(${overlayRgb.r},${overlayRgb.g},${overlayRgb.b},0.7) 5%,rgba(${overlayRgb.r},${overlayRgb.g},${overlayRgb.b},0.7) 95%,rgba(${overlayRgb.r},${overlayRgb.g},${overlayRgb.b},1) 100%)`,
     }
 
     return (

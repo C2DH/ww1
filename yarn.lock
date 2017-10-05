@@ -1883,7 +1883,7 @@ d3-collection@1:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/d3-collection/-/d3-collection-1.0.4.tgz#342dfd12837c90974f33f1cc0a785aea570dcdc2"
 
-d3-color@1:
+d3-color@1, d3-color@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/d3-color/-/d3-color-1.0.3.tgz#bc7643fca8e53a8347e2fbdaffa236796b58509b"
 
@@ -1918,6 +1918,10 @@ d3-time-format@2:
 d3-time@1:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/d3-time/-/d3-time-1.0.7.tgz#94caf6edbb7879bb809d0d1f7572bc48482f7270"
+
+d3-timer@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/d3-timer/-/d3-timer-1.0.7.tgz#df9650ca587f6c96607ff4e60cc38229e8dd8531"
 
 d@1:
   version "1.0.0"
@@ -5768,6 +5772,13 @@ react-scripts@1.0.7:
   optionalDependencies:
     fsevents "1.0.17"
 
+react-scrolllock@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/react-scrolllock/-/react-scrolllock-1.0.9.tgz#7c9c3c0cce2ed55042af2808b6483b85b121cdcb"
+  dependencies:
+    create-react-class "^15.5.2"
+    prop-types "^15.5.10"
+
 react-slick@^0.14.11:
   version "0.14.11"
   resolved "https://registry.yarnpkg.com/react-slick/-/react-slick-0.14.11.tgz#c2cbdbe3728c66a2ff4929be96d457e3ea0d80f3"
@@ -5779,6 +5790,12 @@ react-slick@^0.14.11:
     json2mq "^0.2.0"
     object-assign "^4.1.0"
     slick-carousel "^1.6.0"
+
+react-swipeable@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/react-swipeable/-/react-swipeable-4.1.0.tgz#2796c903e810451058f3c69dfc35740d5857ec7c"
+  dependencies:
+    prop-types "^15.5.8"
 
 react-transition-group@^1.1.3:
   version "1.1.3"
