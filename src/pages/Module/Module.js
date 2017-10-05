@@ -206,7 +206,7 @@ class Module extends PureComponent {
   }
 
   componentDidMount(){
-    this._isMounted = false
+    this._isMounted = true
     window.scrollTo(0, BASE_SCROLL_HELPER_HEIGHT)
 
     this.setState({stopScroll:true})
