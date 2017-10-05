@@ -2,6 +2,7 @@ import { fork, put, call, take, select } from 'redux-saga/effects'
 import { takeLatestAndCancel } from './effects/take'
 import * as api from '../../api'
 import makeDocuments from './hos/documents'
+import { parseQsValue } from '../../utils'
 import {
   GET_COLLECTION_DOCUMENTS,
   GET_MAP_DOCUMENTS,
@@ -33,6 +34,7 @@ import {
   GET_STATIC_STORY_UNLOAD,
   GET_RESOURCE_DOCUMENTS,
   UPDATE_SETTINGS,
+  SET_PREVIEW_TOKEN,
 } from '../actions'
 
 import { getCurrentLanguage } from '../selectors'
@@ -40,6 +42,13 @@ import { getCurrentLanguage } from '../selectors'
 import {setLanguage} from "redux-i18n"
 
 const BIG_PAGE_SIZE = 1000
+
+// Path call inject preview auth token as last call args when exist
+function *callPreview(...args) {
+  const previewAuthToken = yield select(state => state.preview.token)
+  const callArgs = previewAuthToken ? args.concat(previewAuthToken) : args
+  return yield call(...callArgs)
+}
 
 function *handleGetDocument({ payload }) {
   yield put({ type: GET_DOCUMENT_LOADING })
@@ -64,7 +73,7 @@ function *handleGetStaticStory({ payload }) {
 function *handleGetThemes() {
   yield put({ type: GET_THEMES_LOADING })
   try {
-    const { results } = yield call(api.getThemes)
+    const { results } = yield callPreview(api.getThemes)
     yield put({ type: GET_THEMES_SUCCESS, payload: { results } })
   } catch (error) {
     yield put({ type: GET_THEMES_FAILURE, error })
@@ -75,7 +84,7 @@ function *handleGetTheme({ payload }) {
   const themeIdOrSlug = payload
   yield put({ type: GET_THEME_LOADING })
   try {
-    const theme = yield call(api.getTheme, themeIdOrSlug)
+    const theme = yield callPreview(api.getTheme, themeIdOrSlug)
     yield put({ type: GET_THEME_SUCCESS, payload: theme })
   } catch (error) {
     yield put({ type: GET_THEME_FAILURE, error })
@@ -86,7 +95,7 @@ function *handleGetChapter({ payload }) {
   const chapterIdOrSlug = payload
   yield put({ type: GET_CHAPTER_LOADING })
   try {
-    const chapter = yield call(api.getChapter, chapterIdOrSlug)
+    const chapter = yield callPreview(api.getChapter, chapterIdOrSlug)
     yield put({ type: GET_CHAPTER_SUCCESS, payload: chapter })
   } catch (error) {
     yield put({ type: GET_CHAPTER_FAILURE, error })
@@ -104,7 +113,15 @@ function *watchLanguage() {
   }
 }
 
+function *preview() {
+  const token = parseQsValue(window.location, '_t')
+  if (token) {
+    yield put({ type: SET_PREVIEW_TOKEN, payload: token })
+  }
+}
+
 export default function* rootSaga() {
+  yield fork(preview)
   yield fork(
     takeLatestAndCancel,
     GET_DOCUMENT,

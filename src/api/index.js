@@ -7,6 +7,16 @@ const API_URL = '/api'
 // headers and so on are useless
 const extractBody = ({ body }) => body
 
+// Inject preview atuh token in request an set no cache!
+export const withPreviewToken = token => baseRequest => {
+  if (token) {
+    return baseRequest
+      .set('Authorization', `Bearer ${token}`)
+      .query({ nocache: true })
+  }
+  return baseRequest
+}
+
 const buildMillerParams = (params) => {
   let newParams = params
 
@@ -67,26 +77,34 @@ export const getDocument = (id) =>
   request.get(`${API_URL}/document/${id}`)
     .then(extractBody)
 
-export const getThemes = () =>
-  request.get(`${API_URL}/story/`)
-    .query(buildMillerParams({
-      filters: {
-        tags__slug: 'theme',
-      },
-      orderby: 'priority',
-    }))
-    .then(extractBody)
+export const getThemes = (token) =>
+  withPreviewToken(token)(
+    request.get(`${API_URL}/story/`)
+      .query(buildMillerParams({
+        filters: {
+          tags__slug: 'theme',
+        },
+        orderby: 'priority',
+      }))
+  )
+  .then(extractBody)
 
-export const getTheme = (idOrSlug) =>
-  request.get(`${API_URL}/story/${idOrSlug}/`)
-    .then(extractBody)
+export const getTheme = (idOrSlug, token) =>
+  withPreviewToken(token)(
+    request
+      .get(`${API_URL}/story/${idOrSlug}/`)
+      .query({ 'giova': 'misa misa' })
+  )
+  .then(extractBody)
 
-export const getChapter = (idOrSlug) =>
-  request.get(`${API_URL}/story/${idOrSlug}/`)
-    .query({
-      parser: 'yaml',
-    })
-    .then(extractBody)
+export const getChapter = (idOrSlug, token) =>
+  withPreviewToken(token)(
+    request.get(`${API_URL}/story/${idOrSlug}/`)
+      .query({
+        parser: 'yaml',
+      })
+  )
+  .then(extractBody)
 
 export const getStaticStory = (idOrSlug) =>
   request.get(`${API_URL}/story/${idOrSlug}/`)

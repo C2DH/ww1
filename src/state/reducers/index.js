@@ -11,6 +11,7 @@ import themes from './themes'
 import themeDetail from './themeDetail'
 import chapterDetail from './chapterDetail'
 import staticStoryDetail from './staticStoryDetail'
+import preview from './preview'
 import { reducer as tooltip } from 'redux-tooltip';
 
 
@@ -28,4 +29,5 @@ export default combineReducers({
   settings,
   i18nState,
   tooltip,
+  preview,
 })

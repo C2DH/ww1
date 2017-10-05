@@ -5,6 +5,7 @@ import I18n from "redux-i18n"
 import store from './state'
 import { Tooltip } from 'redux-tooltip';
 
+import PreviewLine from './components/PreviewLine'
 import Layout from './components/Layout'
 import Home from './pages/Home'
 import Themes from './pages/Themes'
@@ -76,6 +77,7 @@ const App = () => (
     <I18n translations={translations} fallbackLang="en_US">
       <Router>
         <Layout>
+          <PreviewLine />
           <Tooltip/>
           <Route component={Routes}/>
         </Layout>

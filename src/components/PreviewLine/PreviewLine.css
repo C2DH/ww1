@@ -1,0 +1,24 @@
+.PreviewLine {
+  position: fixed;
+  z-index: 77777777;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  display: flex;
+  padding-left: 10px;
+  padding-right: 10px;
+  justify-content: flex-end;
+  font-size: 0.6rem;
+  line-height: 0.75rem;
+  font-family: sans-serif;
+  background-color: #F56350;
+}
+
+.PreviewLineAction {
+  padding-left: 5px;
+  padding-right: 5px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+}
