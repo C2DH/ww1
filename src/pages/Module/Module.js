@@ -16,6 +16,8 @@ import { scaleLinear } from 'd3-scale'
 import ScrollLock from 'react-scrolllock'
 import './Module.css'
 
+import { timer } from 'd3-timer'
+
 import {
   getTheme,
   getChapter,
@@ -83,32 +85,33 @@ const fakeModule = {
 }
 
 
-const BASE_SCROLL_HELPER_HEIGHT = 150
+const BASE_SCROLL_HELPER_HEIGHT = 100
 
 const scrollHelperMapStateToProps = (state) => ({
     scroll: state.scroll,
 })
 
 
+const scrollScaleHelpersOverlay = scaleLinear()
+  .domain([-BASE_SCROLL_HELPER_HEIGHT, 0, BASE_SCROLL_HELPER_HEIGHT])
+  .range([0, 0.7, 0])
+
+const scrollScale = scaleLinear()
+  .domain([-BASE_SCROLL_HELPER_HEIGHT, 0, BASE_SCROLL_HELPER_HEIGHT])
+  .range([0, 1, 0])
+
 const ScrollHelperTop = connect(scrollHelperMapStateToProps) (class extends React.PureComponent {
 
 
   render(){
+    const { background='transparent', scroll, overlay=false } = this.props
     return (
         <div style={{
             height:BASE_SCROLL_HELPER_HEIGHT,
-            backgroundColor:'teal', width: '100%', position:'relative',
-            opacity: 0.05,
-            // height:this.props.scroll, backgroundColor:'yellow', width: 1000, position:'relative', opacity: 0.2,
-
-            // paddingTop: this.state.delta,
-            // marginBottom: this.state.delta/2,
-            // top: this.state.margin,
-            // marginBottom: this.state.margin
-          }}>
-          <div ref={(r)=>{
-            this.bottomHook=r;
-          }} style={{position:'absolute', top:0, height:2, backgroundColor:'red', right:0, left:0}}></div>
+            backgroundColor: background,
+            width: '100%',
+            opacity: scrollScale(scroll),
+            position:'relative'}}>
         </div>
     )
 
@@ -120,15 +123,24 @@ const ScrollHelperTop = connect(scrollHelperMapStateToProps) (class extends Reac
 const ScrollHelperBottom = connect(scrollHelperMapStateToProps, { setScrollDelta }) (class extends React.PureComponent {
 
   bottomHook = null;
+  lastScroll = null
 
   handleScroll = (e) => {
-    // e.preventDefault()
-    // e.stopPropagation()
     if(!this.bottomHook){return}
     var rect = this.bottomHook.getBoundingClientRect();
     const h = window.innerHeight
     const bottomFade = (rect.bottom, h - rect.bottom + BASE_SCROLL_HELPER_HEIGHT)
     const delta = bottomFade > 0 ?  bottomFade : window.scrollY < BASE_SCROLL_HELPER_HEIGHT ? -(BASE_SCROLL_HELPER_HEIGHT - window.scrollY) : 0
+
+    if(this.ctrl){
+      clearTimeout(this.ctrl)
+    }
+    this.ctrl = setTimeout(()=>{
+      if (Math.abs(delta) > 0 &&  Math.abs(delta) < 200){
+        window.scroll({top: BASE_SCROLL_HELPER_HEIGHT, left:0, behavior: 'smooth'})
+      }
+    }, 250)
+
     this.props.setScrollDelta(delta)
 
   }
@@ -144,12 +156,15 @@ const ScrollHelperBottom = connect(scrollHelperMapStateToProps, { setScrollDelta
   }
 
   render(){
+    const { background='transparent', scroll, overlay=false } = this.props
+
     return (
         <div style={{
             // height:BASE_SCROLL_HELPER_HEIGHT-this.props.scroll,
             height:BASE_SCROLL_HELPER_HEIGHT,
-            backgroundColor:'teal', width: '100%', position:'relative',
-            opacity: 0.05,
+            backgroundColor: background,
+            width: '100%', position:'relative',
+            opacity: scrollScale(scroll),
           }}>
           <div ref={(r)=>{
             this.bottomHook=r;
@@ -186,10 +201,6 @@ class Module extends PureComponent {
         this.setState({scrolling:1})
         this.toPrevModule()
       }
-    }
-
-    if(nextProps.moduleIndex !== this.props.moduleIndex){
-
     }
 
   }
@@ -243,11 +254,25 @@ class Module extends PureComponent {
       return null
     }
 
+    const background = module.background || {}
+    let bottomScrollBackground
+
+    const topScrollBackground = background.color ?  background.color : background.object ? background.object.overlay : 'transparent'
+    const topScrollOverlay =  background.object &&  background.object.overlay
+
+
+    if((module.size && module.size === 'big') || module.module === 'map' || module.module === 'gallery'){
+      bottomScrollBackground = '#fff'
+    } else {
+      bottomScrollBackground = topScrollBackground
+    }
+    const bottomScrollOverlay = topScrollOverlay
+
     // console.log("opacity", this.scrollScale(this.props.scroll))
     // console.log("mh", this.state.moduleHeight)
 
     return  <div>
-    <ScrollHelperTop moduleIndex={moduleIndex}/>
+    <ScrollHelperTop moduleIndex={moduleIndex} background={topScrollBackground} overlay={topScrollOverlay}/>
     <div style={{ marginTop: this.state.scrolling * 150, ...moduleContainerStyle,
         // opacity:1 - (this.props.scroll/1000)
         opacity: this.scrollScale(this.props.scroll)
@@ -264,7 +289,7 @@ class Module extends PureComponent {
       {/* <ModuleMapText chapter={chapter} module={fakeModule.text_object}  /> */}
 
     </div>
-    <ScrollHelperBottom moduleIndex={moduleIndex}/>
+    <ScrollHelperBottom moduleIndex={moduleIndex} background={bottomScrollBackground} overlay={bottomScrollOverlay}/>
     {this.state.stopScroll && <ScrollLock/> }
   </div>
   }

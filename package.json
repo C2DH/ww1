@@ -6,7 +6,9 @@
   "dependencies": {
     "animate.css": "^3.5.2",
     "bootstrap": "4.0.0-alpha.6",
+    "d3-color": "^1.0.3",
     "d3-scale": "^1.0.6",
+    "d3-timer": "^1.0.7",
     "leaflet": "^1.1.0",
     "lodash": "^4.17.4",
     "mapbox-gl": "^0.38.0",
