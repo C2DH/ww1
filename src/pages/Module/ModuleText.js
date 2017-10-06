@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { get } from 'lodash'
 import { Container } from 'reactstrap'
 import Background from '../../components/Background'
+import MarkdownGlossary from '../../components/MarkdownGlossary'
 import './Module.css'
 
 
@@ -21,6 +22,8 @@ class ModuleText extends PureComponent {
     const textStyle = {
       color: get(module, 'text.color', '#fff'),
       alignItems: alignItems,
+      // #TODO: CHECK THIS
+      // textAlign: position,
     }
 
     const backgroundColor = get(module, 'background.color')
@@ -30,7 +33,9 @@ class ModuleText extends PureComponent {
     return <div style={{height:'100%', position:'relative'}}>
       <Background image={backgroundImage} color={backgroundColor} overlay={backgroundOverlay} />
       <div className="Module__container" style={textStyle}>
-        <div className="Module__text">{module.text.content}</div>
+        <div className="Module__text">
+          <MarkdownGlossary content={module.text.content}/>
+        </div>
       </div>
     </div>
   }

@@ -60,7 +60,7 @@ const translateObject = (data, lang, transKeys = '*', fallbackLang = 'en_US') =>
   })
 
 // Translate a document using given language
-const translateDocument = lang => doc => ({
+export const translateDocument = lang => doc => ({
   ...doc,
   translated: translateObject(doc.data, lang.code, [
     'title',

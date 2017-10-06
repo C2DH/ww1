@@ -8,20 +8,21 @@ import { Origin } from 'redux-tooltip';
 
 import * as api from '../../api'
 
+import { translateDocument, getCurrentLanguage } from '../../state/selectors'
+
 
 const converter = new Converter()
 
 
 
 
-// const mapStateToProps = state => ({
-//   doc: getDocument(state),
-//   loading: getDocumentLoading(state),
-// })
+const mapStateToProps = state => ({
+  lang: getCurrentLanguage(state),
+})
 // const DescriptionContent = connect(mapStateToProps, { loadDocument, unloadDocument})(DescriptionContentx)
 
 
-class ObjectLink extends React.PureComponent {
+const ObjectLink = connect(mapStateToProps)(class extends React.PureComponent {
 
   state = {
     doc : null
@@ -29,7 +30,7 @@ class ObjectLink extends React.PureComponent {
 
   componentDidMount(){
 
-    const {href=''} = this.props
+    const {href='', lang} = this.props
     if(href.indexOf('object://') === 0){
       const objectId = parseInt(href.replace('object://', ''))
       if(!objectId || isNaN(objectId)){
@@ -43,18 +44,21 @@ class ObjectLink extends React.PureComponent {
   }
 
   render(){
-    const {href=''} = this.props
+    const {href='', lang} = this.props
     if(this.state.doc){
+      const translatedDoc = translateDocument(lang)(this.state.doc)
       return (
-        <Origin content={`${this.state.doc.description}`}>{this.props.children}</Origin>
+        <a>
+          <Origin content={`${translatedDoc.translated.description || translatedDoc.translated.title || translatedDoc.title}`}>{this.props.children}</Origin>
+        </a>
       )
     } else {
-      const passProps=omit(this.props, ['doc', 'unloadDocument', 'loadDocument', 'loading'])
+      const passProps=omit(this.props, ['doc', 'unloadDocument', 'loadDocument', 'loading', 'lang', 'dispatch'])
       return (<a {...passProps}>{this.props.children}</a>)
     }
 
   }
-}
+})
 
 class MarkdownGlossary extends React.PureComponent {
   render() {
