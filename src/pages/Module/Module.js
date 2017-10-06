@@ -5,9 +5,10 @@ import { Container } from 'reactstrap'
 import ModuleText from './ModuleText'
 import ModuleObject from './ModuleObject'
 import ModuleTextObject from './ModuleTextObject'
+import ModuleTextMap from './ModuleTextMap'
 import ModuleGallery from './ModuleGallery'
 import ModuleMap from './ModuleMap'
-import ModuleMapText from './ModuleMapText'
+// import ModuleMapText from './ModuleMapText'
 import WayPoint from 'react-waypoint'
 
 import { get } from 'lodash'
@@ -42,6 +43,8 @@ const getModuleComponent = moduleType => {
       return ModuleMap
     case 'text_object':
       return ModuleTextObject
+    case 'text_map':
+      return ModuleTextMap
     default:
       throw new Error(`Invalid module type ${moduleType}`)
   }
