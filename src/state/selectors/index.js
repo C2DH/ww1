@@ -9,6 +9,7 @@ import {
   mapValues,
   keyBy,
   isPlainObject,
+  difference,
   isArray,
   includes,
   chunk,
@@ -19,6 +20,7 @@ import {
   omit,
   reduce
 } from 'lodash'
+import { compose } from 'lodash/fp'
 
 // fp <3
 const maybeNull = a => fn => isNull(a) ? null : fn(a)
@@ -386,10 +388,31 @@ export const getThemes = createSelector(
 export const getThemesLoading = state => state.themes.loading
 export const getThemesError = state => state.themes.error
 
+const fixThemeChaptersOrder = theme => {
+  const chaptersById = keyBy(theme.stories, 'id')
+
+  const allChaptersIds = keys(chaptersById).map(id => +id)
+  const orderedChaptersIds = get(theme, 'data.chapters', [])
+
+  let ids = orderedChaptersIds.reduce((r, id) => {
+    if (chaptersById[id]) {
+      return r.concat(id)
+    }
+    return r
+  }, [])
+  const chapters = ids.concat(difference(allChaptersIds, ids))
+    .map(id => chaptersById[id])
+  return {
+    ...theme,
+    stories: chapters,
+  }
+}
+
 export const getTheme = createSelector(
   state => state.themeDetail.data,
   getCurrentLanguage,
-  (theme, lang) => maybeNull(theme)(translateStory(lang))
+  (theme, lang) => maybeNull(theme)(
+    compose(translateStory(lang), fixThemeChaptersOrder))
 )
 
 // Chapters
