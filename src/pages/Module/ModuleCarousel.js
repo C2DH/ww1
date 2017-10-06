@@ -7,13 +7,11 @@ import Slider from 'react-slick'
 import Background from '../../components/Background'
 import CollectionItemLink from '../../components/CollectionItemLink'
 
-
 class ModuleCarousel extends PureComponent {
 
   state = {
     currentIndex: 0,
   }
-
 
   render() {
     const { chapter, module } = this.props
@@ -81,8 +79,6 @@ class ModuleCarousel extends PureComponent {
                     </span>
                 </div>
               </div>
-
-
             </Col>
           </Row>
           </Container>

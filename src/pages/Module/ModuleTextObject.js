@@ -4,7 +4,7 @@ import { get, omit } from 'lodash'
 import { Container, Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom'
 import { Card, CardImg, CardBlock } from 'reactstrap';
-import {ModuleObjectContent} from './ModuleObject'
+import { ModuleObjectContent } from './ModuleObject'
 import { Origin } from 'redux-tooltip';
 import Background from '../../components/Background'
 import MarkdownGlossary from '../../components/MarkdownGlossary'

@@ -27,12 +27,12 @@ const ModuleGallery = ({ module }) => {
         masonryStyle={{ paddingTop: 100,paddingBottom:80 }}
         documents={makeDocs(module.objects)}
       />
-    <div className="ModuleObject__caption_video">
+      <div className="ModuleObject__caption_video">
         <span>
           <i className="icon-hand Mods__DocumentOnly_Card_icon"  />
           <span> {module.caption}</span>
         </span>
-    </div>
+      </div>
     </div>
   )
 }
