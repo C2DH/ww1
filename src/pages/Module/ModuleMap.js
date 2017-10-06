@@ -5,7 +5,6 @@ import { get } from 'lodash'
 import { Card, CardBlock } from 'reactstrap';
 import ReactMapboxGl, { Popup, Marker, Layer, Feature, Cluster, ZoomControl, GeoJSONLayer, Source } from 'react-mapbox-gl'
 import * as MapboxGL from 'mapbox-gl';
-import './Module.css'
 
 import {
   getPlaceTypeIcon,

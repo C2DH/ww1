@@ -10,8 +10,6 @@ import Background from '../../components/Background'
 import MarkdownGlossary from '../../components/MarkdownGlossary'
 
 
-import './Module.css'
-
 const fullHeight = { height: '100%'}
 
 const ObjectColumn = ({module}) => (

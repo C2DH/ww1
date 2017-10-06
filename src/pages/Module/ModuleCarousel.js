@@ -6,7 +6,6 @@ import { Card, CardImg, CardBlock } from 'reactstrap';
 import Slider from 'react-slick'
 import Background from '../../components/Background'
 import CollectionItemLink from '../../components/CollectionItemLink'
-import './Module.css'
 
 
 class ModuleCarousel extends PureComponent {

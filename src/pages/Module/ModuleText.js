@@ -4,8 +4,6 @@ import { get } from 'lodash'
 import { Container } from 'reactstrap'
 import Background from '../../components/Background'
 import MarkdownGlossary from '../../components/MarkdownGlossary'
-import './Module.css'
-
 
 class ModuleText extends PureComponent {
   render() {

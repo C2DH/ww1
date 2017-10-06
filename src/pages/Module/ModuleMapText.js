@@ -3,9 +3,7 @@ import { connect } from 'react-redux'
 import { get } from 'lodash'
 import { Container, Row, Col } from 'reactstrap';
 import { Card, CardImg, CardBlock } from 'reactstrap';
-
 import Background from '../../components/Background'
-import './Module.css'
 
 const fullHeight = { height: '100%'}
 
