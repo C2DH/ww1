@@ -240,10 +240,10 @@ class Module extends PureComponent {
     const themeUrl = `/themes/${theme.slug}`
     const chapterUrl = `${themeUrl}/chapters/${chapter.slug}`
 
-    if (moduleIndex > 0) {
+    if (moduleIndex > 1) {
       history.push(`${chapterUrl}/modules/${Number(moduleIndex) - 1}`)
     } else {
-      if(chapterIndex > 0){
+      if(chapterIndex > 1){
         const prevChapterSlug = get(theme, `stories[${Number(chapterIndex) - 1}].slug`)
         history.push(`${themeUrl}/chapters/${prevChapterSlug}`)
       }
