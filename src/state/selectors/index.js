@@ -457,6 +457,12 @@ const translateModuleTextObject = (module, langCode) => ({
   text: translateObject(module.text, langCode, ['content'])
 })
 
+const translateModuleTextMap = (module, langCode) => ({
+  ...module,
+  map: translateObject(module.map, langCode, ['caption']),
+  text: translateObject(module.text, langCode, ['content'])
+})
+
 const translateModule = (module, langCode) => maybeNull(module)(module => {
   switch (module.module) {
     case 'text':
@@ -469,6 +475,8 @@ const translateModule = (module, langCode) => maybeNull(module)(module => {
       return translateModuleMap(module, langCode)
     case 'text_object':
       return translateModuleTextObject(module, langCode)
+    case 'text_map':
+      return translateModuleTextMap(module, langCode)
     default:
       return module
   }

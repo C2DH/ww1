@@ -1,26 +1,21 @@
 import React, { PureComponent } from 'react'
-import { connect } from 'react-redux'
-import { get, omit } from 'lodash'
+import { get } from 'lodash'
 import { Container, Row, Col } from 'reactstrap';
-import { Link } from 'react-router-dom'
-import { Card, CardImg, CardBlock } from 'reactstrap';
-import { ModuleObjectContent } from './ModuleObject'
-import { Origin } from 'redux-tooltip';
+import  ModuleMap from './ModuleMap'
 import Background from '../../components/Background'
 import MarkdownGlossary from '../../components/MarkdownGlossary'
 
-
 const fullHeight = { height: '100%'}
+const mapColumnsStyle = { height:'100%', position:'relative', width:'100%' }
 
-const MapColumn = ({module}) => (
+const MapColumn = ({module, chapter}) => (
   <Col md="6" className="Module__textObject_Col">
-    Map will be here
-    {/* <ModuleObjectContent module={module}/> */}
+    <ModuleMap module={module} chapter={chapter} style={mapColumnsStyle}/>
   </Col>
 )
 
 const TextColumn = ({content}) => (
-  <Col md="6"  className="Module__textObject_Col">
+  <Col md="6" className="Module__textObject_Col">
     <div className="Module__textObject_Text">
       <MarkdownGlossary content={content}/>
     </div>
@@ -31,26 +26,22 @@ const TextColumn = ({content}) => (
 class ModuleTextMap extends PureComponent {
   render() {
     const { chapter, module } = this.props
-    const content = module.text.content
-    const obj = {
-      ...module.object,
-      size: 'medium'
-    }
+    const { content, color} = module.text
 
     return (
       <div style={{height:'100%', position:'relative'}}>
         <Background color={get(module, 'background.color')} />
         <Container fluid>
-          { module.layout == 'map-text' && (
+          { module.layout === 'map-text' && (
             <Row style={fullHeight}>
-              <MapColumn module={obj}/>
-              <TextColumn content={content} color={module.text.color}/>
+              <MapColumn chapter={chapter} module={module.map}/>
+              <TextColumn content={content} color={color}/>
             </Row>
           )}
-          { module.layout == 'text-map' && (
+          { module.layout === 'text-map' && (
             <Row style={fullHeight}>
               <TextColumn content={content} color={module.text.color}/>
-              <MapColumn module={obj}/>
+              <MapColumn chapter={chapter} module={module.map}/>
             </Row>
           )}
         </Container>

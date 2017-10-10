@@ -53,6 +53,7 @@ const Map = ReactMapboxGl({
   accessToken: "pk.eyJ1IjoiZWlzY2h0ZXdlbHRrcmljaCIsImEiOiJjajRpYnR1enEwNjV2MndtcXNweDR5OXkzIn0._eSF2Gek8g-JuTGBpw7aXw"
 })
 
+const mapModuleStyle = { height:'100%', position:'relative' }
 
 
 class ModuleMap extends PureComponent {
@@ -110,7 +111,7 @@ class ModuleMap extends PureComponent {
     }))
 
     return (
-      <div style={{height:'100%', position:'relative'}}>
+      <div style={ this.props.style || mapModuleStyle }>
         <div  className="Module__container">
 
           <Map
