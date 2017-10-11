@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react'
-import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
-import { Container } from 'reactstrap'
 import ModuleText from './ModuleText'
 import ModuleObject from './ModuleObject'
 import ModuleGallery from './ModuleGallery'
@@ -9,7 +7,6 @@ import ModuleMap from './ModuleMap'
 import ModuleTextObject from './ModuleTextObject'
 import ModuleTextMap from './ModuleTextMap'
 import ModuleTextGallery from './ModuleTextGallery'
-// import ModuleMapText from './ModuleMapText'
 
 import { get } from 'lodash'
 import { setScrollDelta } from '../../state/actions'
@@ -151,25 +148,15 @@ class Module extends PureComponent {
     }
     const bottomScrollOverlay = topScrollOverlay
 
-    // console.log("opacity", this.scrollScale(this.props.scroll))
-    // console.log("mh", this.state.moduleHeight)
-
     return  <div>
     <ScrollHelperTop moduleIndex={moduleIndex} background={topScrollBackground} overlay={topScrollOverlay}/>
     <div style={{ marginTop: this.state.scrolling * 150, ...moduleContainerStyle,
-        // opacity:1 - (this.props.scroll/1000)
         opacity: this.scrollScale(this.props.scroll)
       }}>
         {React.createElement(getModuleComponent(module.module), {
           chapter,
           module,
         })}
-      {/* <ModuleText chapter={chapter} module={module}/> */}
-      {/* <ModuleObject chapter={chapter} module={fakeModule.object}  /> */}
-      {/* <ModuleTextObject chapter={chapter} module={fakeModule.text_object}  /> */}
-      {/* <ModuleCarousel chapter={chapter} module={fakeModule.object} /> */}
-      {/* <ModuleMap chapter={chapter} module={fakeModule.object} /> */}
-      {/* <ModuleMapText chapter={chapter} module={fakeModule.text_object}  /> */}
 
     </div>
     <ScrollHelperBottom moduleIndex={moduleIndex} background={bottomScrollBackground} overlay={bottomScrollOverlay}/>
