@@ -14,7 +14,7 @@ class ModuleCarousel extends PureComponent {
   }
 
   render() {
-    const { chapter, module } = this.props
+    const { chapter, module, style } = this.props
 
     const NextArrowButton = ({ onClick }) => (
       <button  className='ModuleCarousel__control_btn ModuleCarousel__control_btn_right' onClick={onClick}><i className="material-icons md-28">keyboard_arrow_right</i></button>
@@ -49,7 +49,7 @@ class ModuleCarousel extends PureComponent {
     const backgroundOverlay = get(module, 'background.object.overlay')
 
     return (
-      <div style={{height:'100%', position:'relative'}}>
+      <div style={style || {height:'100%', position:'relative'}}>
         <Background image={backgroundImage} color={backgroundColor} overlay={backgroundOverlay} />
         <Container fluid>
           <Row>

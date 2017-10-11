@@ -8,10 +8,12 @@ import Background from '../../components/Background'
 
 const makeDocs = defaultMemoize((objects=[]) => objects.map(({ id }) => id))
 
-const ModuleGallery = ({ module }) => {
+const galleryStyle = { height: '100%', position: 'relative' }
+
+const ModuleGallery = ({ module, style, masonryStyle=null }) => {
   // Gallery as slideshow
   if (module.layout === 'slideshow') {
-    return <ModuleCarousel module={module} />
+    return <ModuleCarousel style={style} module={module} />
   }
 
   // Gallery as grid
@@ -20,11 +22,11 @@ const ModuleGallery = ({ module }) => {
   const backgroundOverlay = get(module, 'background.object.overlay')
 
   return (
-    <div style={{ height: '100%', position: 'relative' }}>
+    <div style={style || galleryStyle}>
       <Background image={backgroundImage} color={backgroundColor} overlay={backgroundOverlay} />
       <CollectionMasonry
         showDocLink={true}
-        masonryStyle={{ paddingTop: 100,paddingBottom:80 }}
+        masonryStyle={ masonryStyle || { paddingTop: 100,paddingBottom:80 }}
         documents={makeDocs(module.objects)}
       />
       <div className="ModuleObject__caption_video">

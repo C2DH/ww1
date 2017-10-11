@@ -465,7 +465,7 @@ const translateModuleTextMap = (module, langCode) => ({
 
 const translateModuleTextGallery = (module, langCode) => ({
   ...module,
-  gallery: translateObject(module.map, langCode, ['caption']),
+  gallery: translateObject(module.gallery, langCode, ['caption']),
   text: translateObject(module.text, langCode, ['content'])
 })
 
@@ -483,8 +483,8 @@ const translateModule = (module, langCode) => maybeNull(module)(module => {
       return translateModuleTextObject(module, langCode)
     case 'text_map':
       return translateModuleTextMap(module, langCode)
-      case 'text_gallery':
-        return translateModuleTextGallery(module, langCode)
+    case 'text_gallery':
+      return translateModuleTextGallery(module, langCode)
 
     default:
       return module

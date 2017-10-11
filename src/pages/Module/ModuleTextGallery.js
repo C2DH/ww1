@@ -7,10 +7,11 @@ import MarkdownGlossary from '../../components/MarkdownGlossary'
 
 const fullHeight = { height: '100%'}
 const galleryColumnsStyle = { height:'100%', position:'relative', width:'100%' }
+const masonryStyle = {  height:'calc(100vh - 100px)', paddingTop:80, overflowY:'scroll' }
 
 const GalleryColumn = ({module, chapter}) => (
   <Col md="6" className="Module__textObject_Col">
-    <ModuleGallery module={module} chapter={chapter} style={galleryColumnsStyle}/>
+    <ModuleGallery module={module} chapter={chapter} style={galleryColumnsStyle} masonryStyle={masonryStyle}/>
   </Col>
 )
 
@@ -27,8 +28,6 @@ class ModuleTextGallery extends PureComponent {
   render() {
     const { chapter, module } = this.props
     const { content, color} = module.text
-
-    console.log(module)
 
     return (
       <div style={{height:'100%', position:'relative'}}>
