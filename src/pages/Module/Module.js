@@ -12,7 +12,7 @@ import { get } from 'lodash'
 import { setScrollDelta } from '../../state/actions'
 import { scaleLinear } from 'd3-scale'
 import ScrollLock from 'react-scrolllock'
-import { ScrollHelperTop, ScrollHelperBottom, BASE_SCROLL_HELPER_HEIGHT } from '../../components/ScrollHelpers'
+import { ScrollHelperTop, ScrollHelperBottom, BASE_SCROLL_HELPER_HEIGHT, scrollScale } from '../../components/ScrollHelpers'
 
 import {
   getTheme,
@@ -54,12 +54,7 @@ const getModuleComponent = moduleType => {
 
 class Module extends PureComponent {
 
-  scrollScale = scaleLinear()
-    .domain([-BASE_SCROLL_HELPER_HEIGHT, 0, BASE_SCROLL_HELPER_HEIGHT])
-    .range([0, 1, 0])
-
   state = {
-    moduleHeight : 0,
     stopScroll: true,
     scrolling: 0,
   }
@@ -112,7 +107,7 @@ class Module extends PureComponent {
   }
 
   toPrevModule = () => {
-    const { moduleIndex, history, theme, chapter, chapterIndex } = this.props
+    const { moduleIndex, history, theme, chapter } = this.props
 
     const themeUrl = `/themes/${theme.slug}`
     const chapterUrl = `${themeUrl}/chapters/${chapter.slug}`
@@ -120,16 +115,13 @@ class Module extends PureComponent {
     if (moduleIndex > 1) {
       history.push(`${chapterUrl}/modules/${Number(moduleIndex) - 1}`)
     } else {
-      if(chapterIndex > 1){
-        const prevChapterSlug = get(theme, `stories[${Number(chapterIndex) - 1}].slug`)
-        history.push(`${themeUrl}/chapters/${prevChapterSlug}`)
-      }
+      history.push(`${chapterUrl}`)
     }
   }
 
 
   render() {
-    const { chapter, module, moduleIndex } = this.props
+    const { chapter, module } = this.props
     if (!module) {
       return null
     }
@@ -140,7 +132,6 @@ class Module extends PureComponent {
     const topScrollBackground = background.color ?  background.color : background.object ? background.object.overlay : 'transparent'
     const topScrollOverlay =  background.object &&  background.object.overlay
 
-
     if((module.size && module.size === 'big') || module.module === 'map' || module.module === 'gallery'){
       bottomScrollBackground = '#fff'
     } else {
@@ -149,9 +140,9 @@ class Module extends PureComponent {
     const bottomScrollOverlay = topScrollOverlay
 
     return  <div>
-    <ScrollHelperTop moduleIndex={moduleIndex} background={topScrollBackground} overlay={topScrollOverlay}/>
+    <ScrollHelperTop background={topScrollBackground} overlay={topScrollOverlay}/>
     <div style={{ marginTop: this.state.scrolling * 150, ...moduleContainerStyle,
-        opacity: this.scrollScale(this.props.scroll)
+        opacity: scrollScale(this.props.scroll)
       }}>
         {React.createElement(getModuleComponent(module.module), {
           chapter,
@@ -159,7 +150,7 @@ class Module extends PureComponent {
         })}
 
     </div>
-    <ScrollHelperBottom moduleIndex={moduleIndex} background={bottomScrollBackground} overlay={bottomScrollOverlay}/>
+    <ScrollHelperBottom  background={bottomScrollBackground} overlay={bottomScrollOverlay}/>
     {this.state.stopScroll && <ScrollLock/> }
   </div>
   }

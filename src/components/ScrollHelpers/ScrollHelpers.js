@@ -9,8 +9,7 @@ const scrollHelperMapStateToProps = (state) => ({
     scroll: state.scroll,
 })
 
-
-const scrollScale = scaleLinear()
+export const scrollScale = scaleLinear()
   .domain([-BASE_SCROLL_HELPER_HEIGHT, 0, BASE_SCROLL_HELPER_HEIGHT])
   .range([0, 1, 0])
 
