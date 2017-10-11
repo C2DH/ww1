@@ -4,20 +4,18 @@ import { connect } from 'react-redux'
 import { Container } from 'reactstrap'
 import ModuleText from './ModuleText'
 import ModuleObject from './ModuleObject'
-import ModuleTextObject from './ModuleTextObject'
-import ModuleTextMap from './ModuleTextMap'
 import ModuleGallery from './ModuleGallery'
 import ModuleMap from './ModuleMap'
+import ModuleTextObject from './ModuleTextObject'
+import ModuleTextMap from './ModuleTextMap'
+import ModuleTextGallery from './ModuleTextGallery'
 // import ModuleMapText from './ModuleMapText'
-import WayPoint from 'react-waypoint'
 
 import { get } from 'lodash'
 import { setScrollDelta } from '../../state/actions'
 import { scaleLinear } from 'd3-scale'
 import ScrollLock from 'react-scrolllock'
 import './Module.css'
-
-import { timer } from 'd3-timer'
 
 import {
   getTheme,
@@ -45,48 +43,13 @@ const getModuleComponent = moduleType => {
       return ModuleTextObject
     case 'text_map':
       return ModuleTextMap
+    case 'text_gallery':
+      return ModuleTextGallery
+
     default:
       throw new Error(`Invalid module type ${moduleType}`)
   }
 }
-
-const fakeModule = {
-  text: {
-    module: 'text',
-    background: {
-      color: '#333'
-    },
-    position: 'left',
-    text: {
-      content: 'Quisque velit nisi, pretium ut lacinia in, elementum id enim. Donec rutrum congue leo eget malesuada. Donec sollicitudin molestie malesuada. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.'
-    }
-  },
-
-  object: {
-    module : 'object',
-    background: {
-      color: '#333'
-    },
-    size: 'medium',
-    caption: "ciao ciao"
-  },
-
-  text_object: {
-    module: 'text_object',
-    background: {
-      color: '#333'
-    },
-    text: {
-      content: 'Quisque velit nisi, pretium ut lacinia in, elementum id enim. Donec rutrum congue leo eget malesuada. Donec sollicitudin molestie malesuada. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.'
-    },
-    object: {
-      size: 'big',
-      caption: 'hello!'
-    }
-
-  }
-}
-
 
 const BASE_SCROLL_HELPER_HEIGHT = 100
 
@@ -95,19 +58,14 @@ const scrollHelperMapStateToProps = (state) => ({
 })
 
 
-const scrollScaleHelpersOverlay = scaleLinear()
-  .domain([-BASE_SCROLL_HELPER_HEIGHT, 0, BASE_SCROLL_HELPER_HEIGHT])
-  .range([0, 0.7, 0])
-
 const scrollScale = scaleLinear()
   .domain([-BASE_SCROLL_HELPER_HEIGHT, 0, BASE_SCROLL_HELPER_HEIGHT])
   .range([0, 1, 0])
 
 const ScrollHelperTop = connect(scrollHelperMapStateToProps) (class extends React.PureComponent {
 
-
   render(){
-    const { background='transparent', scroll, overlay=false } = this.props
+    const { background='transparent', scroll } = this.props
     return (
         <div style={{
             height:BASE_SCROLL_HELPER_HEIGHT,
@@ -120,7 +78,6 @@ const ScrollHelperTop = connect(scrollHelperMapStateToProps) (class extends Reac
 
   }
 })
-
 
 
 const ScrollHelperBottom = connect(scrollHelperMapStateToProps, { setScrollDelta }) (class extends React.PureComponent {
@@ -159,7 +116,7 @@ const ScrollHelperBottom = connect(scrollHelperMapStateToProps, { setScrollDelta
   }
 
   render(){
-    const { background='transparent', scroll, overlay=false } = this.props
+    const { background='transparent', scroll } = this.props
 
     return (
         <div style={{
@@ -238,7 +195,7 @@ class Module extends PureComponent {
   }
 
   toPrevModule = () => {
-    const { moduleIndex, totalChapterModules, history, theme, chapter, chapterIndex } = this.props
+    const { moduleIndex, history, theme, chapter, chapterIndex } = this.props
 
     const themeUrl = `/themes/${theme.slug}`
     const chapterUrl = `${themeUrl}/chapters/${chapter.slug}`
@@ -283,10 +240,10 @@ class Module extends PureComponent {
         // opacity:1 - (this.props.scroll/1000)
         opacity: this.scrollScale(this.props.scroll)
       }}>
-      {React.createElement(getModuleComponent(module.module), {
-        chapter,
-        module,
-      })}
+        {React.createElement(getModuleComponent(module.module), {
+          chapter,
+          module,
+        })}
       {/* <ModuleText chapter={chapter} module={module}/> */}
       {/* <ModuleObject chapter={chapter} module={fakeModule.object}  /> */}
       {/* <ModuleTextObject chapter={chapter} module={fakeModule.text_object}  /> */}

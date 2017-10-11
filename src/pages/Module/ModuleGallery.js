@@ -6,7 +6,7 @@ import ModuleCarousel from './ModuleCarousel'
 import CollectionMasonry from '../../components/CollectionMasonry'
 import Background from '../../components/Background'
 
-const makeDocs = defaultMemoize(objects => objects.map(({ id }) => id))
+const makeDocs = defaultMemoize((objects=[]) => objects.map(({ id }) => id))
 
 const ModuleGallery = ({ module }) => {
   // Gallery as slideshow
