@@ -18,6 +18,7 @@ import {
   getTheme,
   getChapter,
   getTotalChapterModules,
+  getTotalThemeChapters,
   getChapterIndex,
   makeGetModule,
 } from '../../state/selectors'
@@ -59,9 +60,13 @@ class Module extends PureComponent {
     scrolling: 0,
   }
 
+  canGoNext = () => {
+    return (this.props.chapterIndex < this.props.totalChapters) || (this.props.moduleIndex + 1 < this.props.totalChapterModules)
+  }
+
   componentWillReceiveProps (nextProps){
 
-    if (this.props.scroll !== nextProps.scroll){
+    if (this.canGoNext() && this.props.scroll !== nextProps.scroll){
       if(nextProps.scroll === BASE_SCROLL_HELPER_HEIGHT){
         this.setState({scrolling:-1})
         this.toNextModule()
@@ -101,8 +106,11 @@ class Module extends PureComponent {
     if (moduleIndex < totalChapterModules) {
       history.push(`${chapterUrl}/modules/${Number(moduleIndex) + 1}`)
     } else {
-      // Go to cover of next chapter
-      history.push(`${themeUrl}/chapters/${nextChapterSlug}`)
+      if(nextChapterSlug){
+        // Go to cover of next chapter
+        history.push(`${themeUrl}/chapters/${nextChapterSlug}`)
+      }
+
     }
   }
 
@@ -169,6 +177,7 @@ const makeMapStateToProps = () => {
       moduleIndex: moduleIndex,
       chapterIndex: getChapterIndex(state),
       totalChapterModules: getTotalChapterModules(state),
+      totalChapters: getTotalThemeChapters(state),
     }
   }
   return mapStateToProps
