@@ -91,9 +91,16 @@ export const getThemes = (token) =>
 
 export const getTheme = (idOrSlug, token) =>
   withPreviewToken(token)(
-    request
-      .get(`${API_URL}/story/${idOrSlug}/`)
-      .query({ 'giova': 'misa misa' })
+    request.get(`${API_URL}/story/${idOrSlug}/`)
+  )
+  .then(extractBody)
+
+export const getEducational = (idOrSlug, token) =>
+  withPreviewToken(token)(
+    request.get(`${API_URL}/story/${idOrSlug}/`)
+      .query({
+        parser: 'yaml',
+      })
   )
   .then(extractBody)
 

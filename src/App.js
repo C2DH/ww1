@@ -12,6 +12,7 @@ import Themes from './pages/Themes'
 import MapPage from './pages/MapPage'
 import Timeline from './pages/Timeline'
 import Education from './pages/Education'
+import EducationDetail from './pages/EducationDetail'
 import Collection from './pages/Collection'
 import CollectionDetail from './pages/CollectionDetail'
 import CollectionDetailModal from './pages/CollectionDetailModal'
@@ -58,6 +59,7 @@ class Routes extends PureComponent {
           <Route path='/map' exact component={MapPage} />
           <Route path='/timeline' exact component={Timeline} />
           <Route path='/education' exact component={Education} />
+          <Route path='/education/:slug' exact component={EducationDetail} />
           <Route path='/collection' exact component={Collection} />
           <Route path='/collection/item/:id' exact component={CollectionDetail} />
           <Route path='/resources' exact component={Resources} />

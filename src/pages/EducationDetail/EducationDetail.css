@@ -1,0 +1,23 @@
+.EducationDetail {
+  background-color: white;
+  width: 100%;
+  padding-top: 0px;
+  padding-bottom: 25px;
+  margin-bottom: 25px;
+}
+
+.EducationDetail__h6 {
+  color: #F36455;
+  text-transform: uppercase;
+  padding-bottom: 15px;
+  padding-top: 25px;
+}
+
+.EducationDetail__DownloadBtn {
+  margin-top: 15px;
+  font-family: 'Atlas Grotesk Web';
+  font-weight: 400;
+  color: #000;
+  display: inline-flex;
+  border-radius: 23px;
+}

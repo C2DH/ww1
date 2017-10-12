@@ -32,6 +32,11 @@ import {
   GET_STATIC_STORY_LOADING,
   GET_STATIC_STORY_FAILURE,
   GET_STATIC_STORY_UNLOAD,
+  GET_EDUCATIONAL,
+  GET_EDUCATIONAL_SUCCESS,
+  GET_EDUCATIONAL_LOADING,
+  GET_EDUCATIONAL_FAILURE,
+  GET_EDUCATIONAL_UNLOAD,
   GET_RESOURCE_DOCUMENTS,
   UPDATE_SETTINGS,
   SET_PREVIEW_TOKEN,
@@ -102,6 +107,17 @@ function *handleGetChapter({ payload }) {
   }
 }
 
+function *handleGetEducational({ payload }) {
+  const eduIdOrSlug = payload
+  yield put({ type: GET_EDUCATIONAL_LOADING })
+  try {
+    const edu = yield callPreview(api.getEducational, eduIdOrSlug)
+    yield put({ type: GET_EDUCATIONAL_SUCCESS, payload: edu })
+  } catch (error) {
+    yield put({ type: GET_EDUCATIONAL_FAILURE, error })
+  }
+}
+
 
 function *watchLanguage() {
 
@@ -139,6 +155,12 @@ export default function* rootSaga() {
     GET_STATIC_STORY,
     GET_STATIC_STORY_UNLOAD,
     handleGetStaticStory,
+  )
+  yield fork(
+    takeLatestAndCancel,
+    GET_EDUCATIONAL,
+    GET_EDUCATIONAL_UNLOAD,
+    handleGetEducational,
   )
   yield fork(
     takeLatestAndCancel,

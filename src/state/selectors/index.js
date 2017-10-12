@@ -47,16 +47,21 @@ export const getCurrentLanguage = createSelector(
 // {
 //   description: 'Pasta Pizza'
 // }
+
+const translate = (value, lang, fallbackLang = 'en_US') => {
+  const defaultTrans = isNull(fallbackLang)
+    ? null
+    : get(value, fallbackLang)
+
+  return get(value, lang, defaultTrans)
+}
+
 const translateObject = (data, lang, transKeys = '*', fallbackLang = 'en_US') =>
   mapValues(data, (value, key) => {
     if (!includes(transKeys, key)) {
       return value
     }
-    const defaultTrans = isNull(fallbackLang)
-      ? null
-      : get(value, fallbackLang)
-
-    return get(value, lang, defaultTrans)
+    return translate(value, lang, fallbackLang)
   })
 
 // Translate a document using given language
@@ -538,3 +543,32 @@ export const makeGetModule = () => {
     }
   )
 }
+
+// Educational
+
+const translateEdu = (edu, langCode) => ({
+  ...edu,
+  data: {
+    ...translateObject(edu.data, langCode, [
+      'title',
+      'activity',
+    ]),
+    requirements: get(edu, 'data.requirements', []).map(v => translate(v, langCode)),
+    steps: get(edu, 'data.steps', []).map(v => translateObject(v, langCode, ['title', 'description'])),
+  }
+})
+
+export const getEducational = createSelector(
+  state => state.educationalDetail.data,
+  getCurrentLanguage,
+  (edu, lang) => maybeNull(edu)(() => {
+    const transEdu = translateEdu(edu, lang.code)
+    const docs = get(edu, 'documents', [])
+      .map(d => ({ ...d, id: d.document_id }))
+      .map(translateDocument(lang))
+    return {
+      ...transEdu,
+      contents: mapValues(joinIds(docs, get(edu, 'contents', {})), v => v.id)
+    }
+  })
+)
