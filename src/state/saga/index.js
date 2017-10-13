@@ -37,6 +37,11 @@ import {
   GET_EDUCATIONAL_LOADING,
   GET_EDUCATIONAL_FAILURE,
   GET_EDUCATIONAL_UNLOAD,
+  GET_EDUCATIONALS,
+  GET_EDUCATIONALS_LOADING,
+  GET_EDUCATIONALS_SUCCESS,
+  GET_EDUCATIONALS_FAILURE,
+  GET_EDUCATIONALS_UNLOAD,
   GET_RESOURCE_DOCUMENTS,
   UPDATE_SETTINGS,
   SET_PREVIEW_TOKEN,
@@ -107,6 +112,16 @@ function *handleGetChapter({ payload }) {
   }
 }
 
+function *handleGetEducationals() {
+  yield put({ type: GET_EDUCATIONALS_LOADING })
+  try {
+    const { results } = yield callPreview(api.getEducationals)
+    yield put({ type: GET_EDUCATIONALS_SUCCESS, payload: { results } })
+  } catch (error) {
+    yield put({ type: GET_EDUCATIONALS_FAILURE, error })
+  }
+}
+
 function *handleGetEducational({ payload }) {
   const eduIdOrSlug = payload
   yield put({ type: GET_EDUCATIONAL_LOADING })
@@ -173,6 +188,12 @@ export default function* rootSaga() {
     GET_THEMES,
     GET_THEMES_UNLOAD,
     handleGetThemes,
+  )
+  yield fork(
+    takeLatestAndCancel,
+    GET_EDUCATIONALS,
+    GET_EDUCATIONALS_UNLOAD,
+    handleGetEducationals,
   )
   yield fork(makeDocuments(
     GET_COLLECTION_DOCUMENTS,

@@ -12,6 +12,7 @@ import themeDetail from './themeDetail'
 import chapterDetail from './chapterDetail'
 import staticStoryDetail from './staticStoryDetail'
 import educationalDetail from './educationalDetail'
+import educationals from './educationals'
 import preview from './preview'
 import scroll from './scroll'
 import { reducer as tooltip } from 'redux-tooltip';
@@ -26,6 +27,7 @@ export default combineReducers({
   chapterDetail,
   staticStoryDetail,
   educationalDetail,
+  educationals,
   document,
   languages,
   settings,

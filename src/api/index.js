@@ -89,6 +89,18 @@ export const getThemes = (token) =>
   )
   .then(extractBody)
 
+export const getEducationals = (token) =>
+  withPreviewToken(token)(
+    request.get(`${API_URL}/story/`)
+      .query(buildMillerParams({
+        filters: {
+          tags__slug: 'education',
+        },
+        orderby: 'priority',
+      }))
+  )
+  .then(extractBody)
+
 export const getTheme = (idOrSlug, token) =>
   withPreviewToken(token)(
     request.get(`${API_URL}/story/${idOrSlug}/`)

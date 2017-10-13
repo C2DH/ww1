@@ -389,7 +389,6 @@ export const getThemes = createSelector(
   getCurrentLanguage,
   (themes, lang) => maybeNull(themes)(themes => themes.map(translateStory(lang)))
 )
-// export const getThemes = state => state.themes.list
 export const getThemesLoading = state => state.themes.loading
 export const getThemesError = state => state.themes.error
 
@@ -558,17 +557,25 @@ const translateEdu = (edu, langCode) => ({
   }
 })
 
+const makeEdu = (edu, lang) => {
+  const transEdu = translateEdu(edu, lang.code)
+  const docs = get(edu, 'documents', [])
+    .map(d => ({ ...d, id: d.document_id }))
+    .map(translateDocument(lang))
+  return {
+    ...transEdu,
+    contents: mapValues(joinIds(docs, get(edu, 'contents', {})), v => v.id)
+  }
+}
+
 export const getEducational = createSelector(
   state => state.educationalDetail.data,
   getCurrentLanguage,
-  (edu, lang) => maybeNull(edu)(() => {
-    const transEdu = translateEdu(edu, lang.code)
-    const docs = get(edu, 'documents', [])
-      .map(d => ({ ...d, id: d.document_id }))
-      .map(translateDocument(lang))
-    return {
-      ...transEdu,
-      contents: mapValues(joinIds(docs, get(edu, 'contents', {})), v => v.id)
-    }
-  })
+  (edu, lang) => maybeNull(edu)(() => makeEdu(edu, lang))
+)
+
+export const getEducationals = createSelector(
+  state => state.educationals.list,
+  getCurrentLanguage,
+  (edus, lang) => maybeNull(edus)(() => edus.map(edu => makeEdu(edu, lang)))
 )
