@@ -20,8 +20,7 @@ class ModuleText extends PureComponent {
     const textStyle = {
       color: get(module, 'text.color', '#fff'),
       alignItems: alignItems,
-      // #TODO: CHECK THIS
-      // textAlign: position,
+      textAlign: position,
     }
 
     const backgroundColor = get(module, 'background.color')
