@@ -1,0 +1,99 @@
+.EducationExpandableItem {
+  background-color: #fff;
+  margin-bottom: 10px;
+}
+
+.EducationExpandableItem__topRow {
+  height: 100px;
+  display: flex;
+  align-items: center;
+}
+
+.EducationExpandableItem__btn{
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  padding: 4px 0 0 0;
+  cursor: pointer;
+}
+
+.EducationExpandableItem__titleLabel {
+  color:#F36455;
+  font-size: 1.875rem;
+}
+
+.EducationExpandableItem__title {
+  color: #292b2c;
+}
+
+.EducationExpandableItem__titleContainerOpen {
+  margin-bottom: 20px;
+}
+
+.EducationExpandableItem__container {
+  margin-top: 15px;
+}
+
+
+.EducationExpandableItem__text {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid #DBDBD0;
+  border-bottom: 1px solid #DBDBD0;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.EducationExpandableItem__imgTitle {
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+}
+
+.EducationExpandableItem__img {
+  margin-left: 5px;
+}
+
+.EducationExpandableItem__show_less {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #F56350;
+  margin-bottom: -8px;
+}
+
+.EducationExpandableItem__show_less span{
+  background-color: white;
+  padding: 0px 10px;
+}
+
+/*Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {
+
+}
+
+/*Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+
+
+    .EducationExpandableItem__btn{
+      width: 30px;
+        height: 30px;
+        padding: 2px;
+    }
+
+ }
+
+/*Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+
+  .EducationExpandableItem__title {
+    font-size: 2rem;
+  }
+
+ }
+
+/*Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+
+ }

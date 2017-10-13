@@ -1,9 +1,9 @@
 .EducationDetail {
+  margin-bottom: 100px;
+}
+
+.EducationDetail__top {
   background-color: white;
-  width: 100%;
-  padding-top: 0px;
-  padding-bottom: 25px;
-  margin-bottom: 25px;
 }
 
 .EducationDetail__h6 {
@@ -20,4 +20,14 @@
   color: #000;
   display: inline-flex;
   border-radius: 23px;
+}
+
+.EducationDetail__imageCaption {
+  display: flex;
+  background-color: white;
+  padding: 10px;
+}
+
+.EducationDetail__imageCaption :first-child {
+  padding-right: 10px;
 }

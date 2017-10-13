@@ -8,9 +8,11 @@ import {
 } from '../../state/actions'
 import { getEducational } from '../../state/selectors'
 import BigTitle from '../../components/BigTitle'
+import EducationExpandableItem from '../../components/EducationExpandableItem'
+import EducationFooter from '../../components/EducationFooter'
 import './EducationDetail.css'
 
-class EducationalDetail extends PureComponent {
+class EducationDetail extends PureComponent {
 
   componentDidMount() {
     this.props.loadEducational(this.props.match.params.slug)
@@ -32,46 +34,68 @@ class EducationalDetail extends PureComponent {
     console.log(educational)
 
     return (
-      <div>
+      <div className='EducationDetail'>
         {educational && (
           <div>
-          <div className='EducationDetail'>
-          <Container>
-            <BigTitle title={educational.data.title} />
-            <Row>
-              <Col md={6}>
-                <h4 className='EducationDetail__h6'>goals of the activity</h4>
-                <p>{educational.data.activity}</p>
+            <div className='EducationDetail__top'>
+              <Container>
+                <BigTitle title={educational.data.title} />
                 <Row>
                   <Col md={6}>
-                    <h4 className='EducationDetail__h6'>Requirements	for	the	pupils</h4>
-                    <ul>
-                      {educational.data.requirements.map((req, index) => (
-                        <li key={index}>{req}</li>
-                      ))}
-                    </ul>
+                    <h4 className='EducationDetail__h6'>goals of the activity</h4>
+                    <p>{educational.data.activity}</p>
+                    <Row>
+                      <Col md={6}>
+                        <h4 className='EducationDetail__h6'>Requirements	for	the	pupils</h4>
+                        <ul>
+                          {educational.data.requirements.map((req, index) => (
+                            <li key={index}>{req}</li>
+                          ))}
+                        </ul>
+                      </Col>
+                      <Col md={6}>
+                        <h4 className='EducationDetail__h6'>Pedagogical manual</h4>
+                        <a
+                          className="btn btn-secondary EducationDetail__DownloadBtn"
+                          href={get(educational, 'contents.object.attachment')}>
+                          <i className="material-icons">get_app</i>
+                          Download
+                        </a>
+                      </Col>
+                    </Row>
                   </Col>
                   <Col md={6}>
-                    <h4 className='EducationDetail__h6'>Pedagogical manual</h4>
-                    <a
-                      className="btn btn-secondary EducationDetail__DownloadBtn"
-                      href={get(educational, 'contents.object.attachment')}>
-                      <i className="material-icons">get_app</i>
-                      Download
-                    </a>
+                    <img className='img-fluid' src={get(educational, 'covers[0].attachment')} />
                   </Col>
                 </Row>
-              </Col>
-              <Col md={6}>
-                <img className='img-fluid' src={get(educational, 'covers[0].attachment')} />
-              </Col>
-            </Row>
-          </Container>
-        </div>
-        <Container>
-                    <h4 className='EducationDetail__h6'>Requirements	for	the	pupils</h4>
-        </Container>
-      </div>
+              </Container>
+            </div>
+            <Container>
+              <h4 className='EducationDetail__h6'>Step by step manual</h4>
+              <Row>
+                <Col md={8}>
+                  {educational.data.steps.map((step, i) => (
+                    <EducationExpandableItem
+                      key={i}
+                      label={step.label}
+                      title={step.title}
+                      description={step.description}
+                    />
+                  ))}
+                </Col>
+                <Col md={4}>
+                  <div>
+                    <img className='img-fluid' src={get(educational, 'contents.object.attachment')} />
+                    <div className='EducationDetail__imageCaption'>
+                      <div><i className='icon-hand' /></div>
+                      <div>{get(educational, 'contents.object.translated.description')}</div>
+                    </div>
+                  </div>
+                </Col>
+              </Row>
+            </Container>
+            <EducationFooter />
+          </div>
         )}
       </div>
     )
@@ -85,4 +109,4 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
   loadEducational,
   unloadEducational,
-})(EducationalDetail)
+})(EducationDetail)
