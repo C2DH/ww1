@@ -33,13 +33,14 @@ class ChapterCover extends PureComponent  {
     history.push(`${themeUrl}/chapters/${chapter.slug}/modules/1`)
   }
 
-  toPrevChapter = () => {
+  toPrevModule = () => {
     const { chapterIndex, history, theme } = this.props
     const themeUrl = `/themes/${theme.slug}`
     if(chapterIndex > 0){
-      //to prev chapter cover
+      //to last chapter of prev
       const prevChapterSlug = get(theme, `stories[${Number(chapterIndex) - 1}].slug`)//to prev chapter
-      history.push(`${themeUrl}/chapters/${prevChapterSlug}`)
+      console.log("prevChapterSlug", prevChapterSlug, chapterIndex, theme)
+      history.push(`${themeUrl}/chapters/${prevChapterSlug}/modules/last`)
     }
     if(chapterIndex === 0){
       //to theme cover
@@ -58,7 +59,7 @@ class ChapterCover extends PureComponent  {
     if (this.props.scroll !== nextProps.scroll){
       if(nextProps.scroll === -BASE_SCROLL_HELPER_HEIGHT){
         this.setState({scrolling:1})
-        this.toPrevChapter()
+        this.toPrevModule()
       }
     }
   }
@@ -86,9 +87,12 @@ class ChapterCover extends PureComponent  {
       return null
     }
 
+    const backgroundColor = get(chapter, 'data.background.backgroundColor')
+    const overlay = get(chapter, 'data.background.overlay')
+
     return (
       <div>
-        <ScrollHelperTop  background={get(chapter, 'data.background.backgroundColor')} overlay={get(chapter, 'data.background.overlay')}/>
+        <ScrollHelperTop background={overlay ? overlay : backgroundColor}/>
         <div className="ChapterCover__container" style={{ marginTop: this.state.scrolling * 150,
             opacity: scrollScale(this.props.scroll)}}>
           <Background
@@ -117,7 +121,7 @@ class ChapterCover extends PureComponent  {
             </Row>
           </Container>
         </div>
-        <ScrollHelperBottom background={get(chapter, 'data.background.backgroundColor')} overlay={get(chapter, 'data.background.overlay')}/>
+        <ScrollHelperBottom background={overlay ? overlay : backgroundColor}/>
         {this.state.stopScroll && <ScrollLock/> }
       </div>
 

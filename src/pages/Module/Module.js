@@ -61,7 +61,7 @@ class Module extends PureComponent {
   }
 
   canGoNext = () => {
-    return (this.props.chapterIndex < this.props.totalChapters) || (this.props.moduleIndex + 1 < this.props.totalChapterModules)
+    return (this.props.chapterIndex < this.props.totalChapters -1 ) || (this.props.moduleIndex + 1 < this.props.totalChapterModules)
   }
 
   componentWillReceiveProps (nextProps){
@@ -108,6 +108,7 @@ class Module extends PureComponent {
     } else {
       if(nextChapterSlug){
         // Go to cover of next chapter
+        console.log("to cover")
         history.push(`${themeUrl}/chapters/${nextChapterSlug}`)
       }
 

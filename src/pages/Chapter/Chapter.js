@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { CSSTransitionGroup } from 'react-transition-group'
 import { connect } from 'react-redux'
-import { Link, Switch, Route, withRouter } from 'react-router-dom'
+import { Link, Switch, Route, Redirect, withRouter } from 'react-router-dom'
 import { get } from 'lodash'
 import ChapterCover from '../ChapterCover'
 import Module from '../Module'
@@ -21,6 +21,29 @@ import {
   loadChapter,
   unloadChapter,
 } from '../../state/actions'
+
+const mapStateToProps = state => ({
+  theme: getTheme(state),
+  chapter: getChapter(state),
+  chapterIndex: getChapterIndex(state),
+  totalChapters: getTotalThemeChapters(state),
+  totalChapterModules: getTotalChapterModules(state),
+})
+
+const LastModule = connect(mapStateToProps)(class extends React.PureComponent {
+
+  componentDidMount() {
+    const { theme, chapter } = this.props
+    if (theme && chapter){
+      this.props.history.replace(`/themes/${theme.slug}/chapters/${chapter.slug}/modules/${ Math.max(get(chapter, 'contents.modules', []).length, 1)}`)
+    }
+  }
+
+  render() {
+    return null
+  }
+})
+
 
 class Chapter extends PureComponent  {
   state = {
@@ -104,6 +127,14 @@ class Chapter extends PureComponent  {
             }}
           </Route>
         )}
+
+        {chapter && <Route path={`${match.path}/modules/last`} exact component={LastModule} />}
+        {/* {chapter && <Route path={`${match.path}/modules/last`}
+          render={()=>(
+            <Redirect to={`/themes/${theme.slug}/chapters/${chapter.slug}/modules/${ Math.max(get(chapter, 'contents.modules', []).length, 1)}`}
+          />
+          )}/> } */}
+
         <CSSTransitionGroup component="div"
           transitionName="chapter"
           transitionEnterTimeout={500}
@@ -114,6 +145,7 @@ class Chapter extends PureComponent  {
         </CSSTransitionGroup>
 
         {chapter && (
+
          <CSSTransitionGroup
             transitionName="SwitchModule"
             component="div"
@@ -122,6 +154,10 @@ class Chapter extends PureComponent  {
           >
             <Switch key={location.key} location={location}>
               <Route path={`${match.path}`} exact component={ChapterCover} />
+              {/* <Redirect
+                from={`${match.path}/modules/last`}
+                to={`/themes/${theme.slug}/chapters/${chapter.slug}/modules/${ Math.max(get(chapter, 'contents.modules', []).length, 1)}`}
+              /> */}
               <Route path={`${match.path}/modules/:moduleIndex`} exact component={Module} />
             </Switch>
           </CSSTransitionGroup>
@@ -130,14 +166,6 @@ class Chapter extends PureComponent  {
     )
   }
 }
-
-const mapStateToProps = state => ({
-  theme: getTheme(state),
-  chapter: getChapter(state),
-  chapterIndex: getChapterIndex(state),
-  totalChapters: getTotalThemeChapters(state),
-  totalChapterModules: getTotalChapterModules(state),
-})
 
 export default withRouter(connect(mapStateToProps, {
   loadChapter,
