@@ -10,6 +10,7 @@ import { getEducational } from '../../state/selectors'
 import BigTitle from '../../components/BigTitle'
 import EducationExpandableItem from '../../components/EducationExpandableItem'
 import EducationFooter from '../../components/EducationFooter'
+import CollectionItemLink from '../../components/CollectionItemLink'
 import './EducationDetail.css'
 
 class EducationDetail extends PureComponent {
@@ -85,7 +86,11 @@ class EducationDetail extends PureComponent {
                 </Col>
                 <Col md={4}>
                   <div>
-                    <img className='img-fluid' src={get(educational, 'contents.object.attachment')} />
+                    <div>
+                      <img className='img-fluid' src={get(educational, 'contents.object.attachment')} />
+                      <div className='EducationDetail__DocLink'>
+                        <CollectionItemLink doc={get(educational, 'contents.object')} /></div>
+                    </div>
                     <div className='EducationDetail__imageCaption'>
                       <div><i className='icon-hand' /></div>
                       <div>{get(educational, 'contents.object.translated.description')}</div>
