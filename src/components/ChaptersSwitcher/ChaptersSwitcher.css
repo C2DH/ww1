@@ -1,5 +1,5 @@
 .ChaptersSwitcher__chapters_container {
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 0;
   width: 375px;
