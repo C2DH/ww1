@@ -61,7 +61,7 @@ class Module extends PureComponent {
   }
 
   canGoNext = () => {
-    return (this.props.chapterIndex < this.props.totalChapters -1 ) || (this.props.moduleIndex + 1 < this.props.totalChapterModules)
+    return (this.props.chapterIndex < this.props.totalChapters -1 ) || (this.props.moduleIndex < this.props.totalChapterModules)
   }
 
   componentWillReceiveProps (nextProps){
@@ -169,7 +169,7 @@ class Module extends PureComponent {
 const makeMapStateToProps = () => {
   const getModule = makeGetModule()
   const mapStateToProps = (state, props) => {
-    const moduleIndex = props.match.params.moduleIndex
+    const moduleIndex = Number(props.match.params.moduleIndex)
     return {
       theme: getTheme(state),
       chapter: getChapter(state),
