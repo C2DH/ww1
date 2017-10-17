@@ -68,14 +68,14 @@ class Module extends PureComponent {
 
     if (this.canGoNext() && this.props.scroll !== nextProps.scroll){
       if(nextProps.scroll === BASE_SCROLL_HELPER_HEIGHT){
-        this.setState({scrolling:-1})
+        // this.setState({scrolling:-1})
         this.toNextModule()
       }
     }
 
     if (this.props.scroll !== nextProps.scroll){
       if(nextProps.scroll === -BASE_SCROLL_HELPER_HEIGHT){
-        this.setState({scrolling:1})
+        // this.setState({scrolling:1})
         this.toPrevModule()
       }
     }
@@ -150,7 +150,8 @@ class Module extends PureComponent {
 
     return  <div>
     <ScrollHelperTop background={topScrollBackground} overlay={topScrollOverlay}/>
-    <div style={{ marginTop: this.state.scrolling * 150, ...moduleContainerStyle,
+    {/* This was this.state.scrolling * 150 */}
+    <div style={{ marginTop: 0 * 150, ...moduleContainerStyle,
         opacity: scrollScale(this.props.scroll)
       }}>
         {React.createElement(getModuleComponent(module.module), {

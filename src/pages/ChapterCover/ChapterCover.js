@@ -51,14 +51,14 @@ class ChapterCover extends PureComponent  {
   componentWillReceiveProps (nextProps){
     if (this.props.totalChapterModules > 0 && this.props.scroll !== nextProps.scroll){
       if(nextProps.scroll === BASE_SCROLL_HELPER_HEIGHT){
-        this.setState({scrolling:-1})
+        // this.setState({scrolling:-1})
         this.toFirstModule()
       }
     }
 
     if (this.props.scroll !== nextProps.scroll){
       if(nextProps.scroll === -BASE_SCROLL_HELPER_HEIGHT){
-        this.setState({scrolling:1})
+        // this.setState({scrolling:1})
         this.toPrevModule()
       }
     }
@@ -93,7 +93,8 @@ class ChapterCover extends PureComponent  {
     return (
       <div>
         <ScrollHelperTop background={overlay ? overlay : backgroundColor}/>
-        <div className="ChapterCover__container" style={{ marginTop: this.state.scrolling * 150,
+        {/* This was this.state.scrolling * 150 */}
+        <div className="ChapterCover__container" style={{ marginTop: 0 * 150,
             opacity: scrollScale(this.props.scroll)}}>
           <Background
             image={get(chapter, 'covers[0].attachment')}
