@@ -98,7 +98,7 @@ const SeeAlso = ({doc}) => {
     if(year < 1914){
       year = '<1914,1914'
     }
-    else if(year > 1914){
+    else if(year > 1921){
       year = '1921,1921>'
     } else {
       year = `${year},${year+1}`
