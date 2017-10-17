@@ -25,7 +25,7 @@ class Resources extends PureComponent {
   render() {
     const { documents } = this.props
     return (
-      <div>
+      <div className="Resources__wrapper">
         <div className="Resources__top_wrapper">
           <Container>
             <BigTitle title="Resources" />

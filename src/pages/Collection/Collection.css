@@ -2,12 +2,14 @@
   width: 100%;
   position: relative;
   transition: width 0.5s;
+  background-color: #eee;
 }
 
 .Collection__List--sidebar-close {
   width: 100%;
   position: relative;
   transition: width 0.5s;
+  background-color: #eee;
 }
 
 .Collection__List--list-heading {

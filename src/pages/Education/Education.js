@@ -23,7 +23,7 @@ class Education extends PureComponent {
   render() {
     const { educationals } = this.props
     return (
-      <div>
+      <div className="Education__wrapper">
         <div className="Resources__top_wrapper">
           <Container>
             <BigTitle title="Education" />
