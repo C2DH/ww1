@@ -105,17 +105,6 @@ const ModuleObjectContentImage = pure(({ module }) => {
   const backgroundColor = get(module, 'background.color')
   const backgroundColorRgb = d3Color.color(backgroundColor || '#373a3c').rgb()
 
-  let cardImgHeight = '50vh';
-  let margin = 'auto';
-  let width = 'auto';
-  if(size === 'medium') {
-    cardImgHeight = '70vh'
-  } else if (size === 'big') {
-    cardImgHeight = '100vh';
-    margin = 0;
-    width = '100%'
-  }
-
   const objectImgFullStyle = {
     width: '100%',
     backgroundSize: 'cover',
@@ -123,26 +112,18 @@ const ModuleObjectContentImage = pure(({ module }) => {
     backgroundPosition: 'center center'
   }
 
-  const objectImgStyle = {
-    maxHeight: cardImgHeight,
-    width: 'auto',
-    maxWidth: '100%'
-  }
-
-  const objectcardStyle = {
-    margin: margin,
-    width: width
-  }
-
 
   return (
-      <Card className="Module__objectCard" style={objectcardStyle}>
+      <Card className="Module__objectCard">
         {(size != 'big') &&
-          <CardImg top style={objectImgStyle} className="Module__objectCard_img" src={media} />
+          <CardImg top className="Module__objectCard_img" src={media}/>
+        }
+        {(size != 'big') &&
+          <div className="ModuleObjectContentImage__Link"><CollectionItemLink doc={module.id}/></div>
         }
         {(size === 'big') &&
           <div style={objectImgFullStyle} className="Module__objectCard_imgFull">
-
+            <div className="ModuleObjectContentImage__Link"><CollectionItemLink doc={module.id}/></div>
           </div>
         }
         {(module.caption) &&
@@ -210,7 +191,6 @@ class ModuleObject extends PureComponent {
 
     let offset = 4;
     let col = 4;
-    let padding = '75px';
 
     if(size === 'medium'){
       col = 8;
@@ -218,19 +198,12 @@ class ModuleObject extends PureComponent {
     }else if(size === 'big'){
       col = 12;
       offset = 0;
-      padding = 0
     }
-
-    let moduleContainerStyle = {
-      padding: padding
-    }
-
-
 
     return (
       <div style={fullHeight}>
         <Background image={backgroundImage} color={backgroundColor} overlay={backgroundOverlay} />
-        <Container fluid className="Module__container_obj" style={moduleContainerStyle}>
+        <Container fluid className={"Module__container_obj " + size+"Module"}>
           <Row className="Module__object_row">
               <Col lg={{ size: col, offset: offset }} className="d-flex">
                 <ModuleObjectContent module={module}/>

@@ -38,23 +38,54 @@
 
 /* object image */
 
-.Module__container_obj{
+.Module__container_obj,
+.Module__container_obj.smallModule,
+.Module__container_obj.mediumModule{
   height: 100vh;
   overflow-y: scroll;
   overflow-x: hidden;
   flex-direction: column;
   display: flex;
   justify-content: center;
+  padding:75px;
 }
+
+.Module__container_obj.bigModule{
+  padding:0px;
+}
+
 
 .Module__objectCard_img{
   border-radius: 0px;
   border: none;
 }
 
+.smallModule .Module__objectCard_img{
+  max-height: 50vh;
+  width: auto;
+  max-width: 100%;
+}
+
+.mediumModule .Module__objectCard_img{
+  max-height: 70vh;
+  width: auto;
+  max-width: 100%;
+}
+
 .Module__objectCard {
   border-radius: 0px;
   border: none;
+}
+
+.bigModule .Module__objectCard{
+  margin: 0;
+  width: 100%;
+}
+
+.smallModule .Module__objectCard,
+.mediumModule .Module__objectCard{
+  margin: auto;
+  width: auto;
 }
 
 .Module__objectCard_imgFull{
@@ -306,6 +337,11 @@
   z-index: 100;
   right: 10px;
   top: 10px;
+}
+
+.Module__objectCard_imgFull .ModuleObjectContentImage__Link{
+  bottom: 10px;
+  top:auto;
 }
 
 
