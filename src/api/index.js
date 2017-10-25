@@ -70,6 +70,7 @@ export const getTimelineDocuments = (params = {}) => getDocuments({
 })
 
 export const getResourceDocuments = (params = {}) => getDocuments({
+  ...params,
   filters: {
     data__type: 'resource',
     ...params.filters,

@@ -2,7 +2,7 @@
   "name": "ww1",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://ww1.lu",
+  "proxy": "http://ww1.inmagik.com",
   "dependencies": {
     "animate.css": "^3.5.2",
     "bootstrap": "4.0.0-alpha.6",

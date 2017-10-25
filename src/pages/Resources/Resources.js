@@ -1,4 +1,7 @@
 import React, { PureComponent } from 'react'
+import qs from 'query-string'
+import { withRouter } from 'react-router-dom'
+import { debounce } from 'lodash'
 import { connect } from 'react-redux'
 import { Container, Row, Col } from 'reactstrap'
 import BigTitle from '../../components/BigTitle'
@@ -8,6 +11,9 @@ import {
   getResourceDocuments,
 } from '../../state/selectors'
 import {
+  parseQsValue,
+} from '../../utils'
+import {
   loadResourceDocuments,
   unloadResourceDocuments,
 } from '../../state/actions'
@@ -15,15 +21,36 @@ import './Resources.css'
 
 class Resources extends PureComponent {
   componentDidMount() {
-    this.props.loadResourceDocuments()
+    this.props.loadResourceDocuments({
+      q: this.props.searchString,
+    })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.searchString !== nextProps.searchString) {
+      this.search(nextProps.searchString)
+    }
   }
 
   componentWillUnmount() {
     this.props.unloadResourceDocuments()
   }
 
+  handleSearchChange = e => {
+    const searchString = e.target.value
+    const { location, history } = this.props
+    history.push(`${location.pathname}?${qs.stringify({ q: searchString })}`)
+  }
+
+  search = debounce(searchString => {
+    // this.props.unloadResourceDocuments()
+    this.props.loadResourceDocuments({
+      q: `${searchString}*`,
+    })
+  }, 200)
+
   render() {
-    const { documents } = this.props
+    const { documents, searchString } = this.props
     return (
       <div className="Resources__wrapper">
         <div className="Resources__top_wrapper">
@@ -37,6 +64,13 @@ class Resources extends PureComponent {
           </Container>
         </div>
         <Container>
+          <div>
+            <input
+              type='text'
+              value={searchString}
+              onChange={this.handleSearchChange}
+            />
+          </div>
           <Row>
             <Col>
               {documents && documents.map(doc => (
@@ -57,11 +91,12 @@ class Resources extends PureComponent {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
+  searchString: parseQsValue(ownProps.location, 'q', ''),
   documents: getResourceDocuments(state),
 })
 
-export default connect(mapStateToProps, {
+export default withRouter(connect(mapStateToProps, {
   loadResourceDocuments,
   unloadResourceDocuments,
-})(Resources)
+})(Resources))
