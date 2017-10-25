@@ -79,7 +79,7 @@ export const ScrollHelperBottom = connect(scrollHelperMapStateToProps, { setScro
           }}>
           <div ref={(r)=>{
             this.bottomHook=r;
-          }} style={{position:'absolute', bottom:0, height:2, backgroundColor:'red', right:0, left:0}}></div>
+          }} style={{position:'absolute', bottom:0, height:2, backgroundColor:background, right:0, left:0}}></div>
         </div>
     )
 

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { get } from 'lodash'
-import { Container } from 'reactstrap'
+import { Container, Row, Col } from 'reactstrap'
 import Background from '../../components/Background'
 import MarkdownGlossary from '../../components/MarkdownGlossary'
 
@@ -10,17 +10,17 @@ class ModuleText extends PureComponent {
     const { chapter, module } = this.props
     const position = get(module, 'text.position')
 
-    let alignItems = 'center'
-    if (position === 'left') {
-      alignItems = 'flex-start'
+    let offset = 0;
+    let size = 6
+    if (position === 'center') {
+      offset = 3
     } else if (position === 'right') {
-      alignItems = 'flex-end'
+      offset = 6
     }
 
     const textStyle = {
       color: get(module, 'text.color', '#fff'),
-      alignItems: alignItems,
-      textAlign: position,
+      textAlign: position
     }
 
     const backgroundColor = get(module, 'background.color')
@@ -29,10 +29,14 @@ class ModuleText extends PureComponent {
 
     return <div style={{height:'100%', position:'relative'}}>
       <Background image={backgroundImage} color={backgroundColor} overlay={backgroundOverlay} />
-      <div className="Module__container" style={textStyle}>
-        <div className="Module__text">
-          <MarkdownGlossary content={module.text.content}/>
-        </div>
+      <div>
+          <Container fluid className="Module__container_text">
+            <Row>
+              <Col lg={{ size: size, offset: offset }} style={textStyle}>
+                <MarkdownGlossary content={module.text.content}/>
+              </Col>
+            </Row>
+          </Container>
       </div>
     </div>
   }

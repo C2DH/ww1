@@ -4,11 +4,11 @@ import { pure } from 'recompose'
 import { connect } from 'react-redux'
 import { get } from 'lodash'
 import { Container, Row, Col } from 'reactstrap'
-import { Card, CardImg, CardBlock } from 'reactstrap'
+import { Card, CardImg, CardText, CardBlock } from 'reactstrap'
 import { Player, ControlBar, BigPlayButton } from 'video-react'
 import AudioPlayer from '../../components/AudioPlayer'
 import CollectionItemLink from '../../components/CollectionItemLink'
-
+import * as d3Color from 'd3-color'
 import Background from '../../components/Background'
 
 const fullHeight = { height: '100%', position:'relative'}
@@ -101,44 +101,59 @@ class ModuleObjectContentVideo extends PureComponent {
 const ModuleObjectContentImage = pure(({ module }) => {
   const media = get(module, 'id.attachment')
   const size = get(module, 'size', 'medium')
+  const position = get(module, 'position')
+  const backgroundColor = get(module, 'background.color')
+  const backgroundColorRgb = d3Color.color(backgroundColor || '#373a3c').rgb()
 
-  let cardImgHeight = '400px'
-  if (size === 'small') {
-    cardImgHeight = '250px'
-  } else if(size === 'medium') {
-    cardImgHeight = '400px'
+  let cardImgHeight = '50vh';
+  let margin = 'auto';
+  let width = 'auto';
+  if(size === 'medium') {
+    cardImgHeight = '70vh'
   } else if (size === 'big') {
-    cardImgHeight = '90vh'
+    cardImgHeight = '100vh';
+    margin = 0;
+    width = '100%'
   }
 
-  const objectStyle = {
-    backgroundColor: 'transparent',
-    alignItems: 'center',
-  }
-
-  const objectContainerStyle = {
+  const objectImgFullStyle = {
     width: '100%',
-    height: cardImgHeight,
     backgroundSize: 'cover',
-    backgroundImage: `url(${media})`
+    backgroundImage: `linear-gradient(to bottom, rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},1) 0%,rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},0.0) 5%,rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},0) 100%), url(${media})`,
+    backgroundPosition: 'center center'
   }
+
+  const objectImgStyle = {
+    maxHeight: cardImgHeight,
+    width: 'auto',
+    maxWidth: '100%'
+  }
+
+  const objectcardStyle = {
+    margin: margin,
+    width: width
+  }
+
 
   return (
-    <div style={objectStyle} className="Module__container">
-      <Card className="Module__objectCard">
-        <div style={objectContainerStyle}>
-          <div className="ModuleObjectContentImage__Link"><CollectionItemLink doc={module.id}/></div>
-        </div>
-        <CardBlock>
-          <div className="d-inline-flex align-items-center">
-            <i className="icon-hand Mods__DocumentOnly_Card_icon"  />
-            <div className="Module__objectCard_text">
-              {module.caption}
-            </div>
+      <Card className="Module__objectCard" style={objectcardStyle}>
+        {(size != 'big') &&
+          <CardImg top style={objectImgStyle} className="Module__objectCard_img" src={media} />
+        }
+        {(size === 'big') &&
+          <div style={objectImgFullStyle} className="Module__objectCard_imgFull">
+
           </div>
-        </CardBlock>
+        }
+        {(module.caption) &&
+            <CardBlock>
+              <CardText>
+                <i className="icon-hand"  />
+                {module.caption}
+              </CardText>
+            </CardBlock>
+          }
       </Card>
-    </div>
   )
 })
 
@@ -193,34 +208,34 @@ class ModuleObject extends PureComponent {
     const backgroundImage = get(module, 'background.object.id.attachment')
     const backgroundOverlay = get(module, 'background.object.overlay')
 
+    let offset = 4;
+    let col = 4;
+    let padding = '75px';
+
+    if(size === 'medium'){
+      col = 8;
+      offset = 2;
+    }else if(size === 'big'){
+      col = 12;
+      offset = 0;
+      padding = 0
+    }
+
+    let moduleContainerStyle = {
+      padding: padding
+    }
+
+
+
     return (
       <div style={fullHeight}>
         <Background image={backgroundImage} color={backgroundColor} overlay={backgroundOverlay} />
-        <Container fluid>
-          {(size === 'small') &&
-            <Row style={fullHeight}>
-              <Col md="4" />
-              <Col md="4" style={fullHeight} className="d-flex">
+        <Container fluid className="Module__container_obj" style={moduleContainerStyle}>
+          <Row className="Module__object_row">
+              <Col lg={{ size: col, offset: offset }} className="d-flex">
                 <ModuleObjectContent module={module}/>
               </Col>
-              <Col md="4" />
-          </Row>}
-
-          {(size === 'medium') &&
-            <Row style={fullHeight}>
-              <Col md="2" />
-              <Col md="8" className="d-flex">
-                <ModuleObjectContent module={module}/>
-              </Col>
-              <Col md="2" />
-          </Row>}
-
-         {(size === 'big') &&
-            <Row style={fullHeight} className="d-flex">
-              <Col md="12">
-                <ModuleObjectContent module={module}/>
-              </Col>
-          </Row>}
+          </Row>
          </Container>
       </div>
     )
