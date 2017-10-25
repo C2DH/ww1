@@ -100,7 +100,7 @@ class ModuleObjectContentVideo extends PureComponent {
 
 const ModuleObjectContentImage = pure(({ module }) => {
   const media = get(module, 'id.attachment')
-  const size = get(module, 'size', 'medium')
+  const size = get(module, 'size')
   const position = get(module, 'position')
   const backgroundColor = get(module, 'background.color')
   const backgroundColorRgb = d3Color.color(backgroundColor || '#373a3c').rgb()
@@ -142,6 +142,7 @@ class ModuleObjectContentAudio extends PureComponent {
   render() {
     const { module } = this.props
     let media = get(module, 'id.attachment')
+    let title = get(module, 'id.translated.title')
 
     if(!media){ return null }
 
@@ -152,10 +153,12 @@ class ModuleObjectContentAudio extends PureComponent {
 
     return (
       <div className='Module__object__audio'>
-        <AudioPlayer source={`https://cors-anywhere.herokuapp.com/${media}`} />
+        <div className='Module__object__audio_wrapper'>
+          <AudioPlayer source={`https://cors-anywhere.herokuapp.com/${media}`} title={title}/>
+        </div>
         <div className="Module__object__audio__caption">
           <span>
-            <i className="icon-hand Mods__DocumentOnly_Card_icon"  />
+            <i className="icon-hand"  />
             <span> {module.caption}</span>
           </span>
           <div><CollectionItemLink doc={module.id}/></div>

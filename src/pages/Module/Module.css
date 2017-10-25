@@ -1,22 +1,13 @@
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
 
-.Module__container {
-  /*position: relative;
-  height: 100vh;
-  width: 100%;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow-y: scroll;
-  padding: 75px*/
-}
+/* general */
 
 .Module__object_row{
   flex-grow: 1;
 }
 
+/* end general */
 
 /* text */
 
@@ -97,6 +88,39 @@
 }
 
 /* end object image */
+
+/* object audio */
+
+.Module__object__audio {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+
+.Module__object__audio_wrapper {
+  padding: 0 100px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Module__object__audio__caption {
+  height: 80px;
+  background-color: white;
+  width: 100%;
+  flex-grow: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  font-family: 'Atlas Grotesk Web', Arial, sans-serif;
+}
+
+/* end object audio */
 
 
 .ModuleObject__container {
@@ -181,33 +205,6 @@
   max-height: 600px;
 }
 
-.Module__object__audio {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  margin-left: -15px;
-  margin-right: -15px;
-}
-
-.Module__object__audio > .AudioPlayer__wrapper{
-  padding: 0 100px;
-}
-
-.Module__object__audio__caption {
-  height: 80px;
-  background-color: white;
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-  font-family: 'Atlas Grotesk Web', Arial, sans-serif;
-}
 
 .Module__textObject_Text {
   font-family: Georgia;

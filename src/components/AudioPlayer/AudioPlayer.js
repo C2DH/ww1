@@ -30,7 +30,7 @@ class AudioPlayer extends PureComponent {
         </div>
         <div className="AudioPlayer__wave-gradient">
           <Wavesurfer
-            options={{barHeight:4, barWidth:2, waveColor:'#ffffff', cursorColor: '#F56350', progressColor:'#F06354' }}
+            options={{barHeight:4, barWidth:2, waveColor:'#fff', cursorColor: '#F56350', progressColor:'#F06354' }}
             audioFile={source}
             playing={playing}
             volume={volume}
