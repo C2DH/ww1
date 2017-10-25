@@ -274,12 +274,26 @@ export const getMapDocuments = createSelector(
 )
 
 export const [
-  getMapDocumentsDataPlaceTypesFacets,
+  getMapDocumentsDataPlaceTypesFacetsUnsorted,
   getMapDocumentsYearsFacets,
   getMapDocumentsFilteredYearsFacets,
   getMapDocumentsUncertainYears,
   getMapDocumentsTotalCount,
 ] = makeDocumentsMetaSelectors(state => state.mapDocuments, 'data__place_type')
+
+export const getMapDocumentsDataPlaceTypesFacets = createSelector(
+  getMapDocumentsDataPlaceTypesFacetsUnsorted,
+  facets => {
+    // Hardcoding 4ever <3
+    const index = findIndex(facets, { data__place_type: 'other' })
+    if (index >= 0) {
+      return facets.slice(0, index)
+        .concat(facets.slice(index + 1, facets.length))
+        .concat(facets[index])
+    }
+    return facets
+  }
+)
 
 // Timeline documents
 
