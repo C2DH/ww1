@@ -34,7 +34,7 @@ const makeDocumentsList = (actionType) => {
             count,
             offset,
           },
-          facets,
+          facets: facets || prevState.facets,
         }
       }
       case `${actionType}_LOADING`:

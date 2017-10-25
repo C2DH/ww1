@@ -45,7 +45,7 @@ const makeDocuments = (
       })
 
       // Calculate cross facets
-      let facets = {}
+      let facets = null
       if (crossFacets && facetsConfig) {
         // Make a call per facet and omit related params to calculate cross facets
         const facetsCalls = map(facetsConfig, (paramsForFacet, facet) => {
@@ -83,10 +83,11 @@ const makeDocuments = (
     }
   }
 
-  function *handleGetDocumentsMeta() {
+  function *handleGetDocumentsMeta({ payload = { params: {} } }) {
     yield put({ type: `${actionType}_META_LOADING` })
     try {
       const data = yield call(apiFn, {
+        ...payload.params,
         facets: keys(facetsConfig),
         facets_only: true,
       })
