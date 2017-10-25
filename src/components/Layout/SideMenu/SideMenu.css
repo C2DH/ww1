@@ -91,6 +91,13 @@
   white-space: nowrap;
 }
 
+.SideMenu__vertical_title a:link, a:hover, a:visited, a:active
+{
+  color: inherit;
+  transition: 0;
+  text-decoration: none;
+}
+
 .SideMenu__langBtn {
   background-color: transparent;
   border: none;
