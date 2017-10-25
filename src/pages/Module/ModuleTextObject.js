@@ -18,9 +18,9 @@ const ObjectColumn = ({module}) => (
   </Col>
 )
 
-const TextColumn = ({content}) => (
+const TextColumn = ({ content, color }) => (
   <Col md="6"  className="Module__textObject_Col">
-    <div className="Module__textObject_Text">
+    <div className="Module__textObject_Text" style={{ color }}>
       <MarkdownGlossary content={content}/>
     </div>
   </Col>
