@@ -54,7 +54,7 @@ const ObjectLink = connect(mapStateToProps)(class extends React.PureComponent {
       )
     } else {
       const passProps=omit(this.props, ['doc', 'unloadDocument', 'loadDocument', 'loading', 'lang', 'dispatch'])
-      return (<a {...passProps}>{this.props.children}</a>)
+      return (<a target='_blank' rel='noopener noreferrer' {...passProps}>{this.props.children}</a>)
     }
 
   }
