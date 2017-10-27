@@ -99,6 +99,7 @@ class ChapterCover extends PureComponent  {
           <Background
             image={get(chapter, 'covers[0].attachment')}
             overlay={get(chapter, 'data.background.overlay')}
+            bbox={get(chapter, 'data.background.bbox', [])}
             color={get(chapter, 'data.background.backgroundColor')}
           />
           <Container fluid>

@@ -48,6 +48,7 @@ class Theme extends PureComponent {
 
       <Background
         image={get(theme, 'covers[0].attachment')}
+        bbox={get(theme, 'data.background.bbox', [])}
         overlay={get(theme, 'data.background.overlay')}
         color={get(theme, 'data.background.backgroundColor')}/>
       <Container className="Theme__container">

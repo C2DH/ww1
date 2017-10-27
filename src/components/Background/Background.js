@@ -1,12 +1,14 @@
 import React from 'react';
 import * as d3Color from 'd3-color'
+import { getBoundingBoxImage } from '../../utils'
 
 
 
 export default class Background extends React.Component {
   render() {
 
-    const { image, color='#fff', overlay=null } = this.props
+    const { image, bbox, color='#fff', overlay=null } = this.props
+    const imageUrl = getBoundingBoxImage(image, bbox)
 
 
     const baseStyle = {
@@ -14,7 +16,7 @@ export default class Background extends React.Component {
       right: "0px",
       height: "100%",
       backgroundColor: overlay ? 'transparent' : color,
-      backgroundImage: `url(${image})`,
+      backgroundImage: `url(${imageUrl})`,
       backgroundSize: 'cover',
       position: 'absolute',
       zIndex: 0

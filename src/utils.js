@@ -118,3 +118,15 @@ export const getPlaceTypeIcon = placeType => {
   }
   return icon
 }
+
+const appendBeforeExtension = (file, str) => {
+  const pieces = file.split('.')
+  return pieces.slice(0, -1).join('.') + `${str}.` + pieces.slice(-1)
+}
+
+export const getBoundingBoxImage = (imageUrl, bbox) => {
+  if (isArray(bbox) && bbox.length === 4) {
+    return appendBeforeExtension(imageUrl, `_c[${bbox.join(',')}]`)
+  }
+  return imageUrl
+}
