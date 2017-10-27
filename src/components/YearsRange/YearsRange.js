@@ -14,7 +14,7 @@ class YearsBarsUnwrap extends PureComponent {
     const { barHeight, counts, filteredCounts, containerWidth, min, max } = this.props
     const maxCount = lmax(values(counts)) || 0
     const scale = scaleLinear().domain([0, maxCount]).rangeRound([0, barHeight])
-    const years = [`<${min}`].concat(range(min, max + 1)).concat(`${max}>`)
+    const years = [`<`].concat(range(min, max + 1)).concat(`>`)
     const barWidth = containerWidth / years.length
 
     return (
@@ -39,12 +39,14 @@ class YearsBarsUnwrap extends PureComponent {
         </g>
         <g>
           {years.map((year, i) => (
-            <text key={year} x={i * barWidth + barWidth / 2} y={barHeight + 22} textAnchor='middle'
-            className="YearsBar__Label"
+            <text
+              key={year}
+              // Hardcoding is my business... and business is good
+              x={i * barWidth + barWidth / 2 - (i === 0 ? 8 : 0) + (i === years.length - 1 ? 8 : 0)}
+              y={barHeight + 22} textAnchor='middle'
+              className="YearsBar__Label"
             >
-              {year === (min - 1) && `<<${min}`}
-              {year !== (min - 1) && year !== (max + 1) && `${year}`}
-              {year === (max + 1) && `${max}>>`}
+              {year}
             </text>
           ))}
         </g>

@@ -15,10 +15,10 @@ const GalleryColumn = ({module, chapter}) => (
   </Col>
 )
 
-const TextColumn = ({content}) => (
+const TextColumn = ({ content, color }) => (
   <Col md="6" className="Module__textObject_Col">
     <div className="Module__textObject_Text">
-      <MarkdownGlossary content={content}/>
+      <MarkdownGlossary content={content} style={{ color }} />
     </div>
   </Col>
 )

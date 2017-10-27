@@ -1,6 +1,7 @@
 // Standard api calls
 import request from 'superagent'
 import { omit } from 'lodash'
+import { makeOverlaps } from '../utils'
 const API_URL = '/api'
 
 // Extract only body from response, when other stuff like response
@@ -42,6 +43,8 @@ export const getDocuments = (params = {}) =>
     .then(extractBody)
 
 export const getCollectionDocuments = (params = {}) => getDocuments({
+  // 2 eazY
+  overlaps: makeOverlaps(['<', '>']),
   ...params,
   filters: {
     data__type__in: ['image', 'audio', 'video', 'correspondence', 'other', 'physical object'],
@@ -67,6 +70,7 @@ export const getTimelineDocuments = (params = {}) => getDocuments({
 })
 
 export const getResourceDocuments = (params = {}) => getDocuments({
+  ...params,
   filters: {
     data__type: 'resource',
     ...params.filters,

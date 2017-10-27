@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { withRouter, Switch, Route } from 'react-router-dom'
+import { withRouter, Switch, Route, Link } from 'react-router-dom'
 import OpenSideMenu from '../OpenSideMenu'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import './SideMenu.css'
@@ -55,7 +55,7 @@ class SideMenu extends PureComponent {
         <h6>{this.state.open ? this.context.t('close') : this.context.t('menu')}</h6>
       </div>
       <div className={this.state.open ? "SideMenu__vertical_title_container d-flex justify-content-center hidden-md-down" : "SideMenu__vertical_title_container_close d-flex justify-content-center hidden-md-down"}>
-         <p className="SideMenu__vertical_title">ÉISCHTE WELTKRICH</p>
+         <p className="SideMenu__vertical_title"><Link to='/'>ÉISCHTE WELTKRICH</Link></p>
        </div>
        <span className="SideMenu__langBtn btn btn-secondary hidden-md-down" onClick={this.toggleMenu} >{language.label}</span>
      </div>

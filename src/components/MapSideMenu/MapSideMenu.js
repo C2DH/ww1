@@ -82,15 +82,6 @@ const MapSideMenu = ({
           />
         )
       })}
-      {/* <MapMenuItem label="Shelter" iconClass="fa-home"/>
-      <MapMenuItem label="Industrial building" iconClass="fa-industry"/>
-      <MapMenuItem label="Cemetery" iconClass="fa-bomb"/>
-      <MapMenuItem label="Hospital" iconClass="fa-hospital-o"/>
-      <MapMenuItem label="Monument" iconClass="fa-university"/>
-      <MapMenuItem label="Railway station" iconClass="fa-train"/>
-      <MapMenuItem label="Administrative building" iconClass="fa-building"/>
-      <MapMenuItem label="Army camp" iconClass="fa-bomb"/>
-      <MapMenuItem label="Others" iconClass="fa-map-marker"/> */}
     </div>
     <div className="CollectionFilters__reset_container d-flex align-items-center">
       <h5 className="CollectionFilters__reset_title">PERIOD</h5>
