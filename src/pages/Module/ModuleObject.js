@@ -71,27 +71,66 @@ class ModuleObjectContentVideo extends PureComponent {
 
     const { module } = this.props
     let media = get(module, 'id.attachment')
+    const size = get(module, 'size')
+    const position = get(module, 'position')
+    const backgroundColor = get(module, 'background.color')
+    const backgroundColorRgb = d3Color.color(backgroundColor || '#373a3c').rgb()
+
+    const objectImgFullStyle = {
+      width: '100%',
+      backgroundSize: 'cover',
+      backgroundImage: `linear-gradient(to bottom, rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},1) 0%,rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},0.0) 5%,rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},0) 100%), url(${media})`,
+      backgroundPosition: 'center center'
+    }
 
     // #TODO: FIXME SERVERS SIDE (OR HANDLE WITH PROXY)
     if (media.indexOf("http://178.62.220.183/media/http") == 0){
       media = decodeURIComponent(media.replace("http://178.62.220.183/media/", ""))
     }
 
+    /*     <div className="ModuleObject__container_video">
+            <Player fluid={false} ref={ref => this.player = ref} height={playerHeight} width={playerWidth}>
+              <source src={media} />
+              <BigPlayButton position="center" />
+              <ControlBar autoHide={false} />
+            </Player>
+            <div className="ModuleObject__caption_video">
+                <span>
+                  <i className="icon-hand Mods__DocumentOnly_Card_icon"  />
+                  <span> {module.caption}</span>
+                </span>
+                <div><CollectionItemLink doc={module.id}/></div>
+            </div>
+          </div> */
+
     return (
-      <div className="ModuleObject__container_video">
-        <Player fluid={false} ref={ref => this.player = ref} height={playerHeight} width={playerWidth}>
-          <source src={media} />
-          <BigPlayButton position="center" />
-          <ControlBar autoHide={false} />
-        </Player>
-        <div className="ModuleObject__caption_video">
-            <span>
-              <i className="icon-hand Mods__DocumentOnly_Card_icon"  />
-              <span> {module.caption}</span>
-            </span>
-            <div><CollectionItemLink doc={module.id}/></div>
+      <Card className="Module__objectCard video">
+        {(size != 'big') &&
+        <div className="Module__objectCard_video">
+          <Player fluid={true} ref={ref => this.player = ref}>
+            <source src={media} />
+            <BigPlayButton position="center" />
+            <ControlBar autoHide={false} />
+          </Player>
         </div>
-      </div>
+        }
+        {(size != 'big') &&
+          <div className="ModuleObjectContentImage__Link"><CollectionItemLink doc={module.id}/></div>
+        }
+        {(size === 'big') &&
+          <div style={objectImgFullStyle} className="Module__objectCard_imgFull">
+            <div className="ModuleObjectContentImage__Link"><CollectionItemLink doc={module.id}/></div>
+          </div>
+        }
+        {(module.caption) &&
+            <CardBlock>
+              <CardText>
+                <i className="icon-hand"  />
+                {module.caption}
+              </CardText>
+            </CardBlock>
+          }
+      </Card>
     )
   }
 }

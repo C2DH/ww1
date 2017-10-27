@@ -83,7 +83,8 @@
   flex: 1 1 auto;
 }
 
-.Module__objectCard .card-block {
+.Module__objectCard .card-block,
+.Module__objectCard_video .card-block{
   flex: 0 1 auto;
 }
 
@@ -122,6 +123,23 @@
 
 /* end object audio */
 
+
+/* object video */
+
+
+.smallModule .Module__objectCard_video,
+.mediumModule .Module__objectCard_video{
+  max-width: 100%;
+  flex-shrink: 1;
+}
+
+.smallModule .Module__objectCard.video,
+.mediumModule .Module__objectCard.video{
+  margin: auto;
+  width: 100%;
+}
+
+/* end object video */
 
 .ModuleObject__container {
   height: 100%;
