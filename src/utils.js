@@ -67,8 +67,12 @@ export const makeOverlaps = y => {
 
 export const objToCommaStr = obj => keys(obj).join(',')
 
-export const getThemeCover = theme =>
-  get(theme, 'covers[0].attachment')
+export const getThemeCover = theme => {
+  const image = get(theme, 'covers[0].attachment')
+  const bbox = get(theme, 'data.background.bbox', [])
+  const imageUrl = getBoundingBoxImage(image, bbox)
+  return imageUrl
+}
 
 const PLACE_TYPE_ICONS = {
   bombing: {
