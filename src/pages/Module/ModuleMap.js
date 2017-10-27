@@ -121,6 +121,7 @@ class ModuleMap extends PureComponent {
             keyboard={false}
             zoom={zoom}
             onDrag={this.onDrag}
+            injectCss={false}
             touchZoomRotate={false}
             style="mapbox://styles/eischteweltkrich/cj5cizaj205vv2qlegw01hubm"
             containerStyle={{

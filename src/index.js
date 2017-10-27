@@ -7,6 +7,7 @@ import App from './App'
 
 import './index.css'
 import 'animate.css'
+import 'mapbox-gl/dist/mapbox-gl.css'
 
 ReactDOM.render(
   <App />,

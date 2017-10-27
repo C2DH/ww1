@@ -399,6 +399,7 @@ class MapPage extends PureComponent {
                 zoom={zoom}
                 onDrag={this.onDrag}
                 touchZoomRotate={false}
+                injectCss={false}
                 style="mapbox://styles/eischteweltkrich/cj5cizaj205vv2qlegw01hubm"
                 containerStyle={{
                   display: 'flex',
