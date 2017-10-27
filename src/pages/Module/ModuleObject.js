@@ -76,8 +76,6 @@ class ModuleObjectContentVideo extends PureComponent {
     if (media.indexOf("http://178.62.220.183/media/http") == 0){
       media = decodeURIComponent(media.replace("http://178.62.220.183/media/", ""))
     }
-    console.log(100, module)
-
 
     return (
       <div className="ModuleObject__container_video">
@@ -191,6 +189,7 @@ class ModuleObject extends PureComponent {
     const backgroundColor = get(module, 'background.color')
     const backgroundImage = get(module, 'background.object.id.attachment')
     const backgroundOverlay = get(module, 'background.object.overlay')
+    const bbox = get(module, 'background.object.bbox')
 
     let offset = 4;
     let col = 4;
@@ -205,7 +204,12 @@ class ModuleObject extends PureComponent {
 
     return (
       <div style={fullHeight}>
-        <Background image={backgroundImage} color={backgroundColor} overlay={backgroundOverlay} />
+        <Background
+          image={backgroundImage}
+          color={backgroundColor}
+          overlay={backgroundOverlay}
+          bbox={bbox}
+        />
         <Container fluid className={"Module__container_obj " + size+"Module"}>
           <Row className="Module__object_row">
               <Col lg={{ size: col, offset: offset }} className="d-flex">

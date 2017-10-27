@@ -20,10 +20,16 @@ const ModuleGallery = ({ module, style, masonryStyle=null }) => {
   const backgroundColor = get(module, 'background.color')
   const backgroundImage = get(module, 'background.object.id.attachment')
   const backgroundOverlay = get(module, 'background.object.overlay')
+  const bbox = get(module, 'background.object.bbox')
 
   return (
     <div style={style || galleryStyle}>
-      <Background image={backgroundImage} color={backgroundColor} overlay={backgroundOverlay} />
+      <Background
+        image={backgroundImage}
+        color={backgroundColor}
+        overlay={backgroundOverlay}
+        bbox={bbox}
+      />
       <CollectionMasonry
         showDocLink={true}
         masonryStyle={ masonryStyle || { paddingTop: 100,paddingBottom:80 }}

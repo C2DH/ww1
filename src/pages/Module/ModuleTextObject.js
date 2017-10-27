@@ -36,9 +36,19 @@ class ModuleTextObject extends PureComponent {
       size: 'medium'
     }
 
+    const backgroundColor = get(module, 'background.color')
+    const backgroundImage = get(module, 'background.object.id.attachment')
+    const backgroundOverlay = get(module, 'background.object.overlay')
+    const bbox = get(module, 'background.object.bbox')
+
     return (
       <div style={{height:'100%', position:'relative'}}>
-        <Background color={get(module, 'background.color')} />
+        <Background
+          image={backgroundImage}
+          color={backgroundColor}
+          overlay={backgroundOverlay}
+          bbox={bbox}
+        />
         <Container fluid>
           { module.layout == 'object-text' && (
             <Row style={fullHeight}>
