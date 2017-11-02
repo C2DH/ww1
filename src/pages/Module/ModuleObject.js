@@ -76,32 +76,9 @@ class ModuleObjectContentVideo extends PureComponent {
     const backgroundColor = get(module, 'background.color')
     const backgroundColorRgb = d3Color.color(backgroundColor || '#373a3c').rgb()
 
-    const objectImgFullStyle = {
-      width: '100%',
-      backgroundSize: 'cover',
-      backgroundImage: `linear-gradient(to bottom, rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},1) 0%,rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},0.0) 5%,rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},0) 100%), url(${media})`,
-      backgroundPosition: 'center center'
+    const objectVideoFullStyle = {
+      backgroundImage: `linear-gradient(to bottom, rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},1) 0%,rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},0.0) 5%,rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},0) 100%)`,
     }
-
-    // #TODO: FIXME SERVERS SIDE (OR HANDLE WITH PROXY)
-    if (media.indexOf("http://178.62.220.183/media/http") == 0){
-      media = decodeURIComponent(media.replace("http://178.62.220.183/media/", ""))
-    }
-
-    /*     <div className="ModuleObject__container_video">
-            <Player fluid={false} ref={ref => this.player = ref} height={playerHeight} width={playerWidth}>
-              <source src={media} />
-              <BigPlayButton position="center" />
-              <ControlBar autoHide={false} />
-            </Player>
-            <div className="ModuleObject__caption_video">
-                <span>
-                  <i className="icon-hand Mods__DocumentOnly_Card_icon"  />
-                  <span> {module.caption}</span>
-                </span>
-                <div><CollectionItemLink doc={module.id}/></div>
-            </div>
-          </div> */
 
     return (
       <Card className="Module__objectCard video">
@@ -118,18 +95,25 @@ class ModuleObjectContentVideo extends PureComponent {
           <div className="ModuleObjectContentImage__Link"><CollectionItemLink doc={module.id}/></div>
         }
         {(size === 'big') &&
-          <div style={objectImgFullStyle} className="Module__objectCard_imgFull">
-            <div className="ModuleObjectContentImage__Link"><CollectionItemLink doc={module.id}/></div>
+          <div className="Module__objectCard_videoFull">
+            <Player fluid={false} ref={ref => this.player = ref}>
+              <source src={media} />
+              <BigPlayButton position="center" />
+              <ControlBar autoHide={false} />
+            </Player>
+            <div className="Module__objectCard_videoFull_overlay" style={objectVideoFullStyle}></div>
+            {/*<div className="ModuleObjectContentImage__Link"><CollectionItemLink doc={module.id}/></div>*/}
           </div>
         }
-        {(module.caption) &&
-            <CardBlock>
-              <CardText>
-                <i className="icon-hand"  />
-                {module.caption}
-              </CardText>
-            </CardBlock>
-          }
+        <CardBlock className="video_full">
+          <CardText>
+            <i className="icon-hand"  />
+            {module.caption}
+          </CardText>
+        </CardBlock>
+        {(size === 'big') &&
+          <div className="ModuleObjectContentImage__Link videoFull"><CollectionItemLink doc={module.id}/></div>
+        }
       </Card>
     )
   }

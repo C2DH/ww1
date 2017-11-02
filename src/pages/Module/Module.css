@@ -139,6 +139,27 @@
   width: 100%;
 }
 
+.Module__objectCard_videoFull{
+  flex: 1 1 100%;
+  position: relative;
+}
+
+.Module__objectCard_videoFull .video-react{
+  min-height: 100%;
+  min-width: 100%;
+}
+
+.Module__objectCard_videoFull_overlay{
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left:0;
+  right: 0;
+  pointer-events: none;
+}
+
+.video_full
+
 /* end object video */
 
 .ModuleObject__container {
@@ -358,7 +379,8 @@
   top: 10px;
 }
 
-.Module__objectCard_imgFull .ModuleObjectContentImage__Link{
+.Module__objectCard_imgFull .ModuleObjectContentImage__Link,
+.ModuleObjectContentImage__Link.videoFull{
   bottom: 10px;
   top:auto;
 }
