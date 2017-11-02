@@ -358,6 +358,7 @@
 
 /* end gallery carousel */
 
+/* object map */
 
 .ModuleMap__Caption {
   width: 100%;
@@ -370,6 +371,8 @@
   align-items: center;
   justify-content: space-between;
 }
+
+/* end object map */
 
 
 .ModuleObjectContentImage__Link{

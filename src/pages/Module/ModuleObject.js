@@ -102,7 +102,6 @@ class ModuleObjectContentVideo extends PureComponent {
               <ControlBar autoHide={false} />
             </Player>
             <div className="Module__objectCard_videoFull_overlay" style={objectVideoFullStyle}></div>
-            {/*<div className="ModuleObjectContentImage__Link"><CollectionItemLink doc={module.id}/></div>*/}
           </div>
         }
         <CardBlock className="video_full">

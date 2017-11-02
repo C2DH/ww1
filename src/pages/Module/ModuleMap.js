@@ -3,6 +3,7 @@ import { scaleLinear } from 'd3-scale'
 import { connect } from 'react-redux'
 import { get } from 'lodash'
 import { Card, CardBlock } from 'reactstrap';
+import * as d3Color from 'd3-color';
 import ReactMapboxGl, { Popup, Marker, Layer, Feature, Cluster, ZoomControl, GeoJSONLayer, Source } from 'react-mapbox-gl'
 import * as MapboxGL from 'mapbox-gl';
 
@@ -23,8 +24,8 @@ const styles = {
     alignItems: 'center',
     color: '#F56350',
     border: '2px solid white',
-    fontWeight: 500
-    // pointerEvents: 'none'
+    fontWeight: 500,
+    pointerEvents: 'none'
   },
   marker: {
     width: 30,
@@ -50,6 +51,7 @@ const MapToolTip = ({ snapshot, title, text }) => (
 )
 
 const Map = ReactMapboxGl({
+  scrollZoom: false,
   accessToken: "pk.eyJ1IjoiZWlzY2h0ZXdlbHRrcmljaCIsImEiOiJjajRpYnR1enEwNjV2MndtcXNweDR5OXkzIn0._eSF2Gek8g-JuTGBpw7aXw"
 })
 
@@ -65,7 +67,6 @@ class ModuleMap extends PureComponent {
     selectedLayer: null,
     sideMenuOpen: true,
   }
-
   onDrag = () => this.setState({ selectedDocument: null })
 
   onMarkerClick = (doc) => {
@@ -97,6 +98,14 @@ class ModuleMap extends PureComponent {
     const { chapter, module } = this.props
     const { selectedDocument, center, zoom } = this.state
 
+    const backgroundColor = get(module,'background.color');
+    const backgroundColorRgb = d3Color.color(backgroundColor || '#373a3c').rgb()
+
+    const objectMapStyle = {
+      backgroundImage: `linear-gradient(to bottom, rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},1) 0%,rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},0.0) 5%,rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},0) 100%)`
+    }
+
+
     if(!module || !module.objects){ return null }
 
     // #TODO: move to selectors
@@ -112,8 +121,6 @@ class ModuleMap extends PureComponent {
 
     return (
       <div style={ this.props.style || mapModuleStyle }>
-        <div  className="Module__container">
-
           <Map
             // ref={map => this.map = map}
             center={center}
@@ -164,7 +171,7 @@ class ModuleMap extends PureComponent {
               </Popup>
             )}
           </Map>
-
+          <div className="Module__objectCard_videoFull_overlay" style={objectMapStyle}></div>
           { module.caption &&
           <div className="ModuleMap__Caption">
             <span>
@@ -174,8 +181,6 @@ class ModuleMap extends PureComponent {
           </div>
           }
 
-
-        </div>
       </div>
     )
   }
