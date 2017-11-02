@@ -6,7 +6,7 @@ import Background from '../../components/Background'
 import MarkdownGlossary from '../../components/MarkdownGlossary'
 
 const fullHeight = { height: '100%'}
-const mapColumnsStyle = { height:'100%', position:'relative', width:'100%' }
+ const mapColumnsStyle = { height:'100%', position:'relative', width:'100%' }
 
 const MapColumn = ({module, chapter}) => (
   <Col md="6" className="Module__textObject_Col">
@@ -14,9 +14,9 @@ const MapColumn = ({module, chapter}) => (
   </Col>
 )
 
-const TextColumn = ({content}) => (
+const TextColumn = ({content, color}) => (
   <Col md="6" className="Module__textObject_Col">
-    <div className="Module__textObject_Text">
+    <div className="Module__textObject_Text" style={{ color }}>
       <MarkdownGlossary content={content}/>
     </div>
   </Col>
@@ -41,10 +41,10 @@ class ModuleTextMap extends PureComponent {
           overlay={backgroundOverlay}
           bbox={bbox}
         />
-        <Container fluid>
+        <Container fluid className="Module__container_obj">
           { module.layout === 'map-text' && (
             <Row style={fullHeight}>
-              <MapColumn chapter={chapter} module={module.map}/>
+              <MapColumn chapter={chapter} module={module.text.color}/>
               <TextColumn content={content} color={color}/>
             </Row>
           )}

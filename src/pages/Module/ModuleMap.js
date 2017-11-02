@@ -132,7 +132,7 @@ class ModuleMap extends PureComponent {
             touchZoomRotate={false}
             style="mapbox://styles/eischteweltkrich/cj5cizaj205vv2qlegw01hubm"
             containerStyle={{
-              height: module.caption ? "calc(100vh - 80px)" : "100%",
+              height: module.caption ? "calc(100% - 80px)" : "100%",
               width: "100%",
               top: 0,
               position: 'absolute'
