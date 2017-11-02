@@ -13,7 +13,7 @@ import MarkdownGlossary from '../../components/MarkdownGlossary'
 const fullHeight = { height: '100%'}
 
 const ObjectColumn = ({module}) => (
-  <Col md="6" className="Module__textObject_Col">
+  <Col md="6" className="Module__textObject_Col mediumModule">
     <ModuleObjectContent module={module}/>
   </Col>
 )
@@ -49,7 +49,7 @@ class ModuleTextObject extends PureComponent {
           overlay={backgroundOverlay}
           bbox={bbox}
         />
-        <Container fluid>
+      <Container fluid className="Module__container_obj">
           { module.layout == 'object-text' && (
             <Row style={fullHeight}>
               <ObjectColumn module={obj}/>

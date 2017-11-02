@@ -207,36 +207,19 @@
 }
 
 .Module__textObject_Col {
-  height: 100vh;
   display: flex;
   align-items: center;
-  padding-left: 30px;
-  padding-right: 30px;
-
 }
+
 
 .Module__textObject_Col .Module__object__audio{
-  width: 100%!important;
-  margin: 0px;
-}
-
-.Module__textObject_Col .Module__object__audio > .AudioPlayer__wrapper{
-  padding: 0px 20px!important;
-}
-
-.Module__textObject_Col .Module__object__audio__caption{
-  position: relative;
-  margin-top: 50px;
-}
-
-.Module__textObject_Col .ModuleObject__caption_video{
-  position: relative;
-}
-
-.Module__textObject_Col .ModuleObject__container_video{
-  margin-left: 0px;
-  margin-right: 0px;
   height: auto;
+}
+
+
+
+.Module__textObject_Col .Module__object__audio .Module__object__audio_wrapper{
+  padding: 0px;
 }
 
 .Module__textObjectCard {
@@ -249,6 +232,9 @@
   font-family: Georgia;
   font-size: 24px;
   width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 /* gallery carousel */

@@ -19,6 +19,7 @@ export default class Background extends React.Component {
       backgroundImage: `url(${imageUrl})`,
       backgroundSize: 'cover',
       position: 'absolute',
+      backgroundPosition:'center center',
       zIndex: 0
     }
 
