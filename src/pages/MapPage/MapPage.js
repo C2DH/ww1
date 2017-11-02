@@ -1,12 +1,13 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { isUndefined, keys, omit } from 'lodash'
+import { get, isUndefined, keys, omit } from 'lodash'
 import { scaleLinear } from 'd3-scale'
 import qs from 'query-string'
 import ReactMapboxGl, { Popup, Marker, Layer, Feature, Cluster, ZoomControl, GeoJSONLayer, Source } from 'react-mapbox-gl'
 import * as MapboxGL from 'mapbox-gl';
 import { Button, Popover, PopoverTitle, PopoverContent, ButtonGroup, ButtonToolbar, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import MapSideMenu from '../../components/MapSideMenu'
+import CollectionItemLink from '../../components/CollectionItemLink'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import { isMobileScreen } from '../../breakpoints'
 import './MapPage.css'
@@ -70,14 +71,21 @@ const styles = {
   }
 }
 
-const MapToolTip = ({ snapshot, title, text }) => (
-  <div className="MapToolTip">
-    {snapshot && <div className="MapToolTip__img" style={{background: `url(${snapshot})`}}/>}
-    <h5 className="MapToolTip__title">{title}</h5>
-    <p className="MapToolTip__text">{text}</p>
-  </div>
-
-)
+const MapToolTip = ({ doc, snapshot, title, text }) => {
+  const placeType = get(doc, 'data.type', '').toLowerCase()
+  return (
+    <div className="MapToolTip">
+      {placeType === 'other' && (
+        <div>
+          <CollectionItemLink doc={doc} />
+        </div>
+      )}
+      {snapshot && <div className="MapToolTip__img" style={{background: `url(${snapshot})`}}/>}
+      <h5 className="MapToolTip__title">{title}</h5>
+      <p className="MapToolTip__text">{text}</p>
+    </div>
+  )
+}
 
 const Map = ReactMapboxGl({
   accessToken: "pk.eyJ1IjoiZWlzY2h0ZXdlbHRrcmljaCIsImEiOiJjajRpYnR1enEwNjV2MndtcXNweDR5OXkzIn0._eSF2Gek8g-JuTGBpw7aXw"
@@ -412,7 +420,7 @@ class MapPage extends PureComponent {
                     <LayersControl setLayer={this.handleSetLayer} currentLayer={this.state.selectedLayer}></LayersControl>
 
                   </div>
-                  {documents && <Cluster ClusterMarkerFactory={this.clusterMarker} clusterThreshold={1} radius={60}>
+                  <Cluster ClusterMarkerFactory={this.clusterMarker} clusterThreshold={1} radius={60}>
                   {
                     documents.map(doc => {
                       const icon = getPlaceTypeIcon(doc.data.place_type)
@@ -425,7 +433,7 @@ class MapPage extends PureComponent {
                       </Marker>
                     })
                   }
-                </Cluster>}
+                </Cluster>
 
                 { this.state.selectedLayer === '1914.geojson' && (
                     <GeoJSONLayer
@@ -450,6 +458,7 @@ class MapPage extends PureComponent {
                     key={selectedDocument.id}>
                     <i className="material-icons pointer float-right" onClick={this.closePopup}>close</i>
                     <MapToolTip
+                      doc={selectedDocument}
                       className="clearfix"
                       snapshot={selectedDocument.snapshot}
                       title={selectedDocument.title}
@@ -495,9 +504,10 @@ class MapPage extends PureComponent {
 
 // TODO: Make a consts file...
 const DEFAULT_FILTER_YEARS = ['<1914', '1921>']
+const emptyList = []
 
 const mapStateToProps = (state, ownProps) => ({
-  documents: getMapDocuments(state),
+  documents: getMapDocuments(state) || emptyList,
   loading: getMapDocumentsLoading(state),
   // Query string mapping
   searchString: parseQsValue(ownProps.location, 'q', ''),
