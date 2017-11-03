@@ -7,7 +7,7 @@ import MarkdownGlossary from '../../components/MarkdownGlossary'
 
 const fullHeight = { height: '100%'}
 const galleryColumnsStyle = { height:'100%', position:'relative', width:'100%' }
-const masonryStyle = {  height:'calc(100vh - 100px)', paddingTop:80, overflowY:'scroll' }
+const masonryStyle = {  height:'calc(100vh - 230px)', paddingTop:0, overflowY:'scroll' }
 
 const GalleryColumn = ({module, chapter}) => (
   <Col md="6" className="Module__textObject_Col">

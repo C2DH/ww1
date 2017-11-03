@@ -26,6 +26,12 @@ class ModuleCarousel extends PureComponent {
     this.slider.slickPrev()
   }
 
+  componentDidMount() {
+    this.next()
+    this.previous()
+    //quite bad
+  }
+
   render() {
     const { chapter, module, style } = this.props
 
