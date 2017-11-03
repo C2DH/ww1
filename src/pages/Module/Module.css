@@ -209,6 +209,7 @@
 .Module__textObject_Col {
   display: flex;
   align-items: center;
+  height: 100%;
 }
 
 
@@ -220,6 +221,19 @@
 
 .Module__textObject_Col .Module__object__audio .Module__object__audio_wrapper{
   padding: 0px;
+}
+
+.Module__textObject_Col .ModuleCarousel__wrapper{
+  height: 100%;
+}
+
+.Module__textObject_Col .ModuleCarousel__slider_container{
+  padding-top: 0px;
+}
+
+.Module__textObject_Col .ModuleCarousel__inner_slider{
+  height: calc(100vh - 240px - 75px);
+  max-width: 40vw;
 }
 
 .Module__textObjectCard {

@@ -72,9 +72,9 @@ class ModuleCarousel extends PureComponent {
           overlay={backgroundOverlay}
           bbox={bbox}
         />
-        <Container fluid>
-          <Row>
-            <Col>
+      <Container fluid style={{height:'100%'}}>
+          <Row style={{height:'100%'}}>
+            <Col style={{height:'100%'}}>
               <div className="ModuleCarousel__wrapper">
                 <div className="ModuleCarousel__slider_container">
                     <Slider ref={c => this.slider = c } {...settings}>

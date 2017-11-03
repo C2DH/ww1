@@ -171,7 +171,7 @@ class ModuleMap extends PureComponent {
               </Popup>
             )}
           </Map>
-          <div className="Module__objectCard_videoFull_overlay" style={objectMapStyle}></div>
+          {/*<div className="Module__objectCard_videoFull_overlay" style={objectMapStyle}></div>*/}
           { module.caption &&
           <div className="ModuleMap__Caption">
             <span>

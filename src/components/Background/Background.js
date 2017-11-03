@@ -7,7 +7,7 @@ import { getBoundingBoxImage } from '../../utils'
 export default class Background extends React.Component {
   render() {
 
-    const { image, bbox, color='#fff', overlay=null } = this.props
+    const { image, bbox, color='transparent', overlay=null } = this.props
     const imageUrl = getBoundingBoxImage(image, bbox)
 
 

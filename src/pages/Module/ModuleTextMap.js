@@ -44,8 +44,8 @@ class ModuleTextMap extends PureComponent {
         <Container fluid className="Module__container_obj">
           { module.layout === 'map-text' && (
             <Row style={fullHeight}>
-              <MapColumn chapter={chapter} module={module.text.color}/>
-              <TextColumn content={content} color={color}/>
+              <MapColumn chapter={chapter} module={module.map}/>
+              <TextColumn content={content} color={module.text.color}/>
             </Row>
           )}
           { module.layout === 'text-map' && (

@@ -17,8 +17,8 @@ const GalleryColumn = ({module, chapter}) => (
 
 const TextColumn = ({ content, color }) => (
   <Col md="6" className="Module__textObject_Col">
-    <div className="Module__textObject_Text">
-      <MarkdownGlossary content={content} style={{ color }} />
+    <div className="Module__textObject_Text" style={{ color }}>
+      <MarkdownGlossary content={content} />
     </div>
   </Col>
 )
@@ -42,11 +42,11 @@ class ModuleTextGallery extends PureComponent {
           overlay={backgroundOverlay}
           bbox={bbox}
         />
-        <Container fluid>
+        <Container fluid className="Module__container_obj">
           { module.layout === 'gallery-text' && (
             <Row style={fullHeight}>
               <GalleryColumn chapter={chapter} module={module.gallery}/>
-              <TextColumn content={content} color={color}/>
+              <TextColumn content={content} color={module.text.color}/>
             </Row>
           )}
           { module.layout === 'text-gallery' && (
