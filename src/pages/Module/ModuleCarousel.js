@@ -11,6 +11,7 @@ class ModuleCarousel extends PureComponent {
 
   state = {
     currentIndex: 0,
+    visibility: 'hidden',
   }
 
   constructor(props) {
@@ -27,9 +28,11 @@ class ModuleCarousel extends PureComponent {
   }
 
   componentDidMount() {
+    //quite bad
     this.next()
     this.previous()
-    //quite bad
+    this.setState({visibility:'visible'})
+
   }
 
   render() {
@@ -81,7 +84,7 @@ class ModuleCarousel extends PureComponent {
       <Container fluid style={{height:'100%'}}>
           <Row style={{height:'100%'}}>
             <Col style={{height:'100%'}}>
-              <div className="ModuleCarousel__wrapper">
+              <div className="ModuleCarousel__wrapper" style={{visibility:this.state.visibility}}>
                 <div className="ModuleCarousel__slider_container">
                     <Slider ref={c => this.slider = c } {...settings}>
                       {module.objects.map((pic, i) => (
