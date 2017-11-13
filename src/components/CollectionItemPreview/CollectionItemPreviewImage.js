@@ -44,6 +44,11 @@ export default class CollectionItemPreviewImage extends React.PureComponent {
 	// 	console.log("doc", nextProps.doc)
 	// }
 
+	handleMapMove = (e) => {
+		const zoom = e.target.getZoom()
+		this.setState({zoom})
+	}
+
   render() {
     const { doc } = this.props
 
@@ -66,7 +71,9 @@ export default class CollectionItemPreviewImage extends React.PureComponent {
           attributionControl={false}
           crs = {L.CRS.Simple} bounds={bounds} maxBounds={bounds} zoom={zoom}
           center={xy(doc.data.width/2, doc.data.height/2)}
+					onMoveend={this.handleMapMove}
           style={{display:'flex', flexGrow:'1', width:'100%', background: 'transparent'}}>
+
           <ImageOverlay
             bounds={bounds}
             url={doc.src}/>
