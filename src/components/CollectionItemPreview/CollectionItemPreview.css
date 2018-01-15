@@ -42,9 +42,9 @@
   text-align: center;
 }
 
-.CollectionItemPreview__pdf_scale canvas{
+/* .CollectionItemPreview__pdf_scale canvas{
   min-height: 100%;
-}
+} */
 
 .CollectionItemPreviewPDF__controls {
   background-color: #000;

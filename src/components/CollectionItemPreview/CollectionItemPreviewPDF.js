@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactPDF from 'react-pdf';
 import PDF from 'react-pdf-js';
 import CollectionItemDownload from '../CollectionItemDownload'
 import './CollectionItemPreview.css'
@@ -16,7 +15,6 @@ export default class CollectionItemPreviewPDF extends React.PureComponent {
 
 
   onDocumentComplete = (pages) => {
-    console.log(1, pages)
     this.setState({ page:1, pages });
   }
 
@@ -68,11 +66,12 @@ export default class CollectionItemPreviewPDF extends React.PureComponent {
       <div className="CollectionItemPreviewPDF__controls">
           <div style={{padding:8}}>Page <span className="CollectionItemPreviewPDF__controls_current_page">{this.state.page}</span> of {this.state.pages}</div>
           <div className="CollectionItemPreviewPDF__controls_page_arrows">
-            <button onClick={(evt)=>{this.prevPage()}}>
-              <i className="material-icons pointer">arrow_downward</i>
-            </button><span>{' | '}</span>
-            <button  onClick={(evt)=>{this.nextPage()}}>
+            <button  onClick={(evt)=>{this.prevPage()}}>
               <i className="material-icons pointer">arrow_upward</i>
+            </button>
+            <span>{' | '}</span>
+            <button onClick={(evt)=>{this.nextPage()}}>
+              <i className="material-icons pointer">arrow_downward</i>
             </button>
           </div>
           <div className="CollectionItemPreviewPDF__controls_zoom">
