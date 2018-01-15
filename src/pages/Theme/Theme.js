@@ -9,6 +9,7 @@ import './Theme.css'
 
 import {
   getTheme,
+  getMakeLangUrl,
 } from '../../state/selectors'
 
 import {
@@ -33,9 +34,9 @@ class Theme extends PureComponent {
    }
 
   jumpToFirstChapter = () => {
-    const { theme } = this.props
+    const { theme, makeUrl } = this.props
     const firstChapterSlug = getFirstChapterSlug(theme)
-    this.props.history.push(`/themes/${theme.slug}/chapters/${firstChapterSlug}`)
+    this.props.history.push(makeUrl(`/themes/${theme.slug}/chapters/${firstChapterSlug}`))
   }
 
   render() {
@@ -107,6 +108,7 @@ class Theme extends PureComponent {
 
 
 const mapStateToProps = state => ({
+  makeUrl: getMakeLangUrl(state),
   theme: getTheme(state),
 })
 

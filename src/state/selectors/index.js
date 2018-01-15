@@ -21,6 +21,7 @@ import {
   reduce
 } from 'lodash'
 import { compose } from 'lodash/fp'
+import qs from 'query-string'
 
 // fp <3
 const maybeNull = a => fn => isNull(a) ? null : fn(a)
@@ -55,6 +56,16 @@ const translate = (value, lang, fallbackLang = 'en_US') => {
 
   return get(value, lang, defaultTrans)
 }
+
+export const getMakeLangUrl = createSelector(
+  getCurrentLanguage,
+  currentLang => (url = '', lang) => {
+    const newLangParam = typeof lang === 'undefined' ? currentLang.label.toLowerCase() : lang
+    const qsAsObject = qs.parse(qs.extract(url))
+    const newQs = qs.stringify({ ...qsAsObject, lang: newLangParam })
+    return url.split('?')[0] + '?' + newQs
+  }
+)
 
 const translateObject = (data, lang, transKeys = '*', fallbackLang = 'en_US') =>
   mapValues(data, (value, key) => {

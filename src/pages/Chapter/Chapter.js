@@ -15,6 +15,7 @@ import {
   getTotalChapterModules,
   getTotalThemeChapters,
   getChapterIndex,
+  getMakeLangUrl,
 } from '../../state/selectors'
 
 import {
@@ -28,14 +29,15 @@ const mapStateToProps = state => ({
   chapterIndex: getChapterIndex(state),
   totalChapters: getTotalThemeChapters(state),
   totalChapterModules: getTotalChapterModules(state),
+  makeUrl: getMakeLangUrl(state),
 })
 
 const LastModule = connect(mapStateToProps)(class extends React.PureComponent {
 
   componentDidMount() {
-    const { theme, chapter } = this.props
+    const { theme, chapter, makeUrl } = this.props
     if (theme && chapter){
-      this.props.history.replace(`/themes/${theme.slug}/chapters/${chapter.slug}/modules/${ Math.max(get(chapter, 'contents.modules', []).length, 1)}`)
+      this.props.history.replace(makeUrl(`/themes/${theme.slug}/chapters/${chapter.slug}/modules/${ Math.max(get(chapter, 'contents.modules', []).length, 1)}`))
     }
   }
 
@@ -81,7 +83,8 @@ class Chapter extends PureComponent  {
       totalChapters,
       chapterIndex,
       match,
-      history
+      history,
+      makeUrl,
     } = this.props
 
     return (
@@ -103,21 +106,21 @@ class Chapter extends PureComponent  {
                     this.toggleChapters()
                   }}
                   onClickTheme={() => {
-                    history.push(themeUrl)
+                    history.push(makeUrl(themeUrl))
                   }}
                   onClickNext={() => {
                     if (index < totalChapterModules) {
-                      history.push(`${chapterUrl}/modules/${index + 1}`)
+                      history.push(makeUrl(`${chapterUrl}/modules/${index + 1}`))
                     } else {
                       // Go to cover of next chapter
-                      history.push(`${themeUrl}/chapters/${nextChapterSlug}`)
+                      history.push(makeUrl(`${themeUrl}/chapters/${nextChapterSlug}`))
                     }
                   }}
                   onClickPrev={() => {
                     if (index > 1) {
-                      history.push(`${chapterUrl}/modules/${index - 1}`)
+                      history.push(makeUrl(`${chapterUrl}/modules/${index - 1}`))
                     } else {
-                      history.push(`${chapterUrl}`)
+                      history.push(makeUrl(`${chapterUrl}`))
                     }
                   }}
                   currentIndex={chapterIndex + 1}

@@ -21,6 +21,7 @@ import {
   getTotalThemeChapters,
   getChapterIndex,
   makeGetModule,
+  getMakeLangUrl,
 } from '../../state/selectors'
 
 import './Module.css'
@@ -99,32 +100,32 @@ class Module extends PureComponent {
   }
 
   toNextModule = () => {
-    const { moduleIndex, totalChapterModules, history, theme, chapter, chapterIndex } = this.props
+    const { moduleIndex, totalChapterModules, history, theme, chapter, chapterIndex, makeUrl } = this.props
     const nextChapterSlug = get(theme, `stories[${Number(chapterIndex) + 1}].slug`)
     const themeUrl = `/themes/${theme.slug}`
     const chapterUrl = `${themeUrl}/chapters/${chapter.slug}`
     if (moduleIndex < totalChapterModules) {
-      history.push(`${chapterUrl}/modules/${Number(moduleIndex) + 1}`)
+      history.push(makeUrl(`${chapterUrl}/modules/${Number(moduleIndex) + 1}`))
     } else {
       if(nextChapterSlug){
         // Go to cover of next chapter
         console.log("to cover")
-        history.push(`${themeUrl}/chapters/${nextChapterSlug}`)
+        history.push(makeUrl(`${themeUrl}/chapters/${nextChapterSlug}`))
       }
 
     }
   }
 
   toPrevModule = () => {
-    const { moduleIndex, history, theme, chapter } = this.props
+    const { moduleIndex, history, theme, chapter, makeUrl } = this.props
 
     const themeUrl = `/themes/${theme.slug}`
     const chapterUrl = `${themeUrl}/chapters/${chapter.slug}`
 
     if (moduleIndex > 1) {
-      history.push(`${chapterUrl}/modules/${Number(moduleIndex) - 1}`)
+      history.push(makeUrl(`${chapterUrl}/modules/${Number(moduleIndex) - 1}`))
     } else {
-      history.push(`${chapterUrl}`)
+      history.push(makeUrl(`${chapterUrl}`))
     }
   }
 
@@ -172,6 +173,7 @@ const makeMapStateToProps = () => {
   const mapStateToProps = (state, props) => {
     const moduleIndex = Number(props.match.params.moduleIndex)
     return {
+      makeUrl: getMakeLangUrl(state),
       theme: getTheme(state),
       chapter: getChapter(state),
       module: getModule(state, moduleIndex),

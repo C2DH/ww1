@@ -1,9 +1,11 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { getMakeLangUrl } from '../../state/selectors'
 import { get } from 'lodash'
 import { Link } from 'react-router-dom'
 import './ChaptersSwitcher.css'
 
-const ChaptersSwitcher = ({ theme }) => (
+const ChaptersSwitcher = ({ theme, makeUrl }) => (
   <div className="ChaptersSwitcher__chapters_container">
     <div className="ChaptersSwitcher__chapters__inner_container">
       <div className="ChaptersSwitcher__chapters_top">
@@ -12,7 +14,7 @@ const ChaptersSwitcher = ({ theme }) => (
           {get(theme, 'stories').map((chapter, i) => (
             <div key={chapter.id} className="ChaptersSwitcher__chapter">
               <div className="ChaptersSwitcher__chapter_title">
-                <Link to={`/themes/${theme.slug}/chapters/${chapter.slug}`}><h3>{chapter.translated.title}</h3></Link>
+                <Link to={makeUrl(`/themes/${theme.slug}/chapters/${chapter.slug}`)}><h3>{chapter.translated.title}</h3></Link>
               </div>
               <div className="ChaptersSwitcher__chapter_num">
                 <div>
@@ -26,4 +28,6 @@ const ChaptersSwitcher = ({ theme }) => (
   </div>
 )
 
-export default ChaptersSwitcher
+export default connect(state => ({
+  makeUrl: getMakeLangUrl(state),
+}))(ChaptersSwitcher)

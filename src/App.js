@@ -7,6 +7,7 @@ import { Tooltip } from 'redux-tooltip';
 
 import PreviewLine from './components/PreviewLine'
 import Layout from './components/Layout'
+import LangChooser from './components/LangChooser'
 import Home from './pages/Home'
 import Themes from './pages/Themes'
 import MapPage from './pages/MapPage'
@@ -78,11 +79,13 @@ const App = () => (
   <Provider store={store}>
     <I18n translations={translations} fallbackLang="en_US">
       <Router>
-        <Layout>
-          <PreviewLine />
-          <Tooltip/>
-          <Route component={Routes}/>
-        </Layout>
+        <LangChooser>
+          <Layout>
+            <PreviewLine />
+            <Tooltip/>
+            <Route component={Routes}/>
+          </Layout>
+        </LangChooser>
       </Router>
     </I18n>
   </Provider>

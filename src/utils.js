@@ -11,6 +11,13 @@ export const parseQsBooleanValue = (location, key, defaultValue = 1) => {
   return !!parseInt(parseQsValue(location, key, defaultValue))
 }
 
+export const mergeQs = (location, o) =>
+  // New search merge current qs with new object as qs...
+  qs.stringify({
+    ...qs.parse(qs.extract(location.search)),
+    ...o,
+  })
+
 const commaStrToList = defaultMemoize((str, defaultValue) => {
   const l = filter(str.split(','))
   if (l.length === 0) {
