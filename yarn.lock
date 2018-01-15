@@ -2636,6 +2636,10 @@ execa@^0.7.0:
     signal-exit "^3.0.0"
     strip-eof "^1.0.0"
 
+exenv@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/exenv/-/exenv-1.2.2.tgz#2ae78e85d9894158670b03d47bec1f03bd91bb9d"
+
 exit-hook@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/exit-hook/-/exit-hook-1.1.1.tgz#f05ca233b48c05d54fff07765df8507e95c02ff8"
@@ -5871,12 +5875,11 @@ react-scripts@1.0.7:
   optionalDependencies:
     fsevents "1.0.17"
 
-react-scrolllock@^1.0.9:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/react-scrolllock/-/react-scrolllock-1.0.9.tgz#7c9c3c0cce2ed55042af2808b6483b85b121cdcb"
+react-scrolllock@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/react-scrolllock/-/react-scrolllock-2.0.1.tgz#dd323f5da9de75f0bb64b997ee5967dd47f0a3ff"
   dependencies:
-    create-react-class "^15.5.2"
-    prop-types "^15.5.10"
+    exenv "^1.2.2"
 
 react-slick@^0.14.11:
   version "0.14.11"

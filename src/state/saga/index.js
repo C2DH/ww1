@@ -1,4 +1,5 @@
-import { fork, put, call, take, select } from 'redux-saga/effects'
+import { race, fork, put, call, take, select } from 'redux-saga/effects'
+import { delay } from 'redux-saga'
 import { takeLatestAndCancel } from './effects/take'
 import * as api from '../../api'
 import makeDocuments from './hos/documents'
@@ -45,6 +46,8 @@ import {
   GET_RESOURCE_DOCUMENTS,
   UPDATE_SETTINGS,
   SET_PREVIEW_TOKEN,
+  LOCK_SCROLL,
+  UNLOCK_SCROLL,
 } from '../actions'
 
 import { getCurrentLanguage } from '../selectors'
@@ -144,10 +147,31 @@ function *watchLanguage() {
   }
 }
 
-function *preview() {
+function* preview() {
   const token = parseQsValue(window.location, '_t')
   if (token) {
     yield put({ type: SET_PREVIEW_TOKEN, payload: token })
+  }
+}
+
+function* scrollLockSaga() {
+  let time = 0
+  const { payload } = yield take(LOCK_SCROLL)
+  time = payload.time
+
+  while (true) {
+    const { timeout, lock } = yield race({
+      timeout: call(delay, time),
+      lock: take(LOCK_SCROLL)
+    })
+
+    if (timeout) {
+      yield put({ type: UNLOCK_SCROLL })
+      const { payload } = yield take(LOCK_SCROLL)
+      time = payload.time
+    } else {
+      time = lock.payload.time
+    }
   }
 }
 
@@ -240,5 +264,6 @@ export default function* rootSaga() {
   ))
 
   yield fork(watchLanguage)
+  yield fork(scrollLockSaga)
 
 }

@@ -9,7 +9,7 @@ import ModuleTextMap from './ModuleTextMap'
 import ModuleTextGallery from './ModuleTextGallery'
 
 import { get } from 'lodash'
-import { setScrollDelta } from '../../state/actions'
+import { setScrollDelta, lockScroll } from '../../state/actions'
 import { scaleLinear } from 'd3-scale'
 import ScrollLock from 'react-scrolllock'
 import { ScrollHelperTop, ScrollHelperBottom, BASE_SCROLL_HELPER_HEIGHT, scrollScale } from '../../components/ScrollHelpers'
@@ -67,14 +67,14 @@ class Module extends PureComponent {
 
   componentWillReceiveProps (nextProps){
 
-    if (this.canGoNext() && this.props.scroll !== nextProps.scroll){
+    if (this.canGoNext() && this.props.scroll !== nextProps.scroll && !nextProps.scrollLock){
       if(nextProps.scroll === BASE_SCROLL_HELPER_HEIGHT){
         // this.setState({scrolling:-1})
         this.toNextModule()
       }
     }
 
-    if (this.props.scroll !== nextProps.scroll){
+    if (this.props.scroll !== nextProps.scroll && !nextProps.scrollLock){
       if(nextProps.scroll === -BASE_SCROLL_HELPER_HEIGHT){
         // this.setState({scrolling:1})
         this.toPrevModule()
@@ -87,16 +87,18 @@ class Module extends PureComponent {
     this._isMounted = true
     window.scrollTo(0, BASE_SCROLL_HELPER_HEIGHT)
 
-    this.setState({stopScroll:true})
-    setTimeout(()=>{
-      if(this._isMounted){
-        this.setState({stopScroll:false})
-      }
-    }, 1200)
+    this.props.lockScroll(1200)
+
+    // this.setState({stopScroll:true})
+    // setTimeout(()=>{
+    //   if(this._isMounted){
+    //     this.setState({stopScroll:false})
+    //   }
+    // }, 1200)
   }
 
   componentWillUnmount(){
-    this._isMounted = false
+    // this._isMounted = false
   }
 
   toNextModule = () => {
@@ -109,7 +111,6 @@ class Module extends PureComponent {
     } else {
       if(nextChapterSlug){
         // Go to cover of next chapter
-        console.log("to cover")
         history.push(makeUrl(`${themeUrl}/chapters/${nextChapterSlug}`))
       }
 
@@ -162,7 +163,7 @@ class Module extends PureComponent {
 
     </div>
     <ScrollHelperBottom  background={bottomScrollBackground} overlay={bottomScrollOverlay}/>
-    {this.state.stopScroll && <ScrollLock/> }
+    {/* {this.state.stopScroll && <ScrollLock/> } */}
   </div>
   }
 }
@@ -174,6 +175,7 @@ const makeMapStateToProps = () => {
     const moduleIndex = Number(props.match.params.moduleIndex)
     return {
       makeUrl: getMakeLangUrl(state),
+      scrollLock: state.scrollLock,
       theme: getTheme(state),
       chapter: getChapter(state),
       module: getModule(state, moduleIndex),
@@ -187,4 +189,4 @@ const makeMapStateToProps = () => {
   return mapStateToProps
 }
 
-export default connect(makeMapStateToProps, { setScrollDelta })(Module)
+export default connect(makeMapStateToProps, { setScrollDelta, lockScroll })(Module)

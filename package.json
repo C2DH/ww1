@@ -31,7 +31,7 @@
     "react-responsive": "^1.3.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.1.1",
-    "react-scrolllock": "^1.0.9",
+    "react-scrolllock": "^2.0.1",
     "react-slick": "^0.14.11",
     "react-swipeable": "^4.1.0",
     "react-transition-group": "^1.1.3",

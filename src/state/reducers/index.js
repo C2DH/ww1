@@ -15,6 +15,7 @@ import educationalDetail from './educationalDetail'
 import educationals from './educationals'
 import preview from './preview'
 import scroll from './scroll'
+import scrollLock from './scrollLock'
 import { reducer as tooltip } from 'redux-tooltip';
 
 export default combineReducers({
@@ -35,4 +36,5 @@ export default combineReducers({
   tooltip,
   preview,
   scroll,
+  scrollLock,
 })

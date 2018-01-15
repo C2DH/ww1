@@ -14,6 +14,10 @@ import {
   getMakeLangUrl,
 } from '../../state/selectors'
 
+import {
+  lockScroll,
+} from '../../state/actions'
+
 import './ChapterCover.css'
 
 class ChapterCover extends PureComponent  {
@@ -50,14 +54,14 @@ class ChapterCover extends PureComponent  {
   }
 
   componentWillReceiveProps (nextProps){
-    if (this.props.totalChapterModules > 0 && this.props.scroll !== nextProps.scroll){
+    if (this.props.totalChapterModules > 0 && this.props.scroll !== nextProps.scroll && !nextProps.scrollLock){
       if(nextProps.scroll === BASE_SCROLL_HELPER_HEIGHT){
         // this.setState({scrolling:-1})
         this.toFirstModule()
       }
     }
 
-    if (this.props.scroll !== nextProps.scroll){
+    if (this.props.scroll !== nextProps.scroll && !nextProps.scrollLock){
       if(nextProps.scroll === -BASE_SCROLL_HELPER_HEIGHT){
         // this.setState({scrolling:1})
         this.toPrevModule()
@@ -69,16 +73,17 @@ class ChapterCover extends PureComponent  {
     this._isMounted = true
     window.scrollTo(0, BASE_SCROLL_HELPER_HEIGHT)
 
-    this.setState({stopScroll:true})
-    setTimeout(()=>{
-      if(this._isMounted){
-        this.setState({stopScroll:false})
-      }
-    }, 1200)
+    this.props.lockScroll(1200)
+    // this.setState({stopScroll:true})
+    // setTimeout(()=>{
+    //   if(this._isMounted){
+    //     this.setState({stopScroll:false})
+    //   }
+    // }, 1200)
   }
 
   componentWillUnmount(){
-    this._isMounted = false
+    // this._isMounted = false
   }
 
   render() {
@@ -125,20 +130,16 @@ class ChapterCover extends PureComponent  {
           </Container>
         </div>
         <ScrollHelperBottom background={overlay ? overlay : backgroundColor}/>
-        {this.state.stopScroll && <ScrollLock/> }
+        {/* {this.state.stopScroll && <ScrollLock/> } */}
       </div>
 
     )
   }
 }
 
-
-
-
-
-
 const mapStateToProps = state => ({
   makeUrl: getMakeLangUrl(state),
+  scrollLock: state.scrollLock,
   theme: getTheme(state),
   chapter: getChapter(state),
   chapterIndex: getChapterIndex(state),
@@ -147,4 +148,6 @@ const mapStateToProps = state => ({
   scroll: state.scroll,
 })
 
-export default connect(mapStateToProps)(ChapterCover)
+export default connect(mapStateToProps, {
+  lockScroll,
+})(ChapterCover)
