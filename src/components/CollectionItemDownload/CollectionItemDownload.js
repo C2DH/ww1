@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Popover, PopoverTitle, PopoverContent, ButtonGroup, ButtonToolbar, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { v4 } from 'uuid'
+import { get } from 'lodash'
 import './CollectionItemDownload.css'
 
 
@@ -28,11 +29,14 @@ export default class CollectionItemDownload extends React.PureComponent {
   render(){
     const { doc, className } = this.props
     const buttonId = `CollectionItemDownload-${v4()}`
+    const download = get(doc, 'data.download')
+    const disabled = !download || download.toLowerCase() === 'false'
 
     if(!doc){ return null }
     return (
 
       <button className={className}
+        disabled={disabled}
         id={buttonId}
         className={className} onClick={this.togglePopover}>
         <i className="icon-file_download" />
