@@ -35,10 +35,10 @@ export default class CollectionItemDownload extends React.PureComponent {
     if(!doc){ return null }
     return (
 
-      <button className={className}
+      <button
         disabled={disabled}
         id={buttonId}
-        className={className} onClick={this.togglePopover}>
+        className={`${className} CollectionItemDownload__MainDownloadButton`} onClick={this.togglePopover}>
         <i className="icon-file_download" />
         <Popover placement={'top'} isOpen={this.state.popoverOpen} target={buttonId}>
           <PopoverContent>
@@ -55,4 +55,8 @@ export default class CollectionItemDownload extends React.PureComponent {
     )
   }
 
+}
+
+CollectionItemDownload.defaultProps = {
+  className: '',
 }

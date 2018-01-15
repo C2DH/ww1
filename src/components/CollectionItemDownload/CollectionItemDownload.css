@@ -1,3 +1,7 @@
 .CollectionItemDownload__button{
   border: none;
 }
+
+.CollectionItemDownload__MainDownloadButton:disabled {
+  opacity: 0.5;
+}
