@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Router, Route, Switch } from 'react-router-dom'
+import createHistory from 'history/createBrowserHistory'
 import { Provider } from 'react-redux'
 import I18n from "redux-i18n"
+import ReactGA from 'react-ga'
 import store from './state'
 import { Tooltip } from 'redux-tooltip';
 
@@ -75,10 +77,22 @@ class Routes extends PureComponent {
   }
 }
 
+const history = createHistory()
+
+// integrate history \w Google Analytics
+// if (process.env.NODE_ENV === 'production') {
+//   ReactGA.initialize('UA-112538159-1')
+//   ReactGA.pageview(history.location.pathname + history.location.search)
+//
+//   history.listen((location, action) => {
+//     ReactGA.pageview(location.pathname + location.search)
+//   })
+// }
+
 const App = () => (
   <Provider store={store}>
     <I18n translations={translations} fallbackLang="en_US">
-      <Router>
+      <Router history={history}>
         <LangChooser>
           <Layout>
             <PreviewLine />
