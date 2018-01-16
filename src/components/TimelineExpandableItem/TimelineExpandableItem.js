@@ -58,7 +58,7 @@ render () {
           </Col>
           <Col xs="12" md="8" lg="9">
           <h2 className="TimelineExpandableItem__title" onClick={this.toggleExpand}>
-              {this.props.item.title}
+              {this.props.item.translated.title}
             </h2>
           </Col>
           <Col md="1" lg="1" className="TimelineExpandableItem__btn_container hidden-sm-down">
