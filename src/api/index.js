@@ -47,7 +47,7 @@ export const getCollectionDocuments = (params = {}) => getDocuments({
   overlaps: makeOverlaps(['<', '>']),
   ...params,
   filters: {
-    data__type__in: ['image', 'audio', 'video', 'correspondence', 'other', 'physical object'],
+    data__type__in: ['image', 'audio', 'video', 'correspondence', 'other', 'physical object', 'book'],
     ...params.filters,
   },
 })
