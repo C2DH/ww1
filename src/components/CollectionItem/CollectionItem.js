@@ -91,26 +91,34 @@ const RelatedObjects = ({items}) => {
   </div>)
 }
 
-const SeeAlso = ({doc}) => {
-  let year = get(doc, "data.year")
-  const dataType = get(doc, "data.type")
-  if(year && parseInt(year)){
-    if(year < 1914){
-      year = '<1914,1914'
+class SeeAlso extends PureComponent {
+  render() {
+    const { doc } = this.props
+    const { t } = this.context
+    let year = get(doc, "data.year")
+    const dataType = get(doc, "data.type")
+    if(year && parseInt(year)){
+      if(year < 1914){
+        year = '<1914,1914'
+      }
+      else if(year > 1921){
+        year = '1921,1921>'
+      } else {
+        year = `${year},${year+1}`
+      }
     }
-    else if(year > 1921){
-      year = '1921,1921>'
-    } else {
-      year = `${year},${year+1}`
-    }
-  }
 
-  return (
-  <div className="CollectionItem__Relatedobjects">
-    <h6 className="CollectionItem__label">see also</h6>
-      {year && <Link to={`/collection/?years=${year}`}><button className="CollectionItem__btn btn btn-secondary">{get(doc, "data.year")}</button></Link>}
-      {dataType && <Link to={`/collection/?types=${dataType}`}><button className="CollectionItem__btn btn btn-secondary">{get(doc, "data.type")}</button></Link>}
-  </div>)
+    return (
+    <div className="CollectionItem__Relatedobjects">
+      <h6 className="CollectionItem__label">{t('see also')}</h6>
+        {year && <Link to={`/collection/?years=${year}`}><button className="CollectionItem__btn btn btn-secondary">{get(doc, "data.year")}</button></Link>}
+        {dataType && <Link to={`/collection/?types=${dataType}`}><button className="CollectionItem__btn btn btn-secondary">{get(doc, "data.type")}</button></Link>}
+    </div>)
+  }
+}
+
+SeeAlso.contextTypes = {
+  t: React.PropTypes.func.isRequired
 }
 
 
@@ -161,7 +169,7 @@ export default ({ doc, onCloseClick }) => {
                 { coords && (
                   <MiniMap coords={coords}/>
                 )}
-                { get(doc, "documents.length") && (
+                { get(doc, "documents.length", 0) > 0 && (
                   <RelatedObjects items={get(doc, "documents")}/>
                 )}
                 <SeeAlso doc={doc}/>
