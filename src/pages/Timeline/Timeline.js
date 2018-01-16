@@ -24,6 +24,7 @@ import './Timeline.css'
 class Timeline extends PureComponent {
   state = {
     scrollToId: null,
+    paddingBlocksCount: 0,
   }
 
   componentDidMount() {
@@ -32,6 +33,14 @@ class Timeline extends PureComponent {
 
   componentWillUnmount() {
     this.props.unloadTimelineDocuments()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.documents && this.props.documents) {
+      const d = this.docsContainer
+      const paddingBlocksCount = Math.max(Math.floor(d.clientHeight / 150) - 1, 0)
+      this.setState({ paddingBlocksCount })
+    }
   }
 
   entering = (docIndex) => {
@@ -79,6 +88,7 @@ class Timeline extends PureComponent {
             </Row>
           </Container>
         </div>
+        <div ref={r => this.docsContainer = r}>
         <Container className="Timeline__Content">
           <Row>
             <Col lg="1" md="12" sm="12" xs="12" className="Timeline__TimelineNav fixed">
@@ -96,7 +106,9 @@ class Timeline extends PureComponent {
                 ))}
               </div>
             </Col>
-            {documents && <Col lg="11" md="12" sm="12" xs="12" className="Timeline__scrollingCol">
+            {documents && <Col lg="11" md="12" sm="12" xs="12" className="Timeline__scrollingCol"
+              style={{ paddingBottom: this.state.paddingBlocksCount * 150 }}>
+
               {documents.map((doc, index) => (
                 <div key={doc.id} className="Timeline__expandable_wrapper">
                   <TimelineExpandableItem
@@ -114,6 +126,7 @@ class Timeline extends PureComponent {
             </Col>}
           </Row>
         </Container>
+      </div>
       </div>
     )
   }
