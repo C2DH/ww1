@@ -1,11 +1,14 @@
 import React, { PureComponent } from 'react'
+import { get } from 'lodash'
 import { connect } from 'react-redux'
 import { Switch, Route } from 'react-router-dom'
 import Theme from '../Theme'
 import Chapter from '../Chapter'
+import NotFound from '../../components/NotFound'
 
 import {
   getTheme,
+  getThemeError,
 } from '../../state/selectors'
 
 import {
@@ -30,7 +33,11 @@ class ThemeExplorer extends PureComponent  {
   }
 
   render() {
-    const { theme, match } = this.props
+    const { theme, error, match } = this.props
+
+    if (get(error, 'response.status') === 404) {
+      return <NotFound />
+    }
 
     return (
       <div>
@@ -39,6 +46,7 @@ class ThemeExplorer extends PureComponent  {
           <Switch>
             <Route path={`${match.path}`} exact component={Theme} />
             <Route path={`${match.path}/chapters/:chapterSlug`} component={Chapter} />
+            <Route component={NotFound} />
           </Switch>
         )}
       </div>
@@ -48,6 +56,7 @@ class ThemeExplorer extends PureComponent  {
 
 const mapStateToProps = state => ({
   theme: getTheme(state),
+  error: getThemeError(state),
 })
 
 export default connect(mapStateToProps, {

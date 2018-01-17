@@ -10,6 +10,7 @@ import 'moment/locale/de'
 import store from './state'
 
 import PreviewLine from './components/PreviewLine'
+import NotFound from './components/NotFound'
 import Layout from './components/Layout'
 import LangChooser from './components/LangChooser'
 import Home from './pages/Home'
@@ -72,6 +73,7 @@ class Routes extends PureComponent {
           <Route path='/themes/:themeSlug' component={ThemeExplorer} />
           <Route path='/about' exact component={About} />
           <Route path='/terms-of-use' exact component={TermsOfUse} />
+          <Route component={NotFound} />
         </Switch>
         {isModal ? <Route path='/collection/item/:id' component={CollectionDetailModal} /> : null}
       </div>

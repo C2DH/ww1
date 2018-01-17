@@ -6,9 +6,10 @@ import {
   loadEducational,
   unloadEducational,
 } from '../../state/actions'
-import { getEducational } from '../../state/selectors'
+import { getEducational, getEducationalError } from '../../state/selectors'
 import BigTitle from '../../components/BigTitle'
 import EducationExpandableItem from '../../components/EducationExpandableItem'
+import NotFound from '../../components/NotFound'
 import EducationFooter from '../../components/EducationFooter'
 import CollectionItemLink from '../../components/CollectionItemLink'
 import './EducationDetail.css'
@@ -31,8 +32,11 @@ class EducationDetail extends PureComponent {
   }
 
   render() {
-    const { educational } = this.props
-    console.log(educational)
+    const { educational, error } = this.props
+
+    if (get(error, 'response.status') === 404) {
+      return <NotFound />
+    }
 
     return (
       <div className='EducationDetail'>
@@ -109,6 +113,7 @@ class EducationDetail extends PureComponent {
 
 const mapStateToProps = state => ({
   educational: getEducational(state),
+  error: getEducationalError(state),
 })
 
 export default connect(mapStateToProps, {

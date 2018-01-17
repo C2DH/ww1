@@ -5,6 +5,7 @@ import { Link, Switch, Route, Redirect, withRouter } from 'react-router-dom'
 import { get } from 'lodash'
 import ChapterCover from '../ChapterCover'
 import Module from '../Module'
+import NotFound from '../../components/NotFound'
 import ChaptersControl from '../../components/ChaptersControl'
 import ChaptersSwitcher from '../../components/ChaptersSwitcher'
 import './Chapter.css'
@@ -16,6 +17,7 @@ import {
   getTotalThemeChapters,
   getChapterIndex,
   getMakeLangUrl,
+  getChapterError,
 } from '../../state/selectors'
 
 import {
@@ -26,6 +28,7 @@ import {
 const mapStateToProps = state => ({
   theme: getTheme(state),
   chapter: getChapter(state),
+  error: getChapterError(state),
   chapterIndex: getChapterIndex(state),
   totalChapters: getTotalThemeChapters(state),
   totalChapterModules: getTotalChapterModules(state),
@@ -85,7 +88,12 @@ class Chapter extends PureComponent  {
       match,
       history,
       makeUrl,
+      error,
     } = this.props
+
+    if (get(error, 'response.status') === 404) {
+      return <NotFound />
+    }
 
     return (
       <div>

@@ -1,0 +1,14 @@
+.NotFound {
+  margin-top: 15%;
+  text-align: center;
+}
+.NotFound h1 {
+  font-family: 'Behrens Antiqua';
+  font-size: 40px;
+  text-transform: uppercase;
+  color: #F56350;
+}
+
+.NotFound h1.NotFound__404 {
+  font-size: 100px;
+}

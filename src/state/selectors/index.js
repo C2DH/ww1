@@ -234,6 +234,7 @@ export const getDocument = createSelector(
   (doc, lang) => maybeNull(doc)(translateDocument(lang))
 )
 export const getDocumentLoading = state => state.document.loading
+export const getDocumentError = state => state.document.error
 
 // Collection documents
 
@@ -443,6 +444,7 @@ export const getTheme = createSelector(
   (theme, lang) => maybeNull(theme)(
     compose(translateStory(lang), fixThemeChaptersOrder))
 )
+export const getThemeError = state => state.themeDetail.error
 
 // Chapters
 
@@ -451,6 +453,7 @@ export const getChapter = createSelector(
   getCurrentLanguage,
   (theme, lang) => maybeNull(theme)(translateStory(lang))
 )
+export const getChapterError = state => state.chapterDetail.error
 
 export const getChapterIndex = createSelector(
   getTheme,
@@ -598,6 +601,7 @@ export const getEducational = createSelector(
   getCurrentLanguage,
   (edu, lang) => maybeNull(edu)(() => makeEdu(edu, lang))
 )
+export const getEducationalError = state => state.educationalDetail.error
 
 export const getEducationals = createSelector(
   state => state.educationals.list,
