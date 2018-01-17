@@ -1,22 +1,24 @@
-import React from 'react';
+import React, { PureComponent } from 'react'
 import * as d3Color from 'd3-color'
 import { getBoundingBoxImage } from '../../utils'
 
-
-
-export default class Background extends React.Component {
+export default class Background extends PureComponent {
   render() {
+    const { image, bbox, color = 'transparent', overlay = null } = this.props
 
-    const { image, bbox, color='transparent', overlay=null } = this.props
-    const imageUrl = getBoundingBoxImage(image, bbox)
-
+    // Make the background image
+    let backgroundImage
+    if (image) {
+      const imageUrl = getBoundingBoxImage(image, bbox)
+      backgroundImage = `url(${imageUrl})`
+    }
 
     const baseStyle = {
+      backgroundImage,
       left: "0px",
       right: "0px",
       height: "100%",
       backgroundColor: overlay ? 'transparent' : color,
-      backgroundImage: `url(${imageUrl})`,
       backgroundSize: 'cover',
       position: 'absolute',
       backgroundPosition:'center center',
@@ -41,6 +43,6 @@ export default class Background extends React.Component {
         </div>
       )}
       </div>
-    );
+    )
   }
 }

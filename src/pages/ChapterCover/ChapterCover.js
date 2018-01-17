@@ -69,21 +69,9 @@ class ChapterCover extends PureComponent  {
     }
   }
 
-  componentDidMount(){
-    this._isMounted = true
+  componentDidMount() {
     window.scrollTo(0, BASE_SCROLL_HELPER_HEIGHT)
-
     this.props.lockScroll(1200)
-    // this.setState({stopScroll:true})
-    // setTimeout(()=>{
-    //   if(this._isMounted){
-    //     this.setState({stopScroll:false})
-    //   }
-    // }, 1200)
-  }
-
-  componentWillUnmount(){
-    // this._isMounted = false
   }
 
   render() {
