@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import MediaQuery from 'react-responsive'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { keys, omit, isUndefined, isNull } from 'lodash'
@@ -38,6 +39,7 @@ import {
 } from '../../state/selectors'
 
 import CollectionMasonry from '../../components/CollectionMasonry'
+import CollectionGrid from '../../components/CollectionGrid'
 import CollectionFilters from '../../components/CollectionFilters'
 import Spinner from '../../components/Spinner'
 import './Collection.css'
@@ -208,14 +210,25 @@ class Collection extends PureComponent {
             <Spinner />
           </div>}
 
-          <div>
-            {documents && <CollectionMasonry
-              documents={documents}
-              canLoadMore={canLoadMore && !loading}
-              loadMore={this.loadMore}
-              masonryStyle={{ paddingTop:120, paddingBottom: 20, outline: 'none' }}
-            />}
-          </div>
+         {documents && <MediaQuery maxWidth={991}>
+           {matches => (
+             matches ? (
+               <CollectionGrid
+                documents={documents}
+                canLoadMore={canLoadMore && !loading}
+                loadMore={this.loadMore}
+                gridStyle={{ paddingTop: 78, paddingBottom: 20, outline: 'none' }}
+              />
+             ) : (
+               <CollectionMasonry
+                documents={documents}
+                canLoadMore={canLoadMore && !loading}
+                loadMore={this.loadMore}
+                masonryStyle={{ paddingTop:120, paddingBottom: 20, outline: 'none' }}
+              />
+             )
+           )}
+         </MediaQuery>}
 
         </div>
 

@@ -1,7 +1,16 @@
-.CollectionDoc{
+.CollectionDoc {
   position: relative;
   overflow: hidden;
   z-index: 0;
+}
+
+.CollectionDoc.squared {
+  height: 100%;
+  width: 100%;
+}
+
+.CollectionDoc.squared img {
+  object-fit: cover;
 }
 
 .CollectionDoc__frame{
@@ -14,6 +23,12 @@
   border: 10px solid white;
   box-sizing: border-box;
   pointer-events: none;
+}
+
+@media (max-width: 991px) {
+  .CollectionDoc__frame{
+    border: 5px solid white;
+  }
 }
 
 .CollectionDoc a img{
@@ -60,6 +75,10 @@
   padding-left: 15px;
   padding-right: 15px;
   text-align: center;
+}
+
+.CollectionDoc__inner_container.squared {
+  height: 100%;
 }
 
 .CollectionDoc__inner_container_audio {
