@@ -4,8 +4,10 @@ import createHistory from 'history/createBrowserHistory'
 import { Provider } from 'react-redux'
 import I18n from "redux-i18n"
 import ReactGA from 'react-ga'
+import { Tooltip } from 'redux-tooltip'
+import 'moment/locale/fr'
+import 'moment/locale/de'
 import store from './state'
-import { Tooltip } from 'redux-tooltip';
 
 import PreviewLine from './components/PreviewLine'
 import Layout from './components/Layout'

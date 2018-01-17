@@ -1,29 +1,18 @@
 import ReactDOM from 'react-dom'
 import React, { PureComponent } from 'react'
 import moment from 'moment'
-import { Container, Row, Col, Collapse } from 'reactstrap';
+import { Container, Row, Col, Collapse } from 'reactstrap'
+import EventDate from '../EventDate'
 import './TimelineExpandableItem.css'
 
-
-const TimelineEventDate = ({ startDate, endDate}) => {
-
-  const startDateFormatted = moment(startDate).format('DD MMMM YYYY')
-  const endDateFormatted = moment(endDate).format('DD MMMM YYYY')
-
- if(startDate === endDate) {
-   return (<h6>{startDateFormatted}</h6>)
- }  if(startDate && endDate) {
-    return (<h6>{startDateFormatted} <br/> {endDateFormatted}</h6>)
-  } if(startDate && !endDate) {
-    return (<h6>{startDateFormatted}</h6>)
-  } if(!startDate && endDate) {
-    return (<h6>{endDateFormatted}</h6>)
-  }
-  return (<h6>Unknow date</h6>)
-
-}
-
-
+const TimelineEventDate = ({ startDate, endDate }) => (
+  <EventDate
+    startDate={startDate}
+    endDate={endDate}
+    component='h6'
+    format='DD MMMM YYYY'
+  />
+)
 
 class TimelineExpandableItem extends PureComponent {
 
