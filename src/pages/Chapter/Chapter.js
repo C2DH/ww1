@@ -23,6 +23,8 @@ import {
 import {
   loadChapter,
   unloadChapter,
+  lockScroll,
+  unlockScroll,
 } from '../../state/actions'
 
 const mapStateToProps = state => ({
@@ -63,17 +65,25 @@ class Chapter extends PureComponent  {
     if (nextProps.match.params.chapterSlug !== this.props.match.params.chapterSlug) {
       this.props.unloadChapter()
       this.setState({ open: false })
+      this.props.unlockScroll()
       this.props.loadChapter(nextProps.match.params.chapterSlug)
     }
   }
 
   componentWillUnmount() {
     this.props.unloadChapter()
+    this.props.unlockScroll()
   }
 
   toggleChapters = () => {
     this.setState({
       open: !this.state.open
+    }, () => {
+      if (this.state.open) {
+        this.props.lockScroll()
+      } else {
+        this.props.unlockScroll()
+      }
     })
   }
 
@@ -181,4 +191,6 @@ class Chapter extends PureComponent  {
 export default withRouter(connect(mapStateToProps, {
   loadChapter,
   unloadChapter,
+  lockScroll,
+  unlockScroll,
 })(Chapter))

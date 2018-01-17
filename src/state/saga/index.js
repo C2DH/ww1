@@ -160,8 +160,10 @@ function* scrollLockSaga() {
   time = payload.time
 
   while (true) {
+    // When not time promise an unresolved promise :D
+    const myDelay = time ? delay : () => new Promise(() => {})
     const { timeout, lock } = yield race({
-      timeout: call(delay, time),
+      timeout: call(myDelay, time),
       lock: take(LOCK_SCROLL)
     })
 
