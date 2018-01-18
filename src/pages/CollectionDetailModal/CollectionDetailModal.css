@@ -1,5 +1,5 @@
 .CollectionDetailModal__container {
-  position: fixed;;
+  position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
@@ -8,6 +8,17 @@
   background-color: #2F2F2F;
   overflow-y: scroll;
   flex-direction: column-reverse;
+  animation-duration: 1s;
+  animation-name: fadeIn;
+}
+
+@keyframes fadeIn {
+  from: {
+    opacity: 0.5;
+  }
+  to: {
+    opacity: 1;
+  }
 }
 
 .CollectionDetailModal__close_btn_container {
