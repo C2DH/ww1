@@ -98,6 +98,7 @@ class SeeAlso extends PureComponent {
     let year = get(doc, "data.year")
     const dataType = get(doc, "data.type")
     if(year && parseInt(year)){
+      year = parseInt(year)
       if(year < 1914){
         year = '<1914,1914'
       }
