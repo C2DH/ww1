@@ -95,11 +95,13 @@ class SeeAlso extends PureComponent {
   render() {
     const { doc } = this.props
     const { t } = this.context
-    let year = get(doc, "data.year")
-    const dataType = get(doc, "data.type")
-    if(year && parseInt(year)){
+    const dataType = get(doc, 'data.type')
+
+    let year = get(doc, 'data.year')
+    let yearLink
+    if (year && parseInt(year)) {
       year = parseInt(year)
-      if(year < 1914){
+      if (year < 1914) {
         year = '<1914,1914'
       }
       else if(year > 1921){
@@ -107,12 +109,23 @@ class SeeAlso extends PureComponent {
       } else {
         year = `${year},${year+1}`
       }
+      yearLink = `/collection/?years=${year}`
+    } else if (`${year}`.toLowerCase() === 'uncertain') {
+      yearLink = `/collection/?uncertainYears=1`
+
+      const mStartDate = moment(get(doc, 'data.start_date', ''))
+      const startYear = mStartDate.isValid() ? mStartDate.year() : '<1914'
+
+      const mEndDate = moment(get(doc, 'data.end_date', ''))
+      const endYear = mEndDate.isValid() ? mEndDate.year() : '1921>'
+
+      yearLink += `&years=${startYear},${endYear}`
     }
 
     return (
     <div className="CollectionItem__Relatedobjects">
       <h6 className="CollectionItem__label">{t('see also')}</h6>
-        {year && <Link to={`/collection/?years=${year}`}><button className="CollectionItem__btn btn btn-secondary">{get(doc, "data.year")}</button></Link>}
+        {year && <Link to={yearLink}><button className="CollectionItem__btn btn btn-secondary">{get(doc, "data.year")}</button></Link>}
         {dataType && <Link to={`/collection/?types=${dataType}`}><button className="CollectionItem__btn btn btn-secondary">{get(doc, "data.type")}</button></Link>}
     </div>)
   }
