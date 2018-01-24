@@ -280,9 +280,11 @@ export const getMapDocuments = createSelector(
     coordinates: get(doc, 'data.coordinates.geometry.coordinates', [])
       .slice(0, 2)
       // For same positin problem....
-      .map(x => Number(x) + Math.random() / 1000)
+      .map(x => parseFloat((Number(x) + (Math.random() / 1000)).toFixed(6)))
       .reverse()
-  })))
+  }))
+  // Remove shit without coordinates
+  .filter(doc => doc.coordinates.length === 2))
 )
 
 export const [
