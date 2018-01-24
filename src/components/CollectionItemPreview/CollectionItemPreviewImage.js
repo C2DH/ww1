@@ -18,16 +18,17 @@ var xy = function(x, y) {
 
 export default class CollectionItemPreviewImage extends React.PureComponent {
   state = {
+		zooming: false,
     zoom: -1,
 		width: null,
 		height: null
   }
 
   zoomTo = (zoom) => {
-    this.setState({zoom})
+		if (!this.state.zooming) {
+	    this.setState({ zoom })
+		}
   }
-
-
 
 	// #TODO: here we could set min zoom based on doc vs viewport sizes
 	// componentDidMount(){
@@ -64,6 +65,8 @@ export default class CollectionItemPreviewImage extends React.PureComponent {
         {/* <img src={doc.src} alt={doc.title} className="img-fluid" style={{maxHeight:'70vh'}}/> */}
 			<div className="CollectionItemPreview__leaflet_wrapper d-flex">
         <Map
+					onZoomStart={() => this.setState({ zooming: true })}
+					onZoomEnd={() => this.setState({ zooming: false })}
           minZoom={-2.5}
           maxZoom={3}
           zoomControl={false}
