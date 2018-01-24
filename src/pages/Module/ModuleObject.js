@@ -70,7 +70,7 @@ class ModuleObjectContentVideo extends PureComponent {
     }
 
     const { module } = this.props
-    let media = get(module, 'id.attachment')
+    const media = get(module, 'id.url', get(module, 'id.attachment'))
     const size = get(module, 'size')
     const position = get(module, 'position')
     const backgroundColor = get(module, 'background.color')
