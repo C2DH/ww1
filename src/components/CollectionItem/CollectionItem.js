@@ -9,7 +9,7 @@ import CollectionItemPreview from '../CollectionItemPreview'
 import './CollectionItem.css'
 
 
-const ADDITIONAL_METATDATA_KEYS = ['repository', 'copyright']
+const ADDITIONAL_METATDATA_KEYS = ['creator','provenance','archive_id','copyright']
 
 
 class AdditionalInformation extends PureComponent {
@@ -40,10 +40,10 @@ class AdditionalInformation extends PureComponent {
            <tbody>
          { metadataKeys.map(k => {
            const datum = get(doc.translated, k, get(doc, k, null))
-           if(datum === null){ return null}
+           if (datum === null){ return null }
            return (
              <tr key={k}>
-               <th scope="row">{capitalize(k.split("_").join(" "))}</th>
+               <th scope="row">{this.context.t(k)}</th>
                <td>{datum}</td>
              </tr>
            )
