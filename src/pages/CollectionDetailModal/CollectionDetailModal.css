@@ -8,8 +8,25 @@
   background-color: #2F2F2F;
   overflow-y: scroll;
   flex-direction: column-reverse;
+}
+
+.CollectionDetailModal__container.fadeOut{
+  animation-duration: 1s;
+  animation-name: fadeOut;
+}
+
+.CollectionDetailModal__container.fadeIn {
   animation-duration: 1s;
   animation-name: fadeIn;
+}
+
+@keyframes fadeOut {
+  from: {
+    opacity: 1;
+  }
+  to: {
+    opacity: 0;
+  }
 }
 
 @keyframes fadeIn {

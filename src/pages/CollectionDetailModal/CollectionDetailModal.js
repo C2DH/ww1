@@ -12,7 +12,12 @@ import {
 } from '../../state/selectors'
 
 class CollectionDetailModal extends PureComponent {
+  state = {
+    cloosing: false,
+  }
+
   componentDidMount() {
+    this.mounted = true
     this.props.loadDocument(this.props.match.params.id)
   }
 
@@ -24,17 +29,27 @@ class CollectionDetailModal extends PureComponent {
   }
 
   componentWillUnmount() {
+    this.mounted = false
     this.props.unloadDocument()
   }
 
   close = () => {
-    this.props.history.goBack()
+    this.setState({
+      cloosing: true,
+    }, () => {
+      setTimeout(() => {
+        if (this.mounted) {
+          this.props.history.goBack()
+        }
+      }, 900)
+    })
   }
 
   render(){
     const { doc, loading } = this.props
+    const { cloosing } = this.state
     return (
-      <div className="CollectionDetailModal__container d-flex">
+      <div className={`CollectionDetailModal__container d-flex ${cloosing ? 'fadeOut' : 'fadeIn'}`}>
         {doc && <CollectionItem doc={doc} onCloseClick={this.close} />}
       </div>
     )
