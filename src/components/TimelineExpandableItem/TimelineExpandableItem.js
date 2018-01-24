@@ -37,7 +37,7 @@ class TimelineExpandableItem extends PureComponent {
 render () {
 
   return (
-      <Container fluid={true}>
+      <Container fluid={true} className='TimelineExpandableItem'>
         <Row>
           <Col xs="12" md="3" lg="2" className="TimelineExpandableItem__date_container">
             <TimelineEventDate
@@ -76,7 +76,6 @@ render () {
           */}
         </Collapse>
       </Container>
-
      )
    }
 }

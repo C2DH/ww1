@@ -19,7 +19,6 @@ const EventDate = ({
   // Ok this not look really good but i hate sbatte this clear possible
   // side effects of changing moment locale...
   moment.locale('en')
-  console.log('~~~', startDate, endDate)
 
   if (date) {
     return React.createElement(component, null, date)

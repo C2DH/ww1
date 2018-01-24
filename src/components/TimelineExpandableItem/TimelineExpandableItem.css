@@ -1,3 +1,7 @@
+.TimelineExpandableItem {
+  padding-top: 15px;
+}
+
 .TimelineExpandableItem__date_container h6{
   font-weight: 400;
   font-size: 0.875rem;
