@@ -245,6 +245,8 @@ h3.Home__MainRow-yearsCol-xs {
   .Home__NavigationCol {
     border-top: none;
     border-right: 1px solid #fff;
+    padding-left: 0px;
+    padding-right: 0px;
   }
 
   .Home__NavigationCol:last-of-type {
@@ -261,4 +263,9 @@ h3.Home__MainRow-yearsCol-xs {
 /* Extra large devices (large desktops, 1200px and up)*/
 @media (min-width: 1200px) {
 
+  .Home__NavigationCol {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
 }

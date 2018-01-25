@@ -72,14 +72,18 @@ class Home extends React.Component {
             </Col>
             <Col lg="3" md="6" xs="12" className="Home__NavigationCol Home__NavigationCol_collection">
               <Link to="/collection" className="Home__NavigationCol_link">
-              <h6 className="Home__NavigationCol_h6">{this.context.t('browse the')}</h6>
-                <span>
-                  <i className="icon-hand" />
-                </span>
-              <h2 className="Home__NavigationCol_h2">{this.context.t('collection')}</h2>
-                <span>
-                  <i className="icon-hand-reverse" />
-                </span>
+                <h6 className="Home__NavigationCol_h6">{this.context.t('browse the')}</h6>
+
+                  <span>
+                      <i className="icon-hand" />
+                  </span>
+                  <h2 className="Home__NavigationCol_h2">{
+                      this.context.t('collection')}
+                  </h2>
+                  <span>
+                    <i className="icon-hand-reverse" />
+                  </span>
+              
               </Link>
             </Col>
             <Col lg="3" md="6" xs="12" className="Home__NavigationCol Home__NavigationCol_map">
