@@ -1,6 +1,7 @@
 .Theme__container {
   height: 100vh;
   position: relative;
+  overflow-y: auto;
 }
 
 .Theme__wrapper{
@@ -9,14 +10,14 @@
   position:relative;
 }
 
-.Theme__info_wrapper{
-  display: flex;
-  align-items: center;
-  height: 100vh;
-}
-
-.Theme__info_wrapper > .row{
+.Theme__title{
+  position: fixed;
+  top:0;
+  left: 0;
   width: 100%;
+  background: white;
+  height: 58px;
+  z-index: 998;
 }
 
 .Theme__info_wrapper h6{
@@ -27,41 +28,34 @@
   text-transform: uppercase;
 }
 
+.Theme__title h2{
+  font-size: 1.5rem;
+}
+
 .Theme__info_wrapper h1 {
   font-family: "Behrens Antiqua", Georgia, serif;
-  font-size: 5.265rem;
+  font-size: 1.85rem;
   text-transform: uppercase;
   color: white;
+  animation-delay: 0.3s;
 }
 
-.Theme__text_container {
-  max-width: 60%;
-}
-
-.Theme__text_container p {
-  font-size: 1.5rem;
+.Theme__info_wrapper p {
+  font-size: 1.125rem;
   font-style: italic;
   color: white;
+  animation-delay: 0.6s;
 }
 
 .Theme__start_btn {
-  height: 45px;
-  width: 110px;
-  border: 1px solid #FFFFFF;
   border-radius: 100px;
-  color: rgba(34, 34, 32, 0.9);
-  background-color: #FFFFFF;
-}
-
-.Theme__start_btn:hover {
-  color: #fff;
-  background-color: rgba(34, 34, 32, 0.9);
-  border: 1px solid rgba(34, 34, 32, 0.9);
+  text-transform: uppercase;
+  animation-delay: 1s;
 }
 
 .Theme__chapters_btn_container {
   position: absolute;
-  top: 10px;
+  top: 2px;
   right: 10px;
   display: inline-flex;
   padding: 5px;
@@ -88,4 +82,42 @@
   color: rgba(34, 34, 32, 0.9);
   background-color: #fff;
   border: 1px solid rgba(34, 34, 32, 0.9);
+}
+
+
+/* media queries */
+
+
+/*Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {
+
+
+ }
+
+/*Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+
+  .Theme__info_wrapper h1 {
+    font-size: 5.265rem;
+  }
+
+  .Theme__info_wrapper p {
+    font-size: 1.5rem;
+  }
+
+  .Theme__chapters_btn_container {
+    top: 10px;
+  }
+
+ }
+
+/*Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+
+}
+
+/* Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+
+
 }
