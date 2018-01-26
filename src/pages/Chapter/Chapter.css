@@ -3,7 +3,7 @@
   position: absolute;
   opacity: 0;
   top: 0;
-  width: calc(100% - 58px);
+  width: 100%;
   bottom: 0;
 }
 
@@ -19,4 +19,31 @@
 .SwitchModule-leave.SwitchModule-leave-active {
   opacity: 0;
   transition: opacity 500ms ease-in;
+}
+
+/*Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {
+
+
+ }
+
+/*Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+
+  .SwitchModule-enter {
+    width: calc(100% - 58px);
+
+  }
+
+ }
+
+/*Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+
+}
+
+/* Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+
+
 }
