@@ -26,11 +26,11 @@ class ChaptersControl extends PureComponent {
       <div>
         <div className="ChaptersControl__chapters_num_container">
           <span className="AtlasGrotesk-Medium-Web" onClick={onClickTheme}>{title}</span>
-          <button onClick={onClickChapters} className="ChaptersControl__chapters_btn">{currentIndex}/{count}</button>
+          <button onClick={onClickChapters} className="btn ChaptersControl__chapters_btn rounded-circle">{currentIndex}/{count}</button>
         </div>
         <div className="ChaptersControl__controls_container">
-          {hasPrev && <button onClick={onClickPrev} className="ChaptersControl__chapters_btn ChaptersControl__chapters_btn_control"><i className="material-icons md-26">keyboard_arrow_up</i></button>}
-          {hasNext && <button onClick={onClickNext} className="ChaptersControl__chapters_btn ChaptersControl__chapters_btn_control"><i className="material-icons md-26">keyboard_arrow_down</i></button>}
+          <button onClick={onClickPrev} disabled={!hasPrev} className="btn rounded-circle ChaptersControl__chapters_btn ChaptersControl__chapters_btn_control"><i className="material-icons md-26">keyboard_arrow_up</i></button>
+          <button onClick={onClickNext} disabled={!hasNext} className="btn rounded-circle ChaptersControl__chapters_btn ChaptersControl__chapters_btn_control"><i className="material-icons md-26">keyboard_arrow_down</i></button>
         </div>
       </div>
     )

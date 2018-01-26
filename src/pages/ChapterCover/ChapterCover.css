@@ -17,11 +17,13 @@
 
 .ChapterCover__label_container {
   position: absolute;
-  top: 25px;
+  top: 27px;
   left: 0;
   width: 100%;
   text-align: center;
   color: #DC715A;
+  text-transform: uppercase;
+  font-size: 1rem;
 }
 
 .ChapterCover__inner_container label{

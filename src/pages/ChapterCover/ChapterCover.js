@@ -88,7 +88,7 @@ class ChapterCover extends PureComponent  {
       <div>
         <ScrollHelperTop background={overlay ? overlay : backgroundColor}/>
         {/* This was this.state.scrolling * 150 */}
-        <div className="ChapterCover__container" style={{ marginTop: 0 * 150,
+        <div className="ChapterCover__container animated fadeIn" style={{ marginTop: 0 * 150,
             opacity: scrollScale(this.props.scroll)}}>
           <Background
             image={get(chapter, 'covers[0].attachment')}
@@ -102,14 +102,14 @@ class ChapterCover extends PureComponent  {
                 <div  className="ChapterCover__inner_container">
                   <div>
                    <div className="ChapterCover__label_container">
-                     <h6>CHAPTER {index + 1}</h6>
+                     <h6>{this.context.t('chapter')} {index + 1}</h6>
                    </div>
                    <h1>{chapter.translated.title}</h1>
                    <div className="ChapterCover__text_container">
                      <p>{chapter.translated.abstract}</p>
                    </div>
                    <div className="ChapterCover__bottom_text_container">
-                     <p>Use your mouse, keyboard or the<br/>arrows to read the story</p>
+                     <p>{this.context.t('use your mouse or the arrows to read the story')}</p>
                    </div>
                  </div>
                 </div>
@@ -124,6 +124,11 @@ class ChapterCover extends PureComponent  {
     )
   }
 }
+
+ChapterCover.contextTypes = {
+  t: React.PropTypes.func.isRequired
+}
+
 
 const mapStateToProps = state => ({
   makeUrl: getMakeLangUrl(state),

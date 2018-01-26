@@ -54,7 +54,8 @@
     "start": "start",
     "chapters": "chapters",
     "chapter": "chapter",
-    "filters": "filters"
+    "filters": "filters",
+    "use your mouse or the arrows to read the story": "use your mouse or the arrows to read the story"
   },
   "fr_FR" : {
     "home" : "Accueil",
@@ -111,7 +112,8 @@
     "start": "commancer",
     "chapters": "chapitres",
     "chapter": "chapitre",
-    "filters": "filters"
+    "filters": "filters",
+    "use your mouse or the arrows to read the story": "utilisez votre souris ou les flèches pour lire l'histoire"
   },
   "de_DE" : {
     "home" : "Startseite",
@@ -168,6 +170,7 @@
     "start": "start",
     "chapters": "Kapitel",
     "chapter": "Kapitel",
-    "filters": "filter"
+    "filters": "filter",
+    "use your mouse or the arrows to read the story": "Benutze deine Maus oder die Pfeile, um die Geschichte zu lesen"
   }
 }

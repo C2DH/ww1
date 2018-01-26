@@ -9,7 +9,7 @@ const ChaptersSwitcher = ({ theme, makeUrl }) => (
   <div className="ChaptersSwitcher__chapters_container">
     <div className="ChaptersSwitcher__chapters__inner_container">
       <div className="ChaptersSwitcher__chapters_top">
-          <h6>
+          <h6 className="d-block d-md-none">
             <Link to={makeUrl(`/themes/${theme.slug}`)}>
               {theme.translated.title}
             </Link>

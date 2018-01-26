@@ -7,7 +7,6 @@
   justify-content: space-between;
   align-items: center;
   z-index: 10000;
-  width: 240px;
 }
 
 .ChaptersControl__chapters_num_container span {
@@ -18,11 +17,11 @@
   border: 1px solid #fff;
   border-radius: 40px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .ChaptersControl__chapters_btn {
   color: #FFF;
-  border-radius: 100%;
   margin-left: 10px;
   background-color: rgba(0, 0, 0, 0.4);
   border: 1px solid #fff;
@@ -32,8 +31,9 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 1rem;
   font-weight: bold;
+  letter-spacing: 1px;
   z-index: 99;
 }
 
