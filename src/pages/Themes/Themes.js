@@ -89,7 +89,7 @@ class Themes extends PureComponent {
         </div>
 
         <div className="Themes__title d-md-none d-flex align-items-center justify-content-center">
-          <h2 className="m-0">Themes</h2>
+          <h2 className="m-0">{this.context.t('themes')}</h2>
         </div>
 
         <CSSTransitionGroup component="div"
@@ -113,7 +113,7 @@ class Themes extends PureComponent {
         </CSSTransitionGroup>
           <Row className="Themes__TitleRow d-none d-md-block animated fadeInUp" style={{zIndex: 1001}}>
             <Col>
-              <h1>Themes</h1>
+              <h1>{this.context.t('themes')}</h1>
             </Col>
           </Row>
 
@@ -134,6 +134,10 @@ class Themes extends PureComponent {
       </Container>
     )
   }
+}
+
+Themes.contextTypes = {
+  t: React.PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
