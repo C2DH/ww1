@@ -9,6 +9,11 @@ const ChaptersSwitcher = ({ theme, makeUrl }) => (
   <div className="ChaptersSwitcher__chapters_container">
     <div className="ChaptersSwitcher__chapters__inner_container">
       <div className="ChaptersSwitcher__chapters_top">
+          <h6>
+            <Link to={makeUrl(`/themes/${theme.slug}`)}>
+              {theme.translated.title}
+            </Link>
+          </h6>
       </div>
         <div className="ChaptersSwitcher__chapter_scroll_container">
           {get(theme, 'stories').map((chapter, i) => (

@@ -79,7 +79,7 @@ class Theme extends PureComponent {
       <CSSTransitionGroup component="div"
         transitionName="chapter"
         transitionEnterTimeout={500}
-        transitionLeaveTimeout={300}>
+        transitionLeaveTimeout={500}>
          {this.state.open &&
            <ChaptersSwitcher theme={theme} />
         }
