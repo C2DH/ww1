@@ -101,7 +101,7 @@ class ChapterCover extends PureComponent  {
               <Col>
                 <div  className="ChapterCover__inner_container">
                   <div>
-                   <div className="ChapterCover__label_container">
+                   <div className="ChapterCover__label_container d-none d-md-block">
                      <h6>{this.context.t('chapter')} {index + 1}</h6>
                    </div>
                    <h1>{chapter.translated.title}</h1>
