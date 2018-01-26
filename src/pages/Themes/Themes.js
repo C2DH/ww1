@@ -30,23 +30,28 @@ class ThemeContainer extends PureComponent {
   render() {
     const { theme, hover, responsiveBackground } = this.props
     return (
-       <div className="Themes__theme_container">
+       <div className="Themes__theme_container animated fadeInUp">
          <MediaQuery minWidth={768}>
-           <hr></hr>
            <h2 className="Themes__theme_title">
              <Link
                className="Themes__theme_title_link"
                to={`/themes/${theme.slug}`}
              onMouseEnter={this.handleOnMouseEnter}
              onMouseLeave={this.handleOnMouseLeave}>
-               {hover ? <i className="icon-hand Themes__hand_pointer_left" /> : null}{theme.translated.title}{hover ? <i className="icon-hand-reverse Themes__hand_pointer_right" /> : null}</Link></h2>
+               {hover ? <i className="icon-hand Themes__hand_pointer_left" /> : null}{theme.translated.title}{hover ? <i className="icon-hand-reverse Themes__hand_pointer_right" /> : null}</Link>
+           </h2>
         </MediaQuery>
-        <MediaQuery maxWidth={767} style={{backgroundImage: `url(${responsiveBackground})`}}>
-          <hr />
-          <h2 className="Themes__theme_title">{theme.translated.title}</h2>
-          <hr className="hidden-md-up" />
+        <MediaQuery maxWidth={767}>
+          <div className="Themes__theme_title_mobile_cont d-flex align-items-center justify-content-center" style={{backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(${responsiveBackground})`}}>
+            <h2 className="Themes__theme_title">
+              <Link
+                className="Themes__theme_title_link"
+                to={`/themes/${theme.slug}`}>
+                {theme.translated.title}
+              </Link>
+            </h2>
+          </div>
        </MediaQuery>
-
        </div>
     )
 
@@ -79,8 +84,14 @@ class Themes extends PureComponent {
     const { themes } = this.props
 
     return (
-      <Container fluid className="Themes__container d-flex flex-column justify-content-center">
-        {/* style={{ backgroundImage: hoverTheme ? `url(${hoverTheme.cover})` : undefined }}> */}
+      <Container fluid className="animated fadeIn Themes__container d-flex flex-column justify-content-center">
+        <div className="Themes__backgroundThemeStart d-none d-md-block">
+        </div>
+
+        <div className="Themes__title d-md-none d-flex align-items-center justify-content-center">
+          <h2 className="m-0">Themes</h2>
+        </div>
+
         <CSSTransitionGroup component="div"
         transitionName="backgroundTheme"
         transitionEnterTimeout={500}
@@ -100,13 +111,13 @@ class Themes extends PureComponent {
           </div>
         )}
         </CSSTransitionGroup>
-        <Row className="Themes__TitleRow" style={{zIndex: 1001}}>
-          <Col>
-            <h1>Themes</h1>
-          </Col>
-        </Row>
-        <Row>
+          <Row className="Themes__TitleRow d-none d-md-block animated fadeInUp" style={{zIndex: 1001}}>
+            <Col>
+              <h1>Themes</h1>
+            </Col>
+          </Row>
 
+        <Row className="Themes__TitlesRow mt-md-0">
           {themes && <Col className="Themes__theme_title_container" style={{zIndex: 1001}}>
             {themes.map(theme =>(
               <ThemeContainer
@@ -118,7 +129,6 @@ class Themes extends PureComponent {
                 responsiveBackground={getThemeCover(theme)}
               />
             ))}
-            <hr></hr>
           </Col>}
         </Row>
       </Container>
