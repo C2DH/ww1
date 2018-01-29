@@ -4,6 +4,7 @@ import { Converter } from 'showdown'
 import Markdown from 'markdown-to-jsx';
 import { get, omit } from 'lodash'
 import { Origin } from 'redux-tooltip';
+import './MarkdownGlossary.css'
 
 
 import * as api from '../../api'
@@ -48,9 +49,9 @@ const ObjectLink = connect(mapStateToProps)(class extends React.PureComponent {
     if(this.state.doc){
       const translatedDoc = translateDocument(lang)(this.state.doc)
       return (
-        <a>
-          <Origin content={`${translatedDoc.translated.description || translatedDoc.translated.title || translatedDoc.title}`}>{this.props.children}</Origin>
-        </a>
+        <span className="markdown_glossary">
+          <Origin content={`<div class="markdown_glossary_tooltip"> ${translatedDoc.translated.description || translatedDoc.translated.title || translatedDoc.title}</div>`}>{this.props.children}</Origin>
+        </span>
       )
     } else {
       const passProps=omit(this.props, ['doc', 'unloadDocument', 'loadDocument', 'loading', 'lang', 'dispatch'])

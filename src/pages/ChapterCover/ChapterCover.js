@@ -99,8 +99,8 @@ class ChapterCover extends PureComponent  {
           <Container fluid>
             <Row>
               <Col>
-                <div  className="ChapterCover__inner_container">
-                  <div>
+                <div className="ChapterCover__inner_container">
+                  <div className="ChapterCover__inner_container_center">
                    <div className="ChapterCover__label_container d-none d-md-block">
                      <h6>{this.context.t('chapter')} {index + 1}</h6>
                    </div>
@@ -108,9 +108,9 @@ class ChapterCover extends PureComponent  {
                    <div className="ChapterCover__text_container">
                      <p>{chapter.translated.abstract}</p>
                    </div>
-                   <div className="ChapterCover__bottom_text_container">
-                     <p>{this.context.t('use your mouse or the arrows to read the story')}</p>
-                   </div>
+                 </div>
+                 <div className="ChapterCover__bottom_text_container">
+                   <p>{this.context.t('use your mouse or the arrows to read the story')}</p>
                  </div>
                 </div>
               </Col>

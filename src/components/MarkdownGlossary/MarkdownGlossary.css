@@ -1,0 +1,10 @@
+.markdown_glossary{
+  padding-bottom: 2px;
+  border-bottom: 1px dashed #F56350;
+  cursor: help;
+}
+
+.markdown_glossary_tooltip{
+  width: 300px;
+  text-align: center;
+}

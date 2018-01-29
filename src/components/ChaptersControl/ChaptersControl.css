@@ -65,6 +65,7 @@
   height: 58px;
   display: flex;
   z-index: 99;
+  background-color: white;
 }
 
 /* media queries */

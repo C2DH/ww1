@@ -37,9 +37,11 @@ class ModuleText extends PureComponent {
       />
       <div>
           <Container fluid className="Module__container_text">
-            <Row>
+            <Row className="Module__container_text_overflow">
               <Col lg={{ size: size, offset: offset }} style={textStyle}>
-                <MarkdownGlossary content={module.text.content}/>
+                <div className="Module__container_text_overflow">
+                  <MarkdownGlossary content={module.text.content}/>
+                </div>
               </Col>
             </Row>
           </Container>

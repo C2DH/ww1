@@ -8,12 +8,12 @@
 .ChapterCover__inner_container {
   color: #fff;
   width: 100%;
-  height: calc(100vh - 58px - 58px);
+  height: 100vh;
   z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 58px 0px;
+  overflow: hidden;
 }
 
 .ChapterCover__label_container {
@@ -39,9 +39,14 @@
   flex: 1;
 }
 
+.ChapterCover__inner_container_center{
+  height: calc(100vh - 58px - 58px - 58px);
+  overflow-y: auto;
+}
+
 .ChapterCover__inner_container h1 {
 	color: #FFFFFF;
-  font-size: 4rem;
+  font-size: 2rem;
   flex:1
 }
 
@@ -50,15 +55,14 @@
 }
 
 .ChapterCover__text_container p {
-  font-family: Georgia;
-  font-size: 24px;
+  font-size: 1.125rem;
   font-style: italic;
 }
 
 
 .ChapterCover__bottom_text_container {
   position: absolute;
-  bottom: 68px;
+  bottom: 48px;
   left: 0;
   width: 100%;
   text-align: center;
@@ -86,7 +90,19 @@
   }
 
   .ChapterCover__bottom_text_container {
-    bottom: 10px;
+    bottom: 18px;
+  }
+
+  .ChapterCover__inner_container_center{
+    height: auto;
+  }
+
+  .ChapterCover__text_container p {
+    font-size: 1.5rem;
+  }
+
+  .ChapterCover__inner_container h1 {
+    font-size: 4rem;
   }
 
  }
