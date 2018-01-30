@@ -68,6 +68,10 @@
   color: #fff;
 }
 
+.CollectionItemPreviewPDF__controls button.active {
+    color: #F56350;
+}
+
 .CollectionItemPreviewPDF__controls_current_page {
   padding: 4px;
   padding-left: 50px;
