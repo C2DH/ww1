@@ -143,7 +143,7 @@ class Module extends PureComponent {
     const topScrollBackground = background.color ?  background.color : background.object ? background.object.overlay : 'transparent'
     const topScrollOverlay =  background.object &&  background.object.overlay
 
-    if((module.size && module.size === 'big') || module.module === 'map' || module.module === 'gallery'){
+    if(module.caption && ( module.size === 'big' || module.module === 'map' || module.module === 'gallery')){
       bottomScrollBackground = '#fff'
     } else {
       bottomScrollBackground = topScrollBackground

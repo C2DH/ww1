@@ -10,6 +10,7 @@ import AudioPlayer from '../../components/AudioPlayer'
 import CollectionItemLink from '../../components/CollectionItemLink'
 import * as d3Color from 'd3-color'
 import Background from '../../components/Background'
+import MediaQuery from 'react-responsive'
 
 const fullHeight = { height: '100%', position:'relative'}
 
@@ -118,27 +119,35 @@ class ModuleObjectContentVideo extends PureComponent {
   }
 }
 
-const ModuleObjectContentImage = pure(({ module }) => {
+const ModuleObjectContentImage = pure(({ module, resize }) => {
   const media = get(module, 'id.attachment')
   const size = get(module, 'size')
   const position = get(module, 'position')
   const backgroundColor = get(module, 'background.color')
   const backgroundColorRgb = d3Color.color(backgroundColor || '#373a3c').rgb()
 
+  let backgroundImage = `linear-gradient(to bottom, rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},1) 0%,rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},0.0) 5%,rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},0) 100%),url(${media})`
+
+  if(!module.caption && size == 'big'){
+    backgroundImage = `linear-gradient(to bottom, rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},1) 0%,rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},0.0) 5%,rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},0) 100%),
+    linear-gradient(to top, rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},1) 0%,rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},0.0) 5%,rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},0) 100%),
+     url(${media})`;
+  }
+
   const objectImgFullStyle = {
     width: '100%',
     backgroundSize: 'cover',
-    backgroundImage: `linear-gradient(to bottom, rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},1) 0%,rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},0.0) 5%,rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},0) 100%), url(${media})`,
+    backgroundImage: backgroundImage,
     backgroundPosition: 'center center'
   }
 
 
   return (
       <Card className="Module__objectCard">
-        {(size != 'big') &&
+        {(size != 'big' || resize) &&
           <CardImg top className="Module__objectCard_img" src={media}/>
         }
-        {(size != 'big') &&
+        {(size != 'big' || resize) &&
           <div className="ModuleObjectContentImage__Link"><CollectionItemLink doc={module.id}/></div>
         }
         {(size === 'big') &&
@@ -146,12 +155,15 @@ const ModuleObjectContentImage = pure(({ module }) => {
             <div className="ModuleObjectContentImage__Link"><CollectionItemLink doc={module.id}/></div>
           </div>
         }
+
         {(module.caption) &&
-            <CardBlock>
-              <CardText>
-                <i className="icon-hand"  />
-                {module.caption}
-              </CardText>
+            <CardBlock className="Module__object_caption_text">
+              <i className="icon-hand Module__object_caption_hand"  />
+              <div className="Module__object_caption_text_cont">
+                <CardText>
+                  {module.caption}
+                </CardText>
+              </div>
             </CardBlock>
           }
       </Card>
@@ -232,6 +244,20 @@ class ModuleObject extends PureComponent {
           overlay={backgroundOverlay}
           bbox={bbox}
         />
+
+        <MediaQuery maxWidth={767}>
+          <Container fluid className={"Module__container_obj mediumModule"}>
+            <Row className="Module__object_row">
+                <Col lg={{ size: col, offset: offset }} className="d-flex">
+                  <ModuleObjectContent module={module,true}/>
+                </Col>
+            </Row>
+           </Container>
+        </MediaQuery>
+
+        <MediaQuery minWidth={768}>
+        </MediaQuery>
+
         <Container fluid className={"Module__container_obj " + size+"Module"}>
           <Row className="Module__object_row">
               <Col lg={{ size: col, offset: offset }} className="d-flex">

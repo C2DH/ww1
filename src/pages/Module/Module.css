@@ -7,6 +7,39 @@
   flex-grow: 1;
 }
 
+.Module__object_caption_hand{
+  margin-right: 10px;
+}
+
+.Module__object_caption_text{
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  background-color: white;
+}
+
+.Module__object_caption_text_cont{
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.Module__object_caption_text_cont p{
+  white-space: nowrap;
+  position: relative;
+  overflow-x: auto;
+}
+
+.Module__object_caption_text_cont::after {
+    position: absolute;
+    right: 0px;
+    top:0px;
+    height: 100%;
+    content: "";
+    width: 30px;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);;
+}
+
 /* end general */
 
 /* text */
@@ -51,12 +84,12 @@
 .Module__container_obj.smallModule,
 .Module__container_obj.mediumModule{
   height: 100vh;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   flex-direction: column;
   display: flex;
   justify-content: center;
-  padding:75px;
+  padding:0px 15px;
 }
 
 .Module__container_obj.bigModule{
@@ -79,11 +112,16 @@
   max-height: 70vh;
   width: auto;
   max-width: 100%;
+  margin: auto;
 }
 
-.Module__objectCard {
+.Module__objectCard{
   border-radius: 0px;
   border: none;
+}
+
+.Module__objectCard.card{
+  background-color: transparent;
 }
 
 .bigModule .Module__objectCard{
@@ -95,6 +133,7 @@
 .mediumModule .Module__objectCard{
   margin: auto;
   width: auto;
+  max-width: 100%;
 }
 
 .Module__objectCard_imgFull{
@@ -433,6 +472,12 @@
 
   .Module__container_text p {
     font-size: 1.5rem;
+  }
+
+  .Module__container_obj,
+  .Module__container_obj.smallModule,
+  .Module__container_obj.mediumModule{
+    padding:75px;
   }
 
  }
