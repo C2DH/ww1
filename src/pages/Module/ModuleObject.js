@@ -5,12 +5,16 @@ import { connect } from 'react-redux'
 import { get } from 'lodash'
 import { Container, Row, Col } from 'reactstrap'
 import { Card, CardImg, CardText, CardBlock } from 'reactstrap'
-import { Player, ControlBar, BigPlayButton } from 'video-react'
+import { Player, ControlBar, BigPlayButton, FullscreenToggle } from 'video-react'
 import AudioPlayer from '../../components/AudioPlayer'
 import CollectionItemLink from '../../components/CollectionItemLink'
 import * as d3Color from 'd3-color'
 import Background from '../../components/Background'
 import MediaQuery from 'react-responsive'
+import {
+  lockScroll,
+  unlockScroll,
+} from '../../state/actions'
 
 const fullHeight = { height: '100%', position:'relative'}
 
@@ -36,6 +40,16 @@ class ModuleObjectContentVideo extends PureComponent {
       this.unsubscribe()
     }
     window.removeEventListener('resize', this.handleResize)
+    this.props.unlockScroll()
+  }
+
+  toggleFullscreen = () => {
+    if (this.state.player.isFullscreen) {
+      this.props.unlockScroll()
+    } else {
+      this.props.lockScroll()
+    }
+    this.player.toggleFullscreen()
   }
 
   handleResize = () => {
@@ -47,6 +61,14 @@ class ModuleObjectContentVideo extends PureComponent {
   }
 
   handlePlayerChange = (state) => {
+    // User exit fullscreen mode \w ESC key unlock scroll
+    if (
+      this.state.player.isFullscreen &&
+      this.state.player.isFullscreen !== state.isFullscreen
+    ) {
+      this.props.unlockScroll()
+    }
+
     this.setState({
       player: state,
     })
@@ -88,7 +110,13 @@ class ModuleObjectContentVideo extends PureComponent {
           <Player fluid={true} ref={ref => this.player = ref}>
             <source src={media} />
             <BigPlayButton position="center" />
-            <ControlBar autoHide={false} />
+            <ControlBar autoHide={false}>
+              <FullscreenToggle
+                actions={{
+                  toggleFullscreen: this.toggleFullscreen,
+                }}
+              />
+            </ControlBar>
           </Player>
         </div>
         }
@@ -100,7 +128,13 @@ class ModuleObjectContentVideo extends PureComponent {
             <Player fluid={false} ref={ref => this.player = ref}>
               <source src={media} />
               <BigPlayButton position="center" />
-              <ControlBar autoHide={false} />
+              <ControlBar autoHide={false}>
+                <FullscreenToggle
+                  actions={{
+                    toggleFullscreen: this.toggleFullscreen,
+                  }}
+                />
+              </ControlBar>
             </Player>
             <div className="Module__objectCard_videoFull_overlay" style={objectVideoFullStyle}></div>
           </div>
@@ -118,6 +152,11 @@ class ModuleObjectContentVideo extends PureComponent {
     )
   }
 }
+
+const ModuleObjectContentVideoLockable = connect(undefined, {
+  lockScroll,
+  unlockScroll,
+})(ModuleObjectContentVideo)
 
 const ModuleObjectContentImage = pure(({ module, resize }) => {
   const media = get(module, 'id.attachment')
@@ -202,7 +241,7 @@ class ModuleObjectContentAudio extends PureComponent {
 
 export const ModuleObjectContent = ({ module }) => {
   if (module.type === 'video') {
-    return <ModuleObjectContentVideo module={module} />
+    return <ModuleObjectContentVideoLockable  module={module} />
   } else if (module.type === 'image') {
     return <ModuleObjectContentImage module={module} />
   } else if (module.type === 'audio') {
