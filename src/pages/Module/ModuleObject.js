@@ -92,25 +92,33 @@ class ModuleObjectContentVideo extends PureComponent {
       }
     }
 
-    const { module } = this.props
+    const { module, resize } = this.props
     const media = get(module, 'id.url', get(module, 'id.attachment'))
     const size = get(module, 'size')
     const position = get(module, 'position')
     const backgroundColor = get(module, 'background.color')
     const backgroundColorRgb = d3Color.color(backgroundColor || '#373a3c').rgb()
 
+    let backgroundImage = `linear-gradient(to bottom, rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},1) 0%,rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},0.0) 5%,rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},0) 100%),url(${media})`
+
+    if(!module.caption && size == 'big'){
+      backgroundImage = `linear-gradient(to bottom, rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},1) 0%,rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},0.0) 5%,rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},0) 100%),
+      linear-gradient(to top, rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},1) 0%,rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},0.0) 5%,rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},0) 100%),
+       url(${media})`;
+    }
+
     const objectVideoFullStyle = {
-      backgroundImage: `linear-gradient(to bottom, rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},1) 0%,rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},0.0) 5%,rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},0) 100%)`,
+      backgroundImage: backgroundImage,
     }
 
     return (
       <Card className="Module__objectCard video">
-        {(size != 'big') &&
+        {(size != 'big' || resize) &&
         <div className="Module__objectCard_video">
-          <Player fluid={true} ref={ref => this.player = ref}>
+          <Player fluid={true} autoPlay={true} muted={true} ref={ref => this.player = ref}>
             <source src={media} />
             <BigPlayButton position="center" />
-            <ControlBar autoHide={false}>
+            <ControlBar autoHide={true}>
               <FullscreenToggle
                 actions={{
                   toggleFullscreen: this.toggleFullscreen,
@@ -120,34 +128,42 @@ class ModuleObjectContentVideo extends PureComponent {
           </Player>
         </div>
         }
-        {(size != 'big') &&
+        {(size != 'big' && resize) &&
           <div className="ModuleObjectContentImage__Link"><CollectionItemLink doc={module.id}/></div>
         }
-        {(size === 'big') &&
+        {(size === 'big' && !resize) &&
           <div className="Module__objectCard_videoFull">
-            <Player fluid={false} ref={ref => this.player = ref}>
-              <source src={media} />
-              <BigPlayButton position="center" />
-              <ControlBar autoHide={false}>
-                <FullscreenToggle
-                  actions={{
-                    toggleFullscreen: this.toggleFullscreen,
-                  }}
-                />
-              </ControlBar>
-            </Player>
+            <div style={{maxHeight: 'inherit'}}>
+              <Player fluid={false} autoPlay={true} muted={true} ref={ref => this.player = ref}>
+                <source src={media} />
+                <BigPlayButton position="center" />
+                <ControlBar autoHide={true}>
+                  <FullscreenToggle
+                    actions={{
+                      toggleFullscreen: this.toggleFullscreen,
+                    }}
+                  />
+                </ControlBar>
+              </Player>
+            </div>
             <div className="Module__objectCard_videoFull_overlay" style={objectVideoFullStyle}></div>
           </div>
         }
-        <CardBlock className="video_full">
-          <CardText>
-            <i className="icon-hand"  />
-            {module.caption}
-          </CardText>
-        </CardBlock>
-        {(size === 'big') &&
+        {(size === 'big' || !resize) &&
           <div className="ModuleObjectContentImage__Link videoFull"><CollectionItemLink doc={module.id}/></div>
         }
+
+        {module.caption &&
+          <CardBlock className="Module__object_caption_text">
+            <i className="icon-hand Module__object_caption_hand"  />
+            <div className="Module__object_caption_text_cont">
+              <CardText>
+                {module.caption}
+              </CardText>
+            </div>
+          </CardBlock>
+       }
+
       </Card>
     )
   }
@@ -241,7 +257,7 @@ class ModuleObjectContentAudio extends PureComponent {
 
 export const ModuleObjectContent = ({ module, resize }) => {
   if (module.type === 'video') {
-    return <ModuleObjectContentVideoLockable module={module} />
+    return <ModuleObjectContentVideoLockable module={module} resize={resize} />
   } else if (module.type === 'image') {
     return <ModuleObjectContentImage module={module} resize={resize} />
   } else if (module.type === 'audio') {

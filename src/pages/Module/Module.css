@@ -202,9 +202,17 @@
   width: 100%;
 }
 
+.bigModule .Module__objectCard.video{
+  max-height: 100vh;
+}
+
 .Module__objectCard_videoFull{
   flex: 1 1 100%;
   position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .Module__objectCard_videoFull .video-react{
@@ -221,7 +229,6 @@
   pointer-events: none;
 }
 
-.video_full
 
 /* end object video */
 
