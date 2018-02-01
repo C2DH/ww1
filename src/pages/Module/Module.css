@@ -428,6 +428,21 @@
 
 /* end gallery carousel */
 
+/* gallery masonry */
+
+.Module__gallery_cont{
+  margin: 0px 78px;
+}
+
+.Module__gallery_caption{
+  height: 58px;
+  width: 100%;
+  background-color: white;
+  position: absolute;
+  bottom: 0px;
+}
+/* end gallery masonry */
+
 /* object map */
 
 .ModuleMap__Caption {

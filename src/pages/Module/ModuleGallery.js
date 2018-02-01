@@ -22,6 +22,12 @@ const ModuleGallery = ({ module, style, masonryStyle=null }) => {
   const backgroundOverlay = get(module, 'background.object.overlay')
   const bbox = get(module, 'background.object.bbox')
 
+  if(module.caption){
+    masonryStyle = { height:'calc(100vh - 58px)', padding: '78px 0px'}
+  }else{
+    masonryStyle = { height:'100vh', padding: '78px 0px'}
+  }
+
   return (
     <div style={style || galleryStyle}>
       <Background
@@ -30,17 +36,25 @@ const ModuleGallery = ({ module, style, masonryStyle=null }) => {
         overlay={backgroundOverlay}
         bbox={bbox}
       />
+
+    <div className="Module__gallery_cont">
       <CollectionMasonry
-        showDocLink={true}
-        masonryStyle={ masonryStyle || { paddingTop: 100,paddingBottom:80 }}
-        documents={makeDocs(module.objects)}
-      />
-      <div className="ModuleObject__caption_video">
-        <span>
-          <i className="icon-hand Mods__DocumentOnly_Card_icon"  />
-          <span> {module.caption}</span>
-        </span>
-      </div>
+            showDocLink={true}
+            masonryStyle={ masonryStyle}
+            documents={makeDocs(module.objects)}
+        />
+    </div>
+
+    {(module.caption) &&
+        <div className="Module__object_caption_text card-block Module__gallery_caption">
+          <i className="icon-hand Module__object_caption_hand"  />
+          <div className="Module__object_caption_text_cont">
+            <p className="card-text">
+              {module.caption}
+            </p>
+          </div>
+        </div>
+      }
     </div>
   )
 }
