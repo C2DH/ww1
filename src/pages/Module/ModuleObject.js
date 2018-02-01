@@ -189,7 +189,7 @@ const ModuleObjectContentImage = pure(({ module, resize }) => {
         {(size != 'big' || resize) &&
           <div className="ModuleObjectContentImage__Link"><CollectionItemLink doc={module.id}/></div>
         }
-        {(size === 'big') &&
+        {(size === 'big' && !resize) &&
           <div style={objectImgFullStyle} className="Module__objectCard_imgFull">
             <div className="ModuleObjectContentImage__Link"><CollectionItemLink doc={module.id}/></div>
           </div>
@@ -239,11 +239,11 @@ class ModuleObjectContentAudio extends PureComponent {
   }
 }
 
-export const ModuleObjectContent = ({ module }) => {
+export const ModuleObjectContent = ({ module, resize }) => {
   if (module.type === 'video') {
-    return <ModuleObjectContentVideoLockable  module={module} />
+    return <ModuleObjectContentVideoLockable module={module} />
   } else if (module.type === 'image') {
-    return <ModuleObjectContentImage module={module} />
+    return <ModuleObjectContentImage module={module} resize={resize} />
   } else if (module.type === 'audio') {
     return <ModuleObjectContentAudio module={module} />
   } else {
@@ -284,7 +284,7 @@ class ModuleObject extends PureComponent {
           bbox={bbox}
         />
 
-        <MediaQuery maxWidth={767}>
+      {/*        <MediaQuery maxWidth={767}>
           <Container fluid className={"Module__container_obj mediumModule"}>
             <Row className="Module__object_row">
                 <Col lg={{ size: col, offset: offset }} className="d-flex">
@@ -295,15 +295,33 @@ class ModuleObject extends PureComponent {
         </MediaQuery>
 
         <MediaQuery minWidth={768}>
+          <Container fluid className={"Module__container_obj " + size+"Module"}>
+            <Row className="Module__object_row">
+                <Col lg={{ size: col, offset: offset }} className="d-flex">
+                  <ModuleObjectContent module={module}/>
+                </Col>
+            </Row>
+           </Container>
         </MediaQuery>
-
-        <Container fluid className={"Module__container_obj " + size+"Module"}>
-          <Row className="Module__object_row">
-              <Col lg={{ size: col, offset: offset }} className="d-flex">
-                <ModuleObjectContent module={module}/>
-              </Col>
-          </Row>
-         </Container>
+        */}
+        <MediaQuery maxWidth={767}>
+            <Container fluid className="Module__container_obj mediumModule">
+              <Row className="Module__object_row">
+                  <Col lg={{ size: col, offset: offset }} className="d-flex">
+                    <ModuleObjectContent module={module} resize={true}/>
+                  </Col>
+              </Row>
+             </Container>
+        </MediaQuery>
+        <MediaQuery minWidth={768}>
+          <Container fluid className={"Module__container_obj " + size+"Module"}>
+            <Row className="Module__object_row">
+                <Col lg={{ size: col, offset: offset }} className="d-flex">
+                  <ModuleObjectContent module={module}/>
+                </Col>
+            </Row>
+           </Container>
+         </MediaQuery>
       </div>
     )
   }
