@@ -283,27 +283,6 @@ class ModuleObject extends PureComponent {
           overlay={backgroundOverlay}
           bbox={bbox}
         />
-
-      {/*        <MediaQuery maxWidth={767}>
-          <Container fluid className={"Module__container_obj mediumModule"}>
-            <Row className="Module__object_row">
-                <Col lg={{ size: col, offset: offset }} className="d-flex">
-                  <ModuleObjectContent module={module,true}/>
-                </Col>
-            </Row>
-           </Container>
-        </MediaQuery>
-
-        <MediaQuery minWidth={768}>
-          <Container fluid className={"Module__container_obj " + size+"Module"}>
-            <Row className="Module__object_row">
-                <Col lg={{ size: col, offset: offset }} className="d-flex">
-                  <ModuleObjectContent module={module}/>
-                </Col>
-            </Row>
-           </Container>
-        </MediaQuery>
-        */}
         <MediaQuery maxWidth={767}>
             <Container fluid className="Module__container_obj mediumModule">
               <Row className="Module__object_row">

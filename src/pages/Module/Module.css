@@ -3,6 +3,12 @@
 
 /* general */
 
+:root{
+  --mobile-top: 58px;
+  --mobile-bottom: 58px;
+  --caption-height: 64px;
+}
+
 .Module__object_row{
   flex-grow: 1;
 }
@@ -109,7 +115,7 @@
 }
 
 .mediumModule .Module__objectCard_img{
-  max-height: 70vh;
+  max-height: calc(100vh - var(--mobile-top) - var(--mobile-bottom) - var(--caption-height) );
   width: auto;
   max-width: 100%;
   margin: auto;
@@ -478,6 +484,10 @@
   .Module__container_obj.smallModule,
   .Module__container_obj.mediumModule{
     padding:75px;
+  }
+
+  .mediumModule .Module__objectCard_img{
+    max-height: 70vh;
   }
 
  }
