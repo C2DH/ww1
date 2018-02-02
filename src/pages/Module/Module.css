@@ -431,15 +431,15 @@
 /* gallery masonry */
 
 .Module__gallery_cont{
-  margin: 0px 78px;
+  margin: 0px 15px;
 }
 
 .Module__gallery_caption{
   height: 58px;
   width: 100%;
   background-color: white;
-  position: absolute;
-  bottom: 0px;
+  position: fixed;
+  bottom: var(--mobile-bottom);
 }
 /* end gallery masonry */
 
@@ -510,6 +510,14 @@
 
   .mediumModule .Module__objectCard_img{
     max-height: 70vh;
+  }
+
+  .Module__gallery_cont{
+    margin: 0px 78px;
+  }
+
+  .Module__gallery_caption{
+    bottom:0px
   }
 
  }

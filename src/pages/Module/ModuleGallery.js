@@ -4,7 +4,9 @@ import { pure } from 'recompose'
 import { get } from 'lodash'
 import ModuleCarousel from './ModuleCarousel'
 import CollectionMasonry from '../../components/CollectionMasonry'
+import CollectionGrid from '../../components/CollectionGrid'
 import Background from '../../components/Background'
+import MediaQuery from 'react-responsive'
 
 const makeDocs = defaultMemoize((objects=[]) => objects.map(({ id }) => id))
 
@@ -22,10 +24,14 @@ const ModuleGallery = ({ module, style, masonryStyle=null }) => {
   const backgroundOverlay = get(module, 'background.object.overlay')
   const bbox = get(module, 'background.object.bbox')
 
+  let gridStyle;
+
   if(module.caption){
     masonryStyle = { height:'calc(100vh - 58px)', padding: '78px 0px'}
+    gridStyle = { height:'calc(100vh - 58px - 58px)', padding: '78px 0px', overflow:'auto'}
   }else{
     masonryStyle = { height:'100vh', padding: '78px 0px'}
+    gridStyle = { height:'calc(100vh - 58px)', padding: '78px 0px', overflow:'auto'}
   }
 
   return (
@@ -38,11 +44,25 @@ const ModuleGallery = ({ module, style, masonryStyle=null }) => {
       />
 
     <div className="Module__gallery_cont">
-      <CollectionMasonry
-            showDocLink={true}
-            masonryStyle={ masonryStyle}
-            documents={makeDocs(module.objects)}
-        />
+
+
+    <MediaQuery minWidth={768}>
+        {matches => (
+          matches ? (
+            <CollectionMasonry
+                  showDocLink={true}
+                  masonryStyle={masonryStyle}
+                  documents={makeDocs(module.objects)}
+              />
+          ) : (
+            <CollectionGrid
+             documents={makeDocs(module.objects)}
+             gridStyle={gridStyle}
+           />
+          )
+        )}
+      </MediaQuery>
+
     </div>
 
     {(module.caption) &&
