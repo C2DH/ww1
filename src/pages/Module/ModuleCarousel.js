@@ -31,7 +31,9 @@ class ModuleCarousel extends PureComponent {
     //quite bad
     this.next()
     this.previous()
-    this.setState({visibility:'visible'})
+    setTimeout(function() {
+      this.setState({visibility:'visible'});
+    }.bind(this), 1000);
 
   }
 
@@ -101,12 +103,16 @@ class ModuleCarousel extends PureComponent {
                     </div>
 
                 </div>
-                <div className="ModuleCarousel__caption">
-                    <span>
-                      <i className="icon-hand Mods__DocumentOnly_Card_icon"  />
-                      <span> {module.caption}</span>
-                    </span>
-                </div>
+                {(module.caption) &&
+                    <div className="Module__object_caption_text card-block Module__gallery_carousel_caption">
+                      <i className="icon-hand Module__object_caption_hand"  />
+                      <div className="Module__object_caption_text_cont">
+                        <p className="card-text">
+                          {module.caption}
+                        </p>
+                      </div>
+                    </div>
+                  }
               </div>
             </Col>
           </Row>
