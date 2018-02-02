@@ -5,6 +5,8 @@ import './CollectionDetailModal.css'
 import {
   loadDocument,
   unloadDocument,
+  lockScroll,
+  unlockScroll,
 } from '../../state/actions'
 import {
   getDocument,
@@ -19,6 +21,7 @@ class CollectionDetailModal extends PureComponent {
   componentDidMount() {
     this.mounted = true
     this.props.loadDocument(this.props.match.params.id)
+    this.props.lockScroll()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -31,6 +34,7 @@ class CollectionDetailModal extends PureComponent {
   componentWillUnmount() {
     this.mounted = false
     this.props.unloadDocument()
+    this.props.unlockScroll()
   }
 
   close = () => {
@@ -64,4 +68,6 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
   loadDocument,
   unloadDocument,
+  lockScroll,
+  unlockScroll,
 })(CollectionDetailModal)
