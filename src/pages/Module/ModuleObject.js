@@ -128,7 +128,7 @@ class ModuleObjectContentVideo extends PureComponent {
           </Player>
         </div>
         }
-        {(size != 'big' && resize) &&
+        {(size != 'big' || resize) &&
           <div className="ModuleObjectContentImage__Link"><CollectionItemLink doc={module.id}/></div>
         }
         {(size === 'big' && !resize) &&
@@ -149,7 +149,7 @@ class ModuleObjectContentVideo extends PureComponent {
             <div className="Module__objectCard_videoFull_overlay" style={objectVideoFullStyle}></div>
           </div>
         }
-        {(size === 'big' || !resize) &&
+        {(size === 'big' && !resize) &&
           <div className="ModuleObjectContentImage__Link videoFull"><CollectionItemLink doc={module.id}/></div>
         }
 
