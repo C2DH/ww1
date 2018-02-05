@@ -83,7 +83,7 @@ class Timeline extends PureComponent {
           <Container>
             <Row>
               <Col md="12">
-                <h2>Timeline</h2>
+                <h2>{this.context.t('timeline')}</h2>
               </Col>
             </Row>
           </Container>
@@ -106,23 +106,21 @@ class Timeline extends PureComponent {
                 ))}
               </div>
             </Col>
-            {documents && <Col lg="11" md="12" sm="12" xs="12" className="Timeline__scrollingCol"
-              style={{ paddingBottom: this.state.paddingBlocksCount * 150 }}>
-
-              {documents.map((doc, index) => (
-                <div key={doc.id} className="Timeline__expandable_wrapper">
-                  <TimelineExpandableItem
-                    scrollTo={doc.id === this.state.scrollToId}
-                    onScrollComplete={this.onItemScrollComplete}
-                    item={doc}
-                    key={doc.id}
-                  />
-                  <WayPoint
-                    onEnter={() => this.entering(index)}
-                    onLeave={() => this.leaving(index)}
-                  />
-                </div>
-              ))}
+            {documents && <Col lg="11" md="12" sm="12" xs="12" className="Timeline__scrollingCol animated fadeInUp">
+                {documents.map((doc, index) => (
+                  <div key={doc.id} className="Timeline__expandable_wrapper">
+                    <TimelineExpandableItem
+                      scrollTo={doc.id === this.state.scrollToId}
+                      onScrollComplete={this.onItemScrollComplete}
+                      item={doc}
+                      key={doc.id}
+                    />
+                    <WayPoint
+                      onEnter={() => this.entering(index)}
+                      onLeave={() => this.leaving(index)}
+                    />
+                  </div>
+                ))}
             </Col>}
           </Row>
         </Container>
@@ -130,6 +128,10 @@ class Timeline extends PureComponent {
       </div>
     )
   }
+}
+
+Timeline.contextTypes = {
+  t: React.PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => {

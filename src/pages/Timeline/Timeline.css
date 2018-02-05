@@ -1,6 +1,7 @@
 .Timeline__Wrapper{
   position: relative;
   background-color: #eee;
+  min-height: 100vh;
 }
 
 .Timeline__TopRow {
@@ -44,6 +45,10 @@
   background: white;
   margin: 15px 0px;
   min-height: 150px;
+}
+
+.Timeline__expandable_wrapper:last-of-type{
+  margin-bottom: calc(100vh - 300px);
 }
 
 /*Small devices (landscape phones, 576px and up)*/

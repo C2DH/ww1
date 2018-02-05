@@ -37,7 +37,7 @@ class TimelineExpandableYear extends PureComponent {
    render() {
     const { year, openMonth, validMonthsByYears, disabledMonths = [] } = this.props
     return (
-      <div onClick={this.onYearClick} className="TimelineExpandableYear__container">
+      <div onClick={this.onYearClick} className="TimelineExpandableYear__container animated fadeIn">
         <span className={this.props.open ? "TimelineExpandableYear__year expanded" : "TimelineExpandableYear__year"}>{year}</span>
         {this.props.open ?
           <div className="TimelineExpandableYear__expandable hidden-md-down">
