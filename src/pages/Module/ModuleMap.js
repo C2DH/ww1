@@ -55,9 +55,6 @@ const Map = ReactMapboxGl({
   accessToken: "pk.eyJ1IjoiZWlzY2h0ZXdlbHRrcmljaCIsImEiOiJjajRpYnR1enEwNjV2MndtcXNweDR5OXkzIn0._eSF2Gek8g-JuTGBpw7aXw"
 })
 
-const mapModuleStyle = { height:'100%', position:'relative' }
-
-
 class ModuleMap extends PureComponent {
 
   state = {
@@ -120,9 +117,9 @@ class ModuleMap extends PureComponent {
     }))
 
     return (
-      <div style={ this.props.style || mapModuleStyle }>
+      <div style={ this.props.style } className="Map__Module_Container">
           <Map
-            // ref={map => this.map = map}
+            ref={map => this.map = map}
             center={center}
             dragRotate={false}
             keyboard={false}
@@ -132,11 +129,7 @@ class ModuleMap extends PureComponent {
             touchZoomRotate={false}
             style="mapbox://styles/eischteweltkrich/cj5cizaj205vv2qlegw01hubm"
             containerStyle={{
-              height: module.caption ? "calc(100% - 80px)" : "100%",
-              width: "100%",
-              top: 0,
-              position: 'absolute'
-
+              flexGrow: 1
             }}>
               <ZoomControl className="Map__ZoomControl"/>
 
@@ -171,15 +164,16 @@ class ModuleMap extends PureComponent {
               </Popup>
             )}
           </Map>
-          {/*<div className="Module__objectCard_videoFull_overlay" style={objectMapStyle}></div>*/}
-          { module.caption &&
-          <div className="ModuleMap__Caption">
-            <span>
-              <i className="icon-hand Mods__DocumentOnly_Card_icon"  />
-              <span> {module.caption}</span>
-            </span>
-          </div>
-          }
+          {(module.caption) &&
+              <div className="Module__object_caption_text ModuleMap__Caption Module__gallery_carousel_caption">
+                <i className="icon-hand Module__object_caption_hand"  />
+                <div className="Module__object_caption_text_cont">
+                  <p className="card-text">
+                    {module.caption}
+                  </p>
+                </div>
+              </div>
+            }
 
       </div>
     )

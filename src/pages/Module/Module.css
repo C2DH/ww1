@@ -455,17 +455,22 @@
 
 /* object map */
 
-.ModuleMap__Caption {
-  width: 100%;
-  height: 80px;
-  background: #fff;
-  position: absolute;
-  bottom: 0px;
-  padding: 0 20px;
+.Map__Module_Container{
+  height: 100%;
+  position: relative;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  padding-top: var(--mobile-top);
 }
+
+.ModuleMap__Caption {
+    height: calc(var(--mobile-bottom)*2);
+    width: 100%;
+    background-color: white;
+    flex-grow: 0;
+    padding: 1.25rem 1.25rem calc(var(--mobile-bottom)/2 + var(--mobile-bottom));
+}
+
 
 /* end object map */
 
@@ -540,8 +545,17 @@
       padding-bottom: 0px;
   }
 
+  .ModuleMap__Caption {
+    padding: 1.25rem;
+    height: 58px;
+  }
+
   .ModuleCarousel__inner_slider {
     height: calc(100vh - 240px);
+  }
+
+  .Map__Module_Container{
+    padding-top: 0px;
   }
 
  }
