@@ -59,19 +59,23 @@
   justify-content: center;
 }
 
-.Module__container_text p {
+.Module__container_text p,
+.Module__textObject_Text p {
   font-size: 1.125rem;
 }
 
-.Module__container_text h2 {
+.Module__container_text h2,
+.Module__textObject_Text h2 {
   color: #F56350;
 }
 
-.Module__container_text a {
+.Module__container_text a,
+.Module__textObject_Text a {
   color: #F56350;
 }
 
-.Module__container_text a:hover {
+.Module__container_text a:hover,
+.MModule__textObject_Text a:hover {
   color: #F56350;
   text-decoration: none;
 }
@@ -278,7 +282,8 @@
 
 .Module__textObject_Col {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   height: 100%;
 }
 
@@ -316,9 +321,9 @@
   font-family: Georgia;
   font-size: 24px;
   width: 100%;
-  height: 100%;
+  max-height: 100%;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 /* gallery carousel */
@@ -513,7 +518,8 @@
     padding: 75px;
   }
 
-  .Module__container_text p {
+  .Module__container_text p,
+  .Module__textObject_Text p {
     font-size: 1.5rem;
   }
 
@@ -542,7 +548,7 @@
 
   .Module__gallery_carousel_caption {
       height: 58px;
-      padding-bottom: 0px;
+      padding-bottom: 1.25rem;
   }
 
   .ModuleMap__Caption {
