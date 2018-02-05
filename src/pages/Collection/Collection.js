@@ -202,7 +202,7 @@ class Collection extends PureComponent {
             <span className="Collection__items_shown hidden-md-down"><strong>{count} / {totalCount}</strong> {this.context.t('items shown')}</span>
 
             <button type="button" className="Collection__open_heading_btn btn btn-secondary" onClick={this.toggleSidebarOpen}>
-              <i className="material-icons">{this.state.sidebarOpen ? 'chevron_right' : 'search'}</i>
+              <i className="material-icons">{this.state.sidebarOpen ? 'close' : 'search'}</i>
             </button>
           </div>
 

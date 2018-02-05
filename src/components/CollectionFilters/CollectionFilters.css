@@ -137,7 +137,7 @@
   background-color: #F36455;
   font-weight: normal;
   font-size: 0.875rem;
-  width: 30px;
+  min-width: 30px;
   border-radius: 15px;
   font-family: "Atlas Grotesk", Arial, sans-serif;
   padding-top: 6px;
@@ -161,6 +161,9 @@
 .CollectionFilters__autocomplete_reset{
   cursor: pointer;
   padding-right: 10px;
+  text-decoration: underline !important;
+  font-family: 'Atlas Grotesk Web', Arial, sans-serif;
+  font-weight: 400;
 }
 
 /* Small devices (landscape phones, 576px and up)*/

@@ -19,7 +19,7 @@ const CollectionDoc = ({ doc, hasImage, lang, showDocLink = false, squared = fal
         </div> )}
       {/* {get(doc, 'data.coordinates.geometry.coordinates')} */}
     </Link>
-    <div className="CollectionDoc__frame">
+    <div className={`CollectionDoc__frame CollectionDoc__frame_over_${doc.data.type}`}>
     </div>
     {showDocLink && <div className="CollectionDoc__Link"><CollectionItemLink doc={doc}/></div>}
   </div>

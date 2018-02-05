@@ -25,6 +25,20 @@
   pointer-events: none;
 }
 
+.CollectionDoc__frame.CollectionDoc__frame_over_video{
+  background-image: url('/img/video.svg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 50%;
+}
+
+.CollectionDoc__frame.CollectionDoc__frame_over_audio{
+  background-image: url('/img/audio.svg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 50%;
+}
+
 @media (max-width: 991px) {
   .CollectionDoc__frame{
     border: 5px solid white;

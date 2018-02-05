@@ -60,7 +60,8 @@ class CollectionFilters extends PureComponent {
             )}
           />
           </form>
-          <i className="material-icons CollectionFilters__autocomplete_reset" onClick={() => onAutocompleteSelect('')}>close</i>
+          <a className="CollectionFilters__autocomplete_reset" onClick={() => onAutocompleteSelect('')}>reset</a>
+
 
         </div>
 
