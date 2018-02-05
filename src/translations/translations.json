@@ -55,6 +55,7 @@
     "chapters": "chapters",
     "chapter": "chapter",
     "filters": "filters",
+    "you seem too far from Luxembourg": "you seem too far from Luxembourg",
     "use your mouse or the arrows to read the story": "scroll or use the arrows to read the story"
   },
   "fr_FR" : {
@@ -113,6 +114,7 @@
     "chapters": "chapitres",
     "chapter": "chapitre",
     "filters": "filters",
+    "you seem too far from Luxembourg": "vous êtes trop loin du Luxembourg",
     "use your mouse or the arrows to read the story": "utilisez votre souris ou les flèches pour lire l'histoire"
   },
   "de_DE" : {
@@ -171,6 +173,7 @@
     "chapters": "Kapitel",
     "chapter": "Kapitel",
     "filters": "filter",
+    "you seem too far from Luxembourg": "Sie sind zu weit von Luxemburg entfernt",
     "use your mouse or the arrows to read the story": "Benutze deine Maus oder die Pfeile, um die Geschichte zu lesen"
   }
 }

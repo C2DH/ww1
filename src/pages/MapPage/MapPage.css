@@ -14,7 +14,7 @@
 }
 
 .Map__ZoomControl{
-  left: 20px!important;
+  left: 8px!important;
   box-shadow: none!important;
   border: none!important;
 }
@@ -60,7 +60,7 @@
 
 .Map__Controls {
   position: absolute;
-  left: 20px;
+  left: 8px;
   top: 100px;
   z-index: 2000;
   color: #fff;
@@ -104,13 +104,23 @@
 }
 
 .MapToolTip {
-  width: 200px;
+  width: 250px;
 }
 
 .MapToolTip__img {
-  width: 200px;
+  width: 100%;
   height: 150px;
   margin-bottom: 10px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  position: relative;
+}
+
+.MapToolTip__img_link{
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
 
 .MapToolTip__title {
@@ -118,11 +128,14 @@
   text-transform: uppercase;
   font-size: 0.875rem;
   margin-top: 4px;
+  padding-right: 24px;
 }
 
 .MapToolTip__text{
   margin-bottom: 0px;
-  font-family: Georgia, Times, serif;
+  font-family: Georgia, serif;
+  max-height: 150px;
+  overflow-y: auto;
 }
 
 .Map__PositionControl {
@@ -133,6 +146,10 @@
   padding: 6px;
   margin: 4px;
   cursor: pointer;
+}
+
+.Map__Modal_title h4 {
+  font-family: 'Vinter Web', Georgia, serif;
 }
 
 @keyframes Map__PositionContro--animatedBackground {
@@ -149,10 +166,12 @@
 @media (min-width: 576px) {  }
 
 /* Medium devices (tablets, 768px and up)*/
-@media (min-width: 768px) {  }
+@media (min-width: 768px) {
 
-/* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
+  .Map__ZoomControl{
+    left: 20px!important;
+  }
+
   .MapPage__MainRow.openMap{
     width: calc(100vw - 358px);
   }
@@ -164,6 +183,16 @@
   .MapPage__MainRow{
     padding-top: 100px;
   }
+
+  .Map__Controls {
+    left: 20px;
+  }
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
 }
 
 /* Extra large devices (large desktops, 1200px and up) */

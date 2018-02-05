@@ -72,16 +72,19 @@ const styles = {
 }
 
 const MapToolTip = ({ doc, snapshot, title, text }) => {
-  const placeType = get(doc, 'data.type', '').toLowerCase()
+  const placeType = get(doc, 'type', '').toLowerCase()
   return (
     <div className="MapToolTip">
-      {placeType === 'other' && (
-        <div>
-          <CollectionItemLink doc={doc} />
-        </div>
-      )}
-      {snapshot && <div className="MapToolTip__img" style={{background: `url(${snapshot})`}}/>}
       <h5 className="MapToolTip__title">{title}</h5>
+      {snapshot &&
+        <div className="MapToolTip__img" style={{backgroundImage: `url(${snapshot})`}}>
+          {placeType != 'entity' && (
+            <div className="MapToolTip__img_link">
+              <CollectionItemLink doc={doc} />
+            </div>
+          )}
+        </div>
+      }
       <p className="MapToolTip__text">{text}</p>
     </div>
   )
@@ -92,7 +95,11 @@ const Map = ReactMapboxGl({
 })
 
 
-const LUXEMBOURG_BBOX = [2.230225,48.177076,10.140381,50.864911]
+const LUXEMBOURG_BBOX = [2.230225,48.177076,10.140381,50.864911];
+const sw = new MapboxGL.LngLat(2.230225,48.177076);
+const ne = new MapboxGL.LngLat(10.140381,50.864911);
+const llb = new MapboxGL.LngLatBounds(sw, ne);
+
 class PositionControl extends React.PureComponent {
 
   state = {
@@ -138,9 +145,9 @@ class PositionControl extends React.PureComponent {
         <i className="material-icons md-24">location_searching</i>
 
         <Modal isOpen={this.state.showingModal} toggle={this.toggleModal} zIndex="9999">
-          <ModalHeader toggle={this.toggleModal}>Ooops</ModalHeader>
+          <ModalHeader toggle={this.toggleModal} className="Map__Modal_title">Ooops</ModalHeader>
           <ModalBody>
-            You seem too far from Luxembourg...
+            {this.context.t('you seem too far from Luxembourg')}...
           </ModalBody>
         </Modal>
 
@@ -177,9 +184,9 @@ class LayersControl extends React.PureComponent {
         <PopoverContent>
           <ButtonToolbar>
           <ButtonGroup vertical>
-            <Button className="Map__LayersControl__Button" active={currentLayer==='1914.geojson'} onClick={this.handleSetLayer('1914.geojson')}>See 1914 borders</Button>
-            <Button className="Map__LayersControl__Button" active={currentLayer==='1920.geojson'} onClick={this.handleSetLayer('1920.geojson')}>See 1920 borders</Button>
-            <Button className="Map__LayersControl__Button" active={currentLayer===null} onClick={this.handleSetLayer(null)}>See today map</Button>
+            <Button className="Map__LayersControl__Button" active={currentLayer==='1914.geojson'} onClick={this.handleSetLayer('1914.geojson')}>{this.context.t('see 1914 borders')}</Button>
+            <Button className="Map__LayersControl__Button" active={currentLayer==='1920.geojson'} onClick={this.handleSetLayer('1920.geojson')}>{this.context.t('see 1920 borders')}</Button>
+            <Button className="Map__LayersControl__Button" active={currentLayer===null} onClick={this.handleSetLayer(null)}>{this.context.t('see today map')}</Button>
           </ButtonGroup>
           </ButtonToolbar>
         </PopoverContent>
@@ -391,10 +398,10 @@ class MapPage extends PureComponent {
       <div>
       <div className={this.state.sideMenuOpen ? "Collection__List--sidebar-open" : 'Collection__List--sidebar-close'}>
         <div className={`Collection__List--list-heading d-flex align-items-center ${this.state.sideMenuOpen ? 'Collection__List--list-heading-closed' : '' }`}>
-            <h2>Map</h2>
-            <span className="Collection__items_shown hidden-md-down"><strong>{count} / {totalCount}</strong> ITEMS SHOWN</span>
+            <h2>{this.context.t('map')}</h2>
+            <span className="Collection__items_shown hidden-md-down"><strong>{count} / {totalCount}</strong> {this.context.t('items shown')}</span>
             <button type="button" className="Collection__open_heading_btn btn btn-secondary" onClick={this.toggleSideMenuOpen}>
-              <i className="material-icons">{this.state.sideMenuOpen ? 'chevron_right' : 'search'}</i>
+              <i className="material-icons">{this.state.sideMenuOpen ? 'close' : 'search'}</i>
             </button>
           </div>
         <div
@@ -405,6 +412,8 @@ class MapPage extends PureComponent {
                 dragRotate={false}
                 keyboard={false}
                 zoom={zoom}
+                minZoom={8}
+                maxBounds = {llb}
                 onDrag={this.onDrag}
                 touchZoomRotate={false}
                 injectCss={false}
@@ -454,7 +463,7 @@ class MapPage extends PureComponent {
                   <Popup
                     coordinates={selectedDocument.coordinates}
                     anchor='bottom'
-                    offset={[0, -15]}
+                    offset={[0, -30]}
                     key={selectedDocument.id}>
                     <i className="material-icons pointer float-right" onClick={this.closePopup}>close</i>
                     <MapToolTip
@@ -525,6 +534,18 @@ const mapStateToProps = (state, ownProps) => ({
   autocompleteSearchTerm: getMapDocumentsAutocompleteSearchTerm(state),
   autocompleteResults: getMapDocumentsAutocompleteResults(state),
 })
+
+MapPage.contextTypes = {
+  t: React.PropTypes.func.isRequired
+}
+
+LayersControl.contextTypes = {
+  t: React.PropTypes.func.isRequired
+}
+
+PositionControl.contextTypes = {
+  t: React.PropTypes.func.isRequired
+}
 
 export default connect(mapStateToProps, {
   loadMapDocuments,

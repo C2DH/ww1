@@ -45,7 +45,7 @@ class CollectionFilters extends PureComponent {
           <Autocomplete
             inputProps={{
               className:'form-control CollectionFilters__input',
-              placeholder:this.context.t('search here') + ' ' + this.context.t('(e.g: postcard)')
+              placeholder:this.context.t('search here') + '...'
             }}
             wrapperStyle={{display:'flex', position:'relative'}}
             value={searchString}
