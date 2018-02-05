@@ -111,9 +111,11 @@ class Themes extends PureComponent {
           </div>
         )}
         </CSSTransitionGroup>
-          <Row className="Themes__TitleRow d-none d-md-block animated fadeInDown" style={{zIndex: 1001}}>
+          <Row className="Themes__TitleRow d-none d-md-block" style={{zIndex: 1001}}>
             <Col>
-              <h1>{this.context.t('themes')}</h1>
+                {themes &&
+                  <h1 className="Themes__Title_h1 animated fadeInDown">{this.context.t('themes')}</h1>
+                  }
             </Col>
           </Row>
 
