@@ -107,37 +107,35 @@ export default class CollectionItemPreviewPDF extends React.PureComponent {
       </div>
       <div className="CollectionItem__doc_controls">
       <div className="CollectionItemPreviewPDF__controls">
-          <div style={{padding:8}}>Page <span className="CollectionItemPreviewPDF__controls_current_page">{this.state.page}</span> of {this.state.pages}</div>
-          <div className="CollectionItemPreviewPDF__controls_page_arrows">
-            <button  onClick={(evt)=>{this.prevPage()}}>
-              <i className="material-icons pointer">arrow_upward</i>
+          <div className="px-3">
+            Page <span className="CollectionItemPreviewPDF__controls_current_page">{this.state.page}</span> of {this.state.pages}
+          </div>
+          <div className="px-3 CollectionItemPreviewPDF__controls_page_arrows">
+            <button onClick={(evt)=>{this.prevPage()}}>
+              <i className="material-icons">arrow_upward</i>
             </button>
-            <span>{' | '}</span>
+             |
             <button onClick={(evt)=>{this.nextPage()}}>
-              <i className="material-icons pointer">arrow_downward</i>
+              <i className="material-icons">arrow_downward</i>
             </button>
           </div>
-          <div className="CollectionItemPreviewPDF__controls_zoom">
+          <div className="px-3 CollectionItemPreviewPDF__controls_zoom">
             <button onClick={(evt)=>{this.zoomIn()}}>
-              <i className="icon-zoom_in pointer" />
-            </button><span>{' | '}</span>
-            <button  onClick={(evt)=>{this.zoomOut()}}>
-              <i className="icon-zoom_out pointer" />
-            </button><span>{' | '}</span>
-            <button  onClick={(evt)=>{this.fitHeight()}} className={this.state.fitHeight ? 'active' : ''}>
-              <i className="material-icons pointer">view_day</i>
-            </button><span>{' | '}</span>
+              <i className="material-icons">zoom_in</i>
+            </button>
+             |
+            <button onClick={(evt)=>{this.zoomOut()}}>
+              <i className="material-icons">zoom_out</i>
+            </button>
+             |
+            <button onClick={(evt)=>{this.fitHeight()}} className={this.state.fitHeight ? 'active' : ''}>
+              <i className="material-icons">view_day</i>
+            </button>
+             |
             <button onClick={(evt)=>{this.fitWidth()}} className={this.state.fitWidth ? 'active' : ''}>
-              <i className="material-icons pointer">view_array</i>
+              <i className="material-icons">view_array</i>
             </button>
           </div>
-          {/* fit to page is not easy to implement, given existing pdf modules */}
-          {/* <div className="CollectionItemPreviewPDF__controls_fit_to_page">
-            <select>
-              <option>Fit to page</option>
-            </select>
-          </div> */}
-          {/* <button className="CollectionItemPreviewPDF__download_btn"><i className="icon-file_download" /></button> */}
           <CollectionItemDownload className="CollectionItemPreviewPDF__download_btn" doc={doc}/>
         </div>
       </div>
