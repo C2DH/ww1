@@ -199,7 +199,16 @@ class Collection extends PureComponent {
         <div className={this.state.sidebarOpen ? "Collection__List--sidebar-open" : 'Collection__List--sidebar-close'}>
           <div className={`Collection__List--list-heading d-flex align-items-center ${this.state.sidebarOpen ? 'Collection__List--list-heading-closed' : '' }`}>
             <h2>{this.context.t('collection')}</h2>
-            <span className="Collection__items_shown hidden-md-down"><strong>{count} / {totalCount}</strong> {this.context.t('items shown')}</span>
+
+
+              <span className="Collection__items_shown hidden-md-down">
+                {(!isNull(totalCount)) &&
+                <span>
+                  <strong>{count} / {totalCount}</strong> {this.context.t('items shown')}
+                </span>
+                }
+              </span>
+
 
             <button type="button" className="Collection__open_heading_btn btn btn-secondary" onClick={this.toggleSidebarOpen}>
               <i className="material-icons">{this.state.sidebarOpen ? 'close' : 'search'}</i>
@@ -209,6 +218,14 @@ class Collection extends PureComponent {
           {(!documents && loading) && <div style={{ paddingTop: 120 }}>
             <Spinner />
           </div>}
+
+          {
+            (count === 0 && !loading) &&
+            <div className="Collection__not_found">
+              <h2>{this.context.t('no documents found')}</h2>
+              <p>{this.context.t('reset filters or change query')}</p>
+            </div>
+          }
 
          {documents && <MediaQuery maxWidth={991}>
            {matches => (
@@ -237,7 +254,7 @@ class Collection extends PureComponent {
           transitionName="filters"
           transitionEnterTimeout={500}
           transitionLeaveTimeout={500}>
-          {this.state.sidebarOpen && (
+          {(this.state.sidebarOpen) && (
             <CollectionFilters
               key="Collectionfilters"
               hideFilters={isNull(count)}

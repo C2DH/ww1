@@ -60,7 +60,7 @@ class CollectionFilters extends PureComponent {
             )}
           />
           </form>
-          <a className="CollectionFilters__autocomplete_reset" onClick={() => onAutocompleteSelect('')}>reset</a>
+          <a className="CollectionFilters__autocomplete_reset" onClick={() => onAutocompleteSelect('')}>{this.context.t('reset')}</a>
 
 
         </div>

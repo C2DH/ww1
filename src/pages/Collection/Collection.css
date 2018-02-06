@@ -61,6 +61,12 @@
   background-color: white;
 }
 
+.Collection__not_found{
+  padding: 120px 20px;
+  width: 100%;
+  text-align: center;
+}
+
 
 /* CSS transition styles */
 .filters-enter {
