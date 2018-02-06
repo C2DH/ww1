@@ -1,0 +1,41 @@
+.CollectionItem__Relatedobjects {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.CollectionItem__Relatedobjects__img_cont{
+  flex: 0 0 33%;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.CollectionItem__Relatedobjects__img_cont:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.CollectionItem__Relatedobjects__text_container {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-left: 15px;
+}
+
+.CollectionItem__Relatedobjects__text_container p {
+  color: #C3C2C4;
+  font-family: 'Atlas Grotesk Web', sans-serif;
+  margin-top: auto;
+  margin-bottom: 0px;
+}
+
+.CollectionItem__Relatedobjects_cont{
+  border-bottom: 1px solid #484848;
+  padding: 7px 0px;
+}
+
+.CollectionItem__Relatedobjects_cont:first-of-type{
+  border-top: 1px solid #484848;
+  border-bottom: 1px solid #484848;
+}

@@ -6,10 +6,11 @@ import moment from 'moment'
 import MediaQuery from 'react-responsive'
 import { get, keys, capitalize } from 'lodash'
 import CollectionItemPreview from '../CollectionItemPreview'
+import CollectionItemRelated from '../CollectionItemRelated'
 import './CollectionItem.css'
 
 
-const ADDITIONAL_METATDATA_KEYS = ['creator','provenance','archive_id','copyright']
+const ADDITIONAL_METATDATA_KEYS = ['creator','provenance','archive_id','copyrights']
 
 
 class AdditionalInformation extends PureComponent {
@@ -26,34 +27,42 @@ class AdditionalInformation extends PureComponent {
 
   render() {
   const {doc, metadataKeys=[]} = this.props
-
+  let additional = metadataKeys.map(k => {
+    const datum = get(doc.translated, k, get(doc, k, null))
+    if(datum){
+      return {key: k, value: datum}
+    }
+  }).filter(function(d){
+    return d
+  })
   return (
-    <div>
-      <div className="CollectionItem__additional_info d-flex align-items-center" onClick={this.toggleInfo}>
-        <h6 className="CollectionItem__label">
-          {this.context.t('additional information')}
-        </h6>
-        <i className="material-icons">{this.state.open ? 'keyboard_arrow_up': 'keyboard_arrow_down'}</i>
+  <div>
+    { additional &&
+        <div>
+        <div className="CollectionItem__additional_info d-flex align-items-center" onClick={this.toggleInfo}>
+              <h6 className="CollectionItem__label">
+                {this.context.t('additional information')}
+              </h6>
+              <i className="material-icons">{this.state.open ? 'keyboard_arrow_up': 'keyboard_arrow_down'}</i>
+        </div>
+        <Collapse isOpen={this.state.open}>
+         <table className="table table-bordered CollectionItem__AdditionalInformation_table">
+             <tbody>
+           { additional.map(item => {
+             return (
+               <tr key={item.key}>
+                 <th scope="row">{this.context.t(item.key)}</th>
+                 <td>{item.value}</td>
+               </tr>
+             )
+            })
+           }
+           </tbody>
+          </table>
+        </Collapse>
       </div>
-      <Collapse isOpen={this.state.open}>
-       <table className="table table-bordered CollectionItem__AdditionalInformation_table">
-           <tbody>
-         { metadataKeys.map(k => {
-           const datum = get(doc.translated, k, get(doc, k, null))
-           if (datum === null){ return null }
-           return (
-             <tr key={k}>
-               <th scope="row">{this.context.t(k)}</th>
-               <td>{datum}</td>
-             </tr>
-           )
-          })
-         }
-         </tbody>
-        </table>
-      </Collapse>
+    }
     </div>
-
   )
  }
 }
@@ -73,23 +82,6 @@ const CloseButton = ({ onClick }) => (
   </Col>
 )
 
-const RelatedObjects = ({items}) => {
-
-  return (<div className="CollectionItem__Relatedobjects">
-    <Label className="CollectionItem__label">{this.context.t('related object')}</Label>
-    <hr className="CollectionItem__Relatedobjects_divider mt-0" />
-    { items.map(item => (
-        <div key={item.id} className="d-inline-flex">
-          <img src="http://placehold.it/70x70" alt="related object image" className="CollectionItem__Relatedobjects__img"/>
-          <div className="CollectionItem__Relatedobjects__text_container">
-            <h6>{item.title}</h6>
-            <p>{item.type}</p>
-          </div>
-        </div>
-      ))}
-    <hr className="CollectionItem__Relatedobjects_divider" />
-  </div>)
-}
 
 class SeeAlso extends PureComponent {
   render() {
@@ -138,10 +130,10 @@ SeeAlso.contextTypes = {
 
 
 //TODO: MOVE AWAY. ADD GLOBAL MAPBOX ACCESS TOKEN
-const MiniMap = ({coords, width=230, height=140}) => {
-  const url = `https://api.mapbox.com/styles/v1/mapbox/streets-v9/static/pin-s-x+f00(${coords[1]},${coords[0]})/${coords[1]},${coords[0]},13/${width}x${height}?access_token=pk.eyJ1IjoiYmlhbmNoaW1ybyIsImEiOiJOY0FqNUxrIn0.C2YPVWz8M0nPeG2pZLybKQ`
+const MiniMap = ({coords, width=350, height=140}) => {
+  const url = `https://api.mapbox.com/styles/v1/eischteweltkrich/cj5cizaj205vv2qlegw01hubm/static/pin-s+f56350(${coords[1]},${coords[0]})/${coords[1]},${coords[0]},13/${width}x${height}@2x?access_token=pk.eyJ1IjoiZWlzY2h0ZXdlbHRrcmljaCIsImEiOiJjajRpYnR1enEwNjV2MndtcXNweDR5OXkzIn0._eSF2Gek8g-JuTGBpw7aXw`
   return (
-    <img src={url} width={width} height={height} alt='Map of Albany, NY' />
+    <img src={url} width='100%' height='auto' className="my-4" />
   )
 }
 
@@ -184,7 +176,7 @@ export default ({ doc, onCloseClick }) => {
                   <MiniMap coords={coords}/>
                 )}
                 { get(doc, "documents.length", 0) > 0 && (
-                  <RelatedObjects items={get(doc, "documents")}/>
+                  <CollectionItemRelated items={get(doc, "documents")}/>
                 )}
                 <SeeAlso doc={doc}/>
                 <AdditionalInformation doc={doc} metadataKeys={ADDITIONAL_METATDATA_KEYS}/>

@@ -53,7 +53,7 @@ class CollectionDetailModal extends PureComponent {
     const { doc, loading } = this.props
     const { cloosing } = this.state
     return (
-      <div className={`CollectionDetailModal__container d-flex ${cloosing ? 'fadeOut' : 'fadeIn'}`}>
+      <div className={`CollectionDetailModal__container ${cloosing ? 'fadeOut' : 'fadeIn'}`}>
         {doc && <CollectionItem doc={doc} onCloseClick={this.close} />}
       </div>
     )

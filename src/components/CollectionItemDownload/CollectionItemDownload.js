@@ -31,8 +31,8 @@ export default class CollectionItemDownload extends React.PureComponent {
     const buttonId = `CollectionItemDownload-${v4()}`
     const download = get(doc, 'data.download')
     const disabled = !download || download.toLowerCase() === 'false'
-
-    if(!doc){ return null }
+    
+    if(!doc || disabled){ return null }
     return (
 
       <button

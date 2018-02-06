@@ -32,8 +32,8 @@
 }
 
 .CollectionItem__info_container {
-  max-height: 100vh;
-  overflow-x: scroll;
+  max-height: inherit;
+  overflow-y: auto;
   padding-top: 0px;
   border-left: none;
   border-right: none;
@@ -43,9 +43,7 @@
 }
 
 .CollectionItem__info {
-  /*height: 100%;
-  width: 90%;
-  padding-right: 20px;*/
+  margin-bottom: 20px
 }
 
 
@@ -92,30 +90,6 @@
 	font-size: 1.125rem;
 }
 
-.CollectionItem__Relatedobjects {
-  padding-top: 15px;
-}
-
-.CollectionItem__Relatedobjects__text_container {
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  padding-left: 10px;
-  padding-right: 5px;
-  position: relative;
-}
-
-.CollectionItem__Relatedobjects__text_container p {
-  color: #C3C2C4;
-  font-weight: 100;
-  margin: 0px;
-  position: absolute;
-  bottom: 0;
-}
-
-.CollectionItem__Relatedobjects__img {
-
-}
 
 .CollectionItem__additional_info {
   margin-top: 30px;
@@ -136,10 +110,6 @@
   color: #F56350;
 	margin-bottom: 15px;
   text-transform: uppercase;
-}
-
-.CollectionItem__Relatedobjects_divider {
-  border-color: #484848;
 }
 
 .CollectionItem__btn {
@@ -177,6 +147,8 @@
 .CollectionItem__AdditionalInformation_table{
   color: #C3C2C4;
   margin-top: -1px;
+  font-size: 0.75rem;
+  font-family: "Atlas Grotesk Web", Arial, sans-serif;
 }
 
 .CollectionItem__AdditionalInformation_table.table-bordered,
@@ -197,11 +169,7 @@
 @media (min-width: 576px) {  }
 
 /* Medium devices (tablets, 768px and up)*/
-@media (min-width: 768px) {  }
-
-/* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-
+@media (min-width: 768px) {
   .CollectionItem__doc_container {
     height: 100vh;
     /*display: flex;
@@ -212,6 +180,8 @@
     padding-top: 58px;
     border-left: 1px solid #DBDBD0;
     border-right: 1px solid #DBDBD0;
+    max-height: 100vh;
+    overflow-y: auto;
   }
 
   .order-2-sm-1{
@@ -221,6 +191,11 @@
   .CollectionItem__close_btn{
     margin: 15px 0;
   }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
 }
 
 /* Extra large devices (large desktops, 1200px and up) */

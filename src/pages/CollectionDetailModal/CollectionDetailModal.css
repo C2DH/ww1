@@ -7,7 +7,6 @@
   z-index: 10000;
   background-color: #2F2F2F;
   overflow-y: scroll;
-  flex-direction: column-reverse;
 }
 
 .CollectionDetailModal__container.fadeOut{
