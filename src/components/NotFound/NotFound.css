@@ -1,14 +1,49 @@
 .NotFound {
-  margin-top: 15%;
-  text-align: center;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.NotFound_cont{
+  background-color: white;
+  border: 1px solid #DBDBD0;
+  padding: 20px;
+}
+
 .NotFound h1 {
-  font-family: 'Behrens Antiqua';
-  font-size: 40px;
+  font-family: 'Behrens Antiqua', serif;
+  font-size: 9rem;
   text-transform: uppercase;
+}
+
+.NotFound h3 {
   color: #F56350;
 }
 
-.NotFound h1.NotFound__404 {
-  font-size: 100px;
+/*Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {
+
+
+ }
+
+/*Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+
+  .NotFound_cont{
+    padding: 120px;
+  }
+
+
+ }
+
+/*Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+
+}
+
+/* Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+
+
 }
