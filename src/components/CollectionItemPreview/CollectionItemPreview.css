@@ -47,10 +47,6 @@
   display: flex;
 }
 
-/* .CollectionItemPreview__pdf_scale canvas{
-  min-height: 100%;
-} */
-
 .CollectionItemPreviewPDF__controls {
   background-color: #000;
   color: #fff;

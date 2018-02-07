@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { get, isUndefined, keys, omit } from 'lodash'
+import { get, isUndefined, keys, omit, isNull } from 'lodash'
 import { scaleLinear } from 'd3-scale'
 import qs from 'query-string'
 import ReactMapboxGl, { Popup, Marker, Layer, Feature, Cluster, ZoomControl, GeoJSONLayer, Source } from 'react-mapbox-gl'
@@ -10,6 +10,7 @@ import MapSideMenu from '../../components/MapSideMenu'
 import CollectionItemLink from '../../components/CollectionItemLink'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import { isMobileScreen } from '../../breakpoints'
+import Spinner from '../../components/Spinner'
 import './MapPage.css'
 import {
   parseQsValue,
@@ -47,20 +48,20 @@ const circleScale = scaleLinear().range([30, 100]).domain([1, 150])
 const styles = {
   clusterMarker: {
     borderRadius: '50%',
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(255,255,255,0.85)',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     color: '#F56350',
     border: '2px solid white',
-    fontWeight: 500
-    // pointerEvents: 'none'
+    fontWeight: 500,
+    pointerEvents: 'none'
   },
   marker: {
     width: 30,
     height: 30,
     borderRadius: '50%',
-    backgroundColor: '#ffffff',
+    backgroundColor: 'rgba(255,255,255,0.85)',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -185,7 +186,7 @@ class LayersControl extends React.PureComponent {
           <ButtonToolbar>
           <ButtonGroup vertical>
             <Button className="Map__LayersControl__Button" active={currentLayer==='1914.geojson'} onClick={this.handleSetLayer('1914.geojson')}>{this.context.t('see 1914 borders')}</Button>
-            <Button className="Map__LayersControl__Button" active={currentLayer==='1920.geojson'} onClick={this.handleSetLayer('1920.geojson')}>{this.context.t('see 1920 borders')}</Button>
+            {/*<Button className="Map__LayersControl__Button" active={currentLayer==='1920.geojson'} onClick={this.handleSetLayer('1920.geojson')}>{this.context.t('see 1920 borders')}</Button>*/}
             <Button className="Map__LayersControl__Button" active={currentLayer===null} onClick={this.handleSetLayer(null)}>{this.context.t('see today map')}</Button>
           </ButtonGroup>
           </ButtonToolbar>
@@ -199,7 +200,7 @@ class LayersControl extends React.PureComponent {
 
 class MapPage extends PureComponent {
   state = {
-    center: [6.087, 49.667],
+    center: [6.1008033, 49.8148384],
     zoom: [8],
     selectedDocument: null,
     selectedLayer: null,
@@ -378,6 +379,7 @@ class MapPage extends PureComponent {
       includeUncertainYears,
       autocompleteSearchTerm,
       autocompleteResults,
+      loading,
     } = this.props
 
     const { selectedDocument, center, zoom } = this.state
@@ -399,13 +401,23 @@ class MapPage extends PureComponent {
       <div className={this.state.sideMenuOpen ? "Collection__List--sidebar-open" : 'Collection__List--sidebar-close'}>
         <div className={`Collection__List--list-heading d-flex align-items-center ${this.state.sideMenuOpen ? 'Collection__List--list-heading-closed' : '' }`}>
             <h2>{this.context.t('map')}</h2>
-            <span className="Collection__items_shown hidden-md-down"><strong>{count} / {totalCount}</strong> {this.context.t('items shown')}</span>
+            <span className="Collection__items_shown hidden-md-down">
+              {(!isNull(totalCount)) &&
+              <span>
+                <strong>{count} / {totalCount}</strong> {this.context.t('items shown')}
+              </span>
+              }
+            </span>
+
             <button type="button" className="Collection__open_heading_btn btn btn-secondary" onClick={this.toggleSideMenuOpen}>
               <i className="material-icons">{this.state.sideMenuOpen ? 'close' : 'search'}</i>
             </button>
           </div>
         <div
           className={this.state.sideMenuOpen ? "MapPage__MainRow openMap" : 'MapPage__MainRow closeMap'}>
+              {(loading) && <div className="MapPage__Spinner_container">
+                <Spinner />
+              </div>}
               <Map
                 ref={map => this.map = map}
                 center={center}
@@ -451,13 +463,13 @@ class MapPage extends PureComponent {
                       linePaint={linePaint}
                       data="borders/1914.geojson"/>
                 )}
-                { this.state.selectedLayer === '1920.geojson' && (
+                { /*this.state.selectedLayer === '1920.geojson' && (
                     <GeoJSONLayer
                       symbolLayout={symbolLayout}
                       symbolPaint={symbolPaint}
                       linePaint={linePaint}
                       data="borders/1920.geojson"/>
-                )}
+                  )*/}
 
                 {selectedDocument && (
                   <Popup
@@ -488,6 +500,7 @@ class MapPage extends PureComponent {
               key="Collectionfilters"
               dataPlaceTypes={dataPlaceTypesFacets}
               selectedPlaceTypes={selectedPlaceTypes}
+              hideFilters={isNull(count)}
               toggleOpen={this.toggleSideMenuOpen}
               onTogglePlaceTypeSelection={this.togglePlaceTypeSelection}
               onResetSelectedPlaceTypes={this.resetPlaceTypesSelection}

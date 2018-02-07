@@ -3,6 +3,7 @@
   padding-top: 58px;
   display: flex;
   width: 1px;
+  position: relative;
 }
 
 .MapPage__MainRow.openMap{
@@ -11,6 +12,17 @@
 
 .MapPage__MainRow.closeMap{
   width: 100vw;
+}
+
+.MapPage__Spinner_container{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  zIndex: 9999;
 }
 
 .Map__ZoomControl{

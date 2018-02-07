@@ -28,6 +28,7 @@ class MapSideMenu extends PureComponent {
       onSearchChange,
       autocompleteResults,
       onAutocompleteSelect,
+      hideFilters,
     } = this.props
     return (
       <div className="CollectionFilters__container">
@@ -64,10 +65,13 @@ class MapSideMenu extends PureComponent {
           </form>
           <a className="CollectionFilters__autocomplete_reset" onClick={() => onAutocompleteSelect('')}>{this.context.t('reset')}</a>
         </div>
+        {!hideFilters &&
         <div className="CollectionFilters__reset_container d-flex align-items-center">
           <h5 className="CollectionFilters__reset_title">{this.context.t('type')}</h5>
           <a className="CollectionFilters__reset" onClick={onResetSelectedPlaceTypes}>{this.context.t('reset')}</a>
         </div>
+        }
+        {!hideFilters &&
         <div className="CollectionFilters__filter_container d-flex flex-column">
           {dataPlaceTypes && dataPlaceTypes.map(data => {
             const placeType = data.data__place_type
@@ -86,10 +90,14 @@ class MapSideMenu extends PureComponent {
             )
           })}
         </div>
+        }
+        {!hideFilters &&
         <div className="CollectionFilters__reset_container d-flex align-items-center">
           <h5 className="CollectionFilters__reset_title">{this.context.t('period')}</h5>
           <a className="CollectionFilters__reset" onClick={onResetSelectedYears}>{this.context.t('reset')}</a>
         </div>
+        }
+        {!hideFilters &&
         <div className="MapSideMenu__chartsContainer">
           <YearsRange
             uncertainYearsCount={uncertainYearsCount}
@@ -103,6 +111,7 @@ class MapSideMenu extends PureComponent {
             filteredCounts={yearsFilteredCounts}
           />
         </div>
+      }
       </div>
     )
   }
