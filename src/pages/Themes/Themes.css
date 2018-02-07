@@ -148,6 +148,17 @@
     font-size: 3.125rem;
   }
 
+  .Themes__theme_title_link{
+    display: block;
+    transition: transform 0.25s linear;
+    transform: scale(1);
+  }
+
+  .Themes__theme_title_link:hover{
+    transform: scale(1.05);
+    text-decoration: none;
+  }
+
   .Themes__theme_title_container {
     padding: 0px 15px;
   }

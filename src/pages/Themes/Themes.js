@@ -30,7 +30,7 @@ class ThemeContainer extends PureComponent {
   render() {
     const { theme, hover, responsiveBackground } = this.props
     return (
-       <div className="Themes__theme_container animated fadeInDown">
+       <div className="Themes__theme_container animated fadeInUp">
          <MediaQuery minWidth={768}>
            <h2 className="Themes__theme_title">
              <Link
@@ -114,7 +114,7 @@ class Themes extends PureComponent {
           <Row className="Themes__TitleRow d-none d-md-block" style={{zIndex: 1001}}>
             <Col>
                 {themes &&
-                  <h1 className="Themes__Title_h1 animated fadeInDown">{this.context.t('themes')}</h1>
+                  <h1 className="Themes__Title_h1 animated fadeInUp">{this.context.t('themes')}</h1>
                   }
             </Col>
           </Row>
