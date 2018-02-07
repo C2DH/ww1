@@ -119,6 +119,8 @@ class Chapter extends PureComponent  {
                 <ChaptersControl
                   title={theme.translated.title}
                   hasPrev={index > 0}
+                  moduleIndex={index}
+                  moduleTot={totalChapterModules}
                   hasNext={index < totalChapterModules || chapterIndex + 1 < totalChapters}
                   onClickChapters={() => {
                     this.toggleChapters()

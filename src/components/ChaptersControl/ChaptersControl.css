@@ -68,6 +68,15 @@
   background-color: white;
 }
 
+.ChaptersControl__chapters_progress{
+  position: fixed;
+  z-index: 98;
+  height: 52px;
+  width: 52px;
+  right: 11.5px;
+  top: 11.8px;
+}
+
 /* media queries */
 
 

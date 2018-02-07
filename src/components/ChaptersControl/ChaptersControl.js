@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import './ChaptersControl.css'
+import './circle.css'
 
 class ChaptersControl extends PureComponent {
   componentDidMount() {
@@ -21,12 +22,22 @@ class ChaptersControl extends PureComponent {
   }
 
   render() {
-    const { hasNext, hasPrev, title, onClickTheme, onClickNext, onClickPrev, currentIndex, count, onClickChapters } = this.props
+    const { hasNext, hasPrev, title, onClickTheme, onClickNext, onClickPrev, currentIndex, count, onClickChapters, moduleIndex, moduleTot } = this.props
+    let percentage = parseInt(moduleIndex*100/moduleTot);
     return (
       <div>
 
         <div className="Theme__title d-md-none d-flex align-items-center justify-content-center">
           <h2 onClick={onClickTheme} className="m-0">{title}</h2>
+        </div>
+
+        <div className="ChaptersControl__chapters_progress">
+          <div className={`c100 p${percentage}`}>
+              <div className="slice">
+                  <div className="bar"></div>
+                  <div className="fill"></div>
+              </div>
+          </div>
         </div>
 
         <div className="ChaptersControl__chapters_num_container">
