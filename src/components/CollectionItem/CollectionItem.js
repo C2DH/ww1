@@ -7,6 +7,7 @@ import MediaQuery from 'react-responsive'
 import { get, keys, capitalize } from 'lodash'
 import CollectionItemPreview from '../CollectionItemPreview'
 import CollectionItemRelated from '../CollectionItemRelated'
+import Markdown from 'markdown-to-jsx';
 import './CollectionItem.css'
 
 
@@ -37,7 +38,7 @@ class AdditionalInformation extends PureComponent {
   })
   return (
   <div>
-    { additional &&
+    { additional.length &&
         <div>
         <div className="CollectionItem__additional_info d-flex align-items-center" onClick={this.toggleInfo}>
               <h6 className="CollectionItem__label">
@@ -148,6 +149,10 @@ export default ({ doc, onCloseClick }) => {
     coords = [coords[0], coords[1]]
   }
 
+  const relatedType = ['image', 'audio', 'video', 'correspondence', 'other', 'physical object', 'book']
+  let related = get(doc, "documents",[])
+  related.filter(item => relatedType.indexOf(item)>-1?true:false)
+
   return (
     <div className="CollectionItem__wrapper_div">
       <Container fluid>
@@ -168,15 +173,17 @@ export default ({ doc, onCloseClick }) => {
                 </p>
                 <h3 className="CollectionItem__title">{doc.translated.title}</h3>
                 <hr className="CollectionItem__title_divider" />
-                <p className="CollectionItem__description">
-                    { get(doc, 'translated.description') }
-                </p>
+                <div className="CollectionItem__description">
+                  <Markdown>
+                    { get(doc, 'translated.description') || ''}
+                  </Markdown>
+                </div>
 
                 { coords && (
                   <MiniMap coords={coords}/>
                 )}
-                { get(doc, "documents.length", 0) > 0 && (
-                  <CollectionItemRelated items={get(doc, "documents")}/>
+                { related.length && (
+                  <CollectionItemRelated items={related}/>
                 )}
                 <SeeAlso doc={doc}/>
                 <AdditionalInformation doc={doc} metadataKeys={ADDITIONAL_METATDATA_KEYS}/>
