@@ -69,12 +69,14 @@
 }
 
 .ChaptersControl__chapters_progress{
-  position: fixed;
+  position: absolute;
   z-index: 98;
-  height: 52px;
-  width: 52px;
-  right: 11.5px;
-  top: 11.8px;
+  height: 47px;
+  width: 47px;
+  right: 4px;
+  top: 4px;
+  z-index: 99;
+  pointer-events: none;
 }
 
 /* media queries */
