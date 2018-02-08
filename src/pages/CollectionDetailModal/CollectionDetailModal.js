@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import CollectionItem from '../../components/CollectionItem'
 import { connect } from 'react-redux'
+import Spinner from '../../components/Spinner'
 import './CollectionDetailModal.css'
 import {
   loadDocument,
@@ -55,6 +56,9 @@ class CollectionDetailModal extends PureComponent {
     return (
       <div className={`CollectionDetailModal__container ${cloosing ? 'fadeOut' : 'fadeIn'}`}>
         {doc && <CollectionItem doc={doc} onCloseClick={this.close} />}
+        {(loading) && <div className="MapPage__Spinner_container">
+          <Spinner />
+        </div>}
       </div>
     )
   }

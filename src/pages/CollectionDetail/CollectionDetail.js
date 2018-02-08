@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { get } from 'lodash'
 import CollectionItem from '../../components/CollectionItem'
 import NotFound from '../../components/NotFound'
+import Spinner from '../../components/Spinner'
 import {
   loadDocument,
   unloadDocument,
@@ -36,7 +37,7 @@ class CollectionDetail extends PureComponent {
   }
 
   render(){
-    const { doc, error } = this.props
+    const { doc, error, loading } = this.props
 
     // Doc not found
     if (get(error, 'response.status') === 404) {
@@ -46,7 +47,12 @@ class CollectionDetail extends PureComponent {
     return(
       <div>
         {doc && <CollectionItem doc={doc} onCloseClick={this.close} />}
+
+        {(loading) && <div className="MapPage__Spinner_container">
+          <Spinner />
+        </div>}
       </div>
+
     )
   }
 
