@@ -31,15 +31,6 @@ class ChaptersControl extends PureComponent {
           <h2 onClick={onClickTheme} className="m-0">{title}</h2>
         </div>
 
-        <div className="ChaptersControl__chapters_progress">
-          <div className={`c100 p${percentage}`}>
-              <div className="slice">
-                  <div className="bar"></div>
-                  <div className="fill"></div>
-              </div>
-          </div>
-        </div>
-
         <div className="ChaptersControl__chapters_num_container">
           <span className="AtlasGrotesk-Medium-Web d-none d-md-block" onClick={onClickTheme}>{title}</span>
           <button onClick={onClickChapters} className="btn ChaptersControl__chapters_btn rounded-circle">{currentIndex}/{count}</button>

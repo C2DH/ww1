@@ -1,0 +1,18 @@
+.LastModule__container{
+  background-color: #212122;
+  height: 430px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+.LastModule__container h1{
+  color: #F56350;
+  text-align: center;
+}
+
+.LastModule__container h1 a:hover{
+  text-decoration: underline;
+}

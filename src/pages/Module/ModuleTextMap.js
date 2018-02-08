@@ -4,6 +4,7 @@ import { Container, Row, Col } from 'reactstrap';
 import  ModuleMap from './ModuleMap'
 import Background from '../../components/Background'
 import MarkdownGlossary from '../../components/MarkdownGlossary'
+import LastModule from '../../components/LastModule'
 
 const fullHeight = { height: '100%'}
  const mapColumnsStyle = { height:'100%', position:'relative', width:'100%' }
@@ -25,7 +26,7 @@ const TextColumn = ({content, color}) => (
 
 class ModuleTextMap extends PureComponent {
   render() {
-    const { chapter, module } = this.props
+    const { chapter, module, lastModule } = this.props
     const { content, color} = module.text
 
     const backgroundColor = get(module, 'background.color')
@@ -54,6 +55,9 @@ class ModuleTextMap extends PureComponent {
               <MapColumn chapter={chapter} module={module.map}/>
             </Row>
           )}
+          {lastModule &&
+            <LastModule />
+          }
         </Container>
       </div>
     )

@@ -7,15 +7,17 @@ import CollectionMasonry from '../../components/CollectionMasonry'
 import CollectionGrid from '../../components/CollectionGrid'
 import Background from '../../components/Background'
 import MediaQuery from 'react-responsive'
+import LastModule from '../../components/LastModule'
 
 const makeDocs = defaultMemoize((objects=[]) => objects.map(({ id }) => id))
 
-const galleryStyle = { height: '100%', position: 'relative' }
+const galleryStyle = { height: '100%', position: 'relative', overflowY: 'auto' }
 
-const ModuleGallery = ({ module, style, masonryStyle=null }) => {
+const ModuleGallery = ({ module, style, masonryStyle=null,lastModule }) => {
+
   // Gallery as slideshow
   if (module.layout === 'slideshow') {
-    return <ModuleCarousel style={style} module={module} />
+    return <ModuleCarousel style={style} module={module} lastModule={lastModule} />
   }
 
   // Gallery as grid
@@ -45,7 +47,6 @@ const ModuleGallery = ({ module, style, masonryStyle=null }) => {
 
     <div className="Module__gallery_cont">
 
-
     <MediaQuery minWidth={768}>
         {matches => (
           matches ? (
@@ -74,6 +75,9 @@ const ModuleGallery = ({ module, style, masonryStyle=null }) => {
             </p>
           </div>
         </div>
+      }
+      {
+        lastModule && <LastModule></LastModule>
       }
     </div>
   )

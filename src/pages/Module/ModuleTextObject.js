@@ -8,6 +8,7 @@ import { ModuleObjectContent } from './ModuleObject'
 import { Origin } from 'redux-tooltip';
 import Background from '../../components/Background'
 import MarkdownGlossary from '../../components/MarkdownGlossary'
+import LastModule from '../../components/LastModule'
 
 
 const fullHeight = { height: '100%'}
@@ -29,7 +30,7 @@ const TextColumn = ({ content, color }) => (
 
 class ModuleTextObject extends PureComponent {
   render() {
-    const { chapter, module } = this.props
+    const { chapter, module, lastModule } = this.props
     const content = module.text.content
     const obj = {
       ...module.object,
@@ -42,7 +43,7 @@ class ModuleTextObject extends PureComponent {
     const bbox = get(module, 'background.object.bbox')
 
     return (
-      <div style={{height:'100%', position:'relative'}}>
+      <div style={{height:'100%', position:'relative', overflowY: 'auto'}}>
         <Background
           image={backgroundImage}
           color={backgroundColor}
@@ -63,6 +64,9 @@ class ModuleTextObject extends PureComponent {
             </Row>
           )}
         </Container>
+        {
+          lastModule && <LastModule></LastModule>
+        }
       </div>
     )
   }

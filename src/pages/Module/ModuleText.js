@@ -4,10 +4,11 @@ import { get } from 'lodash'
 import { Container, Row, Col } from 'reactstrap'
 import Background from '../../components/Background'
 import MarkdownGlossary from '../../components/MarkdownGlossary'
+import LastModule from '../../components/LastModule'
 
 class ModuleText extends PureComponent {
   render() {
-    const { chapter, module } = this.props
+    const { chapter, module, lastModule } = this.props
     const position = get(module, 'text.position')
 
     let offset = 0;
@@ -28,7 +29,7 @@ class ModuleText extends PureComponent {
     const backgroundOverlay = get(module, 'background.object.overlay')
     const bbox = get(module, 'background.object.bbox', [])
 
-    return <div style={{height:'100%', position:'relative'}}>
+    return <div style={{height:'100%', position:'relative', overflowY: 'auto'}}>
       <Background
         image={backgroundImage}
         color={backgroundColor}
@@ -46,6 +47,9 @@ class ModuleText extends PureComponent {
             </Row>
           </Container>
       </div>
+      {
+        lastModule && <LastModule></LastModule>
+      }
     </div>
   }
 }

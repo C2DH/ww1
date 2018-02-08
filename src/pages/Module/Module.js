@@ -132,7 +132,7 @@ class Module extends PureComponent {
 
 
   render() {
-    const { chapter, module } = this.props
+    const { chapter, module, moduleIndex, totalChapterModules, theme, chapterIndex } = this.props
     if (!module) {
       return null
     }
@@ -150,6 +150,14 @@ class Module extends PureComponent {
     }
     const bottomScrollOverlay = topScrollOverlay
 
+    const nextChapterSlug = get(theme, `stories[${Number(chapterIndex) + 1}].slug`)
+
+    const lastModule = moduleIndex == totalChapterModules && !nextChapterSlug;
+
+    if(lastModule){
+      bottomScrollBackground = '#212122'
+    }
+
     return  <div>
     <ScrollHelperTop background={topScrollBackground} overlay={topScrollOverlay}/>
     {/* This was this.state.scrolling * 150 */}
@@ -159,8 +167,8 @@ class Module extends PureComponent {
         {React.createElement(getModuleComponent(module.module), {
           chapter,
           module,
+          lastModule
         })}
-
     </div>
     <ScrollHelperBottom  background={bottomScrollBackground} overlay={bottomScrollOverlay}/>
     {/* {this.state.stopScroll && <ScrollLock/> } */}

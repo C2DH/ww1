@@ -4,6 +4,7 @@ import { Container, Row, Col } from 'reactstrap';
 import  ModuleGallery from './ModuleGallery'
 import Background from '../../components/Background'
 import MarkdownGlossary from '../../components/MarkdownGlossary'
+import LastModule from '../../components/LastModule'
 
 const fullHeight = { height: '100%'}
 const galleryColumnsStyle = { height:'100%', position:'relative', width:'100%' }
@@ -26,7 +27,7 @@ const TextColumn = ({ content, color }) => (
 
 class ModuleTextGallery extends PureComponent {
   render() {
-    const { chapter, module } = this.props
+    const { chapter, module, lastModule } = this.props
     const { content, color} = module.text
 
     const backgroundColor = get(module, 'background.color')
@@ -35,7 +36,7 @@ class ModuleTextGallery extends PureComponent {
     const bbox = get(module, 'background.object.bbox')
 
     return (
-      <div style={{height:'100%', position:'relative'}}>
+      <div style={{height:'100%', position:'relative', overflowY:'auto'}}>
         <Background
           image={backgroundImage}
           color={backgroundColor}
@@ -56,6 +57,9 @@ class ModuleTextGallery extends PureComponent {
             </Row>
           )}
         </Container>
+        {
+          lastModule && <LastModule></LastModule>
+        }
       </div>
     )
   }

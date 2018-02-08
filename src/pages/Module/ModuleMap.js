@@ -6,12 +6,14 @@ import { Card, CardBlock } from 'reactstrap';
 import * as d3Color from 'd3-color';
 import ReactMapboxGl, { Popup, Marker, Layer, Feature, Cluster, ZoomControl, GeoJSONLayer, Source } from 'react-mapbox-gl'
 import * as MapboxGL from 'mapbox-gl';
+import LastModule from '../../components/LastModule';
+import Background from '../../components/Background'
 
 import {
   getPlaceTypeIcon,
 } from '../../utils'
 
-const fullHeight = { height: '100%', position:'relative'}
+const fullHeight = { height: '100%', position:'relative', overflowY:'auto'}
 
 const circleScale = scaleLinear().range([30, 100]).domain([1, 150])
 
@@ -92,10 +94,11 @@ class ModuleMap extends PureComponent {
 
 
   render() {
-    const { chapter, module } = this.props
+    const { chapter, module, lastModule } = this.props
     const { selectedDocument, center, zoom } = this.state
 
-    const backgroundColor = get(module,'background.color');
+
+    const backgroundColor = get(module, 'background.color')
     const backgroundColorRgb = d3Color.color(backgroundColor || '#373a3c').rgb()
 
     const objectMapStyle = {
@@ -117,64 +120,69 @@ class ModuleMap extends PureComponent {
     }))
 
     return (
-      <div style={ this.props.style } className="Map__Module_Container">
-          <Map
-            ref={map => this.map = map}
-            center={center}
-            dragRotate={false}
-            keyboard={false}
-            zoom={zoom}
-            onDrag={this.onDrag}
-            injectCss={false}
-            touchZoomRotate={false}
-            style="mapbox://styles/eischteweltkrich/cj5cizaj205vv2qlegw01hubm"
-            containerStyle={{
-              flexGrow: 1
-            }}>
-              <ZoomControl className="Map__ZoomControl"/>
+      <div style={{height:'100%', position:'relative', overflowY: 'auto'}}>
+        <div className="Map__Module_Container">
+            <Map
+              ref={map => this.map = map}
+              center={center}
+              dragRotate={false}
+              keyboard={false}
+              zoom={zoom}
+              onDrag={this.onDrag}
+              injectCss={false}
+              touchZoomRotate={false}
+              style="mapbox://styles/eischteweltkrich/cj5cizaj205vv2qlegw01hubm"
+              containerStyle={{
+                flexGrow: 1
+              }}>
+                <ZoomControl className="Map__ZoomControl"/>
 
-              {documents && <Cluster ClusterMarkerFactory={this.clusterMarker} clusterThreshold={1} radius={60}>
-              {
-                documents.filter(doc => doc.data).map(doc => {
-                  const icon = getPlaceTypeIcon(doc.data.place_type)
-                  return <Marker
-                    key={doc.id}
-                    style={styles.marker}
-                    onClick={() => this.onMarkerClick(doc)}
-                    coordinates={doc.coordinates}>
-                    <i className={icon.class}>{icon.content}</i>
-                  </Marker>
-                })
-              }
-            </Cluster>}
+                {documents && <Cluster ClusterMarkerFactory={this.clusterMarker} clusterThreshold={1} radius={60}>
+                {
+                  documents.filter(doc => doc.data).map(doc => {
+                    const icon = getPlaceTypeIcon(doc.data.place_type)
+                    return <Marker
+                      key={doc.id}
+                      style={styles.marker}
+                      onClick={() => this.onMarkerClick(doc)}
+                      coordinates={doc.coordinates}>
+                      <i className={icon.class}>{icon.content}</i>
+                    </Marker>
+                  })
+                }
+              </Cluster>}
 
-            {selectedDocument && (
-              <Popup
-                coordinates={selectedDocument.coordinates}
-                anchor='bottom'
-                offset={[0, -15]}
-                key={selectedDocument.id}>
-                <i className="material-icons pointer float-right" onClick={this.closePopup}>close</i>
-                <MapToolTip
-                  className="clearfix"
-                  snapshot={selectedDocument.snapshot}
-                  title={selectedDocument.title}
-                  text={selectedDocument.translated.description}
-                />
-              </Popup>
-            )}
-          </Map>
-          {(module.caption) &&
-              <div className="Module__object_caption_text ModuleMap__Caption Module__gallery_carousel_caption">
-                <i className="icon-hand Module__object_caption_hand"  />
-                <div className="Module__object_caption_text_cont">
-                  <p className="card-text">
-                    {module.caption}
-                  </p>
+              {selectedDocument && (
+                <Popup
+                  coordinates={selectedDocument.coordinates}
+                  anchor='bottom'
+                  offset={[0, -15]}
+                  key={selectedDocument.id}>
+                  <i className="material-icons pointer float-right" onClick={this.closePopup}>close</i>
+                  <MapToolTip
+                    className="clearfix"
+                    snapshot={selectedDocument.snapshot}
+                    title={selectedDocument.title}
+                    text={selectedDocument.translated.description}
+                  />
+                </Popup>
+              )}
+            </Map>
+            {(module.caption) &&
+                <div className="Module__object_caption_text ModuleMap__Caption Module__gallery_carousel_caption">
+                  <i className="icon-hand Module__object_caption_hand"  />
+                  <div className="Module__object_caption_text_cont">
+                    <p className="card-text">
+                      {module.caption}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            }
+              }
 
+        </div>
+        {
+          lastModule && <LastModule></LastModule>
+        }
       </div>
     )
   }

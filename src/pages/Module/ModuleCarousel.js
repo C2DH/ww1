@@ -6,6 +6,7 @@ import { Card, CardImg, CardBlock } from 'reactstrap';
 import Slider from 'react-slick'
 import Background from '../../components/Background'
 import CollectionItemLink from '../../components/CollectionItemLink'
+import LastModule from '../../components/LastModule'
 
 class ModuleCarousel extends PureComponent {
 
@@ -38,7 +39,7 @@ class ModuleCarousel extends PureComponent {
   }
 
   render() {
-    const { chapter, module, style } = this.props
+    const { chapter, module, style, lastModule } = this.props
 
     // const NextArrowButton = ({ onClick }) => (
     //   <button  className='ModuleCarousel__control_btn ModuleCarousel__control_btn_right' onClick={onClick}><i className="material-icons md-28">keyboard_arrow_right</i></button>
@@ -76,7 +77,7 @@ class ModuleCarousel extends PureComponent {
     const bbox = get(module, 'background.object.bbox')
 
     return (
-      <div style={style || {height:'100%', position:'relative'}}>
+      <div style={style || {height:'100%', position:'relative', overflowY:'auto'}}>
         <Background
           image={backgroundImage}
           color={backgroundColor}
@@ -117,6 +118,9 @@ class ModuleCarousel extends PureComponent {
             </Col>
           </Row>
           </Container>
+          {
+            lastModule && <LastModule></LastModule>
+          }
       </div>
     )
   }

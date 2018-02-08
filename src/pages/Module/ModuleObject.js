@@ -11,12 +11,13 @@ import CollectionItemLink from '../../components/CollectionItemLink'
 import * as d3Color from 'd3-color'
 import Background from '../../components/Background'
 import MediaQuery from 'react-responsive'
+import LastModule from '../../components/LastModule'
 import {
   lockScroll,
   unlockScroll,
 } from '../../state/actions'
 
-const fullHeight = { height: '100%', position:'relative'}
+const fullHeight = { height: '100%', position:'relative', overflowY:'auto'}
 
 class ModuleObjectContentVideo extends PureComponent {
   state = {
@@ -269,7 +270,7 @@ export const ModuleObjectContent = ({ module, resize }) => {
 
 class ModuleObject extends PureComponent {
   render() {
-    const { chapter, module } = this.props
+    const { chapter, module, lastModule } = this.props
 
     let size = get(module, 'size')
     if (module.type === 'audio') {
@@ -317,6 +318,9 @@ class ModuleObject extends PureComponent {
             </Row>
            </Container>
          </MediaQuery>
+         {
+           lastModule && <LastModule></LastModule>
+         }
       </div>
     )
   }
