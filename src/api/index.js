@@ -50,6 +50,7 @@ export const getCollectionDocuments = (params = {}) => getDocuments({
     data__type__in: ['image', 'audio', 'video', 'correspondence', 'other', 'physical object', 'book'],
     ...params.filters,
   },
+  orderby: 'data__year',
 })
 
 export const getMapDocuments = (params = {}) => getDocuments({

@@ -16,6 +16,10 @@
   padding-top: 15px;
 }
 
+.CollectionItemPreview__leaflet_wrapper .leaflet-container{
+  user-select: none;
+}
+
 .CollectionItemPreview__audio_wrapper,
 .CollectionItemPreview__video_wrapper{
   display: flex;

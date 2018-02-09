@@ -10,7 +10,7 @@ import {
 import { isMobileScreen } from '../../breakpoints'
 import CollectionDoc from '../CollectionDoc'
 
-const DEFAULT_COLUMN_WIDTH = 234
+const DEFAULT_COLUMN_WIDTH = 260
 const MOBILE_HORIZONTAL_PADDING = 10
 const MOBILE_COLUMN_COUNT = 3
 

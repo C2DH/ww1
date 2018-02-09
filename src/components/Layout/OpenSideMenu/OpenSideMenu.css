@@ -51,8 +51,15 @@
 }
 
 .OpenSideMenu__bottom_logos {
-  height: 100px;
+  height: 160px;
   background-color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.OpenSideMenu__bottom_logos img{
+  height: 100%;
+  width: auto;
 }
 
 .OpenSideMenu__title-md{

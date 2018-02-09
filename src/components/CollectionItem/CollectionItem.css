@@ -120,9 +120,7 @@
   margin-right: 8px;
   font-family: "Atlas Grotesk Web", Arial, sans-serif;
   cursor: pointer;
-  line-height: 1;
   text-transform: capitalize;
-  padding: 0.4rem 1rem;
 }
 
 .CollectionItem__btn_download {

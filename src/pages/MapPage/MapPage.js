@@ -441,7 +441,7 @@ class MapPage extends PureComponent {
                     <LayersControl setLayer={this.handleSetLayer} currentLayer={this.state.selectedLayer}></LayersControl>
 
                   </div>
-                  <Cluster ClusterMarkerFactory={this.clusterMarker} clusterThreshold={1} radius={60}>
+                  <Cluster maxZoom={13} ClusterMarkerFactory={this.clusterMarker} clusterThreshold={1} radius={60}>
                   {
                     documents.map(doc => {
                       const icon = getPlaceTypeIcon(doc.data.place_type)

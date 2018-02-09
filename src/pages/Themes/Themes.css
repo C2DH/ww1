@@ -35,6 +35,8 @@
 
 .Themes__theme_container{
   position: relative;
+  margin: auto;
+  width: 100%;
 }
 
 .Themes__theme_container:before {
@@ -42,8 +44,8 @@
     display: block;
     position: absolute;
     top: 0;
-    width: 25%;
-    left: 37%;
+    width: 100px;
+    left: calc(50% - 50px);
     border-top: none;
 }
 
@@ -52,13 +54,16 @@
     display: block;
     position: absolute;
     bottom: 0;
-    width: 25%;
-    left: 37%;
+    width: 100px;
+    left: calc(50% - 50px);
     border-top: none;
 }
 
 .Themes__theme_title_container {
-  padding: 0px
+  padding: 0px;
+  display:flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .Themes__theme_title_container hr {
@@ -170,6 +175,11 @@
   .Themes__theme_container:last-of-type:after {
       border-top: 1px solid white;
   }
+
+  .Themes__theme_container{
+    width: auto;
+  }
+
 
  }
 

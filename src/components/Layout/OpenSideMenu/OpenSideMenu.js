@@ -47,6 +47,7 @@ class OpenSideMenu extends PureComponent {
          <li><NavLink to="/terms-of-use" onClick={this.props.closeMenu}>{this.context.t('terms of use')}</NavLink></li>
        </ul>
        <div className="OpenSideMenu__bottom_logos">
+         <img src="/img/logo/logo_sidebar.png"></img>
        </div>
        <div className="OpenSideMenu__lang_control">
           {languages.map((language, i) => (
