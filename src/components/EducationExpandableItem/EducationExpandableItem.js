@@ -17,26 +17,31 @@ class EducationExpandableItem extends PureComponent {
 render () {
 
   return (
-      <Container fluid={true} className='EducationExpandableItem'>
-        <Row className='EducationExpandableItem__topRow'>
-          <Col xs={12} md={11} lg={11}>
+      <div className='EducationExpandableItem'>
+        <div className='EducationExpandableItem__topRow'>
+          <div className='EducationExpandableItem__counter'>
+            <h1>{this.props.counter}</h1>
+          </div>
+          <div className='EducationExpandableItem__title'>
+          <h6>
+            {this.props.label}
+          </h6>
           <h2 className="EducationExpandableItem__titleLabel" onClick={this.toggleExpand}>
-              {this.props.label}{': '}<span className="EducationExpandableItem__title">{this.props.title}</span>
+              {this.props.title}
             </h2>
-          </Col>
-          <Col md={1} lg={1} className="hidden-sm-down">
+          </div>
+          <div className="hidden-sm-down EducationExpandableItem__btn_cont">
             <button onClick={this.toggleExpand} className="btn btn-secondary EducationExpandableItem__btn" key="button">
               <i className="material-icons">{this.state.open ? 'remove': 'add'}</i>
             </button>
-          </Col>
-        </Row>
+          </div>
+        </div>
         <Collapse isOpen={this.state.open}>
           <div className="EducationExpandableItem__container">
-            <h6 className="EducationExpandableItem__show_less hidden-md-up" onClick={this.toggleExpand}><span>show less</span></h6>
-              <p className="EducationExpandableItem__text">{this.props.description}</p>
+            <p className="EducationExpandableItem__text">{this.props.description}</p>
           </div>
         </Collapse>
-      </Container>
+      </div>
 
      )
    }

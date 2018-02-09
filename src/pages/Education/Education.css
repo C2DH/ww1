@@ -7,7 +7,11 @@
   color: #F36455;
   text-transform: uppercase;
   padding-bottom: 15px;
-  padding-top: 25px;
+  padding-top: 18px;
+}
+
+.Education__wrapper .Static__intro{
+  padding-top: 0px;
 }
 
 .Education__ManualsRow > div {
@@ -24,3 +28,23 @@
   padding-bottom: 85px;
   border-top: 1px solid #DBDBD0;
 }
+
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {  }
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+
+  .Education__wrapper .Static__intro{
+    column-count: 2!important;
+  }
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  }

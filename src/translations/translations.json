@@ -62,7 +62,20 @@
     "use your mouse or the arrows to read the story": "scroll or use the arrows to read the story",
     "explore the other themes":"explore the other themes",
     "organizers":"organizers",
-    "partner institutions":"partner institutions"
+    "partner institutions":"partner institutions",
+    "pedagogical manuals":"pedagogical manuals",
+    "did you use our manuals? tell us more!":"Did you use our manuals? Tell us more!",
+    "introduction and pedagogical approach": "introduction and pedagogical approach",
+    "goals of the activity":"goals of the activity",
+    "requirements for the pupils":"requirements for the pupils",
+    "pedagogical manual":"pedagogical manual",
+    "step by step manual":"step by step manual",
+    "get started":"get started",
+    "research":"research",
+    "explore":"explore",
+    "report":"report",
+    "be creative":"be creative",
+    "discuss":"discuss"
   },
   "fr_FR" : {
     "home" : "Accueil",
@@ -127,7 +140,19 @@
     "use your mouse or the arrows to read the story": "utilisez votre souris ou les flèches pour lire l'histoire",
     "explore the other themes":"explore the other themes",
     "organizers":"organizers",
-    "partner institutions":"partner institutions"
+    "partner institutions":"partner institutions",
+    "pedagogical manuals":"pedagogical manuals",
+    "did you use our manuals? tell us more!":"Did you use our manuals? Tell us more!",
+    "introduction and pedagogical approach": "introduction and pedagogical approach",
+    "goals of the activity":"goals of the activity",
+    "requirements for the pupils":"requirements for the pupils",
+    "pedagogical manual":"pedagogical manual",
+    "step by step manual":"step by step manual",
+    "research":"research",
+    "explore":"explore",
+    "report":"report",
+    "be creative":"be creative",
+    "discuss":"discuss"
   },
   "de_DE" : {
     "home" : "Startseite",
@@ -192,6 +217,18 @@
     "use your mouse or the arrows to read the story": "Benutze deine Maus oder die Pfeile, um die Geschichte zu lesen",
     "explore the other themes":"explore the other themes",
     "organizers":"organizers",
-    "partner institutions":"partner institutions"
+    "partner institutions":"partner institutions",
+    "pedagogical manuals":"pedagogical manuals",
+    "did you use our manuals? tell us more!":"Did you use our manuals? Tell us more!",
+    "introduction and pedagogical approach": "introduction and pedagogical approach",
+    "goals of the activity":"goals of the activity",
+    "requirements for the pupils":"requirements for the pupils",
+    "pedagogical manual":"pedagogical manual",
+    "step by step manual":"step by step manual",
+    "research":"research",
+    "explore":"explore",
+    "report":"report",
+    "be creative":"be creative",
+    "discuss":"discuss"
   }
 }

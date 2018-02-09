@@ -41,55 +41,56 @@ class EducationDetail extends PureComponent {
     return (
       <div className='EducationDetail'>
         {educational && (
-          <div>
+          <div className="animated fadeIn">
             <div className='EducationDetail__top'>
               <Container>
                 <BigTitle title={educational.data.title} />
-                <Row>
-                  <Col md={6}>
-                    <h4 className='EducationDetail__h6'>goals of the activity</h4>
+                <Row className="EducationDetail__cont">
+                  <Col xs={12} md={6} className="EducationDetail__order-1 EducationDetail__order-md-0">
+                    <h6 className='EducationDetail__h6'>{this.context.t('goals of the activity')}</h6>
                     <p>{educational.data.activity}</p>
                     <Row>
-                      <Col md={6}>
-                        <h4 className='EducationDetail__h6'>Requirements	for	the	pupils</h4>
-                        <ul>
+                      <Col xs={12} md={6}>
+                        <h6 className='EducationDetail__h6'>{this.context.t('requirements	for	the	pupils')}</h6>
+                        <ul className='pl-4'>
                           {educational.data.requirements.map((req, index) => (
                             <li key={index}>{req}</li>
                           ))}
                         </ul>
                       </Col>
-                      <Col md={6}>
-                        <h4 className='EducationDetail__h6'>Pedagogical manual</h4>
+                      <Col xs={12} md={6}>
+                        <h6 className='EducationDetail__h6'>{this.context.t('pedagogical manual')}</h6>
                         <a
                           className="btn btn-secondary EducationDetail__DownloadBtn"
                           href={get(educational, 'contents.object.attachment')}>
                           <i className="material-icons">get_app</i>
-                          Download
+                          {this.context.t('download')}
                         </a>
                       </Col>
                     </Row>
                   </Col>
-                  <Col md={6}>
-                    <img className='img-fluid' src={get(educational, 'covers[0].attachment')} />
+                  <Col xs={12} md={6} className="EducationDetail__order-0 EducationDetail__order-md-1">
+                    <img className='img-fluid mb-3' src={get(educational, 'covers[0].attachment')} />
                   </Col>
                 </Row>
               </Container>
             </div>
             <Container>
-              <h4 className='EducationDetail__h6'>Step by step manual</h4>
-              <Row>
-                <Col md={8}>
+              <h6 className='EducationDetail__h6'>{this.context.t('step by step manual')}</h6>
+              <Row className='mt-4'>
+                <Col xs={12} md={8} className="EducationDetail__order-1 EducationDetail__order-md-0">
                   {educational.data.steps.map((step, i) => (
                     <EducationExpandableItem
                       key={i}
-                      label={step.label}
+                      counter={i+1}
+                      label={this.context.t(step.label)}
                       title={step.title}
                       description={step.description}
                     />
                   ))}
                 </Col>
-                <Col md={4}>
-                  <div>
+                <Col xs={12} md={4} className="EducationDetail__order-0 EducationDetail__order-md-1">
+                  <div className="mb-3">
                     <div>
                       <img className='img-fluid' src={get(educational, 'contents.object.attachment')} />
                       <div className='EducationDetail__DocLink'>
@@ -97,7 +98,7 @@ class EducationDetail extends PureComponent {
                     </div>
                     <div className='EducationDetail__imageCaption'>
                       <div><i className='icon-hand' /></div>
-                      <div>{get(educational, 'contents.object.translated.description')}</div>
+                      <div>{get(educational, 'contents.object.translated.title')}</div>
                     </div>
                   </div>
                 </Col>
@@ -111,10 +112,15 @@ class EducationDetail extends PureComponent {
   }
 }
 
+
 const mapStateToProps = state => ({
   educational: getEducational(state),
   error: getEducationalError(state),
 })
+
+EducationDetail.contextTypes = {
+  t: React.PropTypes.func.isRequired
+}
 
 export default connect(mapStateToProps, {
   loadEducational,

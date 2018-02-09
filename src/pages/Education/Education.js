@@ -26,9 +26,10 @@ class Education extends PureComponent {
       <div className="Education__wrapper">
         <div className="Resources__top_wrapper">
           <Container>
-            <BigTitle title="Education" />
+            <BigTitle title={this.context.t('education')} />
             <Row>
               <Col>
+                  <h6 className="Education__h6">{this.context.t('introduction and pedagogical approach')}</h6>
                   <StaticStory slug='education' />
               </Col>
             </Row>
@@ -37,12 +38,12 @@ class Education extends PureComponent {
         <Container>
           <Row>
             <Col>
-              <h6 className="Education__h6">Pedagogical manuals</h6>
+              <h6 className="Education__h6">{this.context.t('pedagogical manuals')}</h6>
             </Col>
           </Row>
           <Row className="Education__ManualsRow">
             {educationals && educationals.map(edu => (
-              <Col lg="3" xs="12" key={edu.id}>
+              <Col lg="4" xs="12" key={edu.id}>
                 <ManualCard
                   onClick={() => this.props.history.push(`/education/${edu.slug}`)}
                   title={edu.data.title}
@@ -51,7 +52,7 @@ class Education extends PureComponent {
               </Col>
             ))}
           </Row>
-          <Row>
+{        /*  <Row>
             <Col md="12">
               <div className="Education__OtherTeachersRow">
                 <h6 className="Education__h6">See how other teachers used our materials</h6>
@@ -61,12 +62,16 @@ class Education extends PureComponent {
                 </div>
               </div>
             </Col>
-          </Row>
+          </Row> */}
         </Container>
         <EducationFooter />
       </div>
     )
   }
+}
+
+Education.contextTypes = {
+  t: React.PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({

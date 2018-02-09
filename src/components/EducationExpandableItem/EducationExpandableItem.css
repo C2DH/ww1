@@ -1,12 +1,35 @@
 .EducationExpandableItem {
   background-color: #fff;
   margin-bottom: 10px;
+  padding: 15px;
+  border: 1px solid #DBDBD0;
 }
 
 .EducationExpandableItem__topRow {
-  height: 100px;
   display: flex;
   align-items: center;
+}
+
+.EducationExpandableItem__counter,
+.EducationExpandableItem__btn_cont{
+  flex-grow: 0;
+}
+
+.EducationExpandableItem__counter h1{
+    color:#F36455;
+    padding: 0px 9px;
+    font-size: 1.125rem;
+}
+
+.EducationExpandableItem__title{
+  flex-grow: 1;
+  margin: 0px 10px;
+}
+
+.EducationExpandableItem__title h6{
+  color:#F36455;
+  text-transform: uppercase;
+  font-size: 0.875rem;
 }
 
 .EducationExpandableItem__btn{
@@ -18,8 +41,7 @@
 }
 
 .EducationExpandableItem__titleLabel {
-  color:#F36455;
-  font-size: 1.875rem;
+  font-size: 1.75rem;
 }
 
 .EducationExpandableItem__title {
@@ -31,18 +53,18 @@
 }
 
 .EducationExpandableItem__container {
-  margin-top: 15px;
 }
 
 
 .EducationExpandableItem__text {
   padding-top: 20px;
   padding-bottom: 20px;
-  border-top: 1px solid #DBDBD0;
-  border-bottom: 1px solid #DBDBD0;
+  margin-left: 38px;
   font-size: 1.125rem;
   line-height: 1.75rem;
+  margin-bottom: 0px;
 }
+
 
 .EducationExpandableItem__imgTitle {
   font-weight: 500;
@@ -80,6 +102,19 @@
       width: 30px;
         height: 30px;
         padding: 2px;
+    }
+
+    .EducationExpandableItem__titleLabel {
+      font-size: 2.25rem;
+    }
+
+    .EducationExpandableItem__counter h1{
+        padding: 0px 18px;
+        font-size: 2.5rem;
+    }
+
+    .EducationExpandableItem__text {
+      margin-left: 56px;
     }
 
  }

@@ -1,18 +1,14 @@
 .EducationFooter__wrapper {
+  margin-top: 30px;
   background-color: #F36455;
   color: #fff;
-  position: fixed;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  padding-top: 15px;
-  padding-bottom: 15px;
 }
 
 .EducationFooter__content{
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 15px 0px;
 }
 .EducationFooter__wrapper h5 {
   font-weight: normal;
@@ -34,24 +30,17 @@
 @media (min-width: 576px) {  }
 
 /* Medium devices (tablets, 768px and up)*/
-@media (min-width: 768px) {  }
-
-/* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-  .EducationFooter__wrapper {
-    background-color: #F36455;
-    color: #fff;
-    position: fixed;
-    bottom: 0px;
-    left: 58px;
-    right: 0px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-  }
+@media (min-width: 768px) {
 
   .EducationFooter__wrapper h5 {
     font-size: 1.25rem;
   }
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
 
 }
 

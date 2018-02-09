@@ -1,26 +1,31 @@
 .EducationDetail {
-  margin-bottom: 100px;
   background-color: #eee;
+  min-height: 100vh;
+}
+
+.EducationDetail__cont{
+  padding: 75px 0px 25px;
 }
 
 .EducationDetail__top {
   background-color: white;
+  margin-bottom: 30px;
 }
 
 .EducationDetail__h6 {
   color: #F36455;
   text-transform: uppercase;
-  padding-bottom: 15px;
-  padding-top: 25px;
+  font-size: 0.875rem;
 }
 
 .EducationDetail__DownloadBtn {
   margin-top: 15px;
-  font-family: 'Atlas Grotesk Web';
+  font-family: 'Atlas Grotesk Web', Arial, sans-serif;
   font-weight: 400;
   color: #000;
   display: inline-flex;
   border-radius: 23px;
+  text-transform: uppercase;
 }
 
 .EducationDetail__imageCaption {
@@ -46,3 +51,47 @@
   text-decoration: none;
   color: #292b2c;
 }
+
+.EducationDetail__order-0{
+  order:0!important;
+}
+
+.EducationDetail__order-1{
+  order:1!important;
+}
+
+.EducationDetail__order-md-1,
+.EducationDetail__order-md-0{
+  order: none;
+}
+
+
+
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {  }
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+
+  .EducationDetail__cont{
+    padding: 25px 0px;
+  }
+
+  .EducationDetail__order-md-0{
+    order:0!important;
+  }
+
+  .EducationDetail__order-md-1{
+    order:1!important;
+  }
+
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  }
