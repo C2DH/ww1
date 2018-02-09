@@ -38,6 +38,7 @@ class StaticStory extends PureComponent {
 
     return (
       <div>
+        
         {content && <div className="Static__intro" dangerouslySetInnerHTML={{ __html: content }} />}
       </div>
     )

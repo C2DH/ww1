@@ -60,7 +60,9 @@
     "reset filters or change query":"reset filters or change query",
     "you seem too far from Luxembourg": "you seem too far from Luxembourg",
     "use your mouse or the arrows to read the story": "scroll or use the arrows to read the story",
-    "explore the other themes":"explore the other themes"
+    "explore the other themes":"explore the other themes",
+    "organizers":"organizers",
+    "partner institutions":"partner institutions"
   },
   "fr_FR" : {
     "home" : "Accueil",
@@ -123,7 +125,9 @@
     "reset filters or change query":"reset filters or change query",
     "you seem too far from Luxembourg": "vous êtes trop loin du Luxembourg",
     "use your mouse or the arrows to read the story": "utilisez votre souris ou les flèches pour lire l'histoire",
-    "explore the other themes":"explore the other themes"
+    "explore the other themes":"explore the other themes",
+    "organizers":"organizers",
+    "partner institutions":"partner institutions"
   },
   "de_DE" : {
     "home" : "Startseite",
@@ -186,6 +190,8 @@
     "reset filters or change query":"reset filters or change query",
     "you seem too far from Luxembourg": "Sie sind zu weit von Luxemburg entfernt",
     "use your mouse or the arrows to read the story": "Benutze deine Maus oder die Pfeile, um die Geschichte zu lesen",
-    "explore the other themes":"explore the other themes"
+    "explore the other themes":"explore the other themes",
+    "organizers":"organizers",
+    "partner institutions":"partner institutions"
   }
 }
