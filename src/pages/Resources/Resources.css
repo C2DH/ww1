@@ -8,7 +8,22 @@
   width: 100%;
   padding-top: 0px;
   padding-bottom: 25px;
-  margin-bottom: 25px;
+}
+
+.Resources__search_wrapper{
+  background-color: white;
+  width: 100%;
+  padding: 15px 0px;
+  border-top: 1px solid #DBDBD0;
+  border-bottom: 1px solid #DBDBD0;
+}
+
+.Resources__search_wrapper .form-control{
+  border: none;
+}
+
+.Resources__wrapper .Static__intro{
+  column-count: 1!important
 }
 
 /* Small devices (landscape phones, 576px and up)*/
@@ -20,8 +35,12 @@
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
   .Resources__top_wrapper{
-    padding-top: 50px;
+    padding-top: 30px;
 
+  }
+
+  .Resources__wrapper .Static__intro{
+    column-count: 2!important
   }
 }
 

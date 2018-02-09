@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import qs from 'query-string'
 import { withRouter } from 'react-router-dom'
-import { debounce } from 'lodash'
+import { get, debounce } from 'lodash'
 import { connect } from 'react-redux'
 import { Container, Row, Col } from 'reactstrap'
 import BigTitle from '../../components/BigTitle'
@@ -53,38 +53,61 @@ class Resources extends PureComponent {
     const { documents, searchString } = this.props
     return (
       <div className="Resources__wrapper">
-        <div className="Resources__top_wrapper">
+
+        {
+          documents && <div className="animated fadeIn">
+          <div className="Resources__top_wrapper">
+            <Container>
+              <BigTitle title={this.context.t('resources')} />
+              <Row>
+                <Col>
+                    <StaticStory slug='resources' />
+                </Col>
+              </Row>
+            </Container>
+          </div>
+
+          <div className="Resources__search_wrapper">
+            <Container>
+              <Row>
+                <Col>
+                  <div className="input-group">
+                    <div className="input-group-prepend d-flex align-items-center">
+                      <div className="input-group-text d-flex">
+                        <i className="material-icons">search</i>
+                      </div>
+                    </div>
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={searchString}
+                      onChange={this.handleSearchChange}
+                      placeholder={this.context.t('search here')}/>
+                  </div>
+                </Col>
+            </Row>
+            </Container>
+          </div>
+
           <Container>
-            <BigTitle title="Resources" />
             <Row>
               <Col>
-                  <StaticStory slug='resources' />
+                {documents && documents.map(doc => (
+                  <ResourceCard
+                    key={doc.id}
+                    image={doc.snapshot}
+                    date={get(doc, 'translated.date')}
+                    startDate={doc.translated.start_date}
+                    title={doc.translated.title}
+                    author={doc.data.provenance}
+                    attachment={doc.attachment}
+                  />
+                ))}
               </Col>
             </Row>
           </Container>
         </div>
-        <Container>
-          <div>
-            <input
-              type='text'
-              value={searchString}
-              onChange={this.handleSearchChange}
-            />
-          </div>
-          <Row>
-            <Col>
-              {documents && documents.map(doc => (
-                <ResourceCard
-                  key={doc.id}
-                  image={doc.snapshot || 'https://via.placeholder.com/250x250'}
-                  pubDate="12 April 2017"
-                  title={doc.translated.title}
-                  author="John Doe"
-                />
-              ))}
-            </Col>
-          </Row>
-        </Container>
+        }
       </div>
 
     )
@@ -95,6 +118,10 @@ const mapStateToProps = (state, ownProps) => ({
   searchString: parseQsValue(ownProps.location, 'q', ''),
   documents: getResourceDocuments(state),
 })
+
+Resources.contextTypes = {
+  t: React.PropTypes.func.isRequired
+}
 
 export default withRouter(connect(mapStateToProps, {
   loadResourceDocuments,

@@ -1,10 +1,12 @@
 .ResourceCard__container {
   margin-top: 10px;
-  display: inline-flex;
+  margin-bottom: 10px;
+  width: 100%;
   background-color: #fff;
   padding: 15px;
   position: relative;
   border: 1px solid #DBDBD0;
+  display: flex;
 }
 
 .ResourceCard__text_container {
@@ -19,8 +21,8 @@
 
 .ResourceCard__downloadBtn {
     border-radius: 23px;
-    display: flex;
-    font-family: "Atlas Grotesk Web";
+    display: inline-flex;
+    font-family: "Atlas Grotesk Web", Arial, sans-serif;
     font-weight: 500;
     text-transform: uppercase;
 }
@@ -35,7 +37,7 @@
 }
 
 .ResourceCard__pub_date{
-  font-family: "Atlas Grotesk Web";
+  font-family: "Atlas Grotesk Web", Arial, sans-serif;
   font-weight: 400;
   font-size: 0.875rem;
 }

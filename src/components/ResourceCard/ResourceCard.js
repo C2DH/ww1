@@ -1,22 +1,41 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
+import EventDate from '../../components/EventDate'
 import './ResourceCard.css'
 
-const ResourceCard = ({ title, author, image, pubDate }) => (
-  <div className="ResourceCard__container">
-    <div style={{backgroundImage: `url(${image})`}} className="ResourceCard__image hidden-md-down">
-    </div>
-    <div className="ResourceCard__text_container">
-      <p className="ResourceCard__pub_date">Publishing date: {pubDate}</p>
-      <h3>{title}</h3>
-      <p className="ResourceCard__pub_date"><i>by </i>{author}</p>
-      <div className="ResourceCard__downloadBtn_wrapper">
-        <button className="btn btn-secondary ResourceCard__downloadBtn">
-          <i className="material-icons">file_download</i>
-          Download
-        </button>
+class ResourceCard extends PureComponent {
+  render(){
+    const { title, author, image, date, startDate, attachment } = this.props;
+    return (
+      <div className="ResourceCard__container">
+        <div style={{backgroundImage: `url(${image})`}} className="ResourceCard__image hidden-md-down">
+        </div>
+        <div className="ResourceCard__text_container">
+          <p className="ResourceCard__pub_date">
+            {this.context.t('publishing date')}: <EventDate
+              date={date}
+              startDate={startDate}
+            />
+          </p>
+          <h3>{title}</h3>
+          <p className="ResourceCard__pub_date"><i>by </i>{author}</p>
+          <div className="ResourceCard__downloadBtn_wrapper">
+            <a role="button"
+              className="btn btn-secondary ResourceCard__downloadBtn"
+              href={attachment} target="_blank"
+              >
+              <i className="material-icons">file_download</i>
+              {this.context.t('download')}
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-)
+    )
+  }
+}
+
+
+ResourceCard.contextTypes = {
+  t: React.PropTypes.func.isRequired
+}
 
 export default ResourceCard
