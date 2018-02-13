@@ -62,7 +62,7 @@ class EducationDetail extends PureComponent {
                         <h6 className='EducationDetail__h6'>{this.context.t('pedagogical manual')}</h6>
                         <a
                           className="btn btn-secondary EducationDetail__DownloadBtn"
-                          href={get(educational, 'contents.object.attachment')}>
+                          href={get(educational, 'contents.manual.attachment')}>
                           <i className="material-icons">get_app</i>
                           {this.context.t('download')}
                         </a>
