@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { Container, Row, Col, Collapse } from 'reactstrap';
+import MarkdownGlossary from '../../components/MarkdownGlossary'
 import './EducationExpandableItem.css'
 
 class EducationExpandableItem extends PureComponent {
@@ -38,7 +39,10 @@ render () {
         </div>
         <Collapse isOpen={this.state.open}>
           <div className="EducationExpandableItem__container">
-            <p className="EducationExpandableItem__text">{this.props.description}</p>
+
+            <div className="EducationExpandableItem__text">
+              <MarkdownGlossary content={this.props.description} />
+            </div>
           </div>
         </Collapse>
       </div>

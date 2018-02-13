@@ -65,6 +65,19 @@
   margin-bottom: 0px;
 }
 
+.EducationExpandableItem__text h2{
+  color: #F56350;
+}
+
+.EducationExpandableItem__text a{
+  color: #F56350;
+}
+
+.EducationExpandableItem__text a:hover{
+  color: #F56350;
+  text-decoration: none;
+}
+
 
 .EducationExpandableItem__imgTitle {
   font-weight: 500;
