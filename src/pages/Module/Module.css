@@ -87,7 +87,7 @@
 
 .Module__container_text blockquote,
 .Module__textObject_Text blockquote{
-  margin: 2rem 0 2rem 2rem;
+  margin: 1.5rem;
 }
 
 .Module__container_text blockquote,
@@ -96,17 +96,17 @@
 .Module__textObject_Text blockquote p{
   position: relative;
   font-style: italic;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 .Module__container_text blockquote::before,
 .Module__textObject_Text blockquote::before{
   position: absolute;
-  top: 3rem;
-  left: -3rem;
+  top: 2rem;
+  left: -2rem;
   content: '“';
   color: #f56350;
   opacity: 0.6;
-  font-size: 12rem;
+  font-size: 8rem;
   line-height: 0;
 }
 
@@ -587,6 +587,26 @@
 
   .Map__Module_Container{
     padding-top: 0px;
+  }
+
+
+  .Module__container_text blockquote,
+  .Module__textObject_Text blockquote{
+    margin: 2rem;
+  }
+
+  .Module__container_text blockquote,
+  .Module__container_text blockquote p,
+  .Module__textObject_Text blockquote,
+  .Module__textObject_Text blockquote p{
+    font-size: 2rem;
+  }
+  .Module__container_text blockquote::before,
+  .Module__textObject_Text blockquote::before{
+    position: absolute;
+    top: 3rem;
+    left: -3rem;
+    font-size: 12rem;
   }
 
  }
