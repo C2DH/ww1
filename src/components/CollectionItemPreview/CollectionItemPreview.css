@@ -49,6 +49,7 @@
 
 .CollectionItemPreview__pdf_scale > div{
   display: flex;
+  margin: auto;
 }
 
 .CollectionItemPreviewPDF__controls {

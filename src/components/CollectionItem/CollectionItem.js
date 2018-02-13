@@ -150,8 +150,7 @@ export default ({ doc, onCloseClick }) => {
   }
 
   const relatedType = ['image', 'audio', 'video', 'correspondence', 'other', 'physical object', 'book']
-  let related = get(doc, "documents",[])
-  related.filter(item => relatedType.indexOf(item)>-1?true:false)
+  const related = get(doc, "documents",[]).filter(item => relatedType.indexOf(item.data.type)>-1?true:false)
 
   return (
     <div className="CollectionItem__wrapper_div">
