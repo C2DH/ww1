@@ -51,7 +51,7 @@ class EducationDetail extends PureComponent {
                     <p>{educational.data.activity}</p>
                     <Row>
                       <Col xs={12} md={6}>
-                        <h6 className='EducationDetail__h6'>{this.context.t('requirements	for	the	pupils')}</h6>
+                        <h6 className='EducationDetail__h6'>{this.context.t('skills')}</h6>
                         <ul className='pl-4'>
                           {educational.data.requirements.map((req, index) => (
                             <li key={index}>{req}</li>
