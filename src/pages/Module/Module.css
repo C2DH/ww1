@@ -75,7 +75,7 @@
 }
 
 .Module__container_text a:hover,
-.MModule__textObject_Text a:hover {
+.Module__textObject_Text a:hover {
   color: #F56350;
   text-decoration: none;
 }
@@ -83,6 +83,31 @@
 .Module__container_text_overflow{
   max-height: calc(100vh - 58px - 58px);
   overflow-y: auto;
+}
+
+.Module__container_text blockquote,
+.Module__textObject_Text blockquote{
+  margin: 2rem 0 2rem 2rem;
+}
+
+.Module__container_text blockquote,
+.Module__container_text blockquote p,
+.Module__textObject_Text blockquote,
+.Module__textObject_Text blockquote p{
+  position: relative;
+  font-style: italic;
+  font-size: 2rem;
+}
+.Module__container_text blockquote::before,
+.Module__textObject_Text blockquote::before{
+  position: absolute;
+  top: 3rem;
+  left: -3rem;
+  content: '“';
+  color: #f56350;
+  opacity: 0.6;
+  font-size: 12rem;
+  line-height: 0;
 }
 
 /* end text */
