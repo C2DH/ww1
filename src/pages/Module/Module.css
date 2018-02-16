@@ -37,6 +37,8 @@
   white-space: nowrap;
   position: relative;
   overflow-x: auto;
+  font-family: 'Atlas Grotesk Web';
+  font-size: 0.9rem;
 }
 
 .Module__object_caption_text_cont::after {
