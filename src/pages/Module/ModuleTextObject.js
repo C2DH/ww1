@@ -38,9 +38,10 @@ class ModuleTextObject extends PureComponent {
     }
 
     const backgroundColor = get(module, 'background.color')
-    const backgroundImage = get(module, 'background.object.id.attachment')
     const backgroundOverlay = get(module, 'background.object.overlay')
     const bbox = get(module, 'background.object.bbox')
+    let backgroundImage = get(module, 'background.object.id.attachment')
+    backgroundImage = !backgroundImage?'':(bbox.length)?backgroundImage:get(module, 'background.object.id.data.resolutions.medium.url','')
 
     return (
       <div style={{height:'100%', position:'relative', overflowY: 'auto'}}>

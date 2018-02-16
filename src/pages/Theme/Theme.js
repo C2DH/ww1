@@ -43,12 +43,15 @@ class Theme extends PureComponent {
     const { theme } = this.props
     const firstChapterSlug = getFirstChapterSlug(theme)
     const containerStyle = { backgroundImage: `url(${getThemeCover(theme)})` }
+    const bbox = get(theme, 'data.background.bbox', []);
+    let backgroundImage = get(theme, 'covers[0].attachment')
+    backgroundImage = !backgroundImage?'':(bbox.length)?backgroundImage:get(theme, 'covers[0].data.resolutions.medium.url','')
 
     return (
       <div className="Theme__wrapper animated fadeIn">
       <Background
-        image={get(theme, 'covers[0].attachment')}
-        bbox={get(theme, 'data.background.bbox', [])}
+        image={backgroundImage}
+        bbox={bbox}
         overlay={get(theme, 'data.background.overlay')}
         color={get(theme, 'data.background.backgroundColor')}/>
 

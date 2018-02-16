@@ -83,6 +83,9 @@ class ChapterCover extends PureComponent  {
 
     const backgroundColor = get(chapter, 'data.background.backgroundColor')
     const overlay = get(chapter, 'data.background.overlay')
+    const bbox = get(chapter, 'data.background.bbox', []);
+    let backgroundImage = get(chapter, 'covers[0].attachment')
+    backgroundImage = !backgroundImage?'':(bbox.length)?backgroundImage:get(chapter, 'covers[0].data.resolutions.medium.url','')
 
     return (
       <div>
@@ -91,9 +94,9 @@ class ChapterCover extends PureComponent  {
         <div className="ChapterCover__container animated fadeIn" style={{ marginTop: 0 * 150,
             opacity: scrollScale(this.props.scroll)}}>
           <Background
-            image={get(chapter, 'covers[0].attachment')}
+            image={backgroundImage}
             overlay={get(chapter, 'data.background.overlay')}
-            bbox={get(chapter, 'data.background.bbox', [])}
+            bbox={bbox}
             color={get(chapter, 'data.background.backgroundColor')}
           />
           <Container fluid>
