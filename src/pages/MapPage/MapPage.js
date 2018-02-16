@@ -96,9 +96,9 @@ const Map = ReactMapboxGl({
 })
 
 
-const LUXEMBOURG_BBOX = [2.230225,48.177076,10.140381,50.864911];
-const sw = new MapboxGL.LngLat(2.230225,48.177076);
-const ne = new MapboxGL.LngLat(10.140381,50.864911);
+const LUXEMBOURG_BBOX = [2.1944545253,47.8493021543,10.4920501709,50.6313162083];
+const sw = new MapboxGL.LngLat(2.1944545253,47.8493021543);
+const ne = new MapboxGL.LngLat(10.4920501709,50.6313162083);
 const llb = new MapboxGL.LngLatBounds(sw, ne);
 
 class PositionControl extends React.PureComponent {
@@ -201,7 +201,7 @@ class LayersControl extends React.PureComponent {
 class MapPage extends PureComponent {
   state = {
     center: [6.1008033, 49.8148384],
-    zoom: [8],
+    zoom: [9],
     selectedDocument: null,
     selectedLayer: null,
     sideMenuOpen: !isMobileScreen()
@@ -385,7 +385,7 @@ class MapPage extends PureComponent {
     const { selectedDocument, center, zoom } = this.state
     const linePaint: MapboxGL.LinePaint = {
       'line-color': '#F56350',
-      'line-width': 3
+      'line-width': 3.5
     };
 
     const symbolLayout: MapboxGL.SymbolLayout = {
