@@ -13,14 +13,14 @@ import LastModule from '../../components/LastModule'
 
 const fullHeight = { height: '100%'}
 
-const ObjectColumn = ({module}) => (
-  <Col md="6" className="Module__textObject_Col mediumModule">
+const ObjectColumn = ({module, position}) => (
+  <Col md="6" className={`Module__textObject_Col mediumModule animated fadeIn${module.type=='image'?position:''}`}>
     <ModuleObjectContent module={module}/>
   </Col>
 )
 
-const TextColumn = ({ content, color }) => (
-  <Col md="6"  className="Module__textObject_Col">
+const TextColumn = ({ content, color, position }) => (
+  <Col md="6"  className={`Module__textObject_Col animated fadeIn${position}`}>
     <div className="Module__textObject_Text" style={{ color }}>
       <MarkdownGlossary content={content}/>
     </div>
@@ -42,7 +42,7 @@ class ModuleTextObject extends PureComponent {
     const bbox = get(module, 'background.object.bbox')
     let backgroundImage = get(module, 'background.object.id.attachment')
     backgroundImage = !backgroundImage?'':(bbox.length)?backgroundImage:get(module, 'background.object.id.data.resolutions.medium.url','')
-
+    console.log(obj)
     return (
       <div style={{height:'100%', position:'relative', overflowY: 'auto'}}>
         <Background
@@ -54,14 +54,14 @@ class ModuleTextObject extends PureComponent {
       <Container fluid className="Module__container_obj">
           { module.layout == 'object-text' && (
             <Row style={fullHeight}>
-              <ObjectColumn module={obj}/>
-              <TextColumn content={content} color={module.text.color}/>
+              <ObjectColumn module={obj} position={'Left'}/>
+              <TextColumn content={content} color={module.text.color} position={'Right'}/>
             </Row>
           )}
           { module.layout == 'text-object' && (
             <Row style={fullHeight}>
-              <TextColumn content={content} color={module.text.color}/>
-              <ObjectColumn module={obj}/>
+              <TextColumn content={content} color={module.text.color} position={'Left'} />
+              <ObjectColumn module={obj} position={'Right'}/>
             </Row>
           )}
         </Container>

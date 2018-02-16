@@ -49,9 +49,9 @@ const ObjectLink = connect(mapStateToProps)(class extends React.PureComponent {
     if(this.state.doc){
       const translatedDoc = translateDocument(lang)(this.state.doc)
       return (
-        <span className="markdown_glossary">
-          <Origin content={`<div class="markdown_glossary_tooltip"> ${translatedDoc.translated.description || translatedDoc.translated.title || translatedDoc.title}</div>`}>{this.props.children}</Origin>
-        </span>
+        <a className="markdown_glossary">
+          <Origin place='left' content={`<div class="markdown_glossary_tooltip"> ${translatedDoc.translated.description || translatedDoc.translated.title || translatedDoc.title}</div>`}>{this.props.children}</Origin>
+        </a>
       )
     } else {
       const passProps=omit(this.props, ['doc', 'unloadDocument', 'loadDocument', 'loading', 'lang', 'dispatch'])

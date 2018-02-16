@@ -22,7 +22,8 @@ export default class Background extends PureComponent {
       backgroundSize: 'cover',
       position: 'absolute',
       backgroundPosition:'center center',
-      zIndex: 0
+      zIndex: 0,
+      animationDelay: '1.5s',
     }
 
     const overlayRgb = d3Color.color(overlay || 'transparent').rgb()
@@ -37,7 +38,7 @@ export default class Background extends PureComponent {
     }
 
     return (
-      <div style={baseStyle}>
+      <div style={baseStyle} className="animated fadeIn">
         {overlay && (
         <div style={overlayStyle}>
         </div>

@@ -22,6 +22,9 @@
   flex-wrap: nowrap;
   align-items: center;
   background-color: white;
+  position: relative;
+  z-index: 0;
+  animation-delay: 2s
 }
 
 .Module__object_caption_text_cont{
@@ -83,6 +86,7 @@
 .Module__container_text_overflow{
   max-height: calc(100vh - 58px - 58px);
   overflow-y: auto;
+  animation-duration: 2s!important;
 }
 
 .Module__container_text blockquote,
@@ -135,6 +139,9 @@
 .Module__objectCard_img{
   border-radius: 0px;
   border: none;
+  position: relative;
+  animation-delay: 1s;
+  z-index: 1;
 }
 
 .smallModule .Module__objectCard_img{
@@ -173,6 +180,9 @@
 
 .Module__objectCard_imgFull{
   flex: 1 1 auto;
+  position: relative;
+  animation-delay: 1s;
+  z-index: 1;
 }
 
 .Module__objectCard .card-block,
@@ -310,6 +320,11 @@
   flex-direction: column;
   justify-content: center;
   height: 100%;
+  animation-duration: 2s!important;
+}
+
+.Module__textObject_Col.mediumModule.animated{
+  animation-delay: 0.8s;
 }
 
 
@@ -510,6 +525,7 @@
   z-index: 100;
   right: 10px;
   top: 10px;
+  animation-delay: 2s;
 }
 
 .Module__objectCard_imgFull .ModuleObjectContentImage__Link,

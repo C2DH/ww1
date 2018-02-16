@@ -130,7 +130,7 @@ class ModuleObjectContentVideo extends PureComponent {
         </div>
         }
         {(size != 'big' || resize) &&
-          <div className="ModuleObjectContentImage__Link"><CollectionItemLink doc={module.id}/></div>
+          <div className="ModuleObjectContentImage__Link animated fadeIn"><CollectionItemLink doc={module.id}/></div>
         }
         {(size === 'big' && !resize) &&
           <div className="Module__objectCard_videoFull">
@@ -201,19 +201,19 @@ const ModuleObjectContentImage = pure(({ module, resize }) => {
   return (
       <Card className="Module__objectCard">
         {(size != 'big' || resize) &&
-          <CardImg top className="Module__objectCard_img" src={media}/>
+          <CardImg top className="Module__objectCard_img animated fadeIn" src={media}/>
         }
         {(size != 'big' || resize) &&
-          <div className="ModuleObjectContentImage__Link"><CollectionItemLink doc={module.id}/></div>
+          <div className="ModuleObjectContentImage__Link animated fadeIn"><CollectionItemLink doc={module.id}/></div>
         }
         {(size === 'big' && !resize) &&
-          <div style={objectImgFullStyle} className="Module__objectCard_imgFull">
-            <div className="ModuleObjectContentImage__Link"><CollectionItemLink doc={module.id}/></div>
+          <div style={objectImgFullStyle} className="Module__objectCard_imgFull animated fadeIn">
+            <div className="ModuleObjectContentImage__Link animated fadeIn"><CollectionItemLink doc={module.id}/></div>
           </div>
         }
 
         {(module.caption) &&
-            <CardBlock className="Module__object_caption_text">
+            <CardBlock className="Module__object_caption_text animated fadeInDown">
               <i className="icon-hand Module__object_caption_hand"  />
               <div className="Module__object_caption_text_cont">
                 <CardText>

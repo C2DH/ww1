@@ -39,9 +39,9 @@ class ModuleText extends PureComponent {
       />
       <div>
           <Container fluid className="Module__container_text">
-            <Row className="Module__container_text_overflow">
+            <Row>
               <Col lg={{ size: size, offset: offset }} style={textStyle}>
-                <div className="Module__container_text_overflow">
+                <div className="Module__container_text_overflow animated fadeInUp">
                   <MarkdownGlossary content={module.text.content}/>
                 </div>
               </Col>

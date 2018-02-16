@@ -90,7 +90,7 @@ export const getThemes = (token) =>
           tags__slug: 'theme',
         },
         limit: 1000,
-        orderby: 'priority',
+        //orderby: 'priority',
       }))
   )
   .then(extractBody)
