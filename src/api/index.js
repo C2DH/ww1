@@ -89,6 +89,7 @@ export const getThemes = (token) =>
         filters: {
           tags__slug: 'theme',
         },
+        limit: 1000,
         orderby: 'priority',
       }))
   )
