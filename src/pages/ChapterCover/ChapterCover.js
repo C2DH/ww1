@@ -83,6 +83,7 @@ class ChapterCover extends PureComponent  {
 
     const backgroundColor = get(chapter, 'data.background.backgroundColor')
     const overlay = get(chapter, 'data.background.overlay')
+    console.log(overlay + '-----' +backgroundColor)
     const bbox = get(chapter, 'data.background.bbox', []);
     let backgroundImage = get(chapter, 'covers[0].attachment')
     backgroundImage = !backgroundImage?'':(bbox.length)?backgroundImage:get(chapter, 'covers[0].data.resolutions.medium.url','')
@@ -91,7 +92,7 @@ class ChapterCover extends PureComponent  {
       <div>
         <ScrollHelperTop background={overlay ? overlay : backgroundColor}/>
         {/* This was this.state.scrolling * 150 */}
-        <div className="ChapterCover__container animated fadeIn" style={{ marginTop: 0 * 150,
+        <div className="ChapterCover__container" style={{ marginTop: 0 * 150,
             opacity: scrollScale(this.props.scroll)}}>
           <Background
             image={backgroundImage}
@@ -102,7 +103,7 @@ class ChapterCover extends PureComponent  {
           <Container fluid>
             <Row>
               <Col>
-                <div className="ChapterCover__inner_container">
+                <div className="ChapterCover__inner_container animated fadeIn">
                   <div className="ChapterCover__inner_container_center">
                    <div className="ChapterCover__label_container d-none d-md-block">
                      <h6>{this.context.t('chapter')} {index + 1}</h6>

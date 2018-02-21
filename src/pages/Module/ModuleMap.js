@@ -169,7 +169,7 @@ class ModuleMap extends PureComponent {
               )}
             </Map>
             {(module.caption) &&
-                <div className="Module__object_caption_text ModuleMap__Caption Module__gallery_carousel_caption">
+                <div className="Module__object_caption_text ModuleMap__Caption Module__gallery_carousel_caption animated fadeInDown">
                   <i className="icon-hand Module__object_caption_hand"  />
                   <div className="Module__object_caption_text_cont">
                     <p className="card-text">

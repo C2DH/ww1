@@ -42,7 +42,6 @@ class ModuleTextObject extends PureComponent {
     const bbox = get(module, 'background.object.bbox')
     let backgroundImage = get(module, 'background.object.id.attachment')
     backgroundImage = !backgroundImage?'':(bbox.length)?backgroundImage:get(module, 'background.object.id.data.resolutions.medium.url','')
-    console.log(obj)
     return (
       <div style={{height:'100%', position:'relative', overflowY: 'auto'}}>
         <Background
@@ -55,12 +54,12 @@ class ModuleTextObject extends PureComponent {
           { module.layout == 'object-text' && (
             <Row style={fullHeight}>
               <ObjectColumn module={obj} position={'Left'}/>
-              <TextColumn content={content} color={module.text.color} position={'Right'}/>
+              <TextColumn content={content} color={module.text.color} position={'Up'}/>
             </Row>
           )}
           { module.layout == 'text-object' && (
             <Row style={fullHeight}>
-              <TextColumn content={content} color={module.text.color} position={'Left'} />
+              <TextColumn content={content} color={module.text.color} position={'Up'} />
               <ObjectColumn module={obj} position={'Right'}/>
             </Row>
           )}

@@ -9,14 +9,14 @@ import LastModule from '../../components/LastModule'
 const fullHeight = { height: '100%'}
  const mapColumnsStyle = { height:'100%', position:'relative', width:'100%' }
 
-const MapColumn = ({module, chapter}) => (
-  <Col md="6" className="Module__textObject_Col">
+const MapColumn = ({module, chapter, position}) => (
+  <Col md="6" className="Module__textObject_Col" className={`Module__textObject_Col mediumModule animated fadeIn${position}`}>
     <ModuleMap module={module} chapter={chapter} style={mapColumnsStyle}/>
   </Col>
 )
 
-const TextColumn = ({content, color}) => (
-  <Col md="6" className="Module__textObject_Col">
+const TextColumn = ({content, color, position}) => (
+  <Col md="6" className={`Module__textObject_Col animated fadeIn${position}`}>
     <div className="Module__textObject_Text" style={{ color }}>
       <MarkdownGlossary content={content}/>
     </div>
@@ -46,14 +46,14 @@ class ModuleTextMap extends PureComponent {
         <Container fluid className="Module__container_obj">
           { module.layout === 'map-text' && (
             <Row style={fullHeight}>
-              <MapColumn chapter={chapter} module={module.map}/>
-              <TextColumn content={content} color={module.text.color}/>
+              <MapColumn chapter={chapter} module={module.map} position={'Left'} />
+              <TextColumn content={content} color={module.text.color} position={'Up'}/>
             </Row>
           )}
           { module.layout === 'text-map' && (
             <Row style={fullHeight}>
-              <TextColumn content={content} color={module.text.color}/>
-              <MapColumn chapter={chapter} module={module.map}/>
+              <TextColumn content={content} color={module.text.color} position={'Up'}/>
+              <MapColumn chapter={chapter} module={module.map} position={'Right'}/>
             </Row>
           )}
           {lastModule &&

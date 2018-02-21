@@ -510,6 +510,10 @@
   padding-top: var(--mobile-top);
 }
 
+.Map__Module_Container .mapboxgl-map{
+  z-index: 1;
+}
+
 .ModuleMap__Caption {
     height: calc(var(--mobile-bottom)*2);
     width: 100%;

@@ -176,11 +176,14 @@ const ModuleObjectContentVideoLockable = connect(undefined, {
 })(ModuleObjectContentVideo)
 
 const ModuleObjectContentImage = pure(({ module, resize }) => {
-  const media = get(module, 'id.attachment')
+  //const media = get(module, 'id.attachment')
   const size = get(module, 'size')
   const position = get(module, 'position')
   const backgroundColor = get(module, 'background.color')
   const backgroundColorRgb = d3Color.color(backgroundColor || '#373a3c').rgb()
+
+  const media = get(module, 'id.data.resolutions.medium.url') || get(module, 'id.attachment');
+
 
   let backgroundImage = `linear-gradient(to bottom, rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},1) 0%,rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},0.0) 5%,rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},0) 100%),url(${media})`
 
