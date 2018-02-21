@@ -7,7 +7,7 @@ import SideMenu from './SideMenu'
 import './Layout.css'
 
 class Layout extends PureComponent {
-  getScrollTarget = (ref) => { console.log(this.scrollTarget); this.scrollTarget = ref; }
+  getScrollTarget = (ref) => { this.scrollTarget = ref; }
   render(){
     const {children, scrollLock} = this.props;
     return(

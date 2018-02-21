@@ -10,7 +10,7 @@ const fullHeight = { height: '100%'}
  const mapColumnsStyle = { height:'100%', position:'relative', width:'100%' }
 
 const MapColumn = ({module, chapter, position}) => (
-  <Col md="6" className="Module__textObject_Col" className={`Module__textObject_Col mediumModule animated fadeIn${position}`}>
+  <Col md="6" className={`Module__textObject_Col mediumModule animated fadeIn${position}`}>
     <ModuleMap module={module} chapter={chapter} style={mapColumnsStyle}/>
   </Col>
 )

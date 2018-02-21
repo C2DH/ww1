@@ -83,7 +83,6 @@ class ChapterCover extends PureComponent  {
 
     const backgroundColor = get(chapter, 'data.background.backgroundColor')
     const overlay = get(chapter, 'data.background.overlay')
-    console.log(overlay + '-----' +backgroundColor)
     const bbox = get(chapter, 'data.background.bbox', []);
     let backgroundImage = get(chapter, 'covers[0].attachment')
     backgroundImage = !backgroundImage?'':(bbox.length)?backgroundImage:get(chapter, 'covers[0].data.resolutions.medium.url','')
@@ -108,7 +107,7 @@ class ChapterCover extends PureComponent  {
                    <div className="ChapterCover__label_container d-none d-md-block">
                      <h6>{this.context.t('chapter')} {index + 1}</h6>
                    </div>
-                   <h1>{chapter.translated.title}</h1>
+                   <h1 className="animated zoomIn">{chapter.translated.title}</h1>
                    <div className="ChapterCover__text_container">
                      <p>{chapter.translated.abstract}</p>
                    </div>

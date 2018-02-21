@@ -125,7 +125,8 @@
 .Module__container_obj.smallModule,
 .Module__container_obj.mediumModule{
   height: 100vh;
-  overflow-y: auto;
+  /* overflow-y: auto; */
+  overflow-y: hidden;
   overflow-x: hidden;
   flex-direction: column;
   display: flex;
@@ -366,6 +367,7 @@
   max-height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
+  /* animation-duration: 2s !important; */
 }
 
 /* gallery carousel */
@@ -605,6 +607,11 @@
 
   .ModuleCarousel__inner_slider {
     height: calc(100vh - 240px);
+  }
+
+  .ModuleCarousel__inner_slider{
+    height: calc(100vh - 240px);
+    animation-delay: 1s!important;
   }
 
   .Map__Module_Container{

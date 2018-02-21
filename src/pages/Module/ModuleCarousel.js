@@ -92,13 +92,13 @@ class ModuleCarousel extends PureComponent {
                 <div className="ModuleCarousel__slider_container">
                     <Slider ref={c => this.slider = c } {...settings}>
                       {module.objects.map((pic, i) => (
-                        <div className={`ModuleCarousel__inner_slider ${ i !== currentIndex  ?  'ModuleCarousel__inner_slider--opaque' : '' }`} key={pic.id.id} >
-                          <img src={pic.id.attachment} />
+                        <div className={`ModuleCarousel__inner_slider ${ i !== currentIndex  ?  'ModuleCarousel__inner_slider--opaque' : '' } animated fadeInRight`} key={pic.id.id} >
+                          <img src={pic.id.data.resolutions.medium.url || pic.id.attachment} />
                           <div className="ModuleCarousel__CollectionItemLink"><CollectionItemLink doc={pic.id}/></div>
                         </div>
                       ))}
                     </Slider>
-                    <div className="ModuleCarousel__control_container">
+                    <div className="ModuleCarousel__control_container animated fadeIn">
                       <button  className='ModuleCarousel__control_btn ModuleCarousel__control_btn_right' onClick={this.previous}><i className="material-icons md-28">keyboard_arrow_left</i></button>
                       <span> {currentIndex + 1} / {module.objects.length} </span>
                       <button  className='ModuleCarousel__control_btn ModuleCarousel__control_btn_right' onClick={this.next}><i className="material-icons md-28">keyboard_arrow_right</i></button>
@@ -106,7 +106,7 @@ class ModuleCarousel extends PureComponent {
 
                 </div>
                 {(module.caption) &&
-                    <div className="Module__object_caption_text card-block Module__gallery_carousel_caption">
+                    <div className="Module__object_caption_text card-block Module__gallery_carousel_caption animated fadeInUp">
                       <i className="icon-hand Module__object_caption_hand"  />
                       <div className="Module__object_caption_text_cont">
                         <p className="card-text">

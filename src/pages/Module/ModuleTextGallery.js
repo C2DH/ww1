@@ -16,8 +16,8 @@ const GalleryColumn = ({module, chapter}) => (
   </Col>
 )
 
-const TextColumn = ({ content, color }) => (
-  <Col md="6" className="Module__textObject_Col">
+const TextColumn = ({ content, color,position }) => (
+  <Col md="6" className={`Module__textObject_Col animated fadeIn${position}`}>
     <div className="Module__textObject_Text" style={{ color }}>
       <MarkdownGlossary content={content} />
     </div>
@@ -48,12 +48,12 @@ class ModuleTextGallery extends PureComponent {
           { module.layout === 'gallery-text' && (
             <Row style={fullHeight}>
               <GalleryColumn chapter={chapter} module={module.gallery}/>
-              <TextColumn content={content} color={module.text.color}/>
+              <TextColumn content={content} color={module.text.color} position={'Up'}/>
             </Row>
           )}
           { module.layout === 'text-gallery' && (
             <Row style={fullHeight}>
-              <TextColumn content={content} color={module.text.color}/>
+              <TextColumn content={content} color={module.text.color} position={'Up'}/>
               <GalleryColumn chapter={chapter} module={module.gallery}/>
             </Row>
           )}
