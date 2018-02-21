@@ -234,26 +234,24 @@ class ModuleObjectContentAudio extends PureComponent {
     const { module } = this.props
     let media = get(module, 'id.attachment')
     let title = get(module, 'id.translated.title')
-
     if(!media){ return null }
-
-    // #TODO: FIXME SERVERS SIDE (OR HANDLE WITH PROXY)
-    if (media.indexOf("http://178.62.220.183/media/http") == 0){
-      media = decodeURIComponent(media.replace("http://178.62.220.183/media/", ""))
-    }
 
     return (
       <div className='Module__object__audio'>
         <div className='Module__object__audio_wrapper'>
-          <AudioPlayer source={`https://cors-anywhere.herokuapp.com/${media}`} title={title}/>
+          <AudioPlayer source={media} title={title}/>
         </div>
-        <div className="Module__object__audio__caption">
-          <span>
-            <i className="icon-hand"  />
-            <span> {module.caption}</span>
-          </span>
-          <div><CollectionItemLink doc={module.id}/></div>
-        </div>
+        {module.caption &&
+          <CardBlock className="Module__object_caption_text Module__object__audio_caption animated fadeInUp">
+            <i className="icon-hand Module__object_caption_hand"  />
+            <div className="Module__object_caption_text_cont">
+              <CardText>
+                {module.caption}
+              </CardText>
+            </div>
+          </CardBlock>
+       }
+       <div className="ModuleObjectContentImage__Link videoFull animated fadeIn"><CollectionItemLink doc={module.id}/></div>
       </div>
     )
   }
