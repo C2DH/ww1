@@ -231,12 +231,22 @@
   position: relative;
   z-index: 1;
   animation-delay: 1s!important;
+  height: 100%;
+}
+
+.smallModule .Module__objectCard_video .video-react,
+.mediumModule .Module__objectCard_video .video-react{
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%!important;
+  height: 100%!important;
+
 }
 
 .smallModule .Module__objectCard.video,
 .mediumModule .Module__objectCard.video{
-  margin: auto;
-  width: 100%;
+  margin: 0px;
+  flex: 0 0 80%;
 }
 
 .bigModule .Module__objectCard.video{
@@ -251,6 +261,7 @@
   justify-content: center;
   align-items: center;
   z-index: 1;
+  animation-delay: 1s;
 }
 
 .Module__objectCard_videoFull .video-react{

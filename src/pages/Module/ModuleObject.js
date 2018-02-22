@@ -116,7 +116,7 @@ class ModuleObjectContentVideo extends PureComponent {
       <Card className="Module__objectCard video">
         {(size != 'big' || resize) &&
         <div className="Module__objectCard_video animated fadeIn">
-          <Player fluid={true} autoPlay={true} muted={true} ref={ref => this.player = ref}>
+          <Player fluid={false} autoPlay={true} muted={true} ref={ref => this.player = ref}>
             <source src={media} />
             <BigPlayButton position="center" />
             <ControlBar autoHide={true}>
