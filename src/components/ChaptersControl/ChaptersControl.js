@@ -4,22 +4,22 @@ import './circle.css'
 
 class ChaptersControl extends PureComponent {
   componentDidMount() {
-    window.addEventListener('keydown', this.handleKeyPress)
+    //window.addEventListener('keydown', this.handleKeyPress)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('keydown', this.handleKeyPress)
+    //window.removeEventListener('keydown', this.handleKeyPress)
   }
 
-  handleKeyPress = (e) => {
-    const { hasPrev, hasNext, onClickPrev, onClickNext } = this.props
-    if (e.key === 'ArrowDown' && hasNext) {
-      onClickNext()
-    }
-    if (e.key === 'ArrowUp' && hasPrev) {
-      onClickPrev()
-    }
-  }
+  // handleKeyPress = (e) => {
+  //   const { hasPrev, hasNext, onClickPrev, onClickNext } = this.props
+  //   if (e.key === 'ArrowDown' && hasNext) {
+  //     onClickNext()
+  //   }
+  //   if (e.key === 'ArrowUp' && hasPrev) {
+  //     onClickPrev()
+  //   }
+  // }
 
   render() {
     const { hasNext, hasPrev, title, onClickTheme, onClickNext, onClickPrev, currentIndex, count, onClickChapters, moduleIndex, moduleTot } = this.props

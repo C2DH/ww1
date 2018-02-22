@@ -111,6 +111,12 @@
 
   .Collection__List--sidebar-open{
     width: calc(100% - 300px);
+    padding-top: 100px;
+    height: 100vh;
+  }
+  .Collection__List--sidebar-close{
+    height: 100vh;
+    padding-top: 100px;
   }
 
 }

@@ -2,6 +2,7 @@
   position: relative;
   overflow: hidden;
   z-index: 0;
+  animation-duration: 2s!important;
 }
 
 .CollectionDoc.squared {

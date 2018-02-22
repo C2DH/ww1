@@ -241,7 +241,7 @@ class Collection extends PureComponent {
                 documents={documents}
                 canLoadMore={canLoadMore && !loading}
                 loadMore={this.loadMore}
-                masonryStyle={{ paddingTop:120, paddingBottom: 20, outline: 'none' }}
+                masonryStyle={{ paddingTop:20, paddingBottom: 20, outline: 'none' }}
               />
              )
            )}

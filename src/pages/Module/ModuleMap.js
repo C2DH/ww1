@@ -60,7 +60,7 @@ const Map = ReactMapboxGl({
 class ModuleMap extends PureComponent {
 
   state = {
-    center: [6.087, 49.667],
+    center: [6.1008033, 49.8148384],
     zoom: [8],
     selectedDocument: null,
     selectedLayer: null,

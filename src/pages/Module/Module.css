@@ -489,8 +489,9 @@
   height: 58px;
   width: 100%;
   background-color: white;
-  position: fixed;
-  bottom: var(--mobile-bottom);
+  flex-grow: 0;
+  /* position: fixed;
+  bottom: var(--mobile-bottom); */
 }
 /* end gallery masonry */
 
@@ -574,8 +575,17 @@
     max-height: 70vh;
   }
 
+  .Module__textObject_Col .Module__gallery_cont{
+    padding-top: 0px!important;
+  }
+
   .Module__gallery_cont{
-    margin: 0px 78px;
+    padding-top: 78px;
+    margin: 0px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 
   .Module__gallery_caption{

@@ -30,10 +30,10 @@ const ModuleGallery = ({ module, style, masonryStyle=null,lastModule }) => {
   let gridStyle;
 
   if(module.caption){
-    masonryStyle = { height:'calc(100vh - 58px)', padding: '78px 0px'}
+    masonryStyle = { padding: '58px'}
     gridStyle = { height:'calc(100vh - 58px - 58px)', padding: '78px 0px', overflow:'auto'}
   }else{
-    masonryStyle = { height:'100vh', padding: '78px 0px'}
+    masonryStyle = { padding: '0px'}
     gridStyle = { height:'calc(100vh - 58px)', padding: '78px 0px', overflow:'auto'}
   }
 
@@ -53,7 +53,8 @@ const ModuleGallery = ({ module, style, masonryStyle=null,lastModule }) => {
           matches ? (
             <CollectionMasonry
                   showDocLink={true}
-                  masonryStyle={masonryStyle}
+                  masonryStyle={''}
+                  dynamicWidth={200}
                   documents={makeDocs(module.objects)}
               />
           ) : (
@@ -65,10 +66,8 @@ const ModuleGallery = ({ module, style, masonryStyle=null,lastModule }) => {
         )}
       </MediaQuery>
 
-    </div>
-
     {(module.caption) &&
-        <div className="Module__object_caption_text card-block Module__gallery_caption">
+        <div className="Module__object_caption_text card-block Module__gallery_caption animated fadeInUp">
           <i className="icon-hand Module__object_caption_hand"  />
           <div className="Module__object_caption_text_cont">
             <p className="card-text">
@@ -77,6 +76,7 @@ const ModuleGallery = ({ module, style, masonryStyle=null,lastModule }) => {
           </div>
         </div>
       }
+      </div>
       {
         lastModule && <LastModule></LastModule>
       }

@@ -18,7 +18,7 @@ class CollectionMasonry extends PureComponent {
   constructor(props) {
     super(props)
 
-    this.columnWidth = DEFAULT_COLUMN_WIDTH
+    this.columnWidth = this.props.dynamicWidth?this.props.dynamicWidth:DEFAULT_COLUMN_WIDTH
     this.gutterSize = 10
     this.horizontalPadding = 0
     this.columnCount = 4
@@ -47,7 +47,7 @@ class CollectionMasonry extends PureComponent {
       this.horizontalPadding = MOBILE_HORIZONTAL_PADDING
       this.columnWidth = Math.floor((((width - this.horizontalPadding * 2) + this.gutterSize) / this.columnCount) - this.gutterSize)
     } else {
-      this.columnWidth = DEFAULT_COLUMN_WIDTH
+      this.columnWidth = this.props.dynamicWidth?this.props.dynamicWidth:DEFAULT_COLUMN_WIDTH
       this.columnCount = Math.floor(( width + this.gutterSize ) / ( this.columnWidth + this.gutterSize ))
       this.horizontalPadding = (width - (this.columnCount * this.columnWidth + (this.columnCount-1) * + this.gutterSize)) / 2
     }
@@ -89,8 +89,8 @@ class CollectionMasonry extends PureComponent {
     let hasImage
 
     if (item.snapshot && item.data.thumbnail_height) {
-      const delta = (this.columnWidth / DEFAULT_COLUMN_WIDTH)
-      imageHeight = item.data.thumbnail_height * (delta > 1 ? 1 : delta)
+      const delta = (this.columnWidth / (this.props.dynamicWidth?this.props.dynamicWidth:DEFAULT_COLUMN_WIDTH))
+      imageHeight = ((this.props.dynamicWidth?this.props.dynamicWidth:DEFAULT_COLUMN_WIDTH)/item.data.thumbnail_width * item.data.thumbnail_height) * (delta > 1 ? 1 : delta)
       hasImage = true
     } else {
       imageHeight = 200
@@ -113,7 +113,7 @@ class CollectionMasonry extends PureComponent {
       >
         <div>
           <div style={divStyle}>
-            <CollectionDoc doc={item} hasImage={hasImage} showDocLink={showDocLink}/>
+            <CollectionDoc doc={item} hasImage={hasImage} showDocLink={showDocLink} index={index}/>
           </div>
         </div>
       </CellMeasurer>
@@ -122,16 +122,16 @@ class CollectionMasonry extends PureComponent {
 
   render() {
     const { documents, masonryStyle } = this.props
-
     return (
-      <div>
+      <div style={{ height: '100%', display: 'flex' }}>
       <WindowScroller documents={documents}>
-        {({ scrollTop, height }) => (
+        {({ scrollTop }) => (
+        <div style={{ flex: '1 1 auto' }}>
           <AutoSizer
             disableHeight={true}
             scrollTop={scrollTop}
             onResize={this.onResize}>
-            {({ width }) => (
+            {({ height, width }) => (
               <Masonry
                 style={masonryStyle}
                 ref={this.setMasonryRef}
@@ -147,6 +147,7 @@ class CollectionMasonry extends PureComponent {
               />
             )}
           </AutoSizer>
+        </div>
         )}
       </WindowScroller>
     </div>
