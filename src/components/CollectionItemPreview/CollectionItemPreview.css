@@ -6,6 +6,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  height: 100%;
 }
 
 .CollectionItemPreview__leaflet_wrapper,
@@ -24,6 +25,10 @@
 .CollectionItemPreview__video_wrapper{
   display: flex;
   align-items: center;
+}
+
+.CollectionItemPreview__video_wrapper{
+  height: 100%;
 }
 
 .CollectionItemPreview__pdf_wrapper{
@@ -116,6 +121,14 @@
   font-size: 20px;
   cursor: pointer;
   margin-right: 15px;
+}
+
+.CollectionItemPreview__video_wrapper .video-react{
+  width: 100%!important;
+  max-width: 100%;
+  height: 100%!important;
+  max-height: 100%;
+  background-color: transparent;
 }
 
 .CollectionItemPreview__video_wrapper .video-react .video-react-big-play-button{

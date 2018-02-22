@@ -11,12 +11,13 @@ export default class CollectionItemPreviewVideo extends React.PureComponent {
     return (
     <div className="CollectionItemPreview__doc_preview">
       <div className="CollectionItemPreview__video_wrapper">
-        <Player fluid>
+        <Player
+          fluid={false}
+          >
           <source src={videoSource} />
           <BigPlayButton position="center" />
           <ControlBar autoHide={false} />
         </Player>
-
       </div>
       <div className="CollectionItem__doc_controls">
         <CollectionItemDownload doc={doc} className="CollectionItem__btn_download"/>
