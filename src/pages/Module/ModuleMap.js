@@ -121,7 +121,7 @@ class ModuleMap extends PureComponent {
 
     return (
       <div style={{height:'100%', position:'relative', overflowY: 'auto'}}>
-        <div className="Map__Module_Container">
+        <div className="Map__Module_Container animated fadeIn">
             <Map
               ref={map => this.map = map}
               center={center}
@@ -135,14 +135,18 @@ class ModuleMap extends PureComponent {
               containerStyle={{
                 flexGrow: 1
               }}>
-                <ZoomControl className="Map__ZoomControl"/>
+                <ZoomControl className="Map__ZoomControl animated fadeIn"/>
 
-                {documents && <Cluster ClusterMarkerFactory={this.clusterMarker} clusterThreshold={1} radius={60}>
+                {documents && <Cluster
+                  ClusterMarkerFactory={this.clusterMarker}
+                  clusterThreshold={1}
+                  radius={60}>
                 {
                   documents.filter(doc => doc.data).map(doc => {
                     const icon = getPlaceTypeIcon(doc.data.place_type)
                     return <Marker
                       key={doc.id}
+                      className="animated fadeIn"
                       style={styles.marker}
                       onClick={() => this.onMarkerClick(doc)}
                       coordinates={doc.coordinates}>

@@ -228,6 +228,9 @@
 .mediumModule .Module__objectCard_video{
   max-width: 100%;
   flex-shrink: 1;
+  position: relative;
+  z-index: 1;
+  animation-delay: 1s!important;
 }
 
 .smallModule .Module__objectCard.video,
@@ -247,6 +250,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1;
 }
 
 .Module__objectCard_videoFull .video-react{

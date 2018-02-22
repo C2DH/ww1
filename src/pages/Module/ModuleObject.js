@@ -115,7 +115,7 @@ class ModuleObjectContentVideo extends PureComponent {
     return (
       <Card className="Module__objectCard video">
         {(size != 'big' || resize) &&
-        <div className="Module__objectCard_video">
+        <div className="Module__objectCard_video animated fadeIn">
           <Player fluid={true} autoPlay={true} muted={true} ref={ref => this.player = ref}>
             <source src={media} />
             <BigPlayButton position="center" />
@@ -133,7 +133,7 @@ class ModuleObjectContentVideo extends PureComponent {
           <div className="ModuleObjectContentImage__Link animated fadeIn"><CollectionItemLink doc={module.id}/></div>
         }
         {(size === 'big' && !resize) &&
-          <div className="Module__objectCard_videoFull">
+          <div className="Module__objectCard_videoFull animated fadeIn">
             <div style={{maxHeight: 'inherit'}}>
               <Player fluid={false} autoPlay={true} muted={true} ref={ref => this.player = ref}>
                 <source src={media} />
@@ -151,11 +151,11 @@ class ModuleObjectContentVideo extends PureComponent {
           </div>
         }
         {(size === 'big' && !resize) &&
-          <div className="ModuleObjectContentImage__Link videoFull"><CollectionItemLink doc={module.id}/></div>
+          <div className="ModuleObjectContentImage__Link videoFull animated fadeIn"><CollectionItemLink doc={module.id}/></div>
         }
 
         {module.caption &&
-          <CardBlock className="Module__object_caption_text">
+          <CardBlock className="Module__object_caption_text animated fadeInDown">
             <i className="icon-hand Module__object_caption_hand"  />
             <div className="Module__object_caption_text_cont">
               <CardText>
