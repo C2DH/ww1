@@ -9,8 +9,8 @@ import {
 import CollectionItemLink from '../CollectionItemLink'
 import './CollectionDoc.css'
 
-const CollectionDoc = ({ doc, hasImage, lang, showDocLink = false, squared = false, index }) => (
-  <div className={`CollectionDoc animated fadeIn ${squared ? 'squared' : ''}`} style={{animationDelay: (10*index+1000)+'ms'}}>
+const CollectionDoc = ({ doc, hasImage, lang, showDocLink = false, squared = false, index, isScrolling }) => (
+  <div className={`CollectionDoc ${squared ? 'squared' : ''}`}>
     <Link to={{ pathname:`/collection/item/${doc.id}`, search: '?lang=' + lang.label.toLowerCase(), state:{modal:true} }} >
       { hasImage && ( <img src={doc.snapshot} alt={doc.translated.title}/> )}
       { !hasImage && (

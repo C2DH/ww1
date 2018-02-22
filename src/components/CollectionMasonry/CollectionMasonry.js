@@ -74,7 +74,7 @@ class CollectionMasonry extends PureComponent {
     }
   }
 
-  cellRenderer = ({ index, key, parent, style }) => {
+  cellRenderer = ({ index, key, parent, style, isScrolling }) => {
     if (!this.props.documents) {
       return null
     }
@@ -103,7 +103,6 @@ class CollectionMasonry extends PureComponent {
       left: (style.left || 0) + this.horizontalPadding,
       height: imageHeight,
     }
-
     return (
       <CellMeasurer
         cache={this.cache}
@@ -113,9 +112,10 @@ class CollectionMasonry extends PureComponent {
       >
         <div>
           <div style={divStyle}>
-            <CollectionDoc doc={item} hasImage={hasImage} showDocLink={showDocLink} index={index}/>
+            <CollectionDoc doc={item} hasImage={hasImage} showDocLink={showDocLink} index={index} isScrolling={isScrolling}/>
           </div>
         </div>
+
       </CellMeasurer>
     )
   }
@@ -142,8 +142,8 @@ class CollectionMasonry extends PureComponent {
                 onCellsRendered={this.onCellsRendered}
                 height={height}
                 width={width || window.innerWidth}
-                scrollTop={100}
-                overscanByPixels={200}
+                scrollTop={scrollTop}
+                overscanByPixels={250}
               />
             )}
           </AutoSizer>

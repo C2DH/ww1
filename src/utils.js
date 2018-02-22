@@ -77,7 +77,7 @@ export const objToCommaStr = obj => keys(obj).join(',')
 export const getThemeCover = theme => {
   const image = get(theme, 'covers[0].attachment')
   const bbox = get(theme, 'data.background.bbox', [])
-  const imageUrl = getBoundingBoxImage(image, bbox)
+  const imageUrl = bbox.length?getBoundingBoxImage(image, bbox):get(theme, 'covers[0].data.resolutions.medium.url')
   return imageUrl
 }
 
