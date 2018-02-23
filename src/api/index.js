@@ -68,6 +68,7 @@ export const getTimelineDocuments = (params = {}) => getDocuments({
     ...params.filters,
   },
   orderby: 'data__date',
+  detailed: 'true',
 })
 
 export const getResourceDocuments = (params = {}) => getDocuments({

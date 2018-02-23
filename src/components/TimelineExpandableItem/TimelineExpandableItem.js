@@ -3,6 +3,7 @@ import React, { PureComponent } from 'react'
 import moment from 'moment'
 import { Container, Row, Col, Collapse } from 'reactstrap'
 import EventDate from '../EventDate'
+import CollectionItemLink from '../CollectionItemLink'
 import './TimelineExpandableItem.css'
 
 const TimelineEventDate = ({ startDate, endDate }) => (
@@ -63,17 +64,25 @@ render () {
               <p className="TimelineExpandableItem__text">{this.props.item.translated.description}</p>
           </Col>
           </Row>
-          {/*<Row>
-          <Col md={{ size: 10, offset: 3 }}  lg={{ size: 10, offset: 2 }} className="TimelineExpandableItem__container">
-              <h6 className="TimelineExpandableItem__imgTitle">related objects</h6>
-              <div>
-                <img className="img-responsives TimelineExpandableItem__img" src="http://placehold.it/200x120" alt="historical document"/>
-                <img className="img-responsives TimelineExpandableItem__img" src="http://placehold.it/200x120" alt="historical document" />
-                <img className="img-responsives TimelineExpandableItem__img" src="http://placehold.it/200x120" alt="historical document" />
-              </div>
-          </Col>
-          </Row>
-          */}
+          { (this.props.item.documents.length > 0) &&
+              <Row>
+                <Col md={{ size: 10, offset: 3 }}  lg={{ size: 10, offset: 2 }}>
+                    <h6 className="TimelineExpandableItem__imgTitle">related objects</h6>
+                    <div className="TimelineExpandableItem__imgsContShadow">
+                      <div className="TimelineExpandableItem__imgsCont">
+                        {this.props.item.documents.map(document =>(
+                          <div
+                            key={document.id}
+                            className="TimelineExpandableItem__imgFrame">
+                            <CollectionItemLink className="TimelineExpandableItem__imgLink" doc={document}></CollectionItemLink>
+                            <img src={document.snapshot}></img>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                </Col>
+              </Row>
+          }
         </Collapse>
       </Container>
      )

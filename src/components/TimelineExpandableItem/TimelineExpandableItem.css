@@ -42,10 +42,51 @@
   font-weight: 500;
   text-transform: uppercase;
   font-size: 0.875rem;
+  margin-bottom: 15px;
 }
 
-.TimelineExpandableItem__img {
-  margin-left: 5px;
+.TimelineExpandableItem__imgsCont{
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  position: relative;
+}
+.TimelineExpandableItem__imgsContShadow{
+  margin-bottom: 15px;
+  position: relative;
+}
+.TimelineExpandableItem__imgsContShadow:after{
+   position: absolute;
+   right: 0px;
+   top: 0px;
+   height: 100%;
+   content: "";
+   width: 30px;
+   display: block;
+   background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+}
+
+.TimelineExpandableItem__imgFrame{
+  height: 130px;
+  margin-right: 15px;
+  display: inline-block;
+  position: relative;
+}
+
+.TimelineExpandableItem__imgFrame a{
+  position: absolute;
+  top:2px;
+  right: 2px;
+  color: #F36455;
+}
+
+.TimelineExpandableItem__imgFrame a .material-icons{
+  font-size: 28px!important;
+}
+
+.TimelineExpandableItem__imgFrame img{
+  height: 100%;
+  width: auto;
 }
 
 .TimelineExpandableItem__show_less {
