@@ -84,34 +84,33 @@ class Themes extends PureComponent {
     const { themes } = this.props
 
     return (
-      <Container fluid className="animated fadeIn Themes__container d-flex flex-column justify-content-center">
-        <div className="Themes__backgroundThemeStart d-none d-md-block">
+      <Container fluid className="Themes__container d-flex flex-column">
+        <div className="Themes__backgroundThemeStart d-none d-md-block animated fadeIn">
         </div>
 
         <div className="Themes__title d-md-none d-flex align-items-center justify-content-center">
           <h2 className="m-0">{this.context.t('themes')}</h2>
         </div>
 
-        <CSSTransitionGroup component="div"
-        transitionName="backgroundTheme"
-        transitionEnterTimeout={500}
-        transitionLeaveTimeout={500}>
-        {hoverTheme && (
-          <div key="background" style={{
-            position:'absolute',
-            top: 0,
-            bottom: 0,
-            left: 0,
-            right: 0,
-            zIndex: 1000,
-            filter:'grayscale(1)',
-            backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(${getThemeCover(hoverTheme)})`
-          }}
-          className="Themes__backgroundTheme">
+          {themes && themes.map(theme =>(
+            <div key={theme.id} style={{
+              position:'fixed',
+              top: 0,
+              bottom: 0,
+              left: 58,
+              right: 0,
+              zIndex: 1000,
+              filter:'grayscale(1)',
+              opacity: (hoverTheme && hoverTheme.id) === theme.id?1:0,
+              transition:'opacity 1.5s ease-in-out',
+              backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(${getThemeCover(theme)})`
+            }}
+            className="Themes__backgroundTheme">
           </div>
-        )}
-        </CSSTransitionGroup>
-          <Row className="Themes__TitleRow d-none d-md-block" style={{zIndex: 1001}}>
+          ))}
+
+        <div style={{margin:'auto', width:'100%'}}>
+          <Row className="Themes__TitleRow d-none d-md-flex" style={{zIndex: 1001}}>
             <Col>
                 {themes &&
                   <h1 className="Themes__Title_h1 animated fadeInUp">{this.context.t('themes')}</h1>
@@ -119,20 +118,21 @@ class Themes extends PureComponent {
             </Col>
           </Row>
 
-        <Row className="Themes__TitlesRow mt-md-0">
-          {themes && <Col className="Themes__theme_title_container" style={{zIndex: 1001}}>
-            {themes.map(theme =>(
-              <ThemeContainer
-                key={theme.id}
-                theme={theme}
-                hover={hoverTheme && theme.id === hoverTheme.id}
-                onEnterTheme={this.handleOnEnterTheme}
-                onLeaveTheme={this.handleOnLeaveTheme}
-                responsiveBackground={getThemeCover(theme)}
-              />
-            ))}
-          </Col>}
-        </Row>
+          <Row className="Themes__TitlesRow mt-md-0">
+            {themes && <Col className="Themes__theme_title_container" style={{zIndex: 1001}}>
+              {themes.map(theme =>(
+                <ThemeContainer
+                  key={theme.id}
+                  theme={theme}
+                  hover={hoverTheme && theme.id === hoverTheme.id}
+                  onEnterTheme={this.handleOnEnterTheme}
+                  onLeaveTheme={this.handleOnLeaveTheme}
+                  responsiveBackground={getThemeCover(theme)}
+                />
+              ))}
+            </Col>}
+          </Row>
+        </div>
       </Container>
     )
   }

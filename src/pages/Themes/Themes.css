@@ -127,10 +127,10 @@
   background-size: cover;
   background-position: center center;
   z-index: 999;
-  position:absolute;
+  position:fixed;
   top: 0;
   bottom: 0;
-  left: 0;
+  left: 58px;
   right: 0;
   z-index: 1000;
   filter:grayscale(1);
@@ -148,6 +148,11 @@
 
 /*Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) {
+
+  .Themes__container {
+    height: 100vh;
+    overflow: auto;
+  }
 
   .Themes__theme_title{
     font-size: 3.125rem;
