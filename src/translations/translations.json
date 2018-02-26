@@ -75,7 +75,8 @@
     "explore":"explore",
     "report":"report",
     "be creative":"be creative",
-    "discuss":"discuss"
+    "discuss":"discuss",
+    "show less":"show less"
   },
   "fr_FR" : {
     "home" : "Accueil",
@@ -152,7 +153,8 @@
     "explore":"explore",
     "report":"report",
     "be creative":"be creative",
-    "discuss":"discuss"
+    "discuss":"discuss",
+    "show less":"show less"
   },
   "de_DE" : {
     "home" : "Startseite",
@@ -229,6 +231,7 @@
     "explore":"explore",
     "report":"report",
     "be creative":"be creative",
-    "discuss":"discuss"
+    "discuss":"discuss",
+    "show less":"show less"
   }
 }
