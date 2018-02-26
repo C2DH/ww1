@@ -7,6 +7,7 @@ import { Container, Row, Col } from 'reactstrap'
 import BigTitle from '../../components/BigTitle'
 import ResourceCard from '../../components/ResourceCard'
 import StaticStory from '../../components/StaticStory'
+import {Helmet} from 'react-helmet';
 import {
   getResourceDocuments,
 } from '../../state/selectors'
@@ -53,7 +54,9 @@ class Resources extends PureComponent {
     const { documents, searchString } = this.props
     return (
       <div className="Resources__wrapper">
-
+        <Helmet>
+                <title>{this.context.t('resources')}</title>
+        </Helmet>
         {
           documents && <div className="animated fadeIn">
           <div className="Resources__top_wrapper">

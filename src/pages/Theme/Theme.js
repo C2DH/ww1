@@ -4,6 +4,7 @@ import { get } from 'lodash'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import { connect } from 'react-redux'
 import { Container, Row, Col } from 'reactstrap';
+import {Helmet} from 'react-helmet';
 import ChaptersSwitcher from '../../components/ChaptersSwitcher'
 import './Theme.css'
 
@@ -49,6 +50,10 @@ class Theme extends PureComponent {
 
     return (
       <div className="Theme__wrapper animated fadeIn">
+        <Helmet>
+                <title>{theme.translated.title}</title>
+        </Helmet>
+
       <Background
         image={backgroundImage}
         bbox={bbox}

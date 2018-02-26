@@ -9,6 +9,7 @@ import { Button, Popover, PopoverTitle, PopoverContent, ButtonGroup, ButtonToolb
 import MapSideMenu from '../../components/MapSideMenu'
 import CollectionItemLink from '../../components/CollectionItemLink'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
+import {Helmet} from "react-helmet";
 import { isMobileScreen } from '../../breakpoints'
 import Spinner from '../../components/Spinner'
 import './MapPage.css'
@@ -398,6 +399,9 @@ class MapPage extends PureComponent {
 
     return (
       <div>
+        <Helmet>
+                <title>{this.context.t('map')}</title>
+        </Helmet>
       <div className={this.state.sideMenuOpen ? "Collection__List--sidebar-open" : 'Collection__List--sidebar-close'}>
         <div className={`Collection__List--list-heading d-flex align-items-center ${this.state.sideMenuOpen ? 'Collection__List--list-heading-closed' : '' }`}>
             <h2>{this.context.t('map')}</h2>

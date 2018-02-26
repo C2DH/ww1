@@ -1,14 +1,8 @@
 import React from 'react'
 import { Container, Row, Col } from 'reactstrap';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import {Helmet} from "react-helmet";
 import './Home.css'
-
-
-// const BACKGROUND_CLASSES = [
-//   'Home__background--slide1', 'Home__background--slide2', 'Home__background--slide3'
-// ]
-//
-// const BACKGROUND_INTERVAL = 5000;
 
 
 class Home extends React.Component {
@@ -38,6 +32,9 @@ class Home extends React.Component {
     //const { backgroundClass } = this.state;
     return (
       <div className="Home__wrapper">
+        <Helmet>
+                <title>ÉISCHTE WELTKRICH</title>
+        </Helmet>
         {this.backgroundClasses.map((className, index) => (
            <div className={'Home__background ' + className} key={index}>
            </div>
@@ -83,7 +80,7 @@ class Home extends React.Component {
                   <span>
                     <i className="icon-hand-reverse" />
                   </span>
-              
+
               </Link>
             </Col>
             <Col lg="3" md="6" xs="12" className="Home__NavigationCol Home__NavigationCol_map">

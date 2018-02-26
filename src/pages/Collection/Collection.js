@@ -3,6 +3,7 @@ import MediaQuery from 'react-responsive'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { keys, omit, isUndefined, isNull } from 'lodash'
+import {Helmet} from "react-helmet";
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import qs from 'query-string'
 import {
@@ -196,6 +197,10 @@ class Collection extends PureComponent {
 
     return (
       <div>
+        <Helmet>
+                <title>{this.context.t('collection')}</title>
+        </Helmet>
+
         <div className={this.state.sidebarOpen ? "Collection__List--sidebar-open" : 'Collection__List--sidebar-close'}>
           <div className={`Collection__List--list-heading d-flex align-items-center ${this.state.sidebarOpen ? 'Collection__List--list-heading-closed' : '' }`}>
             <h2>{this.context.t('collection')}</h2>

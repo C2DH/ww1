@@ -4,6 +4,7 @@ import MediaQuery from 'react-responsive'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Container, Row, Col } from 'reactstrap'
+import {Helmet} from "react-helmet";
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import './Themes.css'
 import {
@@ -85,6 +86,10 @@ class Themes extends PureComponent {
 
     return (
       <Container fluid className="Themes__container d-flex flex-column">
+        <Helmet>
+                <title>{this.context.t('themes')}</title>
+        </Helmet>
+
         <div className="Themes__backgroundThemeStart d-none d-md-block animated fadeIn">
         </div>
 

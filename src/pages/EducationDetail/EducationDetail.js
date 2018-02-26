@@ -12,6 +12,7 @@ import EducationExpandableItem from '../../components/EducationExpandableItem'
 import NotFound from '../../components/NotFound'
 import EducationFooter from '../../components/EducationFooter'
 import CollectionItemLink from '../../components/CollectionItemLink'
+import {Helmet} from 'react-helmet';
 import './EducationDetail.css'
 
 class EducationDetail extends PureComponent {
@@ -40,6 +41,13 @@ class EducationDetail extends PureComponent {
 
     return (
       <div className='EducationDetail'>
+        {
+          educational &&
+          <Helmet>
+                <title>{educational.data.title}</title>
+          </Helmet>
+          
+        }
         {educational && (
           <div className="animated fadeIn">
             <div className='EducationDetail__top'>

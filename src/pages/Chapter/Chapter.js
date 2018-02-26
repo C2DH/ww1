@@ -8,6 +8,7 @@ import Module from '../Module'
 import NotFound from '../../components/NotFound'
 import ChaptersControl from '../../components/ChaptersControl'
 import ChaptersSwitcher from '../../components/ChaptersSwitcher'
+import {Helmet} from 'react-helmet';
 import './Chapter.css'
 
 import {
@@ -107,7 +108,12 @@ class Chapter extends PureComponent  {
 
     return (
       <div>
-
+        {
+          chapter &&
+          <Helmet>
+                <title>{chapter.translated.title}</title>
+          </Helmet>
+        }
         {chapter && (
           <Route path={`${match.path}/modules/:moduleIndex`}>
             {({ match }) => {

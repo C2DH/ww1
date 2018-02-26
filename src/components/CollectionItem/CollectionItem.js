@@ -8,6 +8,7 @@ import { get, keys, capitalize } from 'lodash'
 import CollectionItemPreview from '../CollectionItemPreview'
 import CollectionItemRelated from '../CollectionItemRelated'
 import Markdown from 'markdown-to-jsx';
+import {Helmet} from 'react-helmet';
 import './CollectionItem.css'
 
 
@@ -154,6 +155,9 @@ export default ({ doc, onCloseClick }) => {
 
   return (
     <div className="CollectionItem__wrapper_div">
+      <Helmet>
+            <title>{doc.translated.title}</title>
+      </Helmet>
       <Container fluid>
         <Row className="CollectionItem__main_row">
             <Col xs="12" lg="8" className="order-2">

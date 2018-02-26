@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { get } from 'lodash'
+import {Helmet} from 'react-helmet';
 import { Container, Row, Col } from 'reactstrap'
 import ManualCard from '../../components/ManualCard'
 import OtherTeachersCard from '../../components/OtherTeachersCard'
@@ -24,6 +25,9 @@ class Education extends PureComponent {
     const { educationals } = this.props
     return (
       <div className="Education__wrapper">
+        <Helmet>
+                <title>{this.context.t('education')}</title>
+        </Helmet>
         <div className="Resources__top_wrapper animated fadeIn">
           <Container>
             <BigTitle title={this.context.t('education')} />

@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import WayPoint from 'react-waypoint'
 import moment from 'moment'
 import { Container, Row, Col } from 'reactstrap'
+import {Helmet} from 'react-helmet';
 import TimelineExpandableItem from '../../components/TimelineExpandableItem'
 import TimelineExpandableYear from '../../components/TimelineExpandableYear'
 import {
@@ -79,6 +80,9 @@ class Timeline extends PureComponent {
     const { viewedYear, viewedMonth } = this.props
     return (
       <div className="Timeline__Wrapper">
+        <Helmet>
+                <title>{this.context.t('timeline')}</title>
+        </Helmet>
         <div className="Timeline__TopRow d-flex align-items-center">
           <Container>
             <Row>
