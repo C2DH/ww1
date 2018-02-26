@@ -9,6 +9,13 @@
   margin-bottom: 2rem;
 }
 
+.About__logo_wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+}
+
+
 /* Small devices (landscape phones, 576px and up)*/
 @media (min-width: 576px) {  }
 

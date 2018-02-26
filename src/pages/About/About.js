@@ -5,6 +5,23 @@ import BigTitle from '../../components/BigTitle'
 import './About.css'
 
 class About extends PureComponent {
+   organizers = [
+    'unilu.jpg',
+    'c2dh.jpg',
+    'minister.jpg',
+  ];
+
+   partners = [
+    'aleh.jpg',
+    'archives.jpg',
+    'bibliolux.jpg',
+    'cna.jpg',
+    'europeana.jpg',
+    'diddeleng.jpg',
+    'militaire.jpg',
+    'mnha.jpg',
+    'migration.jpg',
+  ];
 
   render(){
         return(
@@ -20,9 +37,25 @@ class About extends PureComponent {
                     <h4>
                       {this.context.t('organizers')}
                     </h4>
+                    <div className="About__logo_wrapper">
+                      { this.organizers.map(organizer => (
+                          <div className="col-4">
+                            <img className="img-fluid" src={'/img/logo/' + organizer}></img>
+                          </div>
+                        ))
+                      }
+                    </div>
                     <h4>
                       {this.context.t('partner institutions')}
                     </h4>
+                    <div className="About__logo_wrapper">
+                      { this.partners.map(partner => (
+                          <div className="col-4">
+                            <img className="img-fluid" src={'/img/logo/' + partner}></img>
+                          </div>
+                        ))
+                      }
+                    </div>
                   </div>
                 </Col>
               </Row>
