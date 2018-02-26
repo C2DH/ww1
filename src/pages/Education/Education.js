@@ -24,7 +24,7 @@ class Education extends PureComponent {
     const { educationals } = this.props
     return (
       <div className="Education__wrapper">
-        <div className="Resources__top_wrapper">
+        <div className="Resources__top_wrapper animated fadeIn">
           <Container>
             <BigTitle title={this.context.t('education')} />
             <Row>
@@ -35,19 +35,19 @@ class Education extends PureComponent {
             </Row>
           </Container>
         </div>
-        <Container>
+        {educationals && <Container className="animated fadeIn">
           <Row>
             <Col>
               <h6 className="Education__h6">{this.context.t('pedagogical manuals')}</h6>
             </Col>
           </Row>
           <Row className="Education__ManualsRow">
-            {educationals && educationals.map(edu => (
+            {educationals.map(edu => (
               <Col lg="4" xs="12" key={edu.id}>
                 <ManualCard
                   onClick={() => this.props.history.push(`/education/${edu.slug}`)}
                   title={edu.data.title}
-                  image={get(edu, 'covers[0].attachment')}
+                  image={get(edu, 'covers[0].data.resolutions.medium.url')}
                 />
               </Col>
             ))}
@@ -63,8 +63,10 @@ class Education extends PureComponent {
               </div>
             </Col>
           </Row> */}
-        </Container>
-        <EducationFooter />
+        </Container>}
+        { educationals &&
+          <EducationFooter />
+        }
       </div>
     )
   }
