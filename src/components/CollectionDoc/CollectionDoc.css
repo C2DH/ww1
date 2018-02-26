@@ -33,7 +33,7 @@
   background-size: 50%;
 }
 
-.CollectionDoc__frame.CollectionDoc__frame_over_audio{
+.CollectionDoc__frame_over_audio{
   background-image: url('/img/audio.svg');
   background-position: center center;
   background-repeat: no-repeat;

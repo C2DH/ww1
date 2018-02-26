@@ -88,9 +88,9 @@ class CollectionMasonry extends PureComponent {
     let imageHeight
     let hasImage
 
-    if (item.snapshot && item.data.thumbnail_height) {
+    if (item.data.resolutions.thumbnail && item.data.resolutions.thumbnail.height) {
       const delta = (this.columnWidth / (this.props.dynamicWidth?this.props.dynamicWidth:DEFAULT_COLUMN_WIDTH))
-      imageHeight = ((this.props.dynamicWidth?this.props.dynamicWidth:DEFAULT_COLUMN_WIDTH)/item.data.thumbnail_width * item.data.thumbnail_height) * (delta > 1 ? 1 : delta)
+      imageHeight = ((this.props.dynamicWidth?this.props.dynamicWidth:DEFAULT_COLUMN_WIDTH)/item.data.resolutions.thumbnail.width * item.data.resolutions.thumbnail.height) * (delta > 1 ? 1 : delta)
       hasImage = true
     } else {
       imageHeight = 200

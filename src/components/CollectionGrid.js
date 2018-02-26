@@ -17,7 +17,7 @@ class CollectionGrid extends PureComponent {
     }
 
     let hasImage
-    if (doc.snapshot && doc.data.thumbnail_height) {
+    if (doc.data.resolutions.thumbnail && doc.data.resolutions.thumbnail.height) {
       hasImage = true
     } else {
       hasImage = false
