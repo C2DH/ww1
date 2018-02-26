@@ -11,13 +11,13 @@ const galleryColumnsStyle = { height:'100%', position:'relative', width:'100%' }
 const masonryStyle = {  height:'calc(100vh - 230px)', paddingTop:0, overflowY:'scroll' }
 
 const GalleryColumn = ({module, chapter}) => (
-  <Col md="6" className="Module__textObject_Col">
+  <Col xs="12" md="6" className="Module__textObject_Col">
     <ModuleGallery module={module} chapter={chapter} style={galleryColumnsStyle} masonryStyle={masonryStyle}/>
   </Col>
 )
 
 const TextColumn = ({ content, color,position }) => (
-  <Col md="6" className={`Module__textObject_Col animated fadeIn${position}`}>
+  <Col xs="12" md="6" className={`Module__textObject_Col animated fadeIn${position}`}>
     <div className="Module__textObject_Text" style={{ color }}>
       <MarkdownGlossary content={content} />
     </div>
@@ -46,13 +46,13 @@ class ModuleTextGallery extends PureComponent {
         />
         <Container fluid className="Module__container_obj">
           { module.layout === 'gallery-text' && (
-            <Row style={fullHeight}>
+            <Row className="Module__container_obj_row">
               <GalleryColumn chapter={chapter} module={module.gallery}/>
               <TextColumn content={content} color={module.text.color} position={'Up'}/>
             </Row>
           )}
           { module.layout === 'text-gallery' && (
-            <Row style={fullHeight}>
+            <Row className="Module__container_obj_row">
               <TextColumn content={content} color={module.text.color} position={'Up'}/>
               <GalleryColumn chapter={chapter} module={module.gallery}/>
             </Row>

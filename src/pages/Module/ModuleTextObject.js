@@ -14,13 +14,13 @@ import LastModule from '../../components/LastModule'
 const fullHeight = { height: '100%'}
 
 const ObjectColumn = ({module, position}) => (
-  <Col md="6" className={`Module__textObject_Col mediumModule animated fadeIn${module.type=='image'?position:''}`}>
+  <Col xs="12" md="6" className={`Module__textObject_Col mediumModule animated fadeIn${module.type=='image'?position:''}`}>
     <ModuleObjectContent module={module}/>
   </Col>
 )
 
 const TextColumn = ({ content, color, position }) => (
-  <Col md="6"  className={`Module__textObject_Col animated fadeIn${position}`}>
+  <Col xs="12" md="6" className={`Module__textObject_Col animated fadeIn${position}`}>
     <div className="Module__textObject_Text" style={{ color }}>
       <MarkdownGlossary content={content}/>
     </div>
@@ -52,13 +52,13 @@ class ModuleTextObject extends PureComponent {
         />
       <Container fluid className="Module__container_obj">
           { module.layout == 'object-text' && (
-            <Row style={fullHeight}>
+            <Row className="Module__container_obj_row">
               <ObjectColumn module={obj} position={'Left'}/>
               <TextColumn content={content} color={module.text.color} position={'Up'}/>
             </Row>
           )}
           { module.layout == 'text-object' && (
-            <Row style={fullHeight}>
+            <Row className="Module__container_obj_row">
               <TextColumn content={content} color={module.text.color} position={'Up'} />
               <ObjectColumn module={obj} position={'Right'}/>
             </Row>

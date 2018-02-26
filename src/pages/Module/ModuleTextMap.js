@@ -45,13 +45,13 @@ class ModuleTextMap extends PureComponent {
         />
         <Container fluid className="Module__container_obj">
           { module.layout === 'map-text' && (
-            <Row style={fullHeight}>
+            <Row className="Module__container_obj_row">
               <MapColumn chapter={chapter} module={module.map} position={'Left'} />
               <TextColumn content={content} color={module.text.color} position={'Up'}/>
             </Row>
           )}
           { module.layout === 'text-map' && (
-            <Row style={fullHeight}>
+            <Row className="Module__container_obj_row">
               <TextColumn content={content} color={module.text.color} position={'Up'}/>
               <MapColumn chapter={chapter} module={module.map} position={'Right'}/>
             </Row>

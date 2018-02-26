@@ -56,7 +56,7 @@
 /* text */
 
 .Module__container_text{
-  padding: 0px 15px;
+  padding: var(--mobile-top) 15px;
   height: 100vh;
   overflow: hidden;
   flex-direction: column;
@@ -89,6 +89,7 @@
   max-height: calc(100vh - 58px - 58px);
   overflow-y: auto;
   animation-duration: 2s!important;
+  padding-top: 15px;
 }
 
 .Module__container_text blockquote,
@@ -121,6 +122,12 @@
 
 /* object image */
 
+.Module__container_obj_row{
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 .Module__container_obj,
 .Module__container_obj.smallModule,
 .Module__container_obj.mediumModule{
@@ -131,7 +138,7 @@
   flex-direction: column;
   display: flex;
   justify-content: center;
-  padding:0px 15px;
+  padding:58px 15px;
 }
 
 .Module__container_obj.bigModule{
@@ -368,12 +375,13 @@
 
 
 .Module__textObject_Text {
-  font-family: Georgia;
+  font-family: Georgia, serif;
   font-size: 24px;
   width: 100%;
   max-height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
+  padding-top: 15px;
   /* animation-duration: 2s !important; */
 }
 
@@ -497,7 +505,8 @@
 /* gallery masonry */
 
 .Module__gallery_cont{
-  margin: 0px 15px;
+  margin: 0px;
+  height: calc(100% - 15px);
 }
 
 .Module__gallery_caption{
@@ -517,7 +526,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  padding-top: var(--mobile-top);
+  padding: 15px 0px;
 }
 
 .Map__Module_Container .mapboxgl-map{
@@ -525,11 +534,11 @@
 }
 
 .ModuleMap__Caption {
-    height: calc(var(--mobile-bottom)*2);
+    height: 58px;
     width: 100%;
     background-color: white;
     flex-grow: 0;
-    padding: 1.25rem 1.25rem calc(var(--mobile-bottom)/2 + var(--mobile-bottom));
+    padding: 1.25rem;
 }
 
 
@@ -580,6 +589,10 @@
     font-size: 1.5rem;
   }
 
+  .Module__textObject_Text{
+    padding-top: 0px;
+  }
+
   .Module__container_obj,
   .Module__container_obj.smallModule,
   .Module__container_obj.mediumModule{
@@ -588,6 +601,12 @@
 
   .mediumModule .Module__objectCard_img{
     max-height: 70vh;
+  }
+
+  .Module__container_obj_row{
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
   }
 
   .Module__textObject_Col .Module__gallery_cont{
@@ -632,7 +651,7 @@
   }
 
   .Map__Module_Container{
-    padding-top: 0px;
+    padding: 0px;
   }
 
 
