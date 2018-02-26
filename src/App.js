@@ -84,14 +84,15 @@ class Routes extends PureComponent {
 const history = createHistory()
 
 // integrate history \w Google Analytics
-// if (process.env.NODE_ENV === 'production') {
-//   ReactGA.initialize('UA-112538159-1')
-//   ReactGA.pageview(history.location.pathname + history.location.search)
-//
-//   history.listen((location, action) => {
-//     ReactGA.pageview(location.pathname + location.search)
-//   })
-// }
+if (process.env.REACT_APP_GA_CODE) {
+
+  ReactGA.initialize(process.env.REACT_APP_GA_CODE)
+  ReactGA.pageview(history.location.pathname + history.location.search)
+
+  history.listen((location, action) => {
+    ReactGA.pageview(location.pathname + location.search)
+  })
+}
 
 const App = () => (
   <Provider store={store}>
