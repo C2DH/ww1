@@ -20,7 +20,7 @@ const ObjectColumn = ({module, position}) => (
 )
 
 const TextColumn = ({ content, color, position }) => (
-  <Col xs="12" md="6" className={`Module__textObject_Col animated fadeIn${position}`}>
+  <Col xs="12" md="6" className={`Module__textObject_Col text animated fadeIn${position}`}>
     <div className="Module__textObject_Text" style={{ color }}>
       <MarkdownGlossary content={content}/>
     </div>

@@ -10,13 +10,13 @@ const fullHeight = { height: '100%'}
  const mapColumnsStyle = { height:'100%', position:'relative', width:'100%' }
 
 const MapColumn = ({module, chapter, position}) => (
-  <Col md="6" className={`Module__textObject_Col mediumModule animated fadeIn${position}`}>
+  <Col xs="12" md="6" className={`Module__textObject_Col mediumModule animated fadeIn${position}`}>
     <ModuleMap module={module} chapter={chapter} style={mapColumnsStyle}/>
   </Col>
 )
 
 const TextColumn = ({content, color, position}) => (
-  <Col md="6" className={`Module__textObject_Col animated fadeIn${position}`}>
+  <Col xs="12" md="6" className={`Module__textObject_Col text animated fadeIn${position}`}>
     <div className="Module__textObject_Text" style={{ color }}>
       <MarkdownGlossary content={content}/>
     </div>
