@@ -5,6 +5,11 @@ import ZoomControl from '../../components/ZoomControl'
 import CollectionItemDownload from '../CollectionItemDownload'
 import { Map, TileLayer, ImageOverlay } from 'react-leaflet'
 import L from 'leaflet';
+import { connect } from 'react-redux'
+import {
+  lockScroll,
+  unlockScroll,
+} from '../../state/actions'
 
 var yx = L.latLng;
 
@@ -16,7 +21,7 @@ var xy = function(x, y) {
 };
 
 
-export default class CollectionItemPreviewImage extends React.PureComponent {
+class CollectionItemPreviewImage extends React.PureComponent {
   state = {
 		zooming: false,
     zoom: -1,
@@ -31,9 +36,15 @@ export default class CollectionItemPreviewImage extends React.PureComponent {
   }
 
 	// #TODO: here we could set min zoom based on doc vs viewport sizes
-	// componentDidMount(){
-	// 	this.measure()
-	// }
+
+	componentWillDidMount() {
+		this.props.unlockScroll()
+	}
+
+	componentDidMount(){
+		//this.measure()
+		this.props.lockScroll()
+	}
 	// measure = () => {
 	// 	const node = ReactDOM.findDOMNode(this)
 	// 	const width = node.parentNode.clientWidth
@@ -96,3 +107,10 @@ export default class CollectionItemPreviewImage extends React.PureComponent {
 CollectionItemPreviewImage.contextTypes = {
   t: React.PropTypes.func.isRequired
 }
+const mapStateToProps = state => ({
+})
+
+export default connect(mapStateToProps, {
+  lockScroll,
+  unlockScroll,
+})(CollectionItemPreviewImage)
