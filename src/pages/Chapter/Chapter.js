@@ -124,7 +124,7 @@ class Chapter extends PureComponent  {
               return (
                 <ChaptersControl
                   title={theme.translated.title}
-                  hasPrev={index > 0}
+                  hasPrev={(index > 0 || chapterIndex > 0)}
                   moduleIndex={index}
                   moduleTot={totalChapterModules}
                   hasNext={index < totalChapterModules || chapterIndex + 1 < totalChapters}
@@ -143,7 +143,10 @@ class Chapter extends PureComponent  {
                     }
                   }}
                   onClickPrev={() => {
-                    if (index > 1) {
+                    if(index == 0){
+                      const prevChapterSlug = get(theme, `stories[${Number(chapterIndex) - 1}].slug`)//to prev chapter
+                      history.push(makeUrl(`${themeUrl}/chapters/${prevChapterSlug}/modules/last`))
+                    }else if (index > 1) {
                       history.push(makeUrl(`${chapterUrl}/modules/${index - 1}`))
                     } else {
                       history.push(makeUrl(`${chapterUrl}`))

@@ -44,7 +44,6 @@ class ChapterCover extends PureComponent  {
     if(chapterIndex > 0){
       //to last chapter of prev
       const prevChapterSlug = get(theme, `stories[${Number(chapterIndex) - 1}].slug`)//to prev chapter
-      console.log("prevChapterSlug", prevChapterSlug, chapterIndex, theme)
       history.push(makeUrl(`${themeUrl}/chapters/${prevChapterSlug}/modules/last`))
     }
     if(chapterIndex === 0){

@@ -16,7 +16,7 @@ export const scrollScale = scaleLinear()
 export const ScrollHelperTop = connect(scrollHelperMapStateToProps) (class extends React.PureComponent {
 
   render(){
-    const { background='transparent', scroll } = this.props
+    const { background='#373a3c', scroll } = this.props
     return (
         <div style={{
             height:BASE_SCROLL_HELPER_HEIGHT,

@@ -160,7 +160,6 @@ class Module extends PureComponent {
 
     return  <div>
     <ScrollHelperTop background={topScrollBackground} overlay={topScrollOverlay}/>
-    {/* This was this.state.scrolling * 150 */}
     <div style={{ marginTop: 0 * 150, ...moduleContainerStyle,
         opacity: scrollScale(this.props.scroll)
       }}>
@@ -171,7 +170,6 @@ class Module extends PureComponent {
         })}
     </div>
     <ScrollHelperBottom  background={bottomScrollBackground} overlay={bottomScrollOverlay}/>
-    {/* {this.state.stopScroll && <ScrollLock/> } */}
   </div>
   }
 }
