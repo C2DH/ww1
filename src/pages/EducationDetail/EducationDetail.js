@@ -55,7 +55,7 @@ class EducationDetail extends PureComponent {
                 <BigTitle title={educational.data.title} />
                 <Row className="EducationDetail__cont">
                   <Col xs={12} md={6} className="EducationDetail__order-1 EducationDetail__order-md-0">
-                    <h6 className='EducationDetail__h6'>{this.context.t('goals of the activity')}</h6>
+                    <h6 className='EducationDetail__h6'>{this.context.t('introduction')}</h6>
                     <p>{educational.data.activity}</p>
                     <Row>
                       <Col xs={12} md={6}>
@@ -84,7 +84,7 @@ class EducationDetail extends PureComponent {
               </Container>
             </div>
             <Container>
-              <h6 className='EducationDetail__h6'>{this.context.t('step by step manual')}</h6>
+              <h6 className='EducationDetail__h6'>{this.context.t('suggested activities')}</h6>
               <Row className='mt-4'>
                 <Col xs={12} md={8} className="EducationDetail__order-1 EducationDetail__order-md-0">
                   {educational.data.steps.map((step, i) => (

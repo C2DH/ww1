@@ -44,7 +44,7 @@ const Manual = (props) => (
     <div className="padding-left-30">
       <Row className="Manual__middleRow">
         <Col md="12">
-          <h6 className="red-subtitle">Step by step manual</h6>
+          <h6 className="red-subtitle">suggested activities</h6>
         </Col>
         <Col md="8">
           <ManualExpandableItem num="1" title="manual 1" />

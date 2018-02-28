@@ -42,7 +42,7 @@ class Education extends PureComponent {
         {educationals && <Container className="animated fadeIn">
           <Row>
             <Col>
-              <h6 className="Education__h6">{this.context.t('pedagogical manuals')}</h6>
+              <h6 className="Education__h6">{this.context.t('pedagogical activities')}</h6>
             </Col>
           </Row>
           <Row className="Education__ManualsRow">
