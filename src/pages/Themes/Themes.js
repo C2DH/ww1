@@ -32,7 +32,7 @@ class ThemeContainer extends PureComponent {
     const { theme, hover, responsiveBackground } = this.props
     return (
        <div className="Themes__theme_container animated fadeInUp">
-         <MediaQuery minWidth={768}>
+         <MediaQuery minWidth={992}>
            <h2 className="Themes__theme_title">
              <Link
                className="Themes__theme_title_link"
@@ -42,7 +42,7 @@ class ThemeContainer extends PureComponent {
                {hover ? <i className="icon-hand Themes__hand_pointer_left" /> : null}{theme.translated.title}{hover ? <i className="icon-hand-reverse Themes__hand_pointer_right" /> : null}</Link>
            </h2>
         </MediaQuery>
-        <MediaQuery maxWidth={767}>
+        <MediaQuery maxWidth={991}>
           <div className="Themes__theme_title_mobile_cont d-flex align-items-center justify-content-center" style={{backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(${responsiveBackground})`}}>
             <h2 className="Themes__theme_title">
               <Link
@@ -90,10 +90,10 @@ class Themes extends PureComponent {
                 <title>{this.context.t('themes')}</title>
         </Helmet>
 
-        <div className="Themes__backgroundThemeStart d-none d-md-block animated fadeIn">
+        <div className="Themes__backgroundThemeStart d-none d-lg-block animated fadeIn">
         </div>
 
-        <div className="Themes__title d-md-none d-flex align-items-center justify-content-center">
+        <div className="Themes__title d-lg-none d-flex align-items-center justify-content-center">
           <h2 className="m-0">{this.context.t('themes')}</h2>
         </div>
 
@@ -104,18 +104,18 @@ class Themes extends PureComponent {
               bottom: 0,
               left: 58,
               right: 0,
-              zIndex: 1000,
               filter:'grayscale(1)',
               opacity: (hoverTheme && hoverTheme.id) === theme.id?1:0,
               transition:'opacity 1.5s ease-in-out',
               backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(${getThemeCover(theme)})`
             }}
-            className="Themes__backgroundTheme">
+            className="Themes__backgroundTheme d-none d-lg-block">
           </div>
           ))}
 
+
         <div style={{margin:'auto', width:'100%'}}>
-          <Row className="Themes__TitleRow d-none d-md-flex" style={{zIndex: 1001}}>
+          <Row className="Themes__TitleRow d-none d-lg-flex">
             <Col>
                 {themes &&
                   <h1 className="Themes__Title_h1 animated fadeInUp">{this.context.t('themes')}</h1>
@@ -124,7 +124,7 @@ class Themes extends PureComponent {
           </Row>
 
           <Row className="Themes__TitlesRow mt-md-0">
-            {themes && <Col className="Themes__theme_title_container" style={{zIndex: 1001}}>
+            {themes && <Col className="Themes__theme_title_container">
               {themes.map(theme =>(
                 <ThemeContainer
                   key={theme.id}

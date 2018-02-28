@@ -13,7 +13,7 @@
   width: 100%;
   background: white;
   height: 58px;
-  z-index: 1002;
+  z-index: 10;
 }
 
 .Themes__Title_h1,
@@ -25,7 +25,6 @@
 .Themes__TitleRow h1 {
   font-size: 6rem;
   color: #F36455;
-  z-index: 1000;
   margin: 40px 0px;
 }
 
@@ -126,13 +125,12 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  z-index: 999;
+  /* z-index: 999; */
   position:fixed;
   top: 0;
   bottom: 0;
   left: 58px;
   right: 0;
-  z-index: 1000;
   filter:grayscale(1);
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(/themes_bkg/themes.jpg);
 }
@@ -148,6 +146,13 @@
 
 /*Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) {
+
+
+
+ }
+
+/*Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
 
   .Themes__container {
     height: 100vh;
@@ -174,23 +179,16 @@
   }
 
   .Themes__theme_container:before {
-      border-top: 1px solid white;
+    border-top: 1px solid white;
   }
 
   .Themes__theme_container:last-of-type:after {
-      border-top: 1px solid white;
+    border-top: 1px solid white;
   }
 
   .Themes__theme_container{
     width: auto;
   }
-
-
- }
-
-/*Large devices (desktops, 992px and up)*/
-@media (min-width: 992px) {
-
 }
 
 /* Extra large devices (large desktops, 1200px and up)*/
