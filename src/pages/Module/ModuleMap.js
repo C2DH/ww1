@@ -140,7 +140,9 @@ class ModuleMap extends PureComponent {
                 {documents && <Cluster
                   ClusterMarkerFactory={this.clusterMarker}
                   clusterThreshold={1}
-                  radius={60}>
+                  radius={60}
+                  zoomOnClick={true}
+                  zoomOnClickPadding={50} >
                 {
                   documents.filter(doc => doc.data).map(doc => {
                     const icon = getPlaceTypeIcon(doc.data.place_type)

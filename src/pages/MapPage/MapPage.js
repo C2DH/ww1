@@ -56,7 +56,8 @@ const styles = {
     color: '#F56350',
     border: '2px solid white',
     fontWeight: 500,
-    pointerEvents: 'none'
+    cursor:'pointer'
+    //pointerEvents: 'none'
   },
   marker: {
     width: 30,
@@ -445,7 +446,13 @@ class MapPage extends PureComponent {
                     <LayersControl setLayer={this.handleSetLayer} currentLayer={this.state.selectedLayer}></LayersControl>
 
                   </div>
-                  <Cluster maxZoom={13} ClusterMarkerFactory={this.clusterMarker} clusterThreshold={1} radius={60}>
+                  <Cluster
+                    maxZoom={13}
+                    ClusterMarkerFactory={this.clusterMarker}
+                    clusterThreshold={1}
+                    radius={60}
+                    zoomOnClick={true}
+                    zoomOnClickPadding={50}>
                   {
                     documents.map(doc => {
                       const icon = getPlaceTypeIcon(doc.data.place_type)
