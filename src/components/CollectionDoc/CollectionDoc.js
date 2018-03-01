@@ -14,7 +14,7 @@ const CollectionDoc = ({ doc, hasImage, lang, showDocLink = false, squared = fal
     <Link to={{ pathname:`/collection/item/${doc.id}`, search: '?lang=' + lang.label.toLowerCase(), state:{modal:true} }} >
       { hasImage && ( <img src={doc.data.resolutions.thumbnail.url} alt={doc.translated.title}/> )}
       { !hasImage && (
-        <div className={`CollectionDoc__inner_container ${squared ? 'squared' : ''} ${(doc.data.type === 'audio')?'CollectionDoc__frame_over_audio':''}`}>
+        <div className={`CollectionDoc__inner_container ${squared ? 'squared' : ''} CollectionDoc__frame_over_${doc.data.type}`}>
           {doc.translated.title}
         </div> )}
       {/* {get(doc, 'data.coordinates.geometry.coordinates')} */}
