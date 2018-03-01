@@ -493,8 +493,8 @@ class MapPage extends PureComponent {
                       doc={selectedDocument}
                       className="clearfix"
                       snapshot={selectedDocument.snapshot}
-                      title={selectedDocument.title}
-                      text={selectedDocument.translated.description}
+                      title={selectedDocument.translated.title}
+                      text={selectedDocument.translated.place_description || selectedDocument.translated.description}
                     />
                   </Popup>
                 )}

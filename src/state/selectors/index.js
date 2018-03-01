@@ -84,6 +84,7 @@ export const translateDocument = lang => doc => ({
     'repository',
     'date',
     'copyright',
+    'place_description'
   ]),
   documents: (doc.documents || []).map(doc => translateDocument(lang)(doc))
 })
