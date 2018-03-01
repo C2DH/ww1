@@ -194,6 +194,7 @@
 
   .MapPage__MainRow{
     padding-top: 0px;
+    height: calc(100vh - 100px);
   }
 
   .Map__Controls {
