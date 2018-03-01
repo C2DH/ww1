@@ -10,7 +10,7 @@ const EventDate = ({
   endDate,
   locale,
   component = 'span',
-  format = 'MMMM DD, YYYY',
+  format = 'DD MMMM YYYY',
 }) => {
 
   moment.locale(locale)
