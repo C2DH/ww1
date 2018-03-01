@@ -4,7 +4,7 @@ import './ResourceCard.css'
 
 class ResourceCard extends PureComponent {
   render(){
-    const { title, author, image, date, startDate, attachment } = this.props;
+    const { title, author, image, date, startDate, attachment, description } = this.props;
     return (
       <div className="ResourceCard__container">
         <div style={{backgroundImage: `url(${image})`}} className="ResourceCard__image hidden-md-down">
@@ -18,6 +18,9 @@ class ResourceCard extends PureComponent {
           </p>
           <h3>{title}</h3>
           <p className="ResourceCard__pub_date"><i>by </i>{author}</p>
+          <p>
+              {description}
+          </p>
           <div className="ResourceCard__downloadBtn_wrapper">
             <a role="button"
               className="btn btn-secondary ResourceCard__downloadBtn"

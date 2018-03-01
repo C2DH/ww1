@@ -99,10 +99,11 @@ class Resources extends PureComponent {
                   <ResourceCard
                     key={doc.id}
                     image={doc.snapshot}
-                    date={get(doc, 'translated.date')}
+                    date={doc.data.year}
                     startDate={doc.translated.start_date}
                     title={doc.translated.title}
-                    author={doc.data.provenance}
+                    author={doc.data.creator}
+                    description={doc.translated.description}
                     attachment={doc.attachment}
                   />
                 ))}
