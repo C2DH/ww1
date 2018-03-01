@@ -16,14 +16,10 @@
 }
 
 .EducationFooter__Btn {
-  padding: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  border-radius: 30px;
-  border-color: transparent;
+  border-radius: 9999px;
   text-transform: uppercase;
-  background-color: #fff;
-  font-family: 'Atlas Grotesk Web';
+  font-family: 'Atlas Grotesk Web', Arial, sans-serif;
+  color: rgb(41, 43, 44) !important;
 }
 
 /* Small devices (landscape phones, 576px and up)*/
