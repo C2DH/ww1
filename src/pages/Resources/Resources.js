@@ -107,6 +107,12 @@ class Resources extends PureComponent {
                     attachment={doc.attachment}
                   />
                 ))}
+                {(documents && documents.length === 0) &&
+                  <div className="Collection__not_found">
+                    <h2>{this.context.t('no documents found')}</h2>
+                    <p>{this.context.t('reset filters or change query')}</p>
+                  </div>
+                }
               </Col>
             </Row>
           </Container>
