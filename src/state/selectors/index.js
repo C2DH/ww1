@@ -274,9 +274,7 @@ export const [
   getMapDocumentsAutocompleteResults,
 ] = makeDocumentsAutocompleteSelectors(state => state.mapDocuments)
 
-export const getMapDocuments = createSelector(
-  getDummyMapDocuments,
-  docs => maybeNull(docs)(docs => docs.map(doc => ({
+const makeDocsCoordinates = docs => maybeNull(docs)(docs => docs.map(doc => ({
     ...doc,
     coordinates: get(doc, 'data.coordinates.geometry.coordinates', [])
       .slice(0, 2)
@@ -286,6 +284,10 @@ export const getMapDocuments = createSelector(
   }))
   // Remove shit without coordinates
   .filter(doc => doc.coordinates.length === 2))
+
+export const getMapDocuments = createSelector(
+  getDummyMapDocuments,
+  makeDocsCoordinates,
 )
 
 export const [
@@ -568,7 +570,24 @@ export const makeGetModule = () => {
     (chapter, module, lang) => {
       return maybeNull(module)(() => {
         const transModule = translateModule(module, lang.code)
-        return joinIds(chapter.documents.map(d => ({ ...d, id: d.document_id })).map(translateDocument(lang)), transModule)
+        const finalModule = joinIds(chapter.documents.map(d => ({ ...d, id: d.document_id }))
+          .map(translateDocument(lang)), transModule)
+        // Adjust for map shit
+        if (finalModule.module === 'map') {
+          return {
+            ...finalModule,
+            objects: makeDocsCoordinates(finalModule.objects.map(o => o.id)),
+          }
+        } else if (finalModule.module === 'text_map') {
+          return {
+            ...finalModule,
+            map: {
+              ...finalModule.map,
+              objects: makeDocsCoordinates(finalModule.map.objects.map(o => o.id)),
+            }
+          }
+        }
+        return finalModule
       })
     }
   )

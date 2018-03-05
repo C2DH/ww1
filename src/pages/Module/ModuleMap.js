@@ -105,19 +105,11 @@ class ModuleMap extends PureComponent {
       backgroundImage: `linear-gradient(to bottom, rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},1) 0%,rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},0.0) 5%,rgba(${backgroundColorRgb.r},${backgroundColorRgb.g},${backgroundColorRgb.b},0) 100%)`
     }
 
+    if (!module || !module.objects) {
+      return null
+    }
 
-    if(!module || !module.objects){ return null }
-
-    // #TODO: move to selectors
-    const documents = (module.objects || []).map(o=>o.id)
-    .map(doc => ({
-      ...doc,
-      coordinates: get(doc, 'data.coordinates.geometry.coordinates', [])
-        .slice(0, 2)
-        // For same position problem....
-        .map(x => Number(x) + Math.random() / 1000)
-        .reverse()
-    }))
+    const documents = module.objects
 
     return (
       <div style={{height:'100%', position:'relative', overflowY: 'auto'}}>
