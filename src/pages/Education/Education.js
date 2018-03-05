@@ -8,21 +8,28 @@ import OtherTeachersCard from '../../components/OtherTeachersCard'
 import BigTitle from '../../components/BigTitle'
 import EducationFooter from '../../components/EducationFooter'
 import StaticStory from '../../components/StaticStory'
-import { getEducationals } from '../../state/selectors'
-import { loadEducationals, unloadEducationals } from '../../state/actions'
+import { getEducationals, getActivityDocuments } from '../../state/selectors'
+import {
+  loadEducationals,
+  unloadEducationals,
+  loadActivityDocuments,
+  unloadActivityDocuments,
+} from '../../state/actions'
 import './Education.css'
 
 class Education extends PureComponent {
   componentDidMount() {
     this.props.loadEducationals()
+    this.props.loadActivityDocuments()
   }
 
   componentWillUnmount() {
     this.props.unloadEducationals()
+    this.props.unloadActivityDocuments()
   }
 
   render() {
-    const { educationals } = this.props
+    const { educationals, documents } = this.props
     return (
       <div className="Education__wrapper">
         <Helmet>
@@ -56,6 +63,11 @@ class Education extends PureComponent {
               </Col>
             ))}
           </Row>
+          {/*
+            TODO: Rendere activity documents
+            {documents && documents.map(doc => (
+
+          ))} */}
 {        /*  <Row>
             <Col md="12">
               <div className="Education__OtherTeachersRow">
@@ -82,9 +94,12 @@ Education.contextTypes = {
 
 const mapStateToProps = state => ({
   educationals: getEducationals(state),
+  documents: getActivityDocuments(state),
 })
 
 export default connect(mapStateToProps, {
   loadEducationals,
   unloadEducationals,
+  loadActivityDocuments,
+  unloadActivityDocuments,
 })(Education)

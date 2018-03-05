@@ -44,6 +44,7 @@ import {
   GET_EDUCATIONALS_FAILURE,
   GET_EDUCATIONALS_UNLOAD,
   GET_RESOURCE_DOCUMENTS,
+  GET_ACTIVITY_DOCUMENTS,
   UPDATE_SETTINGS,
   SET_PREVIEW_TOKEN,
   LOCK_SCROLL,
@@ -246,6 +247,13 @@ export default function* rootSaga() {
     GET_RESOURCE_DOCUMENTS,
     api.getResourceDocuments,
     state => state.resourceDocuments,
+    null,
+    BIG_PAGE_SIZE,
+  ))
+  yield fork(makeDocuments(
+    GET_ACTIVITY_DOCUMENTS,
+    api.getActivityDocuments,
+    state => state.activityDocuments,
     null,
     BIG_PAGE_SIZE,
   ))

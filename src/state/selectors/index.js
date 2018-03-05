@@ -389,6 +389,15 @@ export const getViewedYearAndMonth = createSelector(
   }
 )
 
+// Activity Documents
+
+export const [
+  getActivityDocuments,
+  canLoadMoreActivityDocuments,
+  getActivityDocumentsCount,
+  getActivityDocumentsLoading,
+] = makeDocumentsListSelectors(state => state.activityDocuments)
+
 // Resource Documents
 
 export const [

@@ -7,6 +7,7 @@ import mapDocuments from './mapDocuments'
 import timelineDocuments from './timelineDocuments'
 import resourceDocuments from './resourceDocuments'
 import collectionDocuments from './collectionDocuments'
+import activityDocuments from './activityDocuments'
 import themes from './themes'
 import themeDetail from './themeDetail'
 import chapterDetail from './chapterDetail'
@@ -23,6 +24,7 @@ export default combineReducers({
   mapDocuments,
   timelineDocuments,
   resourceDocuments,
+  activityDocuments,
   themes,
   themeDetail,
   chapterDetail,
