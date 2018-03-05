@@ -6144,9 +6144,9 @@ reduce-function-call@^1.0.1:
   dependencies:
     balanced-match "^0.4.2"
 
-redux-i18n@^1.5.4:
-  version "1.5.4"
-  resolved "https://registry.yarnpkg.com/redux-i18n/-/redux-i18n-1.5.4.tgz#0d420aa3759a447e11f7545c4e05f83b438a7e8e"
+redux-i18n@^1.5.12:
+  version "1.5.12"
+  resolved "https://registry.yarnpkg.com/redux-i18n/-/redux-i18n-1.5.12.tgz#d5c023023e58f58a2ee78dfe3098572c1a5ca6fd"
   dependencies:
     colors "^1.1.2"
     escape-quotes "^1.0.2"

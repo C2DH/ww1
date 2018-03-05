@@ -143,7 +143,6 @@ const MiniMap = ({coords, width=350, height=140}) => {
 
 
 export default ({ doc, onCloseClick }) => {
-  console.log(doc)
   let coords = get(doc, 'data.coordinates.geometry.coordinates')
   if(coords){
     coords = coords.map(item => parseFloat(item))

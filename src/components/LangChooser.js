@@ -23,10 +23,13 @@ class LangChooser extends PureComponent {
     if (nextProps.location !== this.props.location || nextProps.currentLanguage !== this.props.currentLanguage) {
       const currentLangQs = this.getLangFromQs(nextProps.location.search)
       if (!currentLangQs || currentLangQs.toLowerCase() !== nextProps.currentLanguage.label.toLowerCase()) {
-        const newUrl = nextProps.location.pathname + '?' + mergeQs(nextProps.location, {
+        const pathname = nextProps.location.pathname
+        const search = '?' + mergeQs(nextProps.location, {
           lang: nextProps.currentLanguage.label.toLowerCase()
         })
-        this.props.history.replace(newUrl)
+        const state = nextProps.location.state
+        const location = { pathname, search, state }
+        this.props.history.replace(location)
       }
     }
   }
