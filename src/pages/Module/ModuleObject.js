@@ -16,6 +16,7 @@ import {
   lockScroll,
   unlockScroll,
 } from '../../state/actions'
+import { isSafari, replaceExtension } from '../../utils'
 
 const fullHeight = { height: '100%', position:'relative', overflowY:'auto'}
 
@@ -233,7 +234,16 @@ class ModuleObjectContentAudio extends PureComponent {
   render() {
     const { module } = this.props
     let media = get(module, 'id.attachment')
-    let title = get(module, 'id.translated.title')
+    const sources = get(module, 'id.data.sources', [])
+    const title = get(module, 'id.translated.title')
+    if (isSafari() || true) {
+      const sourceAlternative = sources.filter(s => s.type === 'audio/mpeg')
+      if (sourceAlternative.length > 0) {
+        media = sourceAlternative[0].src
+      } else {
+        media = replaceExtension(media, 'mp3')
+      }
+    }
     if(!media){ return null }
 
     return (

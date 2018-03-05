@@ -141,3 +141,20 @@ export const getBoundingBoxImage = (imageUrl, bbox) => {
   }
   return imageUrl
 }
+
+// return a file name \w new extension
+export const replaceExtension = (file, nexExt) => {
+  const pieces = file.split('.')
+  if (pieces.length === 0) {
+    return file
+  }
+  return pieces.slice(0, -1).concat(nexExt).join('.')
+}
+
+export const isSafari = () => {
+  const userAgent = window.navigator.userAgent.toLowerCase()
+  if (userAgent.indexOf('safari') !== -1) {
+    return userAgent.indexOf('chrome') === -1
+  }
+  return false
+}
