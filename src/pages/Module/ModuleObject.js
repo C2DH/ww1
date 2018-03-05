@@ -236,7 +236,7 @@ class ModuleObjectContentAudio extends PureComponent {
     let media = get(module, 'id.attachment')
     const sources = get(module, 'id.data.sources', [])
     const title = get(module, 'id.translated.title')
-    if (isSafari() || true) {
+    if (isSafari()) {
       const sourceAlternative = sources.filter(s => s.type === 'audio/mpeg')
       if (sourceAlternative.length > 0) {
         media = sourceAlternative[0].src
