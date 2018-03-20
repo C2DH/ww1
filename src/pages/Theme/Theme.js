@@ -81,8 +81,10 @@ class Theme extends PureComponent {
         </div>
       </Container>
       <div className="Theme__chapters_btn_container">
-        <h6 className="d-none d-md-block">Chapters</h6>
-        <button className="Theme__chapters_btn" onClick={this.toggleChapters}><i className="material-icons md-24">{this.state.open ? 'close' : 'list'}</i></button>
+        <h6 className="d-none d-md-block">{this.context.t('chapters')}</h6>
+        <button className="btn Theme__chapters_btn" onClick={this.toggleChapters}>
+          <i className="material-icons md-24">{this.state.open ? 'close' : 'list'}</i>
+        </button>
       </div>
       <CSSTransitionGroup component="div"
         transitionName="chapter"

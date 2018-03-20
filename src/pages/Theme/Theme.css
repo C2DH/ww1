@@ -66,13 +66,16 @@
 
 .Theme__chapters_btn {
   color: #FFF;
-  border-radius: 100%;
+  border-radius: 9999px;
   margin-left: 20px;
   background-color: rgba(34, 34, 32, 0.9);
   border: 1px solid #fff;
   width: 45px;
   height: 45px;
-  padding-top: 8px;
+  padding: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   z-index: 9999;
 }
