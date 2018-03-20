@@ -15,6 +15,15 @@
   margin-bottom: 50px;
 }
 
+.About__logo__img{
+  filter: grayscale(1);
+  transition: filter 0.3s;
+}
+
+.About__logo__img:hover{
+  filter: grayscale(0);
+}
+
 
 /* Small devices (landscape phones, 576px and up)*/
 @media (min-width: 576px) {  }

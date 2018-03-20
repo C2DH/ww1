@@ -7,21 +7,21 @@ import './About.css'
 
 class About extends PureComponent {
    organizers = [
-    'unilu.jpg',
-    'c2dh.jpg',
-    'minister.jpg',
+    {url: 'unilu.jpg',link: 'https://www.c2dh.uni.lu/'},
+    {url: 'c2dh.jpg',link: 'https://www.c2dh.uni.lu/'},
+    {url: 'minister.jpg',link: 'https://gouvernement.lu'}
   ];
 
    partners = [
-    'aleh.jpg',
-    'archives.jpg',
-    'bibliolux.jpg',
-    'cna.jpg',
-    'europeana.jpg',
-    'diddeleng.jpg',
-    'militaire.jpg',
-    'mnha.jpg',
-    'migration.jpg',
+    {url: 'aleh.jpg',link: 'https://www.facebook.com/ALEH-Association-Luxembourgeoise-des-Enseignants-dHistoire-279868907267/'},
+    {url: 'archives.jpg',link: 'http://anlux.public.lu'},
+    {url: 'bibliolux.jpg',link: 'http://www.bnl.public.lu'},
+    {url: 'cna.jpg',link: 'http://www.cna.public.lu'},
+    {url: 'diddeleng.jpg',link: 'http://www.dudelange.lu'},
+    {url: 'militaire.jpg',link: 'https://www.mnhm.net'},
+    {url: 'mnha.jpg',link: 'http://www.mnha.lu'},
+    {url: 'migration.jpg',link: 'https://www.cdmh.lu'},
+    {url: 'eych.jpg',link: 'https://patrimoine2018.lu'}
   ];
 
   render(){
@@ -44,7 +44,9 @@ class About extends PureComponent {
                     <div className="About__logo_wrapper">
                       { this.organizers.map(organizer => (
                           <div className="col-4">
-                            <img className="img-fluid" src={'/img/logo/' + organizer}></img>
+                            <a href={organizer.link} target="_blank">
+                              <img className="img-fluid About__logo__img" src={'/img/logo/' + organizer.url}></img>
+                            </a>
                           </div>
                         ))
                       }
@@ -55,7 +57,9 @@ class About extends PureComponent {
                     <div className="About__logo_wrapper">
                       { this.partners.map(partner => (
                           <div className="col-4">
-                            <img className="img-fluid" src={'/img/logo/' + partner}></img>
+                            <a href={partner.link} target="_blank">
+                            <img className="img-fluid About__logo__img" src={'/img/logo/' + partner.url}></img>
+                            </a>
                           </div>
                         ))
                       }
