@@ -8,6 +8,32 @@
 }
 
 .markdown_glossary_tooltip{
-  width: 300px;
+  width: 150px;
   text-align: center;
+}
+
+/*Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {
+
+
+ }
+
+/*Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+
+  .markdown_glossary_tooltip{
+    width: 300px;
+  }
+
+ }
+
+/*Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+
+}
+
+/* Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+
+
 }

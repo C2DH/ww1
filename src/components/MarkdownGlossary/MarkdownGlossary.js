@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Converter } from 'showdown'
 import Markdown from 'markdown-to-jsx';
 import { get, omit } from 'lodash'
-import { Origin } from 'redux-tooltip';
+import { Origin, actions } from 'redux-tooltip';
 import './MarkdownGlossary.css'
 
 
@@ -22,11 +22,22 @@ const mapStateToProps = state => ({
 })
 // const DescriptionContent = connect(mapStateToProps, { loadDocument, unloadDocument})(DescriptionContentx)
 
+const { toggle,place } = actions;
 
 const ObjectLink = connect(mapStateToProps)(class extends React.PureComponent {
 
   state = {
     doc : null
+  }
+
+  constructor(props) {
+     super(props);
+     this.handleToggle = this.handleToggle.bind(this);
+  }
+
+  handleToggle() {
+    this.props.dispatch(place('top'));
+    this.props.dispatch(toggle());
   }
 
   componentDidMount(){
@@ -49,7 +60,7 @@ const ObjectLink = connect(mapStateToProps)(class extends React.PureComponent {
     if(this.state.doc){
       const translatedDoc = translateDocument(lang)(this.state.doc)
       return (
-        <a className="markdown_glossary">
+        <a className="markdown_glossary" onClick={this.handleToggle} >
           <Origin place='left' content={`<div class="markdown_glossary_tooltip"> ${translatedDoc.translated.description || translatedDoc.translated.title || translatedDoc.title}</div>`}>{this.props.children}</Origin>
         </a>
       )
