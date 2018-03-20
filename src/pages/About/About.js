@@ -43,7 +43,7 @@ class About extends PureComponent {
                     </h4>
                     <div className="About__logo_wrapper">
                       { this.organizers.map(organizer => (
-                          <div className="col-4">
+                          <div className="col-4" key={organizer.url}>
                             <a href={organizer.link} target="_blank">
                               <img className="img-fluid About__logo__img" src={'/img/logo/' + organizer.url}></img>
                             </a>
@@ -56,7 +56,7 @@ class About extends PureComponent {
                     </h4>
                     <div className="About__logo_wrapper">
                       { this.partners.map(partner => (
-                          <div className="col-4">
+                          <div className="col-4" key={partner.url}>
                             <a href={partner.link} target="_blank">
                             <img className="img-fluid About__logo__img" src={'/img/logo/' + partner.url}></img>
                             </a>
