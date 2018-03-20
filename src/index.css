@@ -175,6 +175,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   font-family: Georgia, serif;
+  background-color: #333;
 }
 
 h1,h2,h3{
