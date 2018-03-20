@@ -41,12 +41,14 @@ class ChapterCover extends PureComponent  {
   toPrevModule = () => {
     const { chapterIndex, history, theme, makeUrl } = this.props
     const themeUrl = `/themes/${theme.slug}`
-    if(chapterIndex > 0){
+    if (chapterIndex > 0) {
       //to last chapter of prev
-      const prevChapterSlug = get(theme, `stories[${Number(chapterIndex) - 1}].slug`)//to prev chapter
-      history.push(makeUrl(`${themeUrl}/chapters/${prevChapterSlug}/modules/last`))
-    }
-    if(chapterIndex === 0){
+      const prevChapter = get(theme, `stories[${Number(chapterIndex) - 1}]`)
+      const prevChapterSlug = get(prevChapter, 'slug')
+      const lastModule = get(prevChapter, 'data.count_modules', 0)
+      //to prev chapter
+      history.push(makeUrl(`${themeUrl}/chapters/${prevChapterSlug}/modules/${lastModule}`))
+    } else if (chapterIndex === 0) {
       //to theme cover
       history.push(makeUrl(`${themeUrl}`))
     }

@@ -79,6 +79,14 @@ export const getResourceDocuments = (params = {}) => getDocuments({
   },
 })
 
+export const getActivityDocuments = (params = {}) => getDocuments({
+  ...params,
+  filters: {
+    data__type: 'activity',
+    ...params.filters,
+  },
+})
+
 export const getDocument = (id) =>
   request.get(`${API_URL}/document/${id}`)
     .then(extractBody)

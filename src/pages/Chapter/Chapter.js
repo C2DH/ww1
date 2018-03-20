@@ -28,31 +28,6 @@ import {
   unlockScroll,
 } from '../../state/actions'
 
-const mapStateToProps = state => ({
-  theme: getTheme(state),
-  chapter: getChapter(state),
-  error: getChapterError(state),
-  chapterIndex: getChapterIndex(state),
-  totalChapters: getTotalThemeChapters(state),
-  totalChapterModules: getTotalChapterModules(state),
-  makeUrl: getMakeLangUrl(state),
-})
-
-const LastModule = connect(mapStateToProps)(class extends React.PureComponent {
-
-  componentDidMount() {
-    const { theme, chapter, makeUrl } = this.props
-    if (theme && chapter){
-      this.props.history.replace(makeUrl(`/themes/${theme.slug}/chapters/${chapter.slug}/modules/${ Math.max(get(chapter, 'contents.modules', []).length, 1)}`))
-    }
-  }
-
-  render() {
-    return null
-  }
-})
-
-
 class Chapter extends PureComponent  {
   state = {
     open: false,
@@ -143,10 +118,13 @@ class Chapter extends PureComponent  {
                     }
                   }}
                   onClickPrev={() => {
-                    if(index == 0){
-                      const prevChapterSlug = get(theme, `stories[${Number(chapterIndex) - 1}].slug`)//to prev chapter
-                      history.push(makeUrl(`${themeUrl}/chapters/${prevChapterSlug}/modules/last`))
-                    }else if (index > 1) {
+                    if (index === 0) {
+                      // To prev chapter
+                      const prevChapter = get(theme, `stories[${Number(chapterIndex) - 1}]`)
+                      const prevChapterSlug = get(prevChapter, 'slug')
+                      const lastModule = get(prevChapter, 'data.count_modules', 0)
+                      history.push(makeUrl(`${themeUrl}/chapters/${prevChapterSlug}/modules/${lastModule}`))
+                    } else if (index > 1) {
                       history.push(makeUrl(`${chapterUrl}/modules/${index - 1}`))
                     } else {
                       history.push(makeUrl(`${chapterUrl}`))
@@ -159,13 +137,6 @@ class Chapter extends PureComponent  {
             }}
           </Route>
         )}
-
-        {chapter && <Route path={`${match.path}/modules/last`} exact component={LastModule} />}
-        {/* {chapter && <Route path={`${match.path}/modules/last`}
-          render={()=>(
-            <Redirect to={`/themes/${theme.slug}/chapters/${chapter.slug}/modules/${ Math.max(get(chapter, 'contents.modules', []).length, 1)}`}
-          />
-          )}/> } */}
 
         <CSSTransitionGroup component="div"
           transitionName="chapter"
@@ -186,10 +157,6 @@ class Chapter extends PureComponent  {
           >
             <Switch key={location.key} location={location}>
               <Route path={`${match.path}`} exact component={ChapterCover} />
-              {/* <Redirect
-                from={`${match.path}/modules/last`}
-                to={`/themes/${theme.slug}/chapters/${chapter.slug}/modules/${ Math.max(get(chapter, 'contents.modules', []).length, 1)}`}
-              /> */}
               <Route path={`${match.path}/modules/:moduleIndex`} exact component={Module} />
             </Switch>
           </CSSTransitionGroup>
@@ -198,6 +165,16 @@ class Chapter extends PureComponent  {
     )
   }
 }
+
+const mapStateToProps = state => ({
+  theme: getTheme(state),
+  chapter: getChapter(state),
+  error: getChapterError(state),
+  chapterIndex: getChapterIndex(state),
+  totalChapters: getTotalThemeChapters(state),
+  totalChapterModules: getTotalChapterModules(state),
+  makeUrl: getMakeLangUrl(state),
+})
 
 export default withRouter(connect(mapStateToProps, {
   loadChapter,
