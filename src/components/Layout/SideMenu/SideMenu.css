@@ -20,6 +20,7 @@
   color: white;
 }
 
+
 .SideMenu__menuBtnDark{
   color: #F56350;
 }
@@ -150,6 +151,14 @@
     width: 58px;
     height: auto;
     background-color: #333;
+  }
+
+  .SideMenu-close .SideMenu__menuBtn-text{
+    visibility: visible;
+  }
+
+  .SideMenu .SideMenu__menuBtn-text{
+    visibility: hidden;
   }
 
   .SideMenu__menuBtnDark{

@@ -29,6 +29,50 @@
   border-top: 1px solid #DBDBD0;
 }
 
+.Education__External__imgsCont{
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  position: relative;
+}
+
+.Education__External__imgsContShadow{
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.Education__External__imgsContShadow:after{
+   position: absolute;
+   right: 0px;
+   top: 0px;
+   height: 100%;
+   content: "";
+   width: 30px;
+   display: block;
+   background: linear-gradient(to right, rgba(238,238,238,0) 0%, rgba(238,238,238,1) 100%);
+}
+
+.Education__External__exercise{
+  width: 300px;
+  background-color: white;
+  padding: 15px;
+  border: 1px solid #DBDBD0;
+}
+
+.Education__External__exercise a{
+  color: #F36455;
+}
+
+.Education__External__exercise p{
+  font-family: 'Atlas Grotesk Web', Arial, sans-serif;
+  margin: 2px 0px;
+  font-size: 0.875rem;
+}
+
+.Education__container{
+  z-index: 0;
+}
+
 /* Small devices (landscape phones, 576px and up)*/
 @media (min-width: 576px) {  }
 

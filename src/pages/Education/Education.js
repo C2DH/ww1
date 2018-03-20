@@ -46,13 +46,13 @@ class Education extends PureComponent {
             </Row>
           </Container>
         </div>
-        {educationals && <Container className="animated fadeIn">
+        <Container className="animated fadeIn Education__container">
           <Row>
             <Col>
               <h6 className="Education__h6">{this.context.t('pedagogical activities')}</h6>
             </Col>
           </Row>
-          <Row className="Education__ManualsRow">
+          {educationals && <Row className="Education__ManualsRow">
             {educationals.map(edu => (
               <Col lg="4" xs="12" key={edu.id}>
                 <ManualCard
@@ -62,24 +62,32 @@ class Education extends PureComponent {
                 />
               </Col>
             ))}
-          </Row>
-          {/*
-            TODO: Rendere activity documents
-            {documents && documents.map(doc => (
-
-          ))} */}
-{        /*  <Row>
-            <Col md="12">
-              <div className="Education__OtherTeachersRow">
-                <h6 className="Education__h6">See how other teachers used our materials</h6>
-                <div className="Education__Card-container">
-                  <OtherTeachersCard />
-                  <OtherTeachersCard />
-                </div>
-              </div>
-            </Col>
-          </Row> */}
-        </Container>}
+          </Row>}
+          {  documents &&
+            <Row>
+              <Col md="12">
+                  <h6 className="Education__h6">{this.context.t('see how other teachers used our materials')}</h6>
+                  <div className="Education__External__imgsContShadow">
+                    <div className="Education__External__imgsCont">
+                      { documents && documents.map(doc =>(
+                        <div
+                          key={doc.id}
+                          className="Education__External__exercise">
+                          <h6>{doc.translated.title}</h6>
+                          <p>{doc.data.schoolname}</p>
+                          <p>{this.context.t('year')}: {doc.data.year}</p>
+                          <p>{this.context.t('coordinator(s)')}: {doc.data.coordinator}</p>
+                          <p>
+                            <a href={doc.url} target="_black">Link</a>
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+              </Col>
+            </Row>
+          }
+        </Container>
         { educationals &&
           <EducationFooter />
         }
