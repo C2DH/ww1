@@ -220,7 +220,7 @@
   width: 1em;
   height: 1em;
   border-radius: 50%;
-  background-color: white;
+  background-color: transparent;
 }
 .c100 *,
 .c100 *:before,
@@ -252,20 +252,25 @@
 
 .c100:after {
   position: absolute;
-  top: 0.08em;
-  left: 0.08em;
+  top: 0.025em;
+  left: 0.025em;
   display: block;
   content: " ";
   border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.90);
-  width: 0.84em;
-  height: 0.84em;
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 0.95em;
+  height: 0.95em;
+  border: 1px solid white;
+  box-sizing: border-box;
+  z-index: 0;
 }
+
 .c100 .slice {
   position: absolute;
   width: 1em;
   height: 1em;
   clip: rect(0em, 1em, 1em, 0.5em);
+  z-index: 1;
 }
 .c100 .bar {
   transition: transform 0.2s linear;
