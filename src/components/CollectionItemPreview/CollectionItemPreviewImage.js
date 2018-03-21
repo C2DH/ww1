@@ -38,12 +38,13 @@ class CollectionItemPreviewImage extends React.PureComponent {
 	// #TODO: here we could set min zoom based on doc vs viewport sizes
 
 	componentWillDidMount() {
-		this.props.unlockScroll()
+		//this.props.unlockScroll()
 	}
 
 	componentDidMount(){
 		//this.measure()
-		this.props.lockScroll()
+    
+		//this.props.lockScroll()
 	}
 	// measure = () => {
 	// 	const node = ReactDOM.findDOMNode(this)
