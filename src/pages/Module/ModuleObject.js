@@ -156,14 +156,16 @@ class ModuleObjectContentVideo extends PureComponent {
         }
 
         {module.caption &&
-          <CardBlock className="Module__object_caption_text animated fadeInDown">
-            <i className="icon-hand Module__object_caption_hand"  />
-            <div className="Module__object_caption_text_cont">
-              <CardText>
-                {module.caption}
-              </CardText>
-            </div>
-          </CardBlock>
+          <div className="Module__object_caption_text_wrapper">
+            <CardBlock className="Module__object_caption_text animated fadeInDown">
+              <i className="icon-hand Module__object_caption_hand"  />
+              <div className="Module__object_caption_text_cont">
+                <CardText>
+                  {module.caption}
+                </CardText>
+              </div>
+            </CardBlock>
+          </div>
        }
 
       </Card>
@@ -217,6 +219,7 @@ const ModuleObjectContentImage = pure(({ module, resize }) => {
         }
 
         {(module.caption) &&
+          <div className="Module__object_caption_text_wrapper">
             <CardBlock className="Module__object_caption_text animated fadeInDown">
               <i className="icon-hand Module__object_caption_hand"  />
               <div className="Module__object_caption_text_cont">
@@ -225,6 +228,7 @@ const ModuleObjectContentImage = pure(({ module, resize }) => {
                 </CardText>
               </div>
             </CardBlock>
+          </div>
           }
       </Card>
   )
@@ -252,14 +256,16 @@ class ModuleObjectContentAudio extends PureComponent {
           <AudioPlayer source={media} title={title}/>
         </div>
         {module.caption &&
-          <CardBlock className="Module__object_caption_text Module__object__audio_caption animated fadeInUp">
-            <i className="icon-hand Module__object_caption_hand"  />
-            <div className="Module__object_caption_text_cont">
-              <CardText>
-                {module.caption}
-              </CardText>
-            </div>
-          </CardBlock>
+          <div className="Module__object_caption_text_wrapper">
+            <CardBlock className="Module__object_caption_text Module__object__audio_caption animated fadeInUp">
+              <i className="icon-hand Module__object_caption_hand"  />
+              <div className="Module__object_caption_text_cont">
+                <CardText>
+                  {module.caption}
+                </CardText>
+              </div>
+            </CardBlock>
+          </div>
        }
        <div className="ModuleObjectContentImage__Link videoFull animated fadeIn"><CollectionItemLink doc={module.id}/></div>
       </div>
