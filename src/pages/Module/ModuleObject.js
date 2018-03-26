@@ -261,7 +261,7 @@ class ModuleObjectContentAudio extends PureComponent {
         </div>
         {module.caption &&
           <div className="Module__object_caption_text_wrapper">
-            <CardBlock className="Module__object_caption_text Module__object__audio_caption animated fadeInUp">
+            <CardBlock className="Module__object_caption_text Module__object__audio_caption animated fadeIn">
               <div className="Module__object_caption_text_wrap">
               <i className="icon-hand Module__object_caption_hand"  />
               <div className="Module__object_caption_text_cont">
