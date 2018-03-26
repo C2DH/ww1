@@ -154,7 +154,7 @@ class ModuleMap extends PureComponent {
                 <Popup
                   coordinates={selectedDocument.coordinates}
                   anchor='bottom'
-                  offset={[0, -15]}
+                  offset={[0, -30]}
                   key={selectedDocument.id}>
                   <i className="material-icons pointer float-right" onClick={this.closePopup}>close</i>
                   <MapToolTip

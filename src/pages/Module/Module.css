@@ -530,6 +530,8 @@
     flex-grow: 0;
     height: 58px;
     padding-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
 }
 
 /* end gallery carousel */
