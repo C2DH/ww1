@@ -158,11 +158,13 @@ class ModuleObjectContentVideo extends PureComponent {
         {module.caption &&
           <div className="Module__object_caption_text_wrapper">
             <CardBlock className="Module__object_caption_text animated fadeInDown">
+              <div className="Module__object_caption_text_wrap">
               <i className="icon-hand Module__object_caption_hand"  />
               <div className="Module__object_caption_text_cont">
                 <CardText>
                   {module.caption}
                 </CardText>
+              </div>
               </div>
             </CardBlock>
           </div>
@@ -221,11 +223,13 @@ const ModuleObjectContentImage = pure(({ module, resize }) => {
         {(module.caption) &&
           <div className="Module__object_caption_text_wrapper">
             <CardBlock className="Module__object_caption_text animated fadeInDown">
-              <i className="icon-hand Module__object_caption_hand"  />
-              <div className="Module__object_caption_text_cont">
-                <CardText>
-                  {module.caption}
-                </CardText>
+              <div className="Module__object_caption_text_wrap">
+                <i className="icon-hand Module__object_caption_hand"  />
+                <div className="Module__object_caption_text_cont">
+                  <CardText>
+                    {module.caption}
+                  </CardText>
+              </div>
               </div>
             </CardBlock>
           </div>
@@ -258,11 +262,13 @@ class ModuleObjectContentAudio extends PureComponent {
         {module.caption &&
           <div className="Module__object_caption_text_wrapper">
             <CardBlock className="Module__object_caption_text Module__object__audio_caption animated fadeInUp">
+              <div className="Module__object_caption_text_wrap">
               <i className="icon-hand Module__object_caption_hand"  />
               <div className="Module__object_caption_text_cont">
                 <CardText>
                   {module.caption}
                 </CardText>
+              </div>
               </div>
             </CardBlock>
           </div>
