@@ -279,7 +279,13 @@ const makeDocsCoordinates = docs => maybeNull(docs)(docs => docs.map(doc => ({
     coordinates: get(doc, 'data.coordinates.geometry.coordinates', [])
       .slice(0, 2)
       // For same positin problem....
-      .map(x => parseFloat((Number(x) + (Math.random() / 1000)).toFixed(6)))
+      .map((x) => {
+        if(doc.data.place_type == 'bombing'){
+          return parseFloat((Number(x) + (Math.random() / 1000)).toFixed(6))
+        }else{
+          return x
+        }
+      })
       .reverse()
   }))
   // Remove shit without coordinates
