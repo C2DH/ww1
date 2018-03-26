@@ -27,7 +27,7 @@ const styles = {
     color: '#F56350',
     border: '2px solid white',
     fontWeight: 500,
-    // pointerEvents: 'none'
+    cursor:'pointer',
   },
   marker: {
     width: 30,
