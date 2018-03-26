@@ -112,7 +112,7 @@ class ModuleMap extends PureComponent {
     const documents = module.objects
 
     return (
-      <div style={{height:'100%', position:'relative', overflowY: 'auto'}}>
+      <div style={{height:'100%', position:'relative', overflowY: 'auto', width:'100%'}}>
         <div className="Map__Module_Container animated fadeIn">
             <Map
               ref={map => this.map = map}
