@@ -57,7 +57,7 @@ class ModuleTextMap extends PureComponent {
             </Row>
           )}
           {lastModule &&
-            <LastModule />
+            <LastModule backgroundColor={backgroundColor} backgroundOverlay={backgroundOverlay}></LastModule>
           }
         </Container>
       </div>

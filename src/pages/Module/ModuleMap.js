@@ -179,7 +179,7 @@ class ModuleMap extends PureComponent {
 
         </div>
         {
-          lastModule && <LastModule></LastModule>
+          lastModule && <LastModule backgroundColor={backgroundColor}></LastModule>
         }
       </div>
     )

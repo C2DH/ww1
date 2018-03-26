@@ -343,7 +343,7 @@ class ModuleObject extends PureComponent {
            </Container>
          </MediaQuery>
          {
-           lastModule && <LastModule></LastModule>
+           lastModule && <LastModule backgroundColor={backgroundColor} backgroundOverlay={backgroundOverlay}></LastModule>
          }
       </div>
     )

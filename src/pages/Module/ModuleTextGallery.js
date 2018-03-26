@@ -59,7 +59,7 @@ class ModuleTextGallery extends PureComponent {
           )}
         </Container>
         {
-          lastModule && <LastModule></LastModule>
+          lastModule && <LastModule backgroundColor={backgroundColor} backgroundOverlay={backgroundOverlay}></LastModule>
         }
       </div>
     )

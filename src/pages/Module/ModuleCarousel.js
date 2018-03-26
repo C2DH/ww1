@@ -120,7 +120,7 @@ class ModuleCarousel extends PureComponent {
           </Row>
           </Container>
           {
-            lastModule && <LastModule></LastModule>
+            lastModule && <LastModule backgroundColor={backgroundColor} backgroundOverlay={backgroundOverlay}></LastModule>
           }
       </div>
     )

@@ -49,7 +49,7 @@ class ModuleText extends PureComponent {
           </Container>
       </div>
       {
-        lastModule && <LastModule></LastModule>
+        lastModule && <LastModule backgroundColor={backgroundColor} backgroundOverlay={backgroundOverlay}></LastModule>
       }
     </div>
   }
