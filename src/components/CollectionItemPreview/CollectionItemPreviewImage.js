@@ -26,7 +26,7 @@ class CollectionItemPreviewImage extends React.PureComponent {
 		zooming: false,
     zoom: -1,
 		width: null,
-		height: null
+		height: null,
   }
 
   zoomTo = (zoom) => {
@@ -37,15 +37,22 @@ class CollectionItemPreviewImage extends React.PureComponent {
 
 	// #TODO: here we could set min zoom based on doc vs viewport sizes
 
-	componentWillDidMount() {
-		//this.props.unlockScroll()
+	componentWillMount() {
+		this.props.unlockScroll()
+
+    //this.props.lockScroll()
 	}
 
 	componentDidMount(){
 		//this.measure()
-    
-		//this.props.lockScroll()
+
+		this.props.lockScroll()
+
 	}
+
+  componentWillUnmount() {
+    this.props.unlockScroll()
+  }
 	// measure = () => {
 	// 	const node = ReactDOM.findDOMNode(this)
 	// 	const width = node.parentNode.clientWidth
@@ -62,19 +69,18 @@ class CollectionItemPreviewImage extends React.PureComponent {
 		this.setState({zoom})
 	}
 
+
   render() {
     const { doc } = this.props
 
     if(!doc || !doc.data.width){ return null }
 
-    const { zoom } = this.state
+    const { zoom, status, dragging, touchZoom } = this.state
 
     const bounds = [xy(0, 0), xy(doc.data.width, doc.data.height)];
 
     return (
-    // <div className="CollectionItem__doc_container d-flex flex-column">
     <div className="CollectionItemPreview__doc_preview">
-        {/* <img src={doc.src} alt={doc.title} className="img-fluid" style={{maxHeight:'70vh'}}/> */}
 			<div className="CollectionItemPreview__leaflet_wrapper d-flex">
         <Map
 					onZoomStart={() => this.setState({ zooming: true })}
@@ -99,6 +105,8 @@ class CollectionItemPreviewImage extends React.PureComponent {
         {/* <WhiteTooltip target="CollectionItem__btn_download" tooltipText={<span>Download image and data<br/>Download image</span>} /> */}
 				<CollectionItemDownload doc={doc} className="CollectionItem__btn_download"/>
 
+   <div onClick={() => this.props.unlockScroll()} style={{color:'white', padding:5}}>unlock</div>
+        <div onClick={() => this.props.lockScroll()} style={{color:'white', padding:5}}>lock</div>
       </div>
     </div>
   );
