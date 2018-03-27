@@ -109,7 +109,7 @@ class ChapterCover extends PureComponent  {
                      <h6>{this.context.t('chapter')} {index + 1}</h6>
                    </div>
                    <h1 className="animated zoomIn">{chapter.translated.title}</h1>
-                   <div className="ChapterCover__text_container">
+                   <div className="ChapterCover__text_container animated fadeIn">
                      <p>{chapter.translated.abstract}</p>
                    </div>
                  </div>
