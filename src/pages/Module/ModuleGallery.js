@@ -47,7 +47,7 @@ const ModuleGallery = ({ module, style, masonryStyle=null,lastModule }) => {
         bbox={bbox}
       />
 
-    <div className="Module__gallery_cont">
+    <div className="Module__gallery_cont animated fadeIn">
 
     <MediaQuery minWidth={768}>
         {matches => (
@@ -69,8 +69,8 @@ const ModuleGallery = ({ module, style, masonryStyle=null,lastModule }) => {
 
     {(module.caption) &&
         <div className="Module__object_caption_text card-block Module__gallery_caption animated fadeInUp">
-          <i className="icon-hand Module__object_caption_hand"  />
-{      /*    <div className="Module__object_caption_text_cont">
+        {      /*    <i className="icon-hand Module__object_caption_hand"  />
+  <div className="Module__object_caption_text_cont">
             <p className="card-text">
               {module.caption}
             </p>
