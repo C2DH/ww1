@@ -15,10 +15,13 @@
 
 .Module__object_caption_hand{
   margin-right: 10px;
+  cursor: ew-resize;
 }
+
 
 .Module__object_caption_text_wrapper{
   display: flex;
+  width: 100%;
 }
 
 .Module__object_caption_text_wrap{
@@ -42,6 +45,8 @@
   position: relative;
   flex: 1;
   min-width: 0;
+  height: 22px;
+  overflow: hidden;
 }
 
 .Module__object_caption_text_cont p{
@@ -50,6 +55,7 @@
   overflow-x: auto;
   font-family: 'Atlas Grotesk Web';
   font-size: 0.9rem;
+  padding-bottom: 16px;
 }
 
 .Module__object_caption_text_cont::after {

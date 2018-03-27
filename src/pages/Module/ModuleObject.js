@@ -12,6 +12,7 @@ import * as d3Color from 'd3-color'
 import Background from '../../components/Background'
 import MediaQuery from 'react-responsive'
 import LastModule from '../../components/LastModule'
+import Caption from '../../components/Caption'
 import {
   lockScroll,
   unlockScroll,
@@ -158,14 +159,7 @@ class ModuleObjectContentVideo extends PureComponent {
         {module.caption &&
           <div className="Module__object_caption_text_wrapper">
             <CardBlock className="Module__object_caption_text animated fadeInDown">
-              <div className="Module__object_caption_text_wrap">
-              <i className="icon-hand Module__object_caption_hand"  />
-              <div className="Module__object_caption_text_cont">
-                <CardText>
-                  {module.caption}
-                </CardText>
-              </div>
-              </div>
+              <Caption caption={module.caption}></Caption>
             </CardBlock>
           </div>
        }
@@ -205,7 +199,6 @@ const ModuleObjectContentImage = pure(({ module, resize }) => {
     backgroundPosition: 'center center'
   }
 
-
   return (
       <Card className="Module__objectCard">
         {(size != 'big' || resize) &&
@@ -223,14 +216,7 @@ const ModuleObjectContentImage = pure(({ module, resize }) => {
         {(module.caption) &&
           <div className="Module__object_caption_text_wrapper">
             <CardBlock className="Module__object_caption_text animated fadeInDown">
-              <div className="Module__object_caption_text_wrap">
-                <i className="icon-hand Module__object_caption_hand"  />
-                <div className="Module__object_caption_text_cont">
-                  <CardText>
-                    {module.caption}
-                  </CardText>
-              </div>
-              </div>
+              <Caption caption={module.caption}></Caption>
             </CardBlock>
           </div>
           }
@@ -262,14 +248,7 @@ class ModuleObjectContentAudio extends PureComponent {
         {module.caption &&
           <div className="Module__object_caption_text_wrapper">
             <CardBlock className="Module__object_caption_text Module__object__audio_caption animated fadeIn">
-              <div className="Module__object_caption_text_wrap">
-              <i className="icon-hand Module__object_caption_hand"  />
-              <div className="Module__object_caption_text_cont">
-                <CardText>
-                  {module.caption}
-                </CardText>
-              </div>
-              </div>
+              <Caption caption={module.caption}></Caption>
             </CardBlock>
           </div>
        }

@@ -8,6 +8,7 @@ import ReactMapboxGl, { Popup, Marker, Layer, Feature, Cluster, ZoomControl, Geo
 import * as MapboxGL from 'mapbox-gl';
 import LastModule from '../../components/LastModule';
 import Background from '../../components/Background'
+import Caption from '../../components/Caption';
 
 import {
   getPlaceTypeIcon,
@@ -168,12 +169,13 @@ class ModuleMap extends PureComponent {
             </Map>
             {(module.caption) &&
                 <div className="Module__object_caption_text ModuleMap__Caption Module__gallery_carousel_caption animated fadeInDown">
-                  <i className="icon-hand Module__object_caption_hand"  />
+{               /*   <i className="icon-hand Module__object_caption_hand"  />
                   <div className="Module__object_caption_text_cont">
                     <p className="card-text">
                       {module.caption}
                     </p>
-                  </div>
+                  </div>*/}
+                  <Caption caption={module.caption}></Caption>
                 </div>
               }
 

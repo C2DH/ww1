@@ -8,6 +8,7 @@ import CollectionGrid from '../../components/CollectionGrid'
 import Background from '../../components/Background'
 import MediaQuery from 'react-responsive'
 import LastModule from '../../components/LastModule'
+import Caption from '../../components/Caption';
 
 const makeDocs = defaultMemoize((objects=[]) => objects.map(({ id }) => id))
 
@@ -69,11 +70,12 @@ const ModuleGallery = ({ module, style, masonryStyle=null,lastModule }) => {
     {(module.caption) &&
         <div className="Module__object_caption_text card-block Module__gallery_caption animated fadeInUp">
           <i className="icon-hand Module__object_caption_hand"  />
-          <div className="Module__object_caption_text_cont">
+{      /*    <div className="Module__object_caption_text_cont">
             <p className="card-text">
               {module.caption}
             </p>
-          </div>
+          </div>*/}
+          <Caption caption={module.caption}></Caption>
         </div>
       }
       </div>
