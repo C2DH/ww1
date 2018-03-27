@@ -21,12 +21,12 @@
 
 .Module__object_caption_text_wrapper{
   display: flex;
-  width: 100%;
 }
 
 .Module__object_caption_text_wrap{
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .Module__object_caption_text{
