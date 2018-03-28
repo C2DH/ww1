@@ -123,7 +123,7 @@ class Themes extends PureComponent {
             </Col>
           </Row>
 
-          <Row className="Themes__TitlesRow mt-md-0">
+          <Row className="Themes__TitlesRow mt-lg-0">
             {themes && <Col className="Themes__theme_title_container">
               {themes.map(theme =>(
                 <ThemeContainer

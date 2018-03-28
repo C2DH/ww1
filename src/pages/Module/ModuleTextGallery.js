@@ -11,13 +11,13 @@ const galleryColumnsStyle = { height:'100%', position:'relative', width:'100%' }
 const masonryStyle = {  height:'calc(100vh - 230px)', paddingTop:0, overflowY:'scroll' }
 
 const GalleryColumn = ({module, chapter}) => (
-  <Col xs="12" md="6" className="Module__textObject_Col">
+  <Col xs="12" lg="6" className="Module__textObject_Col">
     <ModuleGallery module={module} chapter={chapter} style={galleryColumnsStyle} masonryStyle={masonryStyle}/>
   </Col>
 )
 
 const TextColumn = ({ content, color,position }) => (
-  <Col xs="12" md="6" className={`Module__textObject_Col text animated fadeIn${position}`}>
+  <Col xs="12" lg="6" className={`Module__textObject_Col text animated fadeIn${position}`}>
     <div className="Module__textObject_Text" style={{ color }}>
       <MarkdownGlossary content={content} />
     </div>

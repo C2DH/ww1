@@ -75,6 +75,10 @@
 /* Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) {
 
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
   .EducationDetail__cont{
     padding: 25px 0px;
   }
@@ -86,13 +90,6 @@
   .EducationDetail__order-md-1{
     order:1!important;
   }
-
-
-}
-
-/* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-
 }
 
 /* Extra large devices (large desktops, 1200px and up) */

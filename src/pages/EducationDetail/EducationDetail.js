@@ -46,7 +46,7 @@ class EducationDetail extends PureComponent {
           <Helmet>
                 <title>{educational.data.title}</title>
           </Helmet>
-          
+
         }
         {educational && (
           <div className="animated fadeIn">
@@ -54,11 +54,11 @@ class EducationDetail extends PureComponent {
               <Container>
                 <BigTitle title={educational.data.title} />
                 <Row className="EducationDetail__cont">
-                  <Col xs={12} md={6} className="EducationDetail__order-1 EducationDetail__order-md-0">
+                  <Col xs={12} lg={6} className="EducationDetail__order-1 EducationDetail__order-md-0">
                     <h6 className='EducationDetail__h6'>{this.context.t('introduction')}</h6>
                     <p>{educational.data.activity}</p>
                     <Row>
-                      <Col xs={12} md={6}>
+                      <Col xs={12} lg={6}>
                         <h6 className='EducationDetail__h6'>{this.context.t('skills')}</h6>
                         <ul className='pl-4'>
                           {educational.data.requirements.map((req, index) => (
@@ -66,7 +66,7 @@ class EducationDetail extends PureComponent {
                           ))}
                         </ul>
                       </Col>
-                      <Col xs={12} md={6}>
+                      <Col xs={12} lg={6}>
                         <h6 className='EducationDetail__h6'>{this.context.t('pedagogical manual')}</h6>
                         <a
                           className="btn btn-secondary EducationDetail__DownloadBtn"
@@ -77,7 +77,7 @@ class EducationDetail extends PureComponent {
                       </Col>
                     </Row>
                   </Col>
-                  <Col xs={12} md={6} className="EducationDetail__order-0 EducationDetail__order-md-1">
+                  <Col xs={12} lg={6} className="EducationDetail__order-0 EducationDetail__order-md-1">
                     <img className='img-fluid mb-3' src={get(educational, 'covers[0].attachment')} />
                   </Col>
                 </Row>
@@ -86,7 +86,7 @@ class EducationDetail extends PureComponent {
             <Container>
               <h6 className='EducationDetail__h6'>{this.context.t('suggested activities')}</h6>
               <Row className='mt-4'>
-                <Col xs={12} md={8} className="EducationDetail__order-1 EducationDetail__order-md-0">
+                <Col xs={12} lg={8} className="EducationDetail__order-1 EducationDetail__order-md-0">
                   {educational.data.steps.map((step, i) => (
                     <EducationExpandableItem
                       key={i}
@@ -97,7 +97,7 @@ class EducationDetail extends PureComponent {
                     />
                   ))}
                 </Col>
-                <Col xs={12} md={4} className="EducationDetail__order-0 EducationDetail__order-md-1">
+                <Col xs={12} lg={4} className="EducationDetail__order-0 EducationDetail__order-md-1">
                   <div className="mb-3">
                     <div>
                       <img className='img-fluid' src={get(educational, 'contents.object.attachment')} />

@@ -85,6 +85,11 @@
 /*Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) {
 
+
+ }
+
+/*Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
   .ChapterCover__container {
     padding: 0px;
   }
@@ -110,12 +115,6 @@
   .ChapterCover__inner_container h1 {
     font-size: 6rem;
   }
-
- }
-
-/*Large devices (desktops, 992px and up)*/
-@media (min-width: 992px) {
-
 }
 
 /* Extra large devices (large desktops, 1200px and up)*/

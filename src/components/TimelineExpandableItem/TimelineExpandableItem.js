@@ -66,7 +66,7 @@ render () {
           </Row>
           { (this.props.item.documents.length > 0) &&
               <Row>
-                <Col md={{ size: 10, offset: 3 }}  lg={{ size: 10, offset: 2 }}>
+                <Col md={{ size: 9, offset: 3 }}  lg={{ size: 10, offset: 2 }}>
                     <h6 className="TimelineExpandableItem__imgTitle">related objects</h6>
                     <div className="TimelineExpandableItem__imgsContShadow">
                       <div className="TimelineExpandableItem__imgsCont">

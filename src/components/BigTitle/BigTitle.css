@@ -15,7 +15,11 @@
 @media (min-width: 576px) {  }
 
 /* Medium devices (tablets, 768px and up)*/
-@media (min-width: 768px) {  }
+@media (min-width: 768px) {
+  .BigTitle__title {
+    margin-left: -39px;
+  }
+}
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {

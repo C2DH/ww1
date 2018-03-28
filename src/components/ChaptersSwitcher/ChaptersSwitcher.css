@@ -133,6 +133,11 @@
 /*Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) {
 
+
+ }
+
+/*Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
   .ChaptersSwitcher__chapters_top {
     height: 80px;
   }
@@ -144,12 +149,6 @@
   .ChaptersSwitcher__chapters_container{
       width: 375px;
   }
-
- }
-
-/*Large devices (desktops, 992px and up)*/
-@media (min-width: 992px) {
-
 }
 
 /* Extra large devices (large desktops, 1200px and up)*/

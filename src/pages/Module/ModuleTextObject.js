@@ -14,13 +14,13 @@ import LastModule from '../../components/LastModule'
 const fullHeight = { height: '100%'}
 
 const ObjectColumn = ({module, position}) => (
-  <Col xs="12" md="6" className={`Module__textObject_Col mediumModule animated fadeIn${module.type=='image'?position:''}`}>
+  <Col xs="12" lg="6" className={`Module__textObject_Col mediumModule animated fadeIn${module.type=='image'?position:''}`}>
     <ModuleObjectContent module={module}/>
   </Col>
 )
 
 const TextColumn = ({ content, color, position }) => (
-  <Col xs="12" md="6" className={`Module__textObject_Col text animated fadeIn${position}`}>
+  <Col xs="12" lg="6" className={`Module__textObject_Col text animated fadeIn${position}`}>
     <div className="Module__textObject_Text" style={{ color }}>
       <MarkdownGlossary content={content}/>
     </div>

@@ -30,6 +30,7 @@ class Education extends PureComponent {
 
   render() {
     const { educationals, documents } = this.props
+    console.log(documents)
     return (
       <div className="Education__wrapper">
         <Helmet>
@@ -63,7 +64,7 @@ class Education extends PureComponent {
               </Col>
             ))}
           </Row>}
-          {  documents &&
+          {  (documents && documents.length > 0) &&
             <Row>
               <Col md="12">
                   <h6 className="Education__h6">{this.context.t('see how other teachers used our materials')}</h6>

@@ -168,6 +168,11 @@
 
 /* Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) {
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
   .CollectionItem__doc_container {
     height: 100vh;
     /*display: flex;
@@ -189,11 +194,6 @@
   .CollectionItem__close_btn{
     margin: 15px 0;
   }
-}
-
-/* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
