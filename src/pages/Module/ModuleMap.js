@@ -112,6 +112,12 @@ class ModuleMap extends PureComponent {
 
     const documents = module.objects
 
+    let bounds = new MapboxGL.LngLatBounds();
+
+    documents.forEach(function(feature) {
+        bounds.extend(feature.coordinates);
+    });
+
     return (
       <div style={{height:'100%', position:'relative', overflowY: 'auto', width:'100%'}}>
         <div className="Map__Module_Container animated fadeIn">
@@ -121,6 +127,7 @@ class ModuleMap extends PureComponent {
               dragRotate={false}
               keyboard={false}
               zoom={zoom}
+              fitBounds={bounds}
               onDrag={this.onDrag}
               injectCss={false}
               touchZoomRotate={false}
