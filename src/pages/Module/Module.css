@@ -456,6 +456,7 @@
   max-width: 70vw;
   display: flex!important;
   align-items: center;
+  flex-direction: column;
 }
 
 
@@ -505,9 +506,8 @@
 }
 
 .ModuleCarousel__CollectionItemLink{
-  position: absolute;
-  top:5px;
-  right: 5px;
+  align-self: flex-end;
+  transform: translateY(100%);
 }
 
 .slick-initialized .slick-slide{

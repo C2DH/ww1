@@ -94,8 +94,8 @@ class ModuleCarousel extends PureComponent {
                     <Slider ref={c => this.slider = c } {...settings}>
                       {module.objects.map((pic, i) => (
                         <div className={`ModuleCarousel__inner_slider ${ i !== currentIndex  ?  'ModuleCarousel__inner_slider--opaque' : '' } animated fadeInRight`} key={pic.id.id} >
-                          <img src={pic.id.data.resolutions.medium.url || pic.id.attachment} />
                           <div className="ModuleCarousel__CollectionItemLink"><CollectionItemLink doc={pic.id}/></div>
+                          <img src={pic.id.data.resolutions.medium.url || pic.id.attachment} />
                         </div>
                       ))}
                     </Slider>
