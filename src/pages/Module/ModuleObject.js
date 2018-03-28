@@ -2,6 +2,8 @@ import ReactDOM from 'react-dom'
 import React, { PureComponent } from 'react'
 import { pure } from 'recompose'
 import { connect } from 'react-redux'
+import { getCurrentLanguage } from '../../state/selectors'
+import { Link } from 'react-router-dom'
 import { get } from 'lodash'
 import { Container, Row, Col } from 'reactstrap'
 import { Card, CardImg, CardText, CardBlock } from 'reactstrap'
@@ -202,7 +204,9 @@ const ModuleObjectContentImage = pure(({ module, resize }) => {
   return (
       <Card className="Module__objectCard">
         {(size != 'big' || resize) &&
-          <CardImg top className="Module__objectCard_img animated fadeIn" src={media}/>
+          <Link to={{ pathname:`/collection/item/${module.id.id}`, state:{modal:true} }}>
+            <CardImg top className="Module__objectCard_img animated fadeIn" src={media}/>
+          </Link>
         }
         {(size != 'big' || resize) &&
           <div className="ModuleObjectContentImage__Link animated fadeIn"><CollectionItemLink doc={module.id}/></div>
