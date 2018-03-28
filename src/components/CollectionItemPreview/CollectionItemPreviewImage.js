@@ -73,11 +73,11 @@ class CollectionItemPreviewImage extends React.PureComponent {
   render() {
     const { doc } = this.props
 
-    if(!doc || !doc.data.width){ return null }
+    if(!doc || !doc.data.resolutions || !doc.data.resolutions.full){ return null }
 
     const { zoom, status, dragging, touchZoom } = this.state
 
-    const bounds = [xy(0, 0), xy(doc.data.width, doc.data.height)];
+    const bounds = [xy(0, 0), xy(doc.data.resolutions.full.width, doc.data.resolutions.full.height)];
 
     return (
     <div className="CollectionItemPreview__doc_preview">
@@ -91,13 +91,13 @@ class CollectionItemPreviewImage extends React.PureComponent {
           zoomSnap={0.2}
           attributionControl={false}
           crs = {L.CRS.Simple} bounds={bounds} maxBounds={bounds} zoom={zoom}
-          center={xy(doc.data.width/2, doc.data.height/2)}
+          center={xy(doc.data.resolutions.full.width/2, doc.data.resolutions.full.height/2)}
 					onMoveend={this.handleMapMove}
           style={{display:'flex', flexGrow:'1', width:'100%', background: 'transparent'}}>
 
           <ImageOverlay
             bounds={bounds}
-            url={doc.src}/>
+            url={doc.data.resolutions.full.url}/>
         </Map>
 			</div>
       <div className="CollectionItem__doc_controls">
