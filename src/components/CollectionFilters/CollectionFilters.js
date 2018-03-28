@@ -27,6 +27,20 @@ class CollectionFilters extends PureComponent {
       autocompleteResults,
       onAutocompleteSelect,
     } = this.props
+
+    /* remove it and move ordering to api*/
+    const hcOrder = {
+      'audio':1,
+      'book':2,
+      'correspondence':3,
+      'image':4,
+      'physical object':5,
+      'video':6,
+      'other':7
+    }
+
+    const resortedDataTypes = [].concat(dataTypes).sort((a,b) => hcOrder[a.data__type] - hcOrder[b.data__type] )
+
     return (
       <div className="CollectionFilters__container">
         <div className="CollectionFilters__filtermobile_title d-flex align-items-center hidden-lg-up">
@@ -73,7 +87,7 @@ class CollectionFilters extends PureComponent {
             </div>
           }
           <div className="CollectionFilters__filter_container d-flex flex-column">
-            {dataTypes && dataTypes.map(({ count, data__type }) => {
+            {dataTypes && resortedDataTypes.map(({ count, data__type }) => {
               const selected = typeof selectedDataTypes[data__type] !== 'undefined' || Object.keys(selectedDataTypes).length === 0
               return (
                   <div key={data__type} onClick={() => onToggleDataType(data__type)}
