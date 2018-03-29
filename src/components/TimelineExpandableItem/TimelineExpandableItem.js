@@ -9,6 +9,7 @@ import './TimelineExpandableItem.css'
 import MdTitle from '../../components/MdTitle'
 import { Link } from 'react-router-dom'
 import { getCurrentLanguage } from '../../state/selectors'
+import Markdown from 'markdown-to-jsx';
 
 const TimelineEventDate = ({ startDate, endDate }) => (
   <EventDate
@@ -65,7 +66,11 @@ render () {
           <Row>
           <Col md={{ size: 9, offset: 3 }} lg={{ size: 9, offset: 2 }} className="TimelineExpandableItem__container">
             <h6 className="TimelineExpandableItem__show_less hidden-md-up" onClick={this.toggleExpand}><span>{this.context.t('show less')}</span></h6>
-              <p className="TimelineExpandableItem__text">{this.props.item.translated.description}</p>
+            <div className="TimelineExpandableItem__text">
+              <Markdown>
+                  {this.props.item.translated.description || ''}
+              </Markdown>
+            </div>
           </Col>
           </Row>
           { (this.props.item.documents.length > 0) &&

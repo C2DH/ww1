@@ -29,7 +29,7 @@
 }
 
 
-.TimelineExpandableItem__text {
+.TimelineExpandableItem__text p {
   padding-top: 20px;
   padding-bottom: 20px;
   border-top: 1px solid #DBDBD0;
