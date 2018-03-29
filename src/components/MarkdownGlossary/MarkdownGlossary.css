@@ -11,7 +11,12 @@
   /* width: 150px; */
   min-width: 150px;
   max-width: 150px;
-  text-align: center;
+  padding:7px;
+  font-family: "Atlas Grotesk", Arial, sans-serif;
+}
+
+.markdown_glossary_tooltip_wrap{
+  background-color: red;
 }
 
 /*Small devices (landscape phones, 576px and up)*/
