@@ -28,12 +28,13 @@
 }
 
 .ResourceCard__image {
-  width: 255px;
-  height: 255px;
+  width: 250px;
+  height: 250px;
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   border: 1px solid #DBDBD0;
+  flex-shrink: 0;
 }
 
 .ResourceCard__pub_date{
