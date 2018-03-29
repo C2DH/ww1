@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import CollectionItem from '../../components/CollectionItem'
 import { connect } from 'react-redux'
 import Spinner from '../../components/Spinner'
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import './CollectionDetailModal.css'
 import {
   loadDocument,
@@ -22,7 +23,9 @@ class CollectionDetailModal extends PureComponent {
   componentDidMount() {
     this.mounted = true
     this.props.loadDocument(this.props.match.params.id)
-    this.props.lockScroll()
+    //this.props.lockScroll()
+    this.targetElement = document.querySelector('.CollectionDetailModal__container');
+    disableBodyScroll(this.targetElement);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -35,7 +38,8 @@ class CollectionDetailModal extends PureComponent {
   componentWillUnmount() {
     this.mounted = false
     this.props.unloadDocument()
-    this.props.unlockScroll()
+    //this.props.unlockScroll()
+    clearAllBodyScrollLocks();
   }
 
   close = () => {

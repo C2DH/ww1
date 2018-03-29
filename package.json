@@ -5,6 +5,7 @@
   "proxy": "https://ww1.lu",
   "dependencies": {
     "animate.css": "^3.5.2",
+    "body-scroll-lock": "^2.3.3",
     "bootstrap": "4.0.0-alpha.6",
     "d3-color": "^1.0.3",
     "d3-scale": "^1.0.6",

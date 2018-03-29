@@ -10,6 +10,7 @@ import {
   lockScroll,
   unlockScroll,
 } from '../../state/actions'
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 var yx = L.latLng;
 
@@ -37,22 +38,10 @@ class CollectionItemPreviewImage extends React.PureComponent {
 
 	// #TODO: here we could set min zoom based on doc vs viewport sizes
 
-	componentWillMount() {
-		this.props.unlockScroll()
-
-    //this.props.lockScroll()
-	}
-
 	componentDidMount(){
 		//this.measure()
-
-		this.props.lockScroll()
-
 	}
 
-  componentWillUnmount() {
-    this.props.unlockScroll()
-  }
 	// measure = () => {
 	// 	const node = ReactDOM.findDOMNode(this)
 	// 	const width = node.parentNode.clientWidth
@@ -104,9 +93,6 @@ class CollectionItemPreviewImage extends React.PureComponent {
         <ZoomControl zoom={zoom} maxZoom={3} minZoom={-2.5} zoomTo={this.zoomTo} reset={this.context.t('reset')}/>
         {/* <WhiteTooltip target="CollectionItem__btn_download" tooltipText={<span>Download image and data<br/>Download image</span>} /> */}
 				<CollectionItemDownload doc={doc} className="CollectionItem__btn_download"/>
-
-   <div onClick={() => this.props.unlockScroll()} style={{color:'white', padding:5}}>unlock</div>
-        <div onClick={() => this.props.lockScroll()} style={{color:'white', padding:5}}>lock</div>
       </div>
     </div>
   );
