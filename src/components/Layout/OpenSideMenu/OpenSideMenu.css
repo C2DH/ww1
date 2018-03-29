@@ -6,7 +6,7 @@
   overflow-y: scroll;
   z-index: 99999;
   width: 100%;
-  box-shadow: 5px 2px 7px 0 rgba(0,0,0,0.5);
+  box-shadow: 5px 2px 20px 0px rgba(0,0,0,0.3);
 }
 
 .OpenSideMenu__list {

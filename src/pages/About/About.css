@@ -9,6 +9,10 @@
   margin-bottom: 2rem;
 }
 
+.About__wrapper .Static__intro a{
+  text-decoration: underline;
+}
+
 .About__logo_wrapper{
   display: flex;
   flex-wrap: wrap;

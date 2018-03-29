@@ -128,6 +128,7 @@ class ModuleMap extends PureComponent {
               keyboard={false}
               zoom={zoom}
               fitBounds={bounds}
+              fitBoundsOptions={{padding:20}}
               onDrag={this.onDrag}
               injectCss={false}
               touchZoomRotate={false}

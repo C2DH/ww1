@@ -48,7 +48,8 @@
 .ChapterCover__inner_container h1 {
 	color: #FFFFFF;
   font-size: 2rem;
-  flex:1
+  flex:1;
+  animation-duration: 2s;
 }
 
 .ChapterCover__text_container {
