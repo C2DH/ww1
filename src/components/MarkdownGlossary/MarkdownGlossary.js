@@ -59,10 +59,15 @@ const ObjectLink = connect(mapStateToProps)(class extends React.PureComponent {
     const {href='', lang} = this.props
     if(this.state.doc){
       const translatedDoc = translateDocument(lang)(this.state.doc)
+      const splitedText = this.props.children.split(' ');
       return (
-        <a className="markdown_glossary" onClick={this.handleToggle} >
-          <Origin place='left' content={`<div class="markdown_glossary_tooltip"> ${translatedDoc.translated.description || translatedDoc.translated.title || translatedDoc.title}</div>`}>{this.props.children}</Origin>
-        </a>
+        <span>
+        {splitedText && splitedText.map((text,i) => (
+          <a className="markdown_glossary" key={text + i} onClick={this.handleToggle} >
+            <Origin place='auto' content={`<div class="markdown_glossary_tooltip"> ${translatedDoc.translated.description || translatedDoc.translated.title || translatedDoc.title}</div>`}>{text}{splitedText.length-1 == i?'':' '}</Origin>
+          </a>
+        ))}
+        </span>
       )
     } else {
       const passProps=omit(this.props, ['doc', 'unloadDocument', 'loadDocument', 'loading', 'lang', 'dispatch'])

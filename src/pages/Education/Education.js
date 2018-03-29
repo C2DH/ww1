@@ -30,7 +30,6 @@ class Education extends PureComponent {
 
   render() {
     const { educationals, documents } = this.props
-    console.log(documents)
     return (
       <div className="Education__wrapper">
         <Helmet>

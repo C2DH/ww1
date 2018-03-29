@@ -8,7 +8,9 @@
 }
 
 .markdown_glossary_tooltip{
-  width: 150px;
+  /* width: 150px; */
+  min-width: 150px;
+  max-width: 150px;
   text-align: center;
 }
 
@@ -22,7 +24,7 @@
 @media (min-width: 768px) {
 
   .markdown_glossary_tooltip{
-    width: 300px;
+    max-width: 300px;
   }
 
  }
