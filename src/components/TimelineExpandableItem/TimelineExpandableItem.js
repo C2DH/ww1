@@ -5,6 +5,7 @@ import { Container, Row, Col, Collapse } from 'reactstrap'
 import EventDate from '../EventDate'
 import CollectionItemLink from '../CollectionItemLink'
 import './TimelineExpandableItem.css'
+import MdTitle from '../../components/MdTitle'
 
 const TimelineEventDate = ({ startDate, endDate }) => (
   <EventDate
@@ -48,7 +49,7 @@ render () {
           </Col>
           <Col xs="12" md="8" lg="9">
           <h2 className="TimelineExpandableItem__title" onClick={this.toggleExpand}>
-              {this.props.item.translated.title}
+              <MdTitle title={this.props.item.translated.title}></MdTitle>
             </h2>
           </Col>
           <Col md="1" lg="1" className="TimelineExpandableItem__btn_container hidden-sm-down">

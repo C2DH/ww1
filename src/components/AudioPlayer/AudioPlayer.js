@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import Wavesurfer from 'react-wavesurfer';
+import MdTitle from '../../components/MdTitle'
 import './AudioPlayer.css'
 
 class AudioPlayer extends PureComponent {
@@ -31,7 +32,9 @@ class AudioPlayer extends PureComponent {
             {this.state.playing && <i className="material-icons">pause</i>}
             {!this.state.playing && <i className="material-icons">play_arrow</i>}
           </button>
-          <h4 className="AudioPlayer__title animated fadeInUp">{title}</h4>
+          <h4 className="AudioPlayer__title animated fadeInUp">
+            <MdTitle title={title}></MdTitle>
+          </h4>
         </div>
         <div className="AudioPlayer__wave-gradient" style={{opacity: this.state.ready?1:0}}>
           <Wavesurfer

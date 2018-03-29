@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Row, Col, Label, Collapse, Button } from 'reactstrap'
 import EventDate from '../../components/EventDate'
+import MdTitle from '../../components/MdTitle'
 import moment from 'moment'
 import MediaQuery from 'react-responsive'
 import { get, keys, capitalize } from 'lodash'
@@ -173,7 +174,9 @@ export default ({ doc, onCloseClick }) => {
                     endDate={doc.translated.end_date}
                   />
                 </p>
-                <h3 className="CollectionItem__title">{doc.translated.title}</h3>
+                <h3 className="CollectionItem__title">
+                  <MdTitle title={doc.translated.title}></MdTitle>
+                </h3>
                 <hr className="CollectionItem__title_divider" />
                 <div className="CollectionItem__description">
                   <Markdown>

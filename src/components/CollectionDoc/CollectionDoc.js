@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { pure } from 'recompose'
 import { Link } from 'react-router-dom'
 import { get } from 'lodash'
+import MdTitle from '../../components/MdTitle'
 import {
   getCurrentLanguage,
 } from '../../state/selectors'
@@ -15,7 +16,7 @@ const CollectionDoc = ({ doc, hasImage, lang, showDocLink = false, squared = fal
       { hasImage && ( <img src={doc.data.resolutions.thumbnail.url} alt={doc.translated.title}/> )}
       { !hasImage && (
         <div className={`CollectionDoc__inner_container ${squared ? 'squared' : ''} CollectionDoc__frame_over_${doc.data.type}`}>
-          {doc.translated.title}
+          <MdTitle title={doc.translated.title}></MdTitle>
         </div> )}
       {/* {get(doc, 'data.coordinates.geometry.coordinates')} */}
     </Link>
