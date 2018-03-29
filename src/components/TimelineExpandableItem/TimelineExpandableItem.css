@@ -71,22 +71,19 @@
   margin-right: 15px;
   display: inline-block;
   position: relative;
+  overflow: hidden;
 }
 
-.TimelineExpandableItem__imgFrame a{
-  position: absolute;
-  top:2px;
-  right: 2px;
-  color: #F36455;
-}
-
-.TimelineExpandableItem__imgFrame a .material-icons{
-  font-size: 28px!important;
-}
 
 .TimelineExpandableItem__imgFrame img{
   height: 100%;
   width: auto;
+  filter: grayscale(0.5);
+  transition: filter 0.25s;
+}
+
+.TimelineExpandableItem__imgFrame img:hover{
+  filter: grayscale(0);
 }
 
 .TimelineExpandableItem__show_less {

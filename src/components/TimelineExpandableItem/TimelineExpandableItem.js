@@ -1,11 +1,14 @@
 import ReactDOM from 'react-dom'
 import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
 import moment from 'moment'
 import { Container, Row, Col, Collapse } from 'reactstrap'
 import EventDate from '../EventDate'
 import CollectionItemLink from '../CollectionItemLink'
 import './TimelineExpandableItem.css'
 import MdTitle from '../../components/MdTitle'
+import { Link } from 'react-router-dom'
+import { getCurrentLanguage } from '../../state/selectors'
 
 const TimelineEventDate = ({ startDate, endDate }) => (
   <EventDate
@@ -37,7 +40,7 @@ class TimelineExpandableItem extends PureComponent {
     }
 
 render () {
-
+  const {lang} = this.props;
   return (
       <Container fluid={true} className='TimelineExpandableItem'>
         <Row>
@@ -75,8 +78,10 @@ render () {
                           <div
                             key={document.id}
                             className="TimelineExpandableItem__imgFrame">
-                            <CollectionItemLink className="TimelineExpandableItem__imgLink" doc={document}></CollectionItemLink>
-                            <img src={document.snapshot}></img>
+                            {/*<CollectionItemLink className="TimelineExpandableItem__imgLink" doc={document}></CollectionItemLink>*/}
+                            <Link to={{ pathname:`/collection/item/${document.id}`, search: '?lang=' + lang.label.toLowerCase(), state:{modal:true} }}>
+                              <img src={document.data.resolutions.thumbnail.url}></img>
+                            </Link>
                           </div>
                         ))}
                       </div>
@@ -94,4 +99,7 @@ TimelineExpandableItem.contextTypes = {
   t: React.PropTypes.func.isRequired
 }
 
-export default TimelineExpandableItem
+export default connect(state => ({
+  lang: getCurrentLanguage(state),
+}))(TimelineExpandableItem)
+// export default TimelineExpandableItem
