@@ -120,7 +120,7 @@ class SeeAlso extends PureComponent {
     return (
     <div className="CollectionItem__Relatedobjects">
       <h6 className="CollectionItem__label">{t('see also')}</h6>
-        {year && <Link to={yearLink}><button className="CollectionItem__btn btn btn-secondary">{get(doc, "data.year")}</button></Link>}
+        {(year && doc.data.year != 'uncertain') && <Link to={yearLink}><button className="CollectionItem__btn btn btn-secondary">{get(doc, "data.year")}</button></Link>}
         {dataType && <Link to={`/collection/?types=${dataType}`}><button className="CollectionItem__btn btn btn-secondary">{get(doc, "data.type")}</button></Link>}
     </div>)
   }
