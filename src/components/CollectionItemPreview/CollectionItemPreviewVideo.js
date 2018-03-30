@@ -12,6 +12,7 @@ export default class CollectionItemPreviewVideo extends React.PureComponent {
     <div className="CollectionItemPreview__doc_preview">
       <div className="CollectionItemPreview__video_wrapper">
         <Player
+          poster={doc.data.resolutions.medium.url}
           fluid={false}
           >
           <source src={videoSource} />
