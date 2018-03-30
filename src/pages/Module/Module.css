@@ -586,6 +586,10 @@
   z-index: 1;
 }
 
+.Map__Module_Container .Map__ZoomControl{
+  right: auto!important;
+}
+
 .ModuleMap__Caption {
     height: 58px;
     width: 100%;
