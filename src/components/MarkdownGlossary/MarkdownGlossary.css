@@ -1,10 +1,15 @@
 .Module__container_text a[href^="object://"],
 .Module__textObject_Text a[href^="object://"],
 .markdown_glossary{
-  padding-bottom: 2px;
-  border-bottom: 1px dashed #F56350;
   cursor: help;
   color: white;
+}
+
+.Module__container_text a[href^="object://"]:last-of-type:after,
+.Module__textObject_Text a[href^="object://"]:last-of-type:after,
+.markdown_glossary:last-of-type:after{
+  content: "*";
+  color: #F56350;
 }
 
 .markdown_glossary_tooltip{
