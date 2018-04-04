@@ -45,6 +45,7 @@ class OpenSideMenu extends PureComponent {
        <ul className="OpenSideMenu__bottom_list">
          <li><NavLink to="/about" onClick={this.props.closeMenu}>{this.context.t('about')}</NavLink></li>
          <li><NavLink to="/terms-of-use" onClick={this.props.closeMenu}>{this.context.t('terms of use')}</NavLink></li>
+         <li><a href="/contact-us/"> {this.context.t('contact us')} </a></li>
        </ul>
        <div className="OpenSideMenu__bottom_logos">
          <img src="/img/logo/logo_sidebar.png"></img>
