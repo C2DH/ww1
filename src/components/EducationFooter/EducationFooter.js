@@ -11,7 +11,7 @@ class EducationFooter extends PureComponent {
             <Col md="12">
               <div className="EducationFooter__content">
                 <h5>{this.context.t('did you use our manuals? tell us more!')}</h5>
-                <a className="btn btn-secondary EducationFooter__Btn" href="https://docs.google.com/forms/d/e/1FAIpQLSey5ZCDw49_li-rFjzbLtGbKmVlEljQZZBxqpJG1uU_sv1sVA/viewform" target="_blank">submit</a>
+                <a className="btn btn-secondary EducationFooter__Btn" href="https://ww1.lu/contact-us/" target="_blank">submit</a>
               </div>
             </Col>
           </Row>
