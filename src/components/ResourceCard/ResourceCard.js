@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import MdTitle from '../../components/MdTitle'
 import EventDate from '../../components/EventDate'
 import './ResourceCard.css'
 
@@ -16,8 +17,10 @@ class ResourceCard extends PureComponent {
               startDate={startDate}
             />
           </p>
-          <h3>{title}</h3>
-          <p className="ResourceCard__pub_date"><i>by </i>{author}</p>
+          <h3>
+            <MdTitle title={title}></MdTitle>
+          </h3>
+          <p className="ResourceCard__pub_date"><i>{this.context.t('by')} </i>{author}</p>
           <p>
               {description}
           </p>
