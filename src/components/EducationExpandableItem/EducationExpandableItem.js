@@ -24,9 +24,7 @@ render () {
             <h1>{this.props.counter}</h1>
           </div>
           <div className='EducationExpandableItem__title'>
-          <h6>
-            {this.props.label}
-          </h6>
+          <h6>{this.context.t(this.props.label)}</h6>
           <h2 className="EducationExpandableItem__titleLabel" onClick={this.toggleExpand}>
               {this.props.title}
             </h2>
@@ -49,6 +47,10 @@ render () {
 
      )
    }
+}
+
+EducationExpandableItem.contextTypes = {
+  t: React.PropTypes.func.isRequired
 }
 
 export default EducationExpandableItem
